@@ -2,7 +2,7 @@
 
 # CbbV3Odds — operations
 
-Accessor: `client.cbb_v3_odds` · Source: `cbb_api/apis/cbb_v3_odds.py` · 34 operations
+Accessor: `client.cbb_v3_odds` · Source: `sports_data/apis/cbb_v3_odds.py` · 34 operations
 
 Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omit what its invariants table covers and are otherwise self-contained, so chunk at block level. Signatures are the sync parsed spelling; the async and raw spellings take the same parameters (see sdk-map.md). **Type sources** names the module declaring each type an operation mentions, so resolving a body, return or error payload is a lookup rather than a search; the runtime types `RawError` and `ApiResult` are excluded.
 
@@ -19,10 +19,10 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 | Type | Source |
 | --- | --- |
-| `FormatOrStr` | `cbb_api/models/enums/format.py` |
-| `GameInfo` | `cbb_api/models/game_info.py` |
-| `CbbV3OddsAlternateMarketPreGameOddsByDateErrorBody` | `cbb_api/errors/cbb_v3_odds_alternate_market_pre_game_odds_by_date_error.py` |
-| `Unauthorized` | `cbb_api/models/unauthorized.py` |
+| `FormatOrStr` | `sports_data/models/enums/format.py` |
+| `GameInfo` | `sports_data/models/game_info.py` |
+| `CbbV3OddsAlternateMarketPreGameOddsByDateErrorBody` | `sports_data/errors/cbb_v3_odds_alternate_market_pre_game_odds_by_date_error.py` |
+| `Unauthorized` | `sports_data/models/unauthorized.py` |
 
 ### client.cbb_v3_odds.cbb_v3_odds_alternate_market_pre_game_odds_line_movement
 
@@ -37,10 +37,10 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 | Type | Source |
 | --- | --- |
-| `FormatOrStr` | `cbb_api/models/enums/format.py` |
-| `GameInfo` | `cbb_api/models/game_info.py` |
-| `CbbV3OddsAlternateMarketPreGameOddsLineMovementErrorBody` | `cbb_api/errors/cbb_v3_odds_alternate_market_pre_game_odds_line_movement_error.py` |
-| `Unauthorized` | `cbb_api/models/unauthorized.py` |
+| `FormatOrStr` | `sports_data/models/enums/format.py` |
+| `GameInfo` | `sports_data/models/game_info.py` |
+| `CbbV3OddsAlternateMarketPreGameOddsLineMovementErrorBody` | `sports_data/errors/cbb_v3_odds_alternate_market_pre_game_odds_line_movement_error.py` |
+| `Unauthorized` | `sports_data/models/unauthorized.py` |
 
 ### client.cbb_v3_odds.cbb_v3_odds_betting_events_by_date
 
@@ -55,10 +55,10 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 | Type | Source |
 | --- | --- |
-| `FormatOrStr` | `cbb_api/models/enums/format.py` |
-| `BettingEvent` | `cbb_api/models/betting_event.py` |
-| `CbbV3OddsBettingEventsByDateErrorBody` | `cbb_api/errors/cbb_v3_odds_betting_events_by_date_error.py` |
-| `Unauthorized` | `cbb_api/models/unauthorized.py` |
+| `FormatOrStr` | `sports_data/models/enums/format.py` |
+| `BettingEvent` | `sports_data/models/betting_event.py` |
+| `CbbV3OddsBettingEventsByDateErrorBody` | `sports_data/errors/cbb_v3_odds_betting_events_by_date_error.py` |
+| `Unauthorized` | `sports_data/models/unauthorized.py` |
 
 ### client.cbb_v3_odds.cbb_v3_odds_betting_events_by_season
 
@@ -73,10 +73,10 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 | Type | Source |
 | --- | --- |
-| `FormatOrStr` | `cbb_api/models/enums/format.py` |
-| `BettingEvent` | `cbb_api/models/betting_event.py` |
-| `CbbV3OddsBettingEventsBySeasonErrorBody` | `cbb_api/errors/cbb_v3_odds_betting_events_by_season_error.py` |
-| `Unauthorized` | `cbb_api/models/unauthorized.py` |
+| `FormatOrStr` | `sports_data/models/enums/format.py` |
+| `BettingEvent` | `sports_data/models/betting_event.py` |
+| `CbbV3OddsBettingEventsBySeasonErrorBody` | `sports_data/errors/cbb_v3_odds_betting_events_by_season_error.py` |
+| `Unauthorized` | `sports_data/models/unauthorized.py` |
 
 ### client.cbb_v3_odds.cbb_v3_odds_betting_futures_by_season
 
@@ -91,10 +91,10 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 | Type | Source |
 | --- | --- |
-| `FormatOrStr` | `cbb_api/models/enums/format.py` |
-| `BettingEvent` | `cbb_api/models/betting_event.py` |
-| `CbbV3OddsBettingFuturesBySeasonErrorBody` | `cbb_api/errors/cbb_v3_odds_betting_futures_by_season_error.py` |
-| `Unauthorized` | `cbb_api/models/unauthorized.py` |
+| `FormatOrStr` | `sports_data/models/enums/format.py` |
+| `BettingEvent` | `sports_data/models/betting_event.py` |
+| `CbbV3OddsBettingFuturesBySeasonErrorBody` | `sports_data/errors/cbb_v3_odds_betting_futures_by_season_error.py` |
+| `Unauthorized` | `sports_data/models/unauthorized.py` |
 
 ### client.cbb_v3_odds.cbb_v3_odds_betting_futures_by_season_sportsbook_group
 
@@ -109,10 +109,10 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 | Type | Source |
 | --- | --- |
-| `FormatOrStr` | `cbb_api/models/enums/format.py` |
-| `BettingEvent` | `cbb_api/models/betting_event.py` |
-| `CbbV3OddsBettingFuturesBySeasonSportsbookGroupErrorBody` | `cbb_api/errors/cbb_v3_odds_betting_futures_by_season_sportsbook_group_error.py` |
-| `Unauthorized` | `cbb_api/models/unauthorized.py` |
+| `FormatOrStr` | `sports_data/models/enums/format.py` |
+| `BettingEvent` | `sports_data/models/betting_event.py` |
+| `CbbV3OddsBettingFuturesBySeasonSportsbookGroupErrorBody` | `sports_data/errors/cbb_v3_odds_betting_futures_by_season_sportsbook_group_error.py` |
+| `Unauthorized` | `sports_data/models/unauthorized.py` |
 
 ### client.cbb_v3_odds.cbb_v3_odds_betting_market
 
@@ -127,10 +127,10 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 | Type | Source |
 | --- | --- |
-| `FormatOrStr` | `cbb_api/models/enums/format.py` |
-| `BettingMarket` | `cbb_api/models/betting_market.py` |
-| `CbbV3OddsBettingMarketErrorBody` | `cbb_api/errors/cbb_v3_odds_betting_market_error.py` |
-| `Unauthorized` | `cbb_api/models/unauthorized.py` |
+| `FormatOrStr` | `sports_data/models/enums/format.py` |
+| `BettingMarket` | `sports_data/models/betting_market.py` |
+| `CbbV3OddsBettingMarketErrorBody` | `sports_data/errors/cbb_v3_odds_betting_market_error.py` |
+| `Unauthorized` | `sports_data/models/unauthorized.py` |
 
 ### client.cbb_v3_odds.cbb_v3_odds_betting_market_sportsbook_group
 
@@ -145,10 +145,10 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 | Type | Source |
 | --- | --- |
-| `FormatOrStr` | `cbb_api/models/enums/format.py` |
-| `BettingMarket` | `cbb_api/models/betting_market.py` |
-| `CbbV3OddsBettingMarketSportsbookGroupErrorBody` | `cbb_api/errors/cbb_v3_odds_betting_market_sportsbook_group_error.py` |
-| `Unauthorized` | `cbb_api/models/unauthorized.py` |
+| `FormatOrStr` | `sports_data/models/enums/format.py` |
+| `BettingMarket` | `sports_data/models/betting_market.py` |
+| `CbbV3OddsBettingMarketSportsbookGroupErrorBody` | `sports_data/errors/cbb_v3_odds_betting_market_sportsbook_group_error.py` |
+| `Unauthorized` | `sports_data/models/unauthorized.py` |
 
 ### client.cbb_v3_odds.cbb_v3_odds_betting_markets_by_event
 
@@ -163,11 +163,11 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 | Type | Source |
 | --- | --- |
-| `FormatOrStr` | `cbb_api/models/enums/format.py` |
-| `IncludeOrStr` | `cbb_api/models/enums/include.py` |
-| `BettingMarket` | `cbb_api/models/betting_market.py` |
-| `CbbV3OddsBettingMarketsByEventErrorBody` | `cbb_api/errors/cbb_v3_odds_betting_markets_by_event_error.py` |
-| `Unauthorized` | `cbb_api/models/unauthorized.py` |
+| `FormatOrStr` | `sports_data/models/enums/format.py` |
+| `IncludeOrStr` | `sports_data/models/enums/include.py` |
+| `BettingMarket` | `sports_data/models/betting_market.py` |
+| `CbbV3OddsBettingMarketsByEventErrorBody` | `sports_data/errors/cbb_v3_odds_betting_markets_by_event_error.py` |
+| `Unauthorized` | `sports_data/models/unauthorized.py` |
 
 ### client.cbb_v3_odds.cbb_v3_odds_betting_markets_by_event_sportsbook_group
 
@@ -182,11 +182,11 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 | Type | Source |
 | --- | --- |
-| `FormatOrStr` | `cbb_api/models/enums/format.py` |
-| `IncludeOrStr` | `cbb_api/models/enums/include.py` |
-| `BettingMarket` | `cbb_api/models/betting_market.py` |
-| `CbbV3OddsBettingMarketsByEventSportsbookGroupErrorBody` | `cbb_api/errors/cbb_v3_odds_betting_markets_by_event_sportsbook_group_error.py` |
-| `Unauthorized` | `cbb_api/models/unauthorized.py` |
+| `FormatOrStr` | `sports_data/models/enums/format.py` |
+| `IncludeOrStr` | `sports_data/models/enums/include.py` |
+| `BettingMarket` | `sports_data/models/betting_market.py` |
+| `CbbV3OddsBettingMarketsByEventSportsbookGroupErrorBody` | `sports_data/errors/cbb_v3_odds_betting_markets_by_event_sportsbook_group_error.py` |
+| `Unauthorized` | `sports_data/models/unauthorized.py` |
 
 ### client.cbb_v3_odds.cbb_v3_odds_betting_markets_by_game
 
@@ -201,11 +201,11 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 | Type | Source |
 | --- | --- |
-| `FormatOrStr` | `cbb_api/models/enums/format.py` |
-| `IncludeOrStr` | `cbb_api/models/enums/include.py` |
-| `BettingMarket` | `cbb_api/models/betting_market.py` |
-| `CbbV3OddsBettingMarketsByGameErrorBody` | `cbb_api/errors/cbb_v3_odds_betting_markets_by_game_error.py` |
-| `Unauthorized` | `cbb_api/models/unauthorized.py` |
+| `FormatOrStr` | `sports_data/models/enums/format.py` |
+| `IncludeOrStr` | `sports_data/models/enums/include.py` |
+| `BettingMarket` | `sports_data/models/betting_market.py` |
+| `CbbV3OddsBettingMarketsByGameErrorBody` | `sports_data/errors/cbb_v3_odds_betting_markets_by_game_error.py` |
+| `Unauthorized` | `sports_data/models/unauthorized.py` |
 
 ### client.cbb_v3_odds.cbb_v3_odds_betting_markets_by_game_sportsbook_group
 
@@ -220,11 +220,11 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 | Type | Source |
 | --- | --- |
-| `FormatOrStr` | `cbb_api/models/enums/format.py` |
-| `IncludeOrStr` | `cbb_api/models/enums/include.py` |
-| `BettingMarket` | `cbb_api/models/betting_market.py` |
-| `CbbV3OddsBettingMarketsByGameSportsbookGroupErrorBody` | `cbb_api/errors/cbb_v3_odds_betting_markets_by_game_sportsbook_group_error.py` |
-| `Unauthorized` | `cbb_api/models/unauthorized.py` |
+| `FormatOrStr` | `sports_data/models/enums/format.py` |
+| `IncludeOrStr` | `sports_data/models/enums/include.py` |
+| `BettingMarket` | `sports_data/models/betting_market.py` |
+| `CbbV3OddsBettingMarketsByGameSportsbookGroupErrorBody` | `sports_data/errors/cbb_v3_odds_betting_markets_by_game_sportsbook_group_error.py` |
+| `Unauthorized` | `sports_data/models/unauthorized.py` |
 
 ### client.cbb_v3_odds.cbb_v3_odds_betting_markets_by_market_type
 
@@ -239,11 +239,11 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 | Type | Source |
 | --- | --- |
-| `FormatOrStr` | `cbb_api/models/enums/format.py` |
-| `IncludeOrStr` | `cbb_api/models/enums/include.py` |
-| `BettingMarket` | `cbb_api/models/betting_market.py` |
-| `CbbV3OddsBettingMarketsByMarketTypeErrorBody` | `cbb_api/errors/cbb_v3_odds_betting_markets_by_market_type_error.py` |
-| `Unauthorized` | `cbb_api/models/unauthorized.py` |
+| `FormatOrStr` | `sports_data/models/enums/format.py` |
+| `IncludeOrStr` | `sports_data/models/enums/include.py` |
+| `BettingMarket` | `sports_data/models/betting_market.py` |
+| `CbbV3OddsBettingMarketsByMarketTypeErrorBody` | `sports_data/errors/cbb_v3_odds_betting_markets_by_market_type_error.py` |
+| `Unauthorized` | `sports_data/models/unauthorized.py` |
 
 ### client.cbb_v3_odds.cbb_v3_odds_betting_markets_by_market_type_sportsbook_group
 
@@ -258,11 +258,11 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 | Type | Source |
 | --- | --- |
-| `FormatOrStr` | `cbb_api/models/enums/format.py` |
-| `IncludeOrStr` | `cbb_api/models/enums/include.py` |
-| `BettingMarket` | `cbb_api/models/betting_market.py` |
-| `CbbV3OddsBettingMarketsByMarketTypeSportsbookGroupErrorBody` | `cbb_api/errors/cbb_v3_odds_betting_markets_by_market_type_sportsbook_group_error.py` |
-| `Unauthorized` | `cbb_api/models/unauthorized.py` |
+| `FormatOrStr` | `sports_data/models/enums/format.py` |
+| `IncludeOrStr` | `sports_data/models/enums/include.py` |
+| `BettingMarket` | `sports_data/models/betting_market.py` |
+| `CbbV3OddsBettingMarketsByMarketTypeSportsbookGroupErrorBody` | `sports_data/errors/cbb_v3_odds_betting_markets_by_market_type_sportsbook_group_error.py` |
+| `Unauthorized` | `sports_data/models/unauthorized.py` |
 
 ### client.cbb_v3_odds.cbb_v3_odds_betting_metadata
 
@@ -277,10 +277,10 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 | Type | Source |
 | --- | --- |
-| `FormatOrStr` | `cbb_api/models/enums/format.py` |
-| `BettingEntityMetadataCollection` | `cbb_api/models/betting_entity_metadata_collection.py` |
-| `CbbV3OddsBettingMetadataErrorBody` | `cbb_api/errors/cbb_v3_odds_betting_metadata_error.py` |
-| `Unauthorized` | `cbb_api/models/unauthorized.py` |
+| `FormatOrStr` | `sports_data/models/enums/format.py` |
+| `BettingEntityMetadataCollection` | `sports_data/models/betting_entity_metadata_collection.py` |
+| `CbbV3OddsBettingMetadataErrorBody` | `sports_data/errors/cbb_v3_odds_betting_metadata_error.py` |
+| `Unauthorized` | `sports_data/models/unauthorized.py` |
 
 ### client.cbb_v3_odds.cbb_v3_odds_betting_player_props_by_game
 
@@ -295,11 +295,11 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 | Type | Source |
 | --- | --- |
-| `FormatOrStr` | `cbb_api/models/enums/format.py` |
-| `IncludeOrStr` | `cbb_api/models/enums/include.py` |
-| `BettingMarket` | `cbb_api/models/betting_market.py` |
-| `CbbV3OddsBettingPlayerPropsByGameErrorBody` | `cbb_api/errors/cbb_v3_odds_betting_player_props_by_game_error.py` |
-| `Unauthorized` | `cbb_api/models/unauthorized.py` |
+| `FormatOrStr` | `sports_data/models/enums/format.py` |
+| `IncludeOrStr` | `sports_data/models/enums/include.py` |
+| `BettingMarket` | `sports_data/models/betting_market.py` |
+| `CbbV3OddsBettingPlayerPropsByGameErrorBody` | `sports_data/errors/cbb_v3_odds_betting_player_props_by_game_error.py` |
+| `Unauthorized` | `sports_data/models/unauthorized.py` |
 
 ### client.cbb_v3_odds.cbb_v3_odds_betting_player_props_by_game_sportsbook_group
 
@@ -314,11 +314,11 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 | Type | Source |
 | --- | --- |
-| `FormatOrStr` | `cbb_api/models/enums/format.py` |
-| `IncludeOrStr` | `cbb_api/models/enums/include.py` |
-| `BettingMarket` | `cbb_api/models/betting_market.py` |
-| `CbbV3OddsBettingPlayerPropsByGameSportsbookGroupErrorBody` | `cbb_api/errors/cbb_v3_odds_betting_player_props_by_game_sportsbook_group_error.py` |
-| `Unauthorized` | `cbb_api/models/unauthorized.py` |
+| `FormatOrStr` | `sports_data/models/enums/format.py` |
+| `IncludeOrStr` | `sports_data/models/enums/include.py` |
+| `BettingMarket` | `sports_data/models/betting_market.py` |
+| `CbbV3OddsBettingPlayerPropsByGameSportsbookGroupErrorBody` | `sports_data/errors/cbb_v3_odds_betting_player_props_by_game_sportsbook_group_error.py` |
+| `Unauthorized` | `sports_data/models/unauthorized.py` |
 
 ### client.cbb_v3_odds.cbb_v3_odds_betting_results_by_market
 
@@ -333,10 +333,10 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 | Type | Source |
 | --- | --- |
-| `FormatOrStr` | `cbb_api/models/enums/format.py` |
-| `BettingMarketResult` | `cbb_api/models/betting_market_result.py` |
-| `CbbV3OddsBettingResultsByMarketErrorBody` | `cbb_api/errors/cbb_v3_odds_betting_results_by_market_error.py` |
-| `Unauthorized` | `cbb_api/models/unauthorized.py` |
+| `FormatOrStr` | `sports_data/models/enums/format.py` |
+| `BettingMarketResult` | `sports_data/models/betting_market_result.py` |
+| `CbbV3OddsBettingResultsByMarketErrorBody` | `sports_data/errors/cbb_v3_odds_betting_results_by_market_error.py` |
+| `Unauthorized` | `sports_data/models/unauthorized.py` |
 
 ### client.cbb_v3_odds.cbb_v3_odds_betting_results_by_market_sportsbook_group
 
@@ -351,10 +351,10 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 | Type | Source |
 | --- | --- |
-| `FormatOrStr` | `cbb_api/models/enums/format.py` |
-| `BettingMarketResult` | `cbb_api/models/betting_market_result.py` |
-| `CbbV3OddsBettingResultsByMarketSportsbookGroupErrorBody` | `cbb_api/errors/cbb_v3_odds_betting_results_by_market_sportsbook_group_error.py` |
-| `Unauthorized` | `cbb_api/models/unauthorized.py` |
+| `FormatOrStr` | `sports_data/models/enums/format.py` |
+| `BettingMarketResult` | `sports_data/models/betting_market_result.py` |
+| `CbbV3OddsBettingResultsByMarketSportsbookGroupErrorBody` | `sports_data/errors/cbb_v3_odds_betting_results_by_market_sportsbook_group_error.py` |
+| `Unauthorized` | `sports_data/models/unauthorized.py` |
 
 ### client.cbb_v3_odds.cbb_v3_odds_betting_splits_by_betting_market
 
@@ -369,10 +369,10 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 | Type | Source |
 | --- | --- |
-| `FormatOrStr` | `cbb_api/models/enums/format.py` |
-| `BettingMarketSplit` | `cbb_api/models/betting_market_split.py` |
-| `CbbV3OddsBettingSplitsByBettingMarketErrorBody` | `cbb_api/errors/cbb_v3_odds_betting_splits_by_betting_market_error.py` |
-| `Unauthorized` | `cbb_api/models/unauthorized.py` |
+| `FormatOrStr` | `sports_data/models/enums/format.py` |
+| `BettingMarketSplit` | `sports_data/models/betting_market_split.py` |
+| `CbbV3OddsBettingSplitsByBettingMarketErrorBody` | `sports_data/errors/cbb_v3_odds_betting_splits_by_betting_market_error.py` |
+| `Unauthorized` | `sports_data/models/unauthorized.py` |
 
 ### client.cbb_v3_odds.cbb_v3_odds_betting_splits_by_game
 
@@ -387,10 +387,10 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 | Type | Source |
 | --- | --- |
-| `FormatOrStr` | `cbb_api/models/enums/format.py` |
-| `GameBettingSplit` | `cbb_api/models/game_betting_split.py` |
-| `CbbV3OddsBettingSplitsByGameErrorBody` | `cbb_api/errors/cbb_v3_odds_betting_splits_by_game_error.py` |
-| `Unauthorized` | `cbb_api/models/unauthorized.py` |
+| `FormatOrStr` | `sports_data/models/enums/format.py` |
+| `GameBettingSplit` | `sports_data/models/game_betting_split.py` |
+| `CbbV3OddsBettingSplitsByGameErrorBody` | `sports_data/errors/cbb_v3_odds_betting_splits_by_game_error.py` |
+| `Unauthorized` | `sports_data/models/unauthorized.py` |
 
 ### client.cbb_v3_odds.cbb_v3_odds_betting_trends_by_matchup
 
@@ -405,10 +405,10 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 | Type | Source |
 | --- | --- |
-| `FormatOrStr` | `cbb_api/models/enums/format.py` |
-| `MatchupTrends` | `cbb_api/models/matchup_trends.py` |
-| `CbbV3OddsBettingTrendsByMatchupErrorBody` | `cbb_api/errors/cbb_v3_odds_betting_trends_by_matchup_error.py` |
-| `Unauthorized` | `cbb_api/models/unauthorized.py` |
+| `FormatOrStr` | `sports_data/models/enums/format.py` |
+| `MatchupTrends` | `sports_data/models/matchup_trends.py` |
+| `CbbV3OddsBettingTrendsByMatchupErrorBody` | `sports_data/errors/cbb_v3_odds_betting_trends_by_matchup_error.py` |
+| `Unauthorized` | `sports_data/models/unauthorized.py` |
 
 ### client.cbb_v3_odds.cbb_v3_odds_betting_trends_by_team
 
@@ -423,10 +423,10 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 | Type | Source |
 | --- | --- |
-| `FormatOrStr` | `cbb_api/models/enums/format.py` |
-| `TeamTrends` | `cbb_api/models/team_trends.py` |
-| `CbbV3OddsBettingTrendsByTeamErrorBody` | `cbb_api/errors/cbb_v3_odds_betting_trends_by_team_error.py` |
-| `Unauthorized` | `cbb_api/models/unauthorized.py` |
+| `FormatOrStr` | `sports_data/models/enums/format.py` |
+| `TeamTrends` | `sports_data/models/team_trends.py` |
+| `CbbV3OddsBettingTrendsByTeamErrorBody` | `sports_data/errors/cbb_v3_odds_betting_trends_by_team_error.py` |
+| `Unauthorized` | `sports_data/models/unauthorized.py` |
 
 ### client.cbb_v3_odds.cbb_v3_odds_in_game_odds_by_date
 
@@ -441,10 +441,10 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 | Type | Source |
 | --- | --- |
-| `FormatOrStr` | `cbb_api/models/enums/format.py` |
-| `GameInfo` | `cbb_api/models/game_info.py` |
-| `CbbV3OddsInGameOddsByDateErrorBody` | `cbb_api/errors/cbb_v3_odds_in_game_odds_by_date_error.py` |
-| `Unauthorized` | `cbb_api/models/unauthorized.py` |
+| `FormatOrStr` | `sports_data/models/enums/format.py` |
+| `GameInfo` | `sports_data/models/game_info.py` |
+| `CbbV3OddsInGameOddsByDateErrorBody` | `sports_data/errors/cbb_v3_odds_in_game_odds_by_date_error.py` |
+| `Unauthorized` | `sports_data/models/unauthorized.py` |
 
 ### client.cbb_v3_odds.cbb_v3_odds_in_game_odds_by_date_sportsbook_group
 
@@ -459,10 +459,10 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 | Type | Source |
 | --- | --- |
-| `FormatOrStr` | `cbb_api/models/enums/format.py` |
-| `GameInfo` | `cbb_api/models/game_info.py` |
-| `CbbV3OddsInGameOddsByDateSportsbookGroupErrorBody` | `cbb_api/errors/cbb_v3_odds_in_game_odds_by_date_sportsbook_group_error.py` |
-| `Unauthorized` | `cbb_api/models/unauthorized.py` |
+| `FormatOrStr` | `sports_data/models/enums/format.py` |
+| `GameInfo` | `sports_data/models/game_info.py` |
+| `CbbV3OddsInGameOddsByDateSportsbookGroupErrorBody` | `sports_data/errors/cbb_v3_odds_in_game_odds_by_date_sportsbook_group_error.py` |
+| `Unauthorized` | `sports_data/models/unauthorized.py` |
 
 ### client.cbb_v3_odds.cbb_v3_odds_in_game_odds_line_movement
 
@@ -477,10 +477,10 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 | Type | Source |
 | --- | --- |
-| `FormatOrStr` | `cbb_api/models/enums/format.py` |
-| `GameInfo` | `cbb_api/models/game_info.py` |
-| `CbbV3OddsInGameOddsLineMovementErrorBody` | `cbb_api/errors/cbb_v3_odds_in_game_odds_line_movement_error.py` |
-| `Unauthorized` | `cbb_api/models/unauthorized.py` |
+| `FormatOrStr` | `sports_data/models/enums/format.py` |
+| `GameInfo` | `sports_data/models/game_info.py` |
+| `CbbV3OddsInGameOddsLineMovementErrorBody` | `sports_data/errors/cbb_v3_odds_in_game_odds_line_movement_error.py` |
+| `Unauthorized` | `sports_data/models/unauthorized.py` |
 
 ### client.cbb_v3_odds.cbb_v3_odds_in_game_odds_line_movement_sportsbook_group
 
@@ -495,10 +495,10 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 | Type | Source |
 | --- | --- |
-| `FormatOrStr` | `cbb_api/models/enums/format.py` |
-| `GameInfo` | `cbb_api/models/game_info.py` |
-| `CbbV3OddsInGameOddsLineMovementSportsbookGroupErrorBody` | `cbb_api/errors/cbb_v3_odds_in_game_odds_line_movement_sportsbook_group_error.py` |
-| `Unauthorized` | `cbb_api/models/unauthorized.py` |
+| `FormatOrStr` | `sports_data/models/enums/format.py` |
+| `GameInfo` | `sports_data/models/game_info.py` |
+| `CbbV3OddsInGameOddsLineMovementSportsbookGroupErrorBody` | `sports_data/errors/cbb_v3_odds_in_game_odds_line_movement_sportsbook_group_error.py` |
+| `Unauthorized` | `sports_data/models/unauthorized.py` |
 
 ### client.cbb_v3_odds.cbb_v3_odds_in_game_odds_line_movement_with_resulting_sportsbook_group
 
@@ -513,10 +513,10 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 | Type | Source |
 | --- | --- |
-| `FormatOrStr` | `cbb_api/models/enums/format.py` |
-| `GameInfoResult` | `cbb_api/models/game_info_result.py` |
-| `CbbV3OddsInGameOddsLineMovementWithResultingSportsbookGroupErrorBody` | `cbb_api/errors/cbb_v3_odds_in_game_odds_line_movement_with_resulting_sportsbook_group_error.py` |
-| `Unauthorized` | `cbb_api/models/unauthorized.py` |
+| `FormatOrStr` | `sports_data/models/enums/format.py` |
+| `GameInfoResult` | `sports_data/models/game_info_result.py` |
+| `CbbV3OddsInGameOddsLineMovementWithResultingSportsbookGroupErrorBody` | `sports_data/errors/cbb_v3_odds_in_game_odds_line_movement_with_resulting_sportsbook_group_error.py` |
+| `Unauthorized` | `sports_data/models/unauthorized.py` |
 
 ### client.cbb_v3_odds.cbb_v3_odds_pre_game_and_period_game_odds_by_date_sportsbook_group
 
@@ -531,10 +531,10 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 | Type | Source |
 | --- | --- |
-| `FormatOrStr` | `cbb_api/models/enums/format.py` |
-| `GameInfo` | `cbb_api/models/game_info.py` |
-| `CbbV3OddsPreGameAndPeriodGameOddsByDateSportsbookGroupErrorBody` | `cbb_api/errors/cbb_v3_odds_pre_game_and_period_game_odds_by_date_sportsbook_group_error.py` |
-| `Unauthorized` | `cbb_api/models/unauthorized.py` |
+| `FormatOrStr` | `sports_data/models/enums/format.py` |
+| `GameInfo` | `sports_data/models/game_info.py` |
+| `CbbV3OddsPreGameAndPeriodGameOddsByDateSportsbookGroupErrorBody` | `sports_data/errors/cbb_v3_odds_pre_game_and_period_game_odds_by_date_sportsbook_group_error.py` |
+| `Unauthorized` | `sports_data/models/unauthorized.py` |
 
 ### client.cbb_v3_odds.cbb_v3_odds_pre_game_and_period_game_odds_line_movement_sportsbook_group
 
@@ -549,10 +549,10 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 | Type | Source |
 | --- | --- |
-| `FormatOrStr` | `cbb_api/models/enums/format.py` |
-| `GameInfo` | `cbb_api/models/game_info.py` |
-| `CbbV3OddsPreGameAndPeriodGameOddsLineMovementSportsbookGroupErrorBody` | `cbb_api/errors/cbb_v3_odds_pre_game_and_period_game_odds_line_movement_sportsbook_group_error.py` |
-| `Unauthorized` | `cbb_api/models/unauthorized.py` |
+| `FormatOrStr` | `sports_data/models/enums/format.py` |
+| `GameInfo` | `sports_data/models/game_info.py` |
+| `CbbV3OddsPreGameAndPeriodGameOddsLineMovementSportsbookGroupErrorBody` | `sports_data/errors/cbb_v3_odds_pre_game_and_period_game_odds_line_movement_sportsbook_group_error.py` |
+| `Unauthorized` | `sports_data/models/unauthorized.py` |
 
 ### client.cbb_v3_odds.cbb_v3_odds_pre_game_and_period_game_odds_line_movement_with_resulting_sportsbook_group
 
@@ -567,10 +567,10 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 | Type | Source |
 | --- | --- |
-| `FormatOrStr` | `cbb_api/models/enums/format.py` |
-| `GameInfoResult` | `cbb_api/models/game_info_result.py` |
-| `CbbV3OddsPreGameAndPeriodGameOddsLineMovementWithResultingSportsbookGroupErrorBody` | `cbb_api/errors/cbb_v3_odds_pre_game_and_period_game_odds_line_movement_with_resulting_sportsbook_group_error.py` |
-| `Unauthorized` | `cbb_api/models/unauthorized.py` |
+| `FormatOrStr` | `sports_data/models/enums/format.py` |
+| `GameInfoResult` | `sports_data/models/game_info_result.py` |
+| `CbbV3OddsPreGameAndPeriodGameOddsLineMovementWithResultingSportsbookGroupErrorBody` | `sports_data/errors/cbb_v3_odds_pre_game_and_period_game_odds_line_movement_with_resulting_sportsbook_group_error.py` |
+| `Unauthorized` | `sports_data/models/unauthorized.py` |
 
 ### client.cbb_v3_odds.cbb_v3_odds_pre_game_odds_by_date
 
@@ -585,10 +585,10 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 | Type | Source |
 | --- | --- |
-| `FormatOrStr` | `cbb_api/models/enums/format.py` |
-| `GameInfo` | `cbb_api/models/game_info.py` |
-| `CbbV3OddsPreGameOddsByDateErrorBody` | `cbb_api/errors/cbb_v3_odds_pre_game_odds_by_date_error.py` |
-| `Unauthorized` | `cbb_api/models/unauthorized.py` |
+| `FormatOrStr` | `sports_data/models/enums/format.py` |
+| `GameInfo` | `sports_data/models/game_info.py` |
+| `CbbV3OddsPreGameOddsByDateErrorBody` | `sports_data/errors/cbb_v3_odds_pre_game_odds_by_date_error.py` |
+| `Unauthorized` | `sports_data/models/unauthorized.py` |
 
 ### client.cbb_v3_odds.cbb_v3_odds_pre_game_odds_line_movement
 
@@ -603,10 +603,10 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 | Type | Source |
 | --- | --- |
-| `FormatOrStr` | `cbb_api/models/enums/format.py` |
-| `GameInfo` | `cbb_api/models/game_info.py` |
-| `CbbV3OddsPreGameOddsLineMovementErrorBody` | `cbb_api/errors/cbb_v3_odds_pre_game_odds_line_movement_error.py` |
-| `Unauthorized` | `cbb_api/models/unauthorized.py` |
+| `FormatOrStr` | `sports_data/models/enums/format.py` |
+| `GameInfo` | `sports_data/models/game_info.py` |
+| `CbbV3OddsPreGameOddsLineMovementErrorBody` | `sports_data/errors/cbb_v3_odds_pre_game_odds_line_movement_error.py` |
+| `Unauthorized` | `sports_data/models/unauthorized.py` |
 
 ### client.cbb_v3_odds.cbb_v3_odds_sportsbooks_by_active
 
@@ -621,8 +621,8 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 | Type | Source |
 | --- | --- |
-| `FormatOrStr` | `cbb_api/models/enums/format.py` |
-| `Sportsbook` | `cbb_api/models/sportsbook.py` |
-| `CbbV3OddsSportsbooksByActiveErrorBody` | `cbb_api/errors/cbb_v3_odds_sportsbooks_by_active_error.py` |
-| `Unauthorized` | `cbb_api/models/unauthorized.py` |
+| `FormatOrStr` | `sports_data/models/enums/format.py` |
+| `Sportsbook` | `sports_data/models/sportsbook.py` |
+| `CbbV3OddsSportsbooksByActiveErrorBody` | `sports_data/errors/cbb_v3_odds_sportsbooks_by_active_error.py` |
+| `Unauthorized` | `sports_data/models/unauthorized.py` |
 

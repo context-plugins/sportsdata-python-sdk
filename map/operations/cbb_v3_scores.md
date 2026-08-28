@@ -2,7 +2,7 @@
 
 # CbbV3Scores — operations
 
-Accessor: `client.cbb_v3_scores` · Source: `cbb_api/apis/cbb_v3_scores.py` · 22 operations
+Accessor: `client.cbb_v3_scores` · Source: `sports_data/apis/cbb_v3_scores.py` · 22 operations
 
 Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omit what its invariants table covers and are otherwise self-contained, so chunk at block level. Signatures are the sync parsed spelling; the async and raw spellings take the same parameters (see sdk-map.md). **Type sources** names the module declaring each type an operation mentions, so resolving a body, return or error payload is a lookup rather than a search; the runtime types `RawError` and `ApiResult` are excluded.
 
@@ -19,9 +19,9 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 | Type | Source |
 | --- | --- |
-| `FormatOrStr` | `cbb_api/models/enums/format.py` |
-| `CbbV3ScoresAreGamesInProgressErrorBody` | `cbb_api/errors/cbb_v3_scores_are_games_in_progress_error.py` |
-| `Unauthorized` | `cbb_api/models/unauthorized.py` |
+| `FormatOrStr` | `sports_data/models/enums/format.py` |
+| `CbbV3ScoresAreGamesInProgressErrorBody` | `sports_data/errors/cbb_v3_scores_are_games_in_progress_error.py` |
+| `Unauthorized` | `sports_data/models/unauthorized.py` |
 
 ### client.cbb_v3_scores.cbb_v3_scores_games_by_date_final
 
@@ -36,10 +36,10 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 | Type | Source |
 | --- | --- |
-| `FormatOrStr` | `cbb_api/models/enums/format.py` |
-| `Game` | `cbb_api/models/game.py` |
-| `CbbV3ScoresGamesByDateFinalErrorBody` | `cbb_api/errors/cbb_v3_scores_games_by_date_final_error.py` |
-| `Unauthorized` | `cbb_api/models/unauthorized.py` |
+| `FormatOrStr` | `sports_data/models/enums/format.py` |
+| `Game` | `sports_data/models/game.py` |
+| `CbbV3ScoresGamesByDateFinalErrorBody` | `sports_data/errors/cbb_v3_scores_games_by_date_final_error.py` |
+| `Unauthorized` | `sports_data/models/unauthorized.py` |
 
 ### client.cbb_v3_scores.cbb_v3_scores_games_by_date_live_final
 
@@ -54,10 +54,10 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 | Type | Source |
 | --- | --- |
-| `FormatOrStr` | `cbb_api/models/enums/format.py` |
-| `Game` | `cbb_api/models/game.py` |
-| `CbbV3ScoresGamesByDateLiveFinalErrorBody` | `cbb_api/errors/cbb_v3_scores_games_by_date_live_final_error.py` |
-| `Unauthorized` | `cbb_api/models/unauthorized.py` |
+| `FormatOrStr` | `sports_data/models/enums/format.py` |
+| `Game` | `sports_data/models/game.py` |
+| `CbbV3ScoresGamesByDateLiveFinalErrorBody` | `sports_data/errors/cbb_v3_scores_games_by_date_live_final_error.py` |
+| `Unauthorized` | `sports_data/models/unauthorized.py` |
 
 ### client.cbb_v3_scores.cbb_v3_scores_games_by_season
 
@@ -72,10 +72,10 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 | Type | Source |
 | --- | --- |
-| `FormatOrStr` | `cbb_api/models/enums/format.py` |
-| `Game` | `cbb_api/models/game.py` |
-| `CbbV3ScoresGamesBySeasonErrorBody` | `cbb_api/errors/cbb_v3_scores_games_by_season_error.py` |
-| `Unauthorized` | `cbb_api/models/unauthorized.py` |
+| `FormatOrStr` | `sports_data/models/enums/format.py` |
+| `Game` | `sports_data/models/game.py` |
+| `CbbV3ScoresGamesBySeasonErrorBody` | `sports_data/errors/cbb_v3_scores_games_by_season_error.py` |
+| `Unauthorized` | `sports_data/models/unauthorized.py` |
 
 ### client.cbb_v3_scores.cbb_v3_scores_games_by_season_final
 
@@ -90,10 +90,10 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 | Type | Source |
 | --- | --- |
-| `FormatOrStr` | `cbb_api/models/enums/format.py` |
-| `Game` | `cbb_api/models/game.py` |
-| `CbbV3ScoresGamesBySeasonFinalErrorBody` | `cbb_api/errors/cbb_v3_scores_games_by_season_final_error.py` |
-| `Unauthorized` | `cbb_api/models/unauthorized.py` |
+| `FormatOrStr` | `sports_data/models/enums/format.py` |
+| `Game` | `sports_data/models/game.py` |
+| `CbbV3ScoresGamesBySeasonFinalErrorBody` | `sports_data/errors/cbb_v3_scores_games_by_season_final_error.py` |
+| `Unauthorized` | `sports_data/models/unauthorized.py` |
 
 ### client.cbb_v3_scores.cbb_v3_scores_games_basic_by_date
 
@@ -108,10 +108,10 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 | Type | Source |
 | --- | --- |
-| `FormatOrStr` | `cbb_api/models/enums/format.py` |
-| `ScoreBasic` | `cbb_api/models/score_basic.py` |
-| `CbbV3ScoresGamesBasicByDateErrorBody` | `cbb_api/errors/cbb_v3_scores_games_basic_by_date_error.py` |
-| `Unauthorized` | `cbb_api/models/unauthorized.py` |
+| `FormatOrStr` | `sports_data/models/enums/format.py` |
+| `ScoreBasic` | `sports_data/models/score_basic.py` |
+| `CbbV3ScoresGamesBasicByDateErrorBody` | `sports_data/errors/cbb_v3_scores_games_basic_by_date_error.py` |
+| `Unauthorized` | `sports_data/models/unauthorized.py` |
 
 ### client.cbb_v3_scores.cbb_v3_scores_league_hierarchy
 
@@ -126,10 +126,10 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 | Type | Source |
 | --- | --- |
-| `FormatOrStr` | `cbb_api/models/enums/format.py` |
-| `Conference` | `cbb_api/models/conference.py` |
-| `CbbV3ScoresLeagueHierarchyErrorBody` | `cbb_api/errors/cbb_v3_scores_league_hierarchy_error.py` |
-| `Unauthorized` | `cbb_api/models/unauthorized.py` |
+| `FormatOrStr` | `sports_data/models/enums/format.py` |
+| `Conference` | `sports_data/models/conference.py` |
+| `CbbV3ScoresLeagueHierarchyErrorBody` | `sports_data/errors/cbb_v3_scores_league_hierarchy_error.py` |
+| `Unauthorized` | `sports_data/models/unauthorized.py` |
 
 ### client.cbb_v3_scores.cbb_v3_scores_player_details_by_active
 
@@ -144,10 +144,10 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 | Type | Source |
 | --- | --- |
-| `FormatOrStr` | `cbb_api/models/enums/format.py` |
-| `Player` | `cbb_api/models/player.py` |
-| `CbbV3ScoresPlayerDetailsByActiveErrorBody` | `cbb_api/errors/cbb_v3_scores_player_details_by_active_error.py` |
-| `Unauthorized` | `cbb_api/models/unauthorized.py` |
+| `FormatOrStr` | `sports_data/models/enums/format.py` |
+| `Player` | `sports_data/models/player.py` |
+| `CbbV3ScoresPlayerDetailsByActiveErrorBody` | `sports_data/errors/cbb_v3_scores_player_details_by_active_error.py` |
+| `Unauthorized` | `sports_data/models/unauthorized.py` |
 
 ### client.cbb_v3_scores.cbb_v3_scores_player_details_by_active2
 
@@ -162,10 +162,10 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 | Type | Source |
 | --- | --- |
-| `FormatOrStr` | `cbb_api/models/enums/format.py` |
-| `PlayerBasic` | `cbb_api/models/player_basic.py` |
-| `CbbV3ScoresPlayerDetailsByActive2ErrorBody` | `cbb_api/errors/cbb_v3_scores_player_details_by_active2_error.py` |
-| `Unauthorized` | `cbb_api/models/unauthorized.py` |
+| `FormatOrStr` | `sports_data/models/enums/format.py` |
+| `PlayerBasic` | `sports_data/models/player_basic.py` |
+| `CbbV3ScoresPlayerDetailsByActive2ErrorBody` | `sports_data/errors/cbb_v3_scores_player_details_by_active2_error.py` |
+| `Unauthorized` | `sports_data/models/unauthorized.py` |
 
 ### client.cbb_v3_scores.cbb_v3_scores_player_details_by_injured
 
@@ -180,10 +180,10 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 | Type | Source |
 | --- | --- |
-| `FormatOrStr` | `cbb_api/models/enums/format.py` |
-| `Player` | `cbb_api/models/player.py` |
-| `CbbV3ScoresPlayerDetailsByInjuredErrorBody` | `cbb_api/errors/cbb_v3_scores_player_details_by_injured_error.py` |
-| `Unauthorized` | `cbb_api/models/unauthorized.py` |
+| `FormatOrStr` | `sports_data/models/enums/format.py` |
+| `Player` | `sports_data/models/player.py` |
+| `CbbV3ScoresPlayerDetailsByInjuredErrorBody` | `sports_data/errors/cbb_v3_scores_player_details_by_injured_error.py` |
+| `Unauthorized` | `sports_data/models/unauthorized.py` |
 
 ### client.cbb_v3_scores.cbb_v3_scores_player_details_by_team
 
@@ -198,10 +198,10 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 | Type | Source |
 | --- | --- |
-| `FormatOrStr` | `cbb_api/models/enums/format.py` |
-| `Player` | `cbb_api/models/player.py` |
-| `CbbV3ScoresPlayerDetailsByTeamErrorBody` | `cbb_api/errors/cbb_v3_scores_player_details_by_team_error.py` |
-| `Unauthorized` | `cbb_api/models/unauthorized.py` |
+| `FormatOrStr` | `sports_data/models/enums/format.py` |
+| `Player` | `sports_data/models/player.py` |
+| `CbbV3ScoresPlayerDetailsByTeamErrorBody` | `sports_data/errors/cbb_v3_scores_player_details_by_team_error.py` |
+| `Unauthorized` | `sports_data/models/unauthorized.py` |
 
 ### client.cbb_v3_scores.cbb_v3_scores_player_profiles_by_team
 
@@ -216,10 +216,10 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 | Type | Source |
 | --- | --- |
-| `FormatOrStr` | `cbb_api/models/enums/format.py` |
-| `PlayerBasic` | `cbb_api/models/player_basic.py` |
-| `CbbV3ScoresPlayerProfilesByTeamErrorBody` | `cbb_api/errors/cbb_v3_scores_player_profiles_by_team_error.py` |
-| `Unauthorized` | `cbb_api/models/unauthorized.py` |
+| `FormatOrStr` | `sports_data/models/enums/format.py` |
+| `PlayerBasic` | `sports_data/models/player_basic.py` |
+| `CbbV3ScoresPlayerProfilesByTeamErrorBody` | `sports_data/errors/cbb_v3_scores_player_profiles_by_team_error.py` |
+| `Unauthorized` | `sports_data/models/unauthorized.py` |
 
 ### client.cbb_v3_scores.cbb_v3_scores_schedules_by_team
 
@@ -234,10 +234,10 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 | Type | Source |
 | --- | --- |
-| `FormatOrStr` | `cbb_api/models/enums/format.py` |
-| `Game` | `cbb_api/models/game.py` |
-| `CbbV3ScoresSchedulesByTeamErrorBody` | `cbb_api/errors/cbb_v3_scores_schedules_by_team_error.py` |
-| `Unauthorized` | `cbb_api/models/unauthorized.py` |
+| `FormatOrStr` | `sports_data/models/enums/format.py` |
+| `Game` | `sports_data/models/game.py` |
+| `CbbV3ScoresSchedulesByTeamErrorBody` | `sports_data/errors/cbb_v3_scores_schedules_by_team_error.py` |
+| `Unauthorized` | `sports_data/models/unauthorized.py` |
 
 ### client.cbb_v3_scores.cbb_v3_scores_schedules_basic
 
@@ -252,10 +252,10 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 | Type | Source |
 | --- | --- |
-| `FormatOrStr` | `cbb_api/models/enums/format.py` |
-| `ScheduleBasic` | `cbb_api/models/schedule_basic.py` |
-| `CbbV3ScoresSchedulesBasicErrorBody` | `cbb_api/errors/cbb_v3_scores_schedules_basic_error.py` |
-| `Unauthorized` | `cbb_api/models/unauthorized.py` |
+| `FormatOrStr` | `sports_data/models/enums/format.py` |
+| `ScheduleBasic` | `sports_data/models/schedule_basic.py` |
+| `CbbV3ScoresSchedulesBasicErrorBody` | `sports_data/errors/cbb_v3_scores_schedules_basic_error.py` |
+| `Unauthorized` | `sports_data/models/unauthorized.py` |
 
 ### client.cbb_v3_scores.cbb_v3_scores_season_current
 
@@ -270,10 +270,10 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 | Type | Source |
 | --- | --- |
-| `FormatOrStr` | `cbb_api/models/enums/format.py` |
-| `Season` | `cbb_api/models/season.py` |
-| `CbbV3ScoresSeasonCurrentErrorBody` | `cbb_api/errors/cbb_v3_scores_season_current_error.py` |
-| `Unauthorized` | `cbb_api/models/unauthorized.py` |
+| `FormatOrStr` | `sports_data/models/enums/format.py` |
+| `Season` | `sports_data/models/season.py` |
+| `CbbV3ScoresSeasonCurrentErrorBody` | `sports_data/errors/cbb_v3_scores_season_current_error.py` |
+| `Unauthorized` | `sports_data/models/unauthorized.py` |
 
 ### client.cbb_v3_scores.cbb_v3_scores_stadiums
 
@@ -288,10 +288,10 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 | Type | Source |
 | --- | --- |
-| `FormatOrStr` | `cbb_api/models/enums/format.py` |
-| `Stadium` | `cbb_api/models/stadium.py` |
-| `CbbV3ScoresStadiumsErrorBody` | `cbb_api/errors/cbb_v3_scores_stadiums_error.py` |
-| `Unauthorized` | `cbb_api/models/unauthorized.py` |
+| `FormatOrStr` | `sports_data/models/enums/format.py` |
+| `Stadium` | `sports_data/models/stadium.py` |
+| `CbbV3ScoresStadiumsErrorBody` | `sports_data/errors/cbb_v3_scores_stadiums_error.py` |
+| `Unauthorized` | `sports_data/models/unauthorized.py` |
 
 ### client.cbb_v3_scores.cbb_v3_scores_team_game_logs_by_season
 
@@ -306,10 +306,10 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 | Type | Source |
 | --- | --- |
-| `FormatOrStr` | `cbb_api/models/enums/format.py` |
-| `TeamGame` | `cbb_api/models/team_game.py` |
-| `CbbV3ScoresTeamGameLogsBySeasonErrorBody` | `cbb_api/errors/cbb_v3_scores_team_game_logs_by_season_error.py` |
-| `Unauthorized` | `cbb_api/models/unauthorized.py` |
+| `FormatOrStr` | `sports_data/models/enums/format.py` |
+| `TeamGame` | `sports_data/models/team_game.py` |
+| `CbbV3ScoresTeamGameLogsBySeasonErrorBody` | `sports_data/errors/cbb_v3_scores_team_game_logs_by_season_error.py` |
+| `Unauthorized` | `sports_data/models/unauthorized.py` |
 
 ### client.cbb_v3_scores.cbb_v3_scores_team_game_stats_by_date_live_final
 
@@ -324,10 +324,10 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 | Type | Source |
 | --- | --- |
-| `FormatOrStr` | `cbb_api/models/enums/format.py` |
-| `TeamGame` | `cbb_api/models/team_game.py` |
-| `CbbV3ScoresTeamGameStatsByDateLiveFinalErrorBody` | `cbb_api/errors/cbb_v3_scores_team_game_stats_by_date_live_final_error.py` |
-| `Unauthorized` | `cbb_api/models/unauthorized.py` |
+| `FormatOrStr` | `sports_data/models/enums/format.py` |
+| `TeamGame` | `sports_data/models/team_game.py` |
+| `CbbV3ScoresTeamGameStatsByDateLiveFinalErrorBody` | `sports_data/errors/cbb_v3_scores_team_game_stats_by_date_live_final_error.py` |
+| `Unauthorized` | `sports_data/models/unauthorized.py` |
 
 ### client.cbb_v3_scores.cbb_v3_scores_team_profiles_all
 
@@ -342,10 +342,10 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 | Type | Source |
 | --- | --- |
-| `FormatOrStr` | `cbb_api/models/enums/format.py` |
-| `Team` | `cbb_api/models/team.py` |
-| `CbbV3ScoresTeamProfilesAllErrorBody` | `cbb_api/errors/cbb_v3_scores_team_profiles_all_error.py` |
-| `Unauthorized` | `cbb_api/models/unauthorized.py` |
+| `FormatOrStr` | `sports_data/models/enums/format.py` |
+| `Team` | `sports_data/models/team.py` |
+| `CbbV3ScoresTeamProfilesAllErrorBody` | `sports_data/errors/cbb_v3_scores_team_profiles_all_error.py` |
+| `Unauthorized` | `sports_data/models/unauthorized.py` |
 
 ### client.cbb_v3_scores.cbb_v3_scores_team_season_stats
 
@@ -360,10 +360,10 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 | Type | Source |
 | --- | --- |
-| `FormatOrStr` | `cbb_api/models/enums/format.py` |
-| `TeamSeason` | `cbb_api/models/team_season.py` |
-| `CbbV3ScoresTeamSeasonStatsErrorBody` | `cbb_api/errors/cbb_v3_scores_team_season_stats_error.py` |
-| `Unauthorized` | `cbb_api/models/unauthorized.py` |
+| `FormatOrStr` | `sports_data/models/enums/format.py` |
+| `TeamSeason` | `sports_data/models/team_season.py` |
+| `CbbV3ScoresTeamSeasonStatsErrorBody` | `sports_data/errors/cbb_v3_scores_team_season_stats_error.py` |
+| `Unauthorized` | `sports_data/models/unauthorized.py` |
 
 ### client.cbb_v3_scores.cbb_v3_scores_teams_basic_all
 
@@ -378,10 +378,10 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 | Type | Source |
 | --- | --- |
-| `FormatOrStr` | `cbb_api/models/enums/format.py` |
-| `TeamBasic` | `cbb_api/models/team_basic.py` |
-| `CbbV3ScoresTeamsBasicAllErrorBody` | `cbb_api/errors/cbb_v3_scores_teams_basic_all_error.py` |
-| `Unauthorized` | `cbb_api/models/unauthorized.py` |
+| `FormatOrStr` | `sports_data/models/enums/format.py` |
+| `TeamBasic` | `sports_data/models/team_basic.py` |
+| `CbbV3ScoresTeamsBasicAllErrorBody` | `sports_data/errors/cbb_v3_scores_teams_basic_all_error.py` |
+| `Unauthorized` | `sports_data/models/unauthorized.py` |
 
 ### client.cbb_v3_scores.cbb_v3_scores_tournament_hierarchy
 
@@ -396,8 +396,8 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 | Type | Source |
 | --- | --- |
-| `FormatOrStr` | `cbb_api/models/enums/format.py` |
-| `Tournament` | `cbb_api/models/tournament.py` |
-| `CbbV3ScoresTournamentHierarchyErrorBody` | `cbb_api/errors/cbb_v3_scores_tournament_hierarchy_error.py` |
-| `Unauthorized` | `cbb_api/models/unauthorized.py` |
+| `FormatOrStr` | `sports_data/models/enums/format.py` |
+| `Tournament` | `sports_data/models/tournament.py` |
+| `CbbV3ScoresTournamentHierarchyErrorBody` | `sports_data/errors/cbb_v3_scores_tournament_hierarchy_error.py` |
+| `Unauthorized` | `sports_data/models/unauthorized.py` |
 

@@ -1,0 +1,89 @@
+from __future__ import annotations
+
+from pydantic import Field
+from typing_extensions import NotRequired, TypedDict
+
+from ..core import UNSET, Optional, OptionalNullable, SdkBaseModel
+
+
+class Team2(SdkBaseModel):
+    team_id: Optional[int] = Field(default=UNSET, alias="TeamID")
+    """The unique ID of the team"""
+
+    key: OptionalNullable[str] = Field(default=UNSET, alias="Key")
+    """A unique abbreviation of the team (e.g. OKL; TXTECH; USC; UK; etc.). Note: Due to being selected for uniqueness;
+    these are not always matching broadcaster abbreviations. For that use case; use ShortDisplayName"""
+
+    active: Optional[bool] = Field(default=UNSET, alias="Active")
+    """Indicates whether or not this team is active"""
+
+    school: OptionalNullable[str] = Field(default=UNSET, alias="School")
+    """The name of the team as used in college sports (e.g. SMU; South Florida; Stony Brook; UCLA; etc.)"""
+
+    name: OptionalNullable[str] = Field(default=UNSET, alias="Name")
+    """The mascot of the team (e.g. Sooners, Red Raiders, Trojans, Wildcats, etc.)"""
+
+    ap_rank: OptionalNullable[int] = Field(default=UNSET, alias="ApRank")
+    """The AP Rank of the team (1-25)"""
+
+    wins: OptionalNullable[int] = Field(default=UNSET, alias="Wins")
+    """The total number of wins by the team"""
+
+    losses: OptionalNullable[int] = Field(default=UNSET, alias="Losses")
+    """The total number of losses by the team"""
+
+    conference_wins: OptionalNullable[int] = Field(default=UNSET, alias="ConferenceWins")
+    """The total number of conference wins by the team"""
+
+    conference_losses: OptionalNullable[int] = Field(default=UNSET, alias="ConferenceLosses")
+    """The total number of conference losses by the team"""
+
+    global_team_id: Optional[int] = Field(default=UNSET, alias="GlobalTeamID")
+    """A globally unique ID for this team. This value is guaranteed to be unique across all sports/leagues"""
+
+    conference_id: OptionalNullable[int] = Field(default=UNSET, alias="ConferenceID")
+    """The ID of the team's conference"""
+
+    conference: OptionalNullable[str] = Field(default=UNSET, alias="Conference")
+    """The name of the team's conference (e.g. American Conference; Big Ten Conference; Conference USA)"""
+
+    team_logo_url: OptionalNullable[str] = Field(default=UNSET, alias="TeamLogoUrl")
+    """The URL of the team logo image"""
+
+    short_display_name: OptionalNullable[str] = Field(default=UNSET, alias="ShortDisplayName")
+    """A abbreviation of the team as seen on most broadcasts. Note: This field could have the same name for multiple
+    teams. If a completely unique name is need use [Key]"""
+
+    primary_color: OptionalNullable[str] = Field(default=UNSET, alias="PrimaryColor")
+    """The team's primary color. (This is not licensed for public or commercial use)"""
+
+    secondary_color: OptionalNullable[str] = Field(default=UNSET, alias="SecondaryColor")
+    """The team's secondary color. (This is not licensed for public or commercial use)"""
+
+    tertiary_color: OptionalNullable[str] = Field(default=UNSET, alias="TertiaryColor")
+    """The team's tertiary color. (This is not licensed for public or commercial use)"""
+
+    quaternary_color: OptionalNullable[str] = Field(default=UNSET, alias="QuaternaryColor")
+    """The team's quaternary color. (This is not licensed for public or commercial use)"""
+
+
+class Team2Dict(TypedDict):
+    team_id: NotRequired[int]
+    key: NotRequired[str | None]
+    active: NotRequired[bool]
+    school: NotRequired[str | None]
+    name: NotRequired[str | None]
+    ap_rank: NotRequired[int | None]
+    wins: NotRequired[int | None]
+    losses: NotRequired[int | None]
+    conference_wins: NotRequired[int | None]
+    conference_losses: NotRequired[int | None]
+    global_team_id: NotRequired[int]
+    conference_id: NotRequired[int | None]
+    conference: NotRequired[str | None]
+    team_logo_url: NotRequired[str | None]
+    short_display_name: NotRequired[str | None]
+    primary_color: NotRequired[str | None]
+    secondary_color: NotRequired[str | None]
+    tertiary_color: NotRequired[str | None]
+    quaternary_color: NotRequired[str | None]
