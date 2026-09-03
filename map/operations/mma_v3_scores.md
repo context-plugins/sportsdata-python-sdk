@@ -2,13 +2,14 @@
 
 # MmaV3Scores — operations
 
-Accessor: `client.mma_v3_scores` · Source: `sports_data/apis/mma_v3_scores.py` · 6 operations
+Accessor: `client.mma_v3_scores` · Source: `sports_data_io/apis/mma_v3_scores.py` · 6 operations
 
 Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omit what its invariants table covers and are otherwise self-contained, so chunk at block level. Signatures are the sync parsed spelling; the async and raw spellings take the same parameters (see sdk-map.md). **Type sources** names the module declaring each type an operation mentions, so resolving a body, return or error payload is a lookup rather than a search; the runtime types `RawError` and `ApiResult` are excluded.
 
 ### client.mma_v3_scores.mma_v3_scores_event
 
 - **Route**: `GET /v3/mma/scores/{format}/Event/{eventid}`
+- **Auth**: `api_key_header` OR `api_key_query`
 - **Signature**: `def mma_v3_scores_event(format: FormatOrStr, eventid: str, *, request_options: RequestOptionsOrDict | None = None)`
   - required, positional: `format`, `eventid`
 - **Params**: `format` — path · `eventid` — path
@@ -19,14 +20,15 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 | Type | Source |
 | --- | --- |
-| `FormatOrStr` | `sports_data/models/enums/format.py` |
-| `EventDetail` | `sports_data/models/event_detail.py` |
-| `MmaV3ScoresEventErrorBody` | `sports_data/errors/mma_v3_scores_event_error.py` |
-| `Unauthorized` | `sports_data/models/unauthorized.py` |
+| `FormatOrStr` | `sports_data_io/models/enums/format.py` |
+| `EventDetail` | `sports_data_io/models/event_detail.py` |
+| `MmaV3ScoresEventErrorBody` | `sports_data_io/errors/mma_v3_scores_event_error.py` |
+| `Unauthorized` | `sports_data_io/models/unauthorized.py` |
 
 ### client.mma_v3_scores.mma_v3_scores_fighter_profile_by_fighter
 
 - **Route**: `GET /v3/mma/scores/{format}/Fighter/{fighterid}`
+- **Auth**: `api_key_header` OR `api_key_query`
 - **Signature**: `def mma_v3_scores_fighter_profile_by_fighter(format: FormatOrStr, fighterid: str, *, request_options: RequestOptionsOrDict | None = None)`
   - required, positional: `format`, `fighterid`
 - **Params**: `format` — path · `fighterid` — path
@@ -37,14 +39,15 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 | Type | Source |
 | --- | --- |
-| `FormatOrStr` | `sports_data/models/enums/format.py` |
-| `Fighter` | `sports_data/models/fighter.py` |
-| `MmaV3ScoresFighterProfileByFighterErrorBody` | `sports_data/errors/mma_v3_scores_fighter_profile_by_fighter_error.py` |
-| `Unauthorized` | `sports_data/models/unauthorized.py` |
+| `FormatOrStr` | `sports_data_io/models/enums/format.py` |
+| `Fighter` | `sports_data_io/models/fighter.py` |
+| `MmaV3ScoresFighterProfileByFighterErrorBody` | `sports_data_io/errors/mma_v3_scores_fighter_profile_by_fighter_error.py` |
+| `Unauthorized` | `sports_data_io/models/unauthorized.py` |
 
 ### client.mma_v3_scores.mma_v3_scores_fighter_profiles_all
 
 - **Route**: `GET /v3/mma/scores/{format}/Fighters`
+- **Auth**: `api_key_header` OR `api_key_query`
 - **Signature**: `def mma_v3_scores_fighter_profiles_all(format: FormatOrStr, *, request_options: RequestOptionsOrDict | None = None)`
   - required, positional: `format`
 - **Params**: `format` — path
@@ -55,14 +58,15 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 | Type | Source |
 | --- | --- |
-| `FormatOrStr` | `sports_data/models/enums/format.py` |
-| `Fighter` | `sports_data/models/fighter.py` |
-| `MmaV3ScoresFighterProfilesAllErrorBody` | `sports_data/errors/mma_v3_scores_fighter_profiles_all_error.py` |
-| `Unauthorized` | `sports_data/models/unauthorized.py` |
+| `FormatOrStr` | `sports_data_io/models/enums/format.py` |
+| `Fighter` | `sports_data_io/models/fighter.py` |
+| `MmaV3ScoresFighterProfilesAllErrorBody` | `sports_data_io/errors/mma_v3_scores_fighter_profiles_all_error.py` |
+| `Unauthorized` | `sports_data_io/models/unauthorized.py` |
 
 ### client.mma_v3_scores.mma_v3_scores_fighter_profiles_basic_all
 
 - **Route**: `GET /v3/mma/scores/{format}/FightersBasic`
+- **Auth**: `api_key_header` OR `api_key_query`
 - **Signature**: `def mma_v3_scores_fighter_profiles_basic_all(format: FormatOrStr, *, request_options: RequestOptionsOrDict | None = None)`
   - required, positional: `format`
 - **Params**: `format` — path
@@ -73,14 +77,15 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 | Type | Source |
 | --- | --- |
-| `FormatOrStr` | `sports_data/models/enums/format.py` |
-| `FighterBasic` | `sports_data/models/fighter_basic.py` |
-| `MmaV3ScoresFighterProfilesBasicAllErrorBody` | `sports_data/errors/mma_v3_scores_fighter_profiles_basic_all_error.py` |
-| `Unauthorized` | `sports_data/models/unauthorized.py` |
+| `FormatOrStr` | `sports_data_io/models/enums/format.py` |
+| `FighterBasic` | `sports_data_io/models/fighter_basic.py` |
+| `MmaV3ScoresFighterProfilesBasicAllErrorBody` | `sports_data_io/errors/mma_v3_scores_fighter_profiles_basic_all_error.py` |
+| `Unauthorized` | `sports_data_io/models/unauthorized.py` |
 
 ### client.mma_v3_scores.mma_v3_scores_leagues
 
 - **Route**: `GET /v3/mma/scores/{format}/Leagues`
+- **Auth**: `api_key_header` OR `api_key_query`
 - **Signature**: `def mma_v3_scores_leagues(format: FormatOrStr, *, request_options: RequestOptionsOrDict | None = None)`
   - required, positional: `format`
 - **Params**: `format` — path
@@ -91,14 +96,15 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 | Type | Source |
 | --- | --- |
-| `FormatOrStr` | `sports_data/models/enums/format.py` |
-| `League` | `sports_data/models/league.py` |
-| `MmaV3ScoresLeaguesErrorBody` | `sports_data/errors/mma_v3_scores_leagues_error.py` |
-| `Unauthorized` | `sports_data/models/unauthorized.py` |
+| `FormatOrStr` | `sports_data_io/models/enums/format.py` |
+| `League` | `sports_data_io/models/league.py` |
+| `MmaV3ScoresLeaguesErrorBody` | `sports_data_io/errors/mma_v3_scores_leagues_error.py` |
+| `Unauthorized` | `sports_data_io/models/unauthorized.py` |
 
 ### client.mma_v3_scores.mma_v3_scores_schedules
 
 - **Route**: `GET /v3/mma/scores/{format}/Schedule/{league}/{season}`
+- **Auth**: `api_key_header` OR `api_key_query`
 - **Signature**: `def mma_v3_scores_schedules(format: FormatOrStr, league: str, season: str, *, request_options: RequestOptionsOrDict | None = None)`
   - required, positional: `format`, `league`, `season`
 - **Params**: `format` — path · `league` — path · `season` — path
@@ -109,8 +115,8 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 | Type | Source |
 | --- | --- |
-| `FormatOrStr` | `sports_data/models/enums/format.py` |
-| `Event` | `sports_data/models/event.py` |
-| `MmaV3ScoresSchedulesErrorBody` | `sports_data/errors/mma_v3_scores_schedules_error.py` |
-| `Unauthorized` | `sports_data/models/unauthorized.py` |
+| `FormatOrStr` | `sports_data_io/models/enums/format.py` |
+| `Event` | `sports_data_io/models/event.py` |
+| `MmaV3ScoresSchedulesErrorBody` | `sports_data_io/errors/mma_v3_scores_schedules_error.py` |
+| `Unauthorized` | `sports_data_io/models/unauthorized.py` |
 

@@ -1,15 +1,15 @@
-# SportsData SDK
+# SportsDataIO SDK
 
 [![Built with APIMatic][apimatic-badge]][apimatic-url] [![License: MIT][license-badge]][license-url] [![Python 3.10+][python-badge]][python-url]
 
-The SportsData SDK for Python provides access to the SportsData REST APIs from Python applications.
+The SportsDataIO SDK for Python provides access to the SportsDataIO REST APIs from Python applications.
 
 > [!TIP]
 > **Looking for a specific signature, model, enum, or error type?** This SDK ships a generated
 > **[SDK map](sdk-map.md)** -- a lookup index of the SDK's entire Python surface. Consult it before
 > scanning the source tree; details under [SDK map](#sdk-map).
 
-CBB API - OpenAPI 3.1 Specification, CFB API - OpenAPI 3.1 Specification, CWBB API - OpenAPI 3.1 Specification, GOLF API - OpenAPI 3.1 Specification, MLB API - OpenAPI 3.1 Specification, MMA API - OpenAPI 3.1 Specification, NASCAR API - OpenAPI 3.1 Specification, NBA API - OpenAPI 3.1 Specification, NFL API - OpenAPI 3.1 Specification, NHL API - OpenAPI 3.1 Specification, SOCCER API - OpenAPI 3.1 Specification, WNBA API - OpenAPI 3.1 Specification
+NFL API - OpenAPI 3.1 Specification, NBA API - OpenAPI 3.1 Specification, MLB API - OpenAPI 3.1 Specification, NHL API - OpenAPI 3.1 Specification, CFB API - OpenAPI 3.1 Specification, CBB API - OpenAPI 3.1 Specification, WNBA API - OpenAPI 3.1 Specification, CWBB API - OpenAPI 3.1 Specification, SOCCER API - OpenAPI 3.1 Specification, GOLF API - OpenAPI 3.1 Specification, NASCAR API - OpenAPI 3.1 Specification, MMA API - OpenAPI 3.1 Specification
 
 ---
 
@@ -18,15 +18,15 @@ CBB API - OpenAPI 3.1 Specification, CFB API - OpenAPI 3.1 Specification, CWBB A
 Install the Python SDK from PyPI, with whichever package manager your project uses:
 
 ```bash
-pip install sports-data
+pip install sports-data-io
 ```
 
 ```bash
-uv add sports-data
+uv add sports-data-io
 ```
 
 ```bash
-poetry add sports-data
+poetry add sports-data-io
 ```
 
 ---
@@ -35,36 +35,36 @@ poetry add sports-data
 
 ### Synchronous client
 
-Construct `SportsDataClient` with keyword arguments, and call `close()` when you are done. Every argument is optional; the full list is in the [SDK map](sdk-map.md).
+Construct `SportsDataIoClient` with keyword arguments, and call `close()` when you are done. Every argument is optional; the full list is in the [SDK map](sdk-map.md).
 
 ```python
-from sports_data import SportsDataClient
+from sports_data_io import SportsDataIoClient
 
-client = SportsDataClient(api_key_header="YOUR_API_KEY", api_key_query="YOUR_API_KEY")
+client = SportsDataIoClient(api_key_header="YOUR_API_KEY", api_key_query="YOUR_API_KEY")
 
 # TODO: call endpoints here -- see api-reference.md
 
 client.close()
 ```
 
-Alternatively, scope it -- `with SportsDataClient(...) as client:` closes the pool on exit; see [Best Practices](#best-practices).
+Alternatively, scope it -- `with SportsDataIoClient(...) as client:` closes the pool on exit; see [Best Practices](#best-practices).
 
-`Client` is exported as an alias of `SportsDataClient`, so `from sports_data import Client` also works.
+`Client` is exported as an alias of `SportsDataIoClient`, so `from sports_data_io import Client` also works.
 
 The SDK accepts every model-typed input in two interchangeable spellings, both type-checked: the typed model, or a plain dict with the same keys -- the `OrDict` and `Model | ModelDict` unions in the [SDK map](sdk-map.md). Pick whichever suits the call site: the dict form needs no import, while the model form adds a keyword-checked constructor and editor completion.
 
 ### Asynchronous client
 
-`AsyncSportsDataClient` mirrors `SportsDataClient` with **identical method names**, and every endpoint method is a coroutine. It takes the same arguments, with some differences -- for example, the transport argument is `custom_async_http_client`.
+`AsyncSportsDataIoClient` mirrors `SportsDataIoClient` with **identical method names**, and every endpoint method is a coroutine. It takes the same arguments, with some differences -- for example, the transport argument is `custom_async_http_client`.
 
 ```python
 from asyncio import run
 
-from sports_data import AsyncSportsDataClient
+from sports_data_io import AsyncSportsDataIoClient
 
 
 async def main() -> None:
-    client = AsyncSportsDataClient(api_key_header="YOUR_API_KEY", api_key_query="YOUR_API_KEY")
+    client = AsyncSportsDataIoClient(api_key_header="YOUR_API_KEY", api_key_query="YOUR_API_KEY")
     # TODO: call endpoints here, awaiting each -- see api-reference.md
     await client.aclose()
 
@@ -72,7 +72,7 @@ async def main() -> None:
 run(main())
 ```
 
-Alternatively, scope it -- `async with AsyncSportsDataClient(...) as client:` closes the pool on exit. Only the async spelling is `aclose`, matching httpx; see [Best Practices](#best-practices).
+Alternatively, scope it -- `async with AsyncSportsDataIoClient(...) as client:` closes the pool on exit. Only the async spelling is `aclose`, matching httpx; see [Best Practices](#best-practices).
 
 `AsyncClient` is the exported alias. Each client accepts **only** its own transport argument; passing the other's is a `TypeError` at runtime and an error under mypy.
 
@@ -98,11 +98,11 @@ Consult the map before scanning or grepping the source: it answers call-level co
 ## Best Practices
 
 > [!TIP]
-> Use a **single `SportsDataClient` instance** for the lifetime of your application and reuse it across
+> Use a **single `SportsDataIoClient` instance** for the lifetime of your application and reuse it across
 > all requests. Each instance owns its own connection pool, so an instance per request forfeits
 > connection reuse and leaks pools that are never closed.
 
-Match the disposal to the client's lifetime: an application-lifetime client is closed once at shutdown with `close()` / `aclose()`; where the lifetime fits a block, `with SportsDataClient() as client:` / `async with AsyncSportsDataClient() as client:` releases it automatically. Both are idempotent, but a closed client is not reusable: the next call raises. The client closes **whatever transport it holds**, including one you supplied via `custom_http_client` / `custom_async_http_client`; if you intend to reuse your own transport across clients, don't hand its lifetime to a `with` block.
+Match the disposal to the client's lifetime: an application-lifetime client is closed once at shutdown with `close()` / `aclose()`; where the lifetime fits a block, `with SportsDataIoClient() as client:` / `async with AsyncSportsDataIoClient() as client:` releases it automatically. Both are idempotent, but a closed client is not reusable: the next call raises. The client closes **whatever transport it holds**, including one you supplied via `custom_http_client` / `custom_async_http_client`; if you intend to reuse your own transport across clients, don't hand its lifetime to a `with` block.
 
 ## License
 

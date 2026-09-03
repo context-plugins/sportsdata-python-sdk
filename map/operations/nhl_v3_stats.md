@@ -2,103 +2,109 @@
 
 # NhlV3Stats — operations
 
-Accessor: `client.nhl_v3_stats` · Source: `sports_data/apis/nhl_v3_stats.py` · 14 operations
+Accessor: `client.nhl_v3_stats` · Source: `sports_data_io/apis/nhl_v3_stats.py` · 14 operations
 
 Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omit what its invariants table covers and are otherwise self-contained, so chunk at block level. Signatures are the sync parsed spelling; the async and raw spellings take the same parameters (see sdk-map.md). **Type sources** names the module declaring each type an operation mentions, so resolving a body, return or error payload is a lookup rather than a search; the runtime types `RawError` and `ApiResult` are excluded.
 
 ### client.nhl_v3_stats.nhl_v3_stats_box_score_final
 
 - **Route**: `GET /v3/nhl/stats/{format}/BoxScoreFinal/{gameid}`
+- **Auth**: `api_key_header` OR `api_key_query`
 - **Signature**: `def nhl_v3_stats_box_score_final(format: FormatOrStr, gameid: str, *, request_options: RequestOptionsOrDict | None = None)`
   - required, positional: `format`, `gameid`
 - **Params**: `format` — path · `gameid` — path
-- **Returns (parsed)**: `BoxScore4`
-- **Returns (raw)**: `ApiResult[BoxScore4, NhlV3StatsBoxScoreFinalErrorBody]`
+- **Returns (parsed)**: `BoxScore2`
+- **Returns (raw)**: `ApiResult[BoxScore2, NhlV3StatsBoxScoreFinalErrorBody]`
 - **Error**: `NhlV3StatsBoxScoreFinalErrorBody` — **Case A (typed)**
 - **Error arms**: `Unauthorized` [401] · `RawError` [anything unmapped]
 
 | Type | Source |
 | --- | --- |
-| `FormatOrStr` | `sports_data/models/enums/format.py` |
-| `BoxScore4` | `sports_data/models/box_score4.py` |
-| `NhlV3StatsBoxScoreFinalErrorBody` | `sports_data/errors/nhl_v3_stats_box_score_final_error.py` |
-| `Unauthorized` | `sports_data/models/unauthorized.py` |
+| `FormatOrStr` | `sports_data_io/models/enums/format.py` |
+| `BoxScore2` | `sports_data_io/models/box_score2.py` |
+| `NhlV3StatsBoxScoreFinalErrorBody` | `sports_data_io/errors/nhl_v3_stats_box_score_final_error.py` |
+| `Unauthorized` | `sports_data_io/models/unauthorized.py` |
 
 ### client.nhl_v3_stats.nhl_v3_stats_box_score_live_final
 
 - **Route**: `GET /v3/nhl/stats/{format}/BoxScore/{gameid}`
+- **Auth**: `api_key_header` OR `api_key_query`
 - **Signature**: `def nhl_v3_stats_box_score_live_final(format: FormatOrStr, gameid: str, *, request_options: RequestOptionsOrDict | None = None)`
   - required, positional: `format`, `gameid`
 - **Params**: `format` — path · `gameid` — path
-- **Returns (parsed)**: `BoxScore4`
-- **Returns (raw)**: `ApiResult[BoxScore4, NhlV3StatsBoxScoreLiveFinalErrorBody]`
+- **Returns (parsed)**: `BoxScore2`
+- **Returns (raw)**: `ApiResult[BoxScore2, NhlV3StatsBoxScoreLiveFinalErrorBody]`
 - **Error**: `NhlV3StatsBoxScoreLiveFinalErrorBody` — **Case A (typed)**
 - **Error arms**: `Unauthorized` [401] · `RawError` [anything unmapped]
 
 | Type | Source |
 | --- | --- |
-| `FormatOrStr` | `sports_data/models/enums/format.py` |
-| `BoxScore4` | `sports_data/models/box_score4.py` |
-| `NhlV3StatsBoxScoreLiveFinalErrorBody` | `sports_data/errors/nhl_v3_stats_box_score_live_final_error.py` |
-| `Unauthorized` | `sports_data/models/unauthorized.py` |
+| `FormatOrStr` | `sports_data_io/models/enums/format.py` |
+| `BoxScore2` | `sports_data_io/models/box_score2.py` |
+| `NhlV3StatsBoxScoreLiveFinalErrorBody` | `sports_data_io/errors/nhl_v3_stats_box_score_live_final_error.py` |
+| `Unauthorized` | `sports_data_io/models/unauthorized.py` |
 
 ### client.nhl_v3_stats.nhl_v3_stats_box_scores_by_date_final
 
 - **Route**: `GET /v3/nhl/stats/{format}/BoxScoresFinal/{date}`
+- **Auth**: `api_key_header` OR `api_key_query`
 - **Signature**: `def nhl_v3_stats_box_scores_by_date_final(format: FormatOrStr, date: str, *, request_options: RequestOptionsOrDict | None = None)`
   - required, positional: `format`, `date`
 - **Params**: `format` — path · `date` — path
-- **Returns (parsed)**: `list[BoxScore4]`
-- **Returns (raw)**: `ApiResult[list[BoxScore4], NhlV3StatsBoxScoresByDateFinalErrorBody]`
+- **Returns (parsed)**: `list[BoxScore2]`
+- **Returns (raw)**: `ApiResult[list[BoxScore2], NhlV3StatsBoxScoresByDateFinalErrorBody]`
 - **Error**: `NhlV3StatsBoxScoresByDateFinalErrorBody` — **Case A (typed)**
 - **Error arms**: `Unauthorized` [401] · `RawError` [anything unmapped]
 
 | Type | Source |
 | --- | --- |
-| `FormatOrStr` | `sports_data/models/enums/format.py` |
-| `BoxScore4` | `sports_data/models/box_score4.py` |
-| `NhlV3StatsBoxScoresByDateFinalErrorBody` | `sports_data/errors/nhl_v3_stats_box_scores_by_date_final_error.py` |
-| `Unauthorized` | `sports_data/models/unauthorized.py` |
+| `FormatOrStr` | `sports_data_io/models/enums/format.py` |
+| `BoxScore2` | `sports_data_io/models/box_score2.py` |
+| `NhlV3StatsBoxScoresByDateFinalErrorBody` | `sports_data_io/errors/nhl_v3_stats_box_scores_by_date_final_error.py` |
+| `Unauthorized` | `sports_data_io/models/unauthorized.py` |
 
 ### client.nhl_v3_stats.nhl_v3_stats_box_scores_by_date_live_final
 
 - **Route**: `GET /v3/nhl/stats/{format}/BoxScores/{date}`
+- **Auth**: `api_key_header` OR `api_key_query`
 - **Signature**: `def nhl_v3_stats_box_scores_by_date_live_final(format: FormatOrStr, date: str, *, request_options: RequestOptionsOrDict | None = None)`
   - required, positional: `format`, `date`
 - **Params**: `format` — path · `date` — path
-- **Returns (parsed)**: `list[BoxScore4]`
-- **Returns (raw)**: `ApiResult[list[BoxScore4], NhlV3StatsBoxScoresByDateLiveFinalErrorBody]`
+- **Returns (parsed)**: `list[BoxScore2]`
+- **Returns (raw)**: `ApiResult[list[BoxScore2], NhlV3StatsBoxScoresByDateLiveFinalErrorBody]`
 - **Error**: `NhlV3StatsBoxScoresByDateLiveFinalErrorBody` — **Case A (typed)**
 - **Error arms**: `Unauthorized` [401] · `RawError` [anything unmapped]
 
 | Type | Source |
 | --- | --- |
-| `FormatOrStr` | `sports_data/models/enums/format.py` |
-| `BoxScore4` | `sports_data/models/box_score4.py` |
-| `NhlV3StatsBoxScoresByDateLiveFinalErrorBody` | `sports_data/errors/nhl_v3_stats_box_scores_by_date_live_final_error.py` |
-| `Unauthorized` | `sports_data/models/unauthorized.py` |
+| `FormatOrStr` | `sports_data_io/models/enums/format.py` |
+| `BoxScore2` | `sports_data_io/models/box_score2.py` |
+| `NhlV3StatsBoxScoresByDateLiveFinalErrorBody` | `sports_data_io/errors/nhl_v3_stats_box_scores_by_date_live_final_error.py` |
+| `Unauthorized` | `sports_data_io/models/unauthorized.py` |
 
 ### client.nhl_v3_stats.nhl_v3_stats_box_scores_delta_by_date
 
 - **Route**: `GET /v3/nhl/stats/{format}/BoxScoresDelta/{date}/{minutes}`
+- **Auth**: `api_key_header` OR `api_key_query`
 - **Signature**: `def nhl_v3_stats_box_scores_delta_by_date(format: FormatOrStr, date: str, minutes: str, *, request_options: RequestOptionsOrDict | None = None)`
   - required, positional: `format`, `date`, `minutes`
 - **Params**: `format` — path · `date` — path · `minutes` — path
-- **Returns (parsed)**: `list[BoxScore4]`
-- **Returns (raw)**: `ApiResult[list[BoxScore4], NhlV3StatsBoxScoresDeltaByDateErrorBody]`
+- **Returns (parsed)**: `list[BoxScore2]`
+- **Returns (raw)**: `ApiResult[list[BoxScore2], NhlV3StatsBoxScoresDeltaByDateErrorBody]`
 - **Error**: `NhlV3StatsBoxScoresDeltaByDateErrorBody` — **Case A (typed)**
 - **Error arms**: `Unauthorized` [401] · `RawError` [anything unmapped]
 
 | Type | Source |
 | --- | --- |
-| `FormatOrStr` | `sports_data/models/enums/format.py` |
-| `BoxScore4` | `sports_data/models/box_score4.py` |
-| `NhlV3StatsBoxScoresDeltaByDateErrorBody` | `sports_data/errors/nhl_v3_stats_box_scores_delta_by_date_error.py` |
-| `Unauthorized` | `sports_data/models/unauthorized.py` |
+| `FormatOrStr` | `sports_data_io/models/enums/format.py` |
+| `BoxScore2` | `sports_data_io/models/box_score2.py` |
+| `NhlV3StatsBoxScoresDeltaByDateErrorBody` | `sports_data_io/errors/nhl_v3_stats_box_scores_delta_by_date_error.py` |
+| `Unauthorized` | `sports_data_io/models/unauthorized.py` |
 
 ### client.nhl_v3_stats.nhl_v3_stats_fantasy_points_by_date
 
 - **Route**: `GET /v3/nhl/stats/{format}/FantasyGameStatsByDate/{date}`
+- **Auth**: `api_key_header` OR `api_key_query`
 - **Signature**: `def nhl_v3_stats_fantasy_points_by_date(format: FormatOrStr, date: str, *, request_options: RequestOptionsOrDict | None = None)`
   - required, positional: `format`, `date`
 - **Params**: `format` — path · `date` — path
@@ -109,14 +115,15 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 | Type | Source |
 | --- | --- |
-| `FormatOrStr` | `sports_data/models/enums/format.py` |
-| `FantasyGame3` | `sports_data/models/fantasy_game3.py` |
-| `NhlV3StatsFantasyPointsByDateErrorBody` | `sports_data/errors/nhl_v3_stats_fantasy_points_by_date_error.py` |
-| `Unauthorized` | `sports_data/models/unauthorized.py` |
+| `FormatOrStr` | `sports_data_io/models/enums/format.py` |
+| `FantasyGame3` | `sports_data_io/models/fantasy_game3.py` |
+| `NhlV3StatsFantasyPointsByDateErrorBody` | `sports_data_io/errors/nhl_v3_stats_fantasy_points_by_date_error.py` |
+| `Unauthorized` | `sports_data_io/models/unauthorized.py` |
 
 ### client.nhl_v3_stats.nhl_v3_stats_line_combinations_by_season
 
 - **Route**: `GET /v3/nhl/stats/{format}/LinesBySeason/{season}`
+- **Auth**: `api_key_header` OR `api_key_query`
 - **Signature**: `def nhl_v3_stats_line_combinations_by_season(format: FormatOrStr, season: str, *, request_options: RequestOptionsOrDict | None = None)`
   - required, positional: `format`, `season`
 - **Params**: `format` — path · `season` — path
@@ -127,134 +134,141 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 | Type | Source |
 | --- | --- |
-| `FormatOrStr` | `sports_data/models/enums/format.py` |
-| `TeamLine` | `sports_data/models/team_line.py` |
-| `NhlV3StatsLineCombinationsBySeasonErrorBody` | `sports_data/errors/nhl_v3_stats_line_combinations_by_season_error.py` |
-| `Unauthorized` | `sports_data/models/unauthorized.py` |
+| `FormatOrStr` | `sports_data_io/models/enums/format.py` |
+| `TeamLine` | `sports_data_io/models/team_line.py` |
+| `NhlV3StatsLineCombinationsBySeasonErrorBody` | `sports_data_io/errors/nhl_v3_stats_line_combinations_by_season_error.py` |
+| `Unauthorized` | `sports_data_io/models/unauthorized.py` |
 
 ### client.nhl_v3_stats.nhl_v3_stats_player_game_logs_by_season
 
 - **Route**: `GET /v3/nhl/stats/{format}/PlayerGameStatsBySeason/{season}/{playerid}/{numberofgames}`
+- **Auth**: `api_key_header` OR `api_key_query`
 - **Signature**: `def nhl_v3_stats_player_game_logs_by_season(format: FormatOrStr, season: str, playerid: str, numberofgames: str, *, request_options: RequestOptionsOrDict | None = None)`
   - required, positional: `format`, `season`, `playerid`, `numberofgames`
 - **Params**: `format` — path · `season` — path · `playerid` — path · `numberofgames` — path
-- **Returns (parsed)**: `list[PlayerGame5]`
-- **Returns (raw)**: `ApiResult[list[PlayerGame5], NhlV3StatsPlayerGameLogsBySeasonErrorBody]`
+- **Returns (parsed)**: `list[PlayerGame3]`
+- **Returns (raw)**: `ApiResult[list[PlayerGame3], NhlV3StatsPlayerGameLogsBySeasonErrorBody]`
 - **Error**: `NhlV3StatsPlayerGameLogsBySeasonErrorBody` — **Case A (typed)**
 - **Error arms**: `Unauthorized` [401] · `RawError` [anything unmapped]
 
 | Type | Source |
 | --- | --- |
-| `FormatOrStr` | `sports_data/models/enums/format.py` |
-| `PlayerGame5` | `sports_data/models/player_game5.py` |
-| `NhlV3StatsPlayerGameLogsBySeasonErrorBody` | `sports_data/errors/nhl_v3_stats_player_game_logs_by_season_error.py` |
-| `Unauthorized` | `sports_data/models/unauthorized.py` |
+| `FormatOrStr` | `sports_data_io/models/enums/format.py` |
+| `PlayerGame3` | `sports_data_io/models/player_game3.py` |
+| `NhlV3StatsPlayerGameLogsBySeasonErrorBody` | `sports_data_io/errors/nhl_v3_stats_player_game_logs_by_season_error.py` |
+| `Unauthorized` | `sports_data_io/models/unauthorized.py` |
 
 ### client.nhl_v3_stats.nhl_v3_stats_player_game_stats_by_date_final
 
 - **Route**: `GET /v3/nhl/stats/{format}/PlayerGameStatsByDateFinal/{date}`
+- **Auth**: `api_key_header` OR `api_key_query`
 - **Signature**: `def nhl_v3_stats_player_game_stats_by_date_final(format: FormatOrStr, date: str, *, request_options: RequestOptionsOrDict | None = None)`
   - required, positional: `format`, `date`
 - **Params**: `format` — path · `date` — path
-- **Returns (parsed)**: `list[PlayerGame5]`
-- **Returns (raw)**: `ApiResult[list[PlayerGame5], NhlV3StatsPlayerGameStatsByDateFinalErrorBody]`
+- **Returns (parsed)**: `list[PlayerGame3]`
+- **Returns (raw)**: `ApiResult[list[PlayerGame3], NhlV3StatsPlayerGameStatsByDateFinalErrorBody]`
 - **Error**: `NhlV3StatsPlayerGameStatsByDateFinalErrorBody` — **Case A (typed)**
 - **Error arms**: `Unauthorized` [401] · `RawError` [anything unmapped]
 
 | Type | Source |
 | --- | --- |
-| `FormatOrStr` | `sports_data/models/enums/format.py` |
-| `PlayerGame5` | `sports_data/models/player_game5.py` |
-| `NhlV3StatsPlayerGameStatsByDateFinalErrorBody` | `sports_data/errors/nhl_v3_stats_player_game_stats_by_date_final_error.py` |
-| `Unauthorized` | `sports_data/models/unauthorized.py` |
+| `FormatOrStr` | `sports_data_io/models/enums/format.py` |
+| `PlayerGame3` | `sports_data_io/models/player_game3.py` |
+| `NhlV3StatsPlayerGameStatsByDateFinalErrorBody` | `sports_data_io/errors/nhl_v3_stats_player_game_stats_by_date_final_error.py` |
+| `Unauthorized` | `sports_data_io/models/unauthorized.py` |
 
 ### client.nhl_v3_stats.nhl_v3_stats_player_game_stats_by_date_live_final
 
 - **Route**: `GET /v3/nhl/stats/{format}/PlayerGameStatsByDate/{date}`
+- **Auth**: `api_key_header` OR `api_key_query`
 - **Signature**: `def nhl_v3_stats_player_game_stats_by_date_live_final(format: FormatOrStr, date: str, *, request_options: RequestOptionsOrDict | None = None)`
   - required, positional: `format`, `date`
 - **Params**: `format` — path · `date` — path
-- **Returns (parsed)**: `list[PlayerGame5]`
-- **Returns (raw)**: `ApiResult[list[PlayerGame5], NhlV3StatsPlayerGameStatsByDateLiveFinalErrorBody]`
+- **Returns (parsed)**: `list[PlayerGame3]`
+- **Returns (raw)**: `ApiResult[list[PlayerGame3], NhlV3StatsPlayerGameStatsByDateLiveFinalErrorBody]`
 - **Error**: `NhlV3StatsPlayerGameStatsByDateLiveFinalErrorBody` — **Case A (typed)**
 - **Error arms**: `Unauthorized` [401] · `RawError` [anything unmapped]
 
 | Type | Source |
 | --- | --- |
-| `FormatOrStr` | `sports_data/models/enums/format.py` |
-| `PlayerGame5` | `sports_data/models/player_game5.py` |
-| `NhlV3StatsPlayerGameStatsByDateLiveFinalErrorBody` | `sports_data/errors/nhl_v3_stats_player_game_stats_by_date_live_final_error.py` |
-| `Unauthorized` | `sports_data/models/unauthorized.py` |
+| `FormatOrStr` | `sports_data_io/models/enums/format.py` |
+| `PlayerGame3` | `sports_data_io/models/player_game3.py` |
+| `NhlV3StatsPlayerGameStatsByDateLiveFinalErrorBody` | `sports_data_io/errors/nhl_v3_stats_player_game_stats_by_date_live_final_error.py` |
+| `Unauthorized` | `sports_data_io/models/unauthorized.py` |
 
 ### client.nhl_v3_stats.nhl_v3_stats_player_season_stats
 
 - **Route**: `GET /v3/nhl/stats/{format}/PlayerSeasonStats/{season}`
+- **Auth**: `api_key_header` OR `api_key_query`
 - **Signature**: `def nhl_v3_stats_player_season_stats(format: FormatOrStr, season: str, *, request_options: RequestOptionsOrDict | None = None)`
   - required, positional: `format`, `season`
 - **Params**: `format` — path · `season` — path
-- **Returns (parsed)**: `list[PlayerSeason6]`
-- **Returns (raw)**: `ApiResult[list[PlayerSeason6], NhlV3StatsPlayerSeasonStatsErrorBody]`
+- **Returns (parsed)**: `list[PlayerSeason4]`
+- **Returns (raw)**: `ApiResult[list[PlayerSeason4], NhlV3StatsPlayerSeasonStatsErrorBody]`
 - **Error**: `NhlV3StatsPlayerSeasonStatsErrorBody` — **Case A (typed)**
 - **Error arms**: `Unauthorized` [401] · `RawError` [anything unmapped]
 
 | Type | Source |
 | --- | --- |
-| `FormatOrStr` | `sports_data/models/enums/format.py` |
-| `PlayerSeason6` | `sports_data/models/player_season6.py` |
-| `NhlV3StatsPlayerSeasonStatsErrorBody` | `sports_data/errors/nhl_v3_stats_player_season_stats_error.py` |
-| `Unauthorized` | `sports_data/models/unauthorized.py` |
+| `FormatOrStr` | `sports_data_io/models/enums/format.py` |
+| `PlayerSeason4` | `sports_data_io/models/player_season4.py` |
+| `NhlV3StatsPlayerSeasonStatsErrorBody` | `sports_data_io/errors/nhl_v3_stats_player_season_stats_error.py` |
+| `Unauthorized` | `sports_data_io/models/unauthorized.py` |
 
 ### client.nhl_v3_stats.nhl_v3_stats_player_season_stats_by_team
 
 - **Route**: `GET /v3/nhl/stats/{format}/PlayerSeasonStatsByTeam/{season}/{team}`
+- **Auth**: `api_key_header` OR `api_key_query`
 - **Signature**: `def nhl_v3_stats_player_season_stats_by_team(format: FormatOrStr, season: str, team: str, *, request_options: RequestOptionsOrDict | None = None)`
   - required, positional: `format`, `season`, `team`
 - **Params**: `format` — path · `season` — path · `team` — path
-- **Returns (parsed)**: `list[PlayerSeason6]`
-- **Returns (raw)**: `ApiResult[list[PlayerSeason6], NhlV3StatsPlayerSeasonStatsByTeamErrorBody]`
+- **Returns (parsed)**: `list[PlayerSeason4]`
+- **Returns (raw)**: `ApiResult[list[PlayerSeason4], NhlV3StatsPlayerSeasonStatsByTeamErrorBody]`
 - **Error**: `NhlV3StatsPlayerSeasonStatsByTeamErrorBody` — **Case A (typed)**
 - **Error arms**: `Unauthorized` [401] · `RawError` [anything unmapped]
 
 | Type | Source |
 | --- | --- |
-| `FormatOrStr` | `sports_data/models/enums/format.py` |
-| `PlayerSeason6` | `sports_data/models/player_season6.py` |
-| `NhlV3StatsPlayerSeasonStatsByTeamErrorBody` | `sports_data/errors/nhl_v3_stats_player_season_stats_by_team_error.py` |
-| `Unauthorized` | `sports_data/models/unauthorized.py` |
+| `FormatOrStr` | `sports_data_io/models/enums/format.py` |
+| `PlayerSeason4` | `sports_data_io/models/player_season4.py` |
+| `NhlV3StatsPlayerSeasonStatsByTeamErrorBody` | `sports_data_io/errors/nhl_v3_stats_player_season_stats_by_team_error.py` |
+| `Unauthorized` | `sports_data_io/models/unauthorized.py` |
 
 ### client.nhl_v3_stats.nhl_v3_stats_team_game_stats_by_date_final
 
 - **Route**: `GET /v3/nhl/stats/{format}/TeamGameStatsByDateFinal/{date}`
+- **Auth**: `api_key_header` OR `api_key_query`
 - **Signature**: `def nhl_v3_stats_team_game_stats_by_date_final(format: FormatOrStr, date: str, *, request_options: RequestOptionsOrDict | None = None)`
   - required, positional: `format`, `date`
 - **Params**: `format` — path · `date` — path
-- **Returns (parsed)**: `list[TeamGame5]`
-- **Returns (raw)**: `ApiResult[list[TeamGame5], NhlV3StatsTeamGameStatsByDateFinalErrorBody]`
+- **Returns (parsed)**: `list[TeamGame3]`
+- **Returns (raw)**: `ApiResult[list[TeamGame3], NhlV3StatsTeamGameStatsByDateFinalErrorBody]`
 - **Error**: `NhlV3StatsTeamGameStatsByDateFinalErrorBody` — **Case A (typed)**
 - **Error arms**: `Unauthorized` [401] · `RawError` [anything unmapped]
 
 | Type | Source |
 | --- | --- |
-| `FormatOrStr` | `sports_data/models/enums/format.py` |
-| `TeamGame5` | `sports_data/models/team_game5.py` |
-| `NhlV3StatsTeamGameStatsByDateFinalErrorBody` | `sports_data/errors/nhl_v3_stats_team_game_stats_by_date_final_error.py` |
-| `Unauthorized` | `sports_data/models/unauthorized.py` |
+| `FormatOrStr` | `sports_data_io/models/enums/format.py` |
+| `TeamGame3` | `sports_data_io/models/team_game3.py` |
+| `NhlV3StatsTeamGameStatsByDateFinalErrorBody` | `sports_data_io/errors/nhl_v3_stats_team_game_stats_by_date_final_error.py` |
+| `Unauthorized` | `sports_data_io/models/unauthorized.py` |
 
 ### client.nhl_v3_stats.nhl_v3_stats_team_stats_allowed_by_position
 
 - **Route**: `GET /v3/nhl/stats/{format}/TeamStatsAllowedByPosition/{season}`
+- **Auth**: `api_key_header` OR `api_key_query`
 - **Signature**: `def nhl_v3_stats_team_stats_allowed_by_position(format: FormatOrStr, season: str, *, request_options: RequestOptionsOrDict | None = None)`
   - required, positional: `format`, `season`
 - **Params**: `format` — path · `season` — path
-- **Returns (parsed)**: `list[TeamSeason5]`
-- **Returns (raw)**: `ApiResult[list[TeamSeason5], NhlV3StatsTeamStatsAllowedByPositionErrorBody]`
+- **Returns (parsed)**: `list[TeamSeason3]`
+- **Returns (raw)**: `ApiResult[list[TeamSeason3], NhlV3StatsTeamStatsAllowedByPositionErrorBody]`
 - **Error**: `NhlV3StatsTeamStatsAllowedByPositionErrorBody` — **Case A (typed)**
 - **Error arms**: `Unauthorized` [401] · `RawError` [anything unmapped]
 
 | Type | Source |
 | --- | --- |
-| `FormatOrStr` | `sports_data/models/enums/format.py` |
-| `TeamSeason5` | `sports_data/models/team_season5.py` |
-| `NhlV3StatsTeamStatsAllowedByPositionErrorBody` | `sports_data/errors/nhl_v3_stats_team_stats_allowed_by_position_error.py` |
-| `Unauthorized` | `sports_data/models/unauthorized.py` |
+| `FormatOrStr` | `sports_data_io/models/enums/format.py` |
+| `TeamSeason3` | `sports_data_io/models/team_season3.py` |
+| `NhlV3StatsTeamStatsAllowedByPositionErrorBody` | `sports_data_io/errors/nhl_v3_stats_team_stats_allowed_by_position_error.py` |
+| `Unauthorized` | `sports_data_io/models/unauthorized.py` |
 

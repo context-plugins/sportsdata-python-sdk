@@ -2,13 +2,14 @@
 
 # MlbV3Stats — operations
 
-Accessor: `client.mlb_v3_stats` · Source: `sports_data/apis/mlb_v3_stats.py` · 17 operations
+Accessor: `client.mlb_v3_stats` · Source: `sports_data_io/apis/mlb_v3_stats.py` · 17 operations
 
 Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omit what its invariants table covers and are otherwise self-contained, so chunk at block level. Signatures are the sync parsed spelling; the async and raw spellings take the same parameters (see sdk-map.md). **Type sources** names the module declaring each type an operation mentions, so resolving a body, return or error payload is a lookup rather than a search; the runtime types `RawError` and `ApiResult` are excluded.
 
 ### client.mlb_v3_stats.mlb_v3_stats_batter_vs_pitcher_stats
 
 - **Route**: `GET /v3/mlb/stats/{format}/HitterVsPitcher/{hitterid}/{pitcherid}`
+- **Auth**: `api_key_header` OR `api_key_query`
 - **Signature**: `def mlb_v3_stats_batter_vs_pitcher_stats(format: FormatOrStr, hitterid: str, pitcherid: str, *, request_options: RequestOptionsOrDict | None = None)`
   - required, positional: `format`, `hitterid`, `pitcherid`
 - **Params**: `format` — path · `hitterid` — path · `pitcherid` — path
@@ -19,122 +20,129 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 | Type | Source |
 | --- | --- |
-| `FormatOrStr` | `sports_data/models/enums/format.py` |
-| `PlayerSeason3` | `sports_data/models/player_season3.py` |
-| `MlbV3StatsBatterVsPitcherStatsErrorBody` | `sports_data/errors/mlb_v3_stats_batter_vs_pitcher_stats_error.py` |
-| `Unauthorized` | `sports_data/models/unauthorized.py` |
+| `FormatOrStr` | `sports_data_io/models/enums/format.py` |
+| `PlayerSeason3` | `sports_data_io/models/player_season3.py` |
+| `MlbV3StatsBatterVsPitcherStatsErrorBody` | `sports_data_io/errors/mlb_v3_stats_batter_vs_pitcher_stats_error.py` |
+| `Unauthorized` | `sports_data_io/models/unauthorized.py` |
 
 ### client.mlb_v3_stats.mlb_v3_stats_box_score_final
 
 - **Route**: `GET /v3/mlb/stats/{format}/BoxScoreFinal/{gameid}`
+- **Auth**: `api_key_header` OR `api_key_query`
 - **Signature**: `def mlb_v3_stats_box_score_final(format: FormatOrStr, gameid: str, *, request_options: RequestOptionsOrDict | None = None)`
   - required, positional: `format`, `gameid`
 - **Params**: `format` — path · `gameid` — path
-- **Returns (parsed)**: `BoxScore2`
-- **Returns (raw)**: `ApiResult[BoxScore2, MlbV3StatsBoxScoreFinalErrorBody]`
+- **Returns (parsed)**: `BoxScore1`
+- **Returns (raw)**: `ApiResult[BoxScore1, MlbV3StatsBoxScoreFinalErrorBody]`
 - **Error**: `MlbV3StatsBoxScoreFinalErrorBody` — **Case A (typed)**
 - **Error arms**: `Unauthorized` [401] · `RawError` [anything unmapped]
 
 | Type | Source |
 | --- | --- |
-| `FormatOrStr` | `sports_data/models/enums/format.py` |
-| `BoxScore2` | `sports_data/models/box_score2.py` |
-| `MlbV3StatsBoxScoreFinalErrorBody` | `sports_data/errors/mlb_v3_stats_box_score_final_error.py` |
-| `Unauthorized` | `sports_data/models/unauthorized.py` |
+| `FormatOrStr` | `sports_data_io/models/enums/format.py` |
+| `BoxScore1` | `sports_data_io/models/box_score1.py` |
+| `MlbV3StatsBoxScoreFinalErrorBody` | `sports_data_io/errors/mlb_v3_stats_box_score_final_error.py` |
+| `Unauthorized` | `sports_data_io/models/unauthorized.py` |
 
 ### client.mlb_v3_stats.mlb_v3_stats_box_score_live_final
 
 - **Route**: `GET /v3/mlb/stats/{format}/BoxScore/{gameid}`
+- **Auth**: `api_key_header` OR `api_key_query`
 - **Signature**: `def mlb_v3_stats_box_score_live_final(format: FormatOrStr, gameid: str, *, request_options: RequestOptionsOrDict | None = None)`
   - required, positional: `format`, `gameid`
 - **Params**: `format` — path · `gameid` — path
-- **Returns (parsed)**: `BoxScore2`
-- **Returns (raw)**: `ApiResult[BoxScore2, MlbV3StatsBoxScoreLiveFinalErrorBody]`
+- **Returns (parsed)**: `BoxScore1`
+- **Returns (raw)**: `ApiResult[BoxScore1, MlbV3StatsBoxScoreLiveFinalErrorBody]`
 - **Error**: `MlbV3StatsBoxScoreLiveFinalErrorBody` — **Case A (typed)**
 - **Error arms**: `Unauthorized` [401] · `RawError` [anything unmapped]
 
 | Type | Source |
 | --- | --- |
-| `FormatOrStr` | `sports_data/models/enums/format.py` |
-| `BoxScore2` | `sports_data/models/box_score2.py` |
-| `MlbV3StatsBoxScoreLiveFinalErrorBody` | `sports_data/errors/mlb_v3_stats_box_score_live_final_error.py` |
-| `Unauthorized` | `sports_data/models/unauthorized.py` |
+| `FormatOrStr` | `sports_data_io/models/enums/format.py` |
+| `BoxScore1` | `sports_data_io/models/box_score1.py` |
+| `MlbV3StatsBoxScoreLiveFinalErrorBody` | `sports_data_io/errors/mlb_v3_stats_box_score_live_final_error.py` |
+| `Unauthorized` | `sports_data_io/models/unauthorized.py` |
 
 ### client.mlb_v3_stats.mlb_v3_stats_box_scores_by_date_final
 
 - **Route**: `GET /v3/mlb/stats/{format}/BoxScoresFinal/{date}`
+- **Auth**: `api_key_header` OR `api_key_query`
 - **Signature**: `def mlb_v3_stats_box_scores_by_date_final(format: FormatOrStr, date: str, *, request_options: RequestOptionsOrDict | None = None)`
   - required, positional: `format`, `date`
 - **Params**: `format` — path · `date` — path
-- **Returns (parsed)**: `list[BoxScore2]`
-- **Returns (raw)**: `ApiResult[list[BoxScore2], MlbV3StatsBoxScoresByDateFinalErrorBody]`
+- **Returns (parsed)**: `list[BoxScore1]`
+- **Returns (raw)**: `ApiResult[list[BoxScore1], MlbV3StatsBoxScoresByDateFinalErrorBody]`
 - **Error**: `MlbV3StatsBoxScoresByDateFinalErrorBody` — **Case A (typed)**
 - **Error arms**: `Unauthorized` [401] · `RawError` [anything unmapped]
 
 | Type | Source |
 | --- | --- |
-| `FormatOrStr` | `sports_data/models/enums/format.py` |
-| `BoxScore2` | `sports_data/models/box_score2.py` |
-| `MlbV3StatsBoxScoresByDateFinalErrorBody` | `sports_data/errors/mlb_v3_stats_box_scores_by_date_final_error.py` |
-| `Unauthorized` | `sports_data/models/unauthorized.py` |
+| `FormatOrStr` | `sports_data_io/models/enums/format.py` |
+| `BoxScore1` | `sports_data_io/models/box_score1.py` |
+| `MlbV3StatsBoxScoresByDateFinalErrorBody` | `sports_data_io/errors/mlb_v3_stats_box_scores_by_date_final_error.py` |
+| `Unauthorized` | `sports_data_io/models/unauthorized.py` |
 
 ### client.mlb_v3_stats.mlb_v3_stats_box_scores_by_date_live_final
 
 - **Route**: `GET /v3/mlb/stats/{format}/BoxScores/{date}`
+- **Auth**: `api_key_header` OR `api_key_query`
 - **Signature**: `def mlb_v3_stats_box_scores_by_date_live_final(format: FormatOrStr, date: str, *, request_options: RequestOptionsOrDict | None = None)`
   - required, positional: `format`, `date`
 - **Params**: `format` — path · `date` — path
-- **Returns (parsed)**: `list[BoxScore2]`
-- **Returns (raw)**: `ApiResult[list[BoxScore2], MlbV3StatsBoxScoresByDateLiveFinalErrorBody]`
+- **Returns (parsed)**: `list[BoxScore1]`
+- **Returns (raw)**: `ApiResult[list[BoxScore1], MlbV3StatsBoxScoresByDateLiveFinalErrorBody]`
 - **Error**: `MlbV3StatsBoxScoresByDateLiveFinalErrorBody` — **Case A (typed)**
 - **Error arms**: `Unauthorized` [401] · `RawError` [anything unmapped]
 
 | Type | Source |
 | --- | --- |
-| `FormatOrStr` | `sports_data/models/enums/format.py` |
-| `BoxScore2` | `sports_data/models/box_score2.py` |
-| `MlbV3StatsBoxScoresByDateLiveFinalErrorBody` | `sports_data/errors/mlb_v3_stats_box_scores_by_date_live_final_error.py` |
-| `Unauthorized` | `sports_data/models/unauthorized.py` |
+| `FormatOrStr` | `sports_data_io/models/enums/format.py` |
+| `BoxScore1` | `sports_data_io/models/box_score1.py` |
+| `MlbV3StatsBoxScoresByDateLiveFinalErrorBody` | `sports_data_io/errors/mlb_v3_stats_box_scores_by_date_live_final_error.py` |
+| `Unauthorized` | `sports_data_io/models/unauthorized.py` |
 
 ### client.mlb_v3_stats.mlb_v3_stats_box_scores_delta_by_date
 
 - **Route**: `GET /v3/mlb/stats/{format}/BoxScoresDelta/{date}/{minutes}`
+- **Auth**: `api_key_header` OR `api_key_query`
 - **Signature**: `def mlb_v3_stats_box_scores_delta_by_date(format: FormatOrStr, date: str, minutes: str, *, request_options: RequestOptionsOrDict | None = None)`
   - required, positional: `format`, `date`, `minutes`
 - **Params**: `format` — path · `date` — path · `minutes` — path
-- **Returns (parsed)**: `list[BoxScore2]`
-- **Returns (raw)**: `ApiResult[list[BoxScore2], MlbV3StatsBoxScoresDeltaByDateErrorBody]`
+- **Returns (parsed)**: `list[BoxScore1]`
+- **Returns (raw)**: `ApiResult[list[BoxScore1], MlbV3StatsBoxScoresDeltaByDateErrorBody]`
 - **Error**: `MlbV3StatsBoxScoresDeltaByDateErrorBody` — **Case A (typed)**
 - **Error arms**: `Unauthorized` [401] · `RawError` [anything unmapped]
 
 | Type | Source |
 | --- | --- |
-| `FormatOrStr` | `sports_data/models/enums/format.py` |
-| `BoxScore2` | `sports_data/models/box_score2.py` |
-| `MlbV3StatsBoxScoresDeltaByDateErrorBody` | `sports_data/errors/mlb_v3_stats_box_scores_delta_by_date_error.py` |
-| `Unauthorized` | `sports_data/models/unauthorized.py` |
+| `FormatOrStr` | `sports_data_io/models/enums/format.py` |
+| `BoxScore1` | `sports_data_io/models/box_score1.py` |
+| `MlbV3StatsBoxScoresDeltaByDateErrorBody` | `sports_data_io/errors/mlb_v3_stats_box_scores_delta_by_date_error.py` |
+| `Unauthorized` | `sports_data_io/models/unauthorized.py` |
 
 ### client.mlb_v3_stats.mlb_v3_stats_fantasy_points_by_date
 
 - **Route**: `GET /v3/mlb/stats/{format}/FantasyGameStatsByDate/{date}`
+- **Auth**: `api_key_header` OR `api_key_query`
 - **Signature**: `def mlb_v3_stats_fantasy_points_by_date(format: FormatOrStr, date: str, *, request_options: RequestOptionsOrDict | None = None)`
   - required, positional: `format`, `date`
 - **Params**: `format` — path · `date` — path
-- **Returns (parsed)**: `list[FantasyGame]`
-- **Returns (raw)**: `ApiResult[list[FantasyGame], MlbV3StatsFantasyPointsByDateErrorBody]`
+- **Returns (parsed)**: `list[FantasyGame2]`
+- **Returns (raw)**: `ApiResult[list[FantasyGame2], MlbV3StatsFantasyPointsByDateErrorBody]`
 - **Error**: `MlbV3StatsFantasyPointsByDateErrorBody` — **Case A (typed)**
 - **Error arms**: `Unauthorized` [401] · `RawError` [anything unmapped]
 
 | Type | Source |
 | --- | --- |
-| `FormatOrStr` | `sports_data/models/enums/format.py` |
-| `FantasyGame` | `sports_data/models/fantasy_game.py` |
-| `MlbV3StatsFantasyPointsByDateErrorBody` | `sports_data/errors/mlb_v3_stats_fantasy_points_by_date_error.py` |
-| `Unauthorized` | `sports_data/models/unauthorized.py` |
+| `FormatOrStr` | `sports_data_io/models/enums/format.py` |
+| `FantasyGame2` | `sports_data_io/models/fantasy_game2.py` |
+| `MlbV3StatsFantasyPointsByDateErrorBody` | `sports_data_io/errors/mlb_v3_stats_fantasy_points_by_date_error.py` |
+| `Unauthorized` | `sports_data_io/models/unauthorized.py` |
 
 ### client.mlb_v3_stats.mlb_v3_stats_player_game_logs_by_season
 
 - **Route**: `GET /v3/mlb/stats/{format}/PlayerGameStatsBySeason/{season}/{playerid}/{numberofgames}`
+- **Auth**: `api_key_header` OR `api_key_query`
 - **Signature**: `def mlb_v3_stats_player_game_logs_by_season(format: FormatOrStr, season: str, playerid: str, numberofgames: str, *, request_options: RequestOptionsOrDict | None = None)`
   - required, positional: `format`, `season`, `playerid`, `numberofgames`
 - **Params**: `format` — path · `season` — path · `playerid` — path · `numberofgames` — path
@@ -145,14 +153,15 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 | Type | Source |
 | --- | --- |
-| `FormatOrStr` | `sports_data/models/enums/format.py` |
-| `PlayerGame2` | `sports_data/models/player_game2.py` |
-| `MlbV3StatsPlayerGameLogsBySeasonErrorBody` | `sports_data/errors/mlb_v3_stats_player_game_logs_by_season_error.py` |
-| `Unauthorized` | `sports_data/models/unauthorized.py` |
+| `FormatOrStr` | `sports_data_io/models/enums/format.py` |
+| `PlayerGame2` | `sports_data_io/models/player_game2.py` |
+| `MlbV3StatsPlayerGameLogsBySeasonErrorBody` | `sports_data_io/errors/mlb_v3_stats_player_game_logs_by_season_error.py` |
+| `Unauthorized` | `sports_data_io/models/unauthorized.py` |
 
 ### client.mlb_v3_stats.mlb_v3_stats_player_game_stats_by_date_final
 
 - **Route**: `GET /v3/mlb/stats/{format}/PlayerGameStatsByDateFinal/{date}`
+- **Auth**: `api_key_header` OR `api_key_query`
 - **Signature**: `def mlb_v3_stats_player_game_stats_by_date_final(format: FormatOrStr, date: str, *, request_options: RequestOptionsOrDict | None = None)`
   - required, positional: `format`, `date`
 - **Params**: `format` — path · `date` — path
@@ -163,14 +172,15 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 | Type | Source |
 | --- | --- |
-| `FormatOrStr` | `sports_data/models/enums/format.py` |
-| `PlayerGame2` | `sports_data/models/player_game2.py` |
-| `MlbV3StatsPlayerGameStatsByDateFinalErrorBody` | `sports_data/errors/mlb_v3_stats_player_game_stats_by_date_final_error.py` |
-| `Unauthorized` | `sports_data/models/unauthorized.py` |
+| `FormatOrStr` | `sports_data_io/models/enums/format.py` |
+| `PlayerGame2` | `sports_data_io/models/player_game2.py` |
+| `MlbV3StatsPlayerGameStatsByDateFinalErrorBody` | `sports_data_io/errors/mlb_v3_stats_player_game_stats_by_date_final_error.py` |
+| `Unauthorized` | `sports_data_io/models/unauthorized.py` |
 
 ### client.mlb_v3_stats.mlb_v3_stats_player_game_stats_by_date_live_final
 
 - **Route**: `GET /v3/mlb/stats/{format}/PlayerGameStatsByDate/{date}`
+- **Auth**: `api_key_header` OR `api_key_query`
 - **Signature**: `def mlb_v3_stats_player_game_stats_by_date_live_final(format: FormatOrStr, date: str, *, request_options: RequestOptionsOrDict | None = None)`
   - required, positional: `format`, `date`
 - **Params**: `format` — path · `date` — path
@@ -181,14 +191,15 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 | Type | Source |
 | --- | --- |
-| `FormatOrStr` | `sports_data/models/enums/format.py` |
-| `PlayerGame2` | `sports_data/models/player_game2.py` |
-| `MlbV3StatsPlayerGameStatsByDateLiveFinalErrorBody` | `sports_data/errors/mlb_v3_stats_player_game_stats_by_date_live_final_error.py` |
-| `Unauthorized` | `sports_data/models/unauthorized.py` |
+| `FormatOrStr` | `sports_data_io/models/enums/format.py` |
+| `PlayerGame2` | `sports_data_io/models/player_game2.py` |
+| `MlbV3StatsPlayerGameStatsByDateLiveFinalErrorBody` | `sports_data_io/errors/mlb_v3_stats_player_game_stats_by_date_live_final_error.py` |
+| `Unauthorized` | `sports_data_io/models/unauthorized.py` |
 
 ### client.mlb_v3_stats.mlb_v3_stats_player_season_split_stats
 
 - **Route**: `GET /v3/mlb/stats/{format}/PlayerSeasonSplitStats/{season}/{split}`
+- **Auth**: `api_key_header` OR `api_key_query`
 - **Signature**: `def mlb_v3_stats_player_season_split_stats(format: FormatOrStr, season: str, split: SplitOrStr, *, request_options: RequestOptionsOrDict | None = None)`
   - required, positional: `format`, `season`, `split`
 - **Params**: `format` — path · `season` — path · `split` — path
@@ -199,15 +210,16 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 | Type | Source |
 | --- | --- |
-| `FormatOrStr` | `sports_data/models/enums/format.py` |
-| `SplitOrStr` | `sports_data/models/enums/split.py` |
-| `PlayerSeason3` | `sports_data/models/player_season3.py` |
-| `MlbV3StatsPlayerSeasonSplitStatsErrorBody` | `sports_data/errors/mlb_v3_stats_player_season_split_stats_error.py` |
-| `Unauthorized` | `sports_data/models/unauthorized.py` |
+| `FormatOrStr` | `sports_data_io/models/enums/format.py` |
+| `SplitOrStr` | `sports_data_io/models/enums/split.py` |
+| `PlayerSeason3` | `sports_data_io/models/player_season3.py` |
+| `MlbV3StatsPlayerSeasonSplitStatsErrorBody` | `sports_data_io/errors/mlb_v3_stats_player_season_split_stats_error.py` |
+| `Unauthorized` | `sports_data_io/models/unauthorized.py` |
 
 ### client.mlb_v3_stats.mlb_v3_stats_player_season_stats
 
 - **Route**: `GET /v3/mlb/stats/{format}/PlayerSeasonStats/{season}`
+- **Auth**: `api_key_header` OR `api_key_query`
 - **Signature**: `def mlb_v3_stats_player_season_stats(format: FormatOrStr, season: str, *, request_options: RequestOptionsOrDict | None = None)`
   - required, positional: `format`, `season`
 - **Params**: `format` — path · `season` — path
@@ -218,14 +230,15 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 | Type | Source |
 | --- | --- |
-| `FormatOrStr` | `sports_data/models/enums/format.py` |
-| `PlayerSeason3` | `sports_data/models/player_season3.py` |
-| `MlbV3StatsPlayerSeasonStatsErrorBody` | `sports_data/errors/mlb_v3_stats_player_season_stats_error.py` |
-| `Unauthorized` | `sports_data/models/unauthorized.py` |
+| `FormatOrStr` | `sports_data_io/models/enums/format.py` |
+| `PlayerSeason3` | `sports_data_io/models/player_season3.py` |
+| `MlbV3StatsPlayerSeasonStatsErrorBody` | `sports_data_io/errors/mlb_v3_stats_player_season_stats_error.py` |
+| `Unauthorized` | `sports_data_io/models/unauthorized.py` |
 
 ### client.mlb_v3_stats.mlb_v3_stats_player_season_stats_by_away
 
 - **Route**: `GET /v3/mlb/stats/{format}/PlayerSeasonAwayStats/{season}`
+- **Auth**: `api_key_header` OR `api_key_query`
 - **Signature**: `def mlb_v3_stats_player_season_stats_by_away(format: FormatOrStr, season: str, *, request_options: RequestOptionsOrDict | None = None)`
   - required, positional: `format`, `season`
 - **Params**: `format` — path · `season` — path
@@ -236,14 +249,15 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 | Type | Source |
 | --- | --- |
-| `FormatOrStr` | `sports_data/models/enums/format.py` |
-| `PlayerSeason3` | `sports_data/models/player_season3.py` |
-| `MlbV3StatsPlayerSeasonStatsByAwayErrorBody` | `sports_data/errors/mlb_v3_stats_player_season_stats_by_away_error.py` |
-| `Unauthorized` | `sports_data/models/unauthorized.py` |
+| `FormatOrStr` | `sports_data_io/models/enums/format.py` |
+| `PlayerSeason3` | `sports_data_io/models/player_season3.py` |
+| `MlbV3StatsPlayerSeasonStatsByAwayErrorBody` | `sports_data_io/errors/mlb_v3_stats_player_season_stats_by_away_error.py` |
+| `Unauthorized` | `sports_data_io/models/unauthorized.py` |
 
 ### client.mlb_v3_stats.mlb_v3_stats_player_season_stats_by_home
 
 - **Route**: `GET /v3/mlb/stats/{format}/PlayerSeasonHomeStats/{season}`
+- **Auth**: `api_key_header` OR `api_key_query`
 - **Signature**: `def mlb_v3_stats_player_season_stats_by_home(format: FormatOrStr, season: str, *, request_options: RequestOptionsOrDict | None = None)`
   - required, positional: `format`, `season`
 - **Params**: `format` — path · `season` — path
@@ -254,14 +268,15 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 | Type | Source |
 | --- | --- |
-| `FormatOrStr` | `sports_data/models/enums/format.py` |
-| `PlayerSeason3` | `sports_data/models/player_season3.py` |
-| `MlbV3StatsPlayerSeasonStatsByHomeErrorBody` | `sports_data/errors/mlb_v3_stats_player_season_stats_by_home_error.py` |
-| `Unauthorized` | `sports_data/models/unauthorized.py` |
+| `FormatOrStr` | `sports_data_io/models/enums/format.py` |
+| `PlayerSeason3` | `sports_data_io/models/player_season3.py` |
+| `MlbV3StatsPlayerSeasonStatsByHomeErrorBody` | `sports_data_io/errors/mlb_v3_stats_player_season_stats_by_home_error.py` |
+| `Unauthorized` | `sports_data_io/models/unauthorized.py` |
 
 ### client.mlb_v3_stats.mlb_v3_stats_player_season_stats_by_team
 
 - **Route**: `GET /v3/mlb/stats/{format}/PlayerSeasonStatsByTeam/{season}/{team}`
+- **Auth**: `api_key_header` OR `api_key_query`
 - **Signature**: `def mlb_v3_stats_player_season_stats_by_team(format: FormatOrStr, season: str, team: str, *, request_options: RequestOptionsOrDict | None = None)`
   - required, positional: `format`, `season`, `team`
 - **Params**: `format` — path · `season` — path · `team` — path
@@ -272,14 +287,15 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 | Type | Source |
 | --- | --- |
-| `FormatOrStr` | `sports_data/models/enums/format.py` |
-| `PlayerSeason3` | `sports_data/models/player_season3.py` |
-| `MlbV3StatsPlayerSeasonStatsByTeamErrorBody` | `sports_data/errors/mlb_v3_stats_player_season_stats_by_team_error.py` |
-| `Unauthorized` | `sports_data/models/unauthorized.py` |
+| `FormatOrStr` | `sports_data_io/models/enums/format.py` |
+| `PlayerSeason3` | `sports_data_io/models/player_season3.py` |
+| `MlbV3StatsPlayerSeasonStatsByTeamErrorBody` | `sports_data_io/errors/mlb_v3_stats_player_season_stats_by_team_error.py` |
+| `Unauthorized` | `sports_data_io/models/unauthorized.py` |
 
 ### client.mlb_v3_stats.mlb_v3_stats_player_season_stats_split_by_team
 
 - **Route**: `GET /v3/mlb/stats/{format}/PlayerSeasonStatsSplitByTeam/{season}`
+- **Auth**: `api_key_header` OR `api_key_query`
 - **Signature**: `def mlb_v3_stats_player_season_stats_split_by_team(format: FormatOrStr, season: str, *, request_options: RequestOptionsOrDict | None = None)`
   - required, positional: `format`, `season`
 - **Params**: `format` — path · `season` — path
@@ -290,14 +306,15 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 | Type | Source |
 | --- | --- |
-| `FormatOrStr` | `sports_data/models/enums/format.py` |
-| `PlayerSeason3` | `sports_data/models/player_season3.py` |
-| `MlbV3StatsPlayerSeasonStatsSplitByTeamErrorBody` | `sports_data/errors/mlb_v3_stats_player_season_stats_split_by_team_error.py` |
-| `Unauthorized` | `sports_data/models/unauthorized.py` |
+| `FormatOrStr` | `sports_data_io/models/enums/format.py` |
+| `PlayerSeason3` | `sports_data_io/models/player_season3.py` |
+| `MlbV3StatsPlayerSeasonStatsSplitByTeamErrorBody` | `sports_data_io/errors/mlb_v3_stats_player_season_stats_split_by_team_error.py` |
+| `Unauthorized` | `sports_data_io/models/unauthorized.py` |
 
 ### client.mlb_v3_stats.mlb_v3_stats_team_hitting_vs_starting_pitcher
 
 - **Route**: `GET /v3/mlb/stats/{format}/TeamHittersVsPitcher/{gameid}/{team}`
+- **Auth**: `api_key_header` OR `api_key_query`
 - **Signature**: `def mlb_v3_stats_team_hitting_vs_starting_pitcher(format: FormatOrStr, gameid: str, team: str, *, request_options: RequestOptionsOrDict | None = None)`
   - required, positional: `format`, `gameid`, `team`
 - **Params**: `format` — path · `gameid` — path · `team` — path
@@ -308,8 +325,8 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 | Type | Source |
 | --- | --- |
-| `FormatOrStr` | `sports_data/models/enums/format.py` |
-| `PlayerSeason3` | `sports_data/models/player_season3.py` |
-| `MlbV3StatsTeamHittingVsStartingPitcherErrorBody` | `sports_data/errors/mlb_v3_stats_team_hitting_vs_starting_pitcher_error.py` |
-| `Unauthorized` | `sports_data/models/unauthorized.py` |
+| `FormatOrStr` | `sports_data_io/models/enums/format.py` |
+| `PlayerSeason3` | `sports_data_io/models/player_season3.py` |
+| `MlbV3StatsTeamHittingVsStartingPitcherErrorBody` | `sports_data_io/errors/mlb_v3_stats_team_hitting_vs_starting_pitcher_error.py` |
+| `Unauthorized` | `sports_data_io/models/unauthorized.py` |
 

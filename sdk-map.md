@@ -1,14 +1,14 @@
 <!-- Generated file — do not edit; regenerated with the SDK. -->
 
-# SDK map — SportsData (Python)
+# SDK map — SportsDataIO (Python)
 
 > A generated table of contents for this SDK. Consult this map and its sub-pages to learn signatures, error types, and server/auth wiring **by lookup**. Model shapes and enum values are *not* duplicated here — the map names the module declaring each type; read the shape there. Every name is the emitted spelling, so a wrong one fails at import rather than working silently.
 
 |  |  |
 | --- | --- |
-| SDK display name | SportsData |
-| Root package | `sports_data` |
-| Distribution name | `sports-data` |
+| SDK display name | SportsDataIO |
+| Root package | `sports_data_io` |
+| Distribution name | `sports-data-io` |
 | Requires | Python 3.10 or later |
 | API spec version | `1.0` |
 | Generator | APIMatic |
@@ -24,27 +24,27 @@ All `Source` paths on this map and its sub-pages are relative to the **SDK root*
 ### Synchronous client
 
 ```python
-from sports_data import SportsDataClient
+from sports_data_io import SportsDataIoClient
 
-client = SportsDataClient(api_key_header="YOUR_API_KEY", api_key_query="YOUR_API_KEY")
+client = SportsDataIoClient(api_key_header="YOUR_API_KEY", api_key_query="YOUR_API_KEY")
 
 # TODO: call endpoints here -- see api-reference.md
 
 client.close()
 ```
 
-Alternatively, scope it — `with SportsDataClient(...) as client:` closes the pool on exit.
+Alternatively, scope it — `with SportsDataIoClient(...) as client:` closes the pool on exit.
 
 ### Asynchronous client
 
 ```python
 from asyncio import run
 
-from sports_data import AsyncSportsDataClient
+from sports_data_io import AsyncSportsDataIoClient
 
 
 async def main() -> None:
-    client = AsyncSportsDataClient(api_key_header="YOUR_API_KEY", api_key_query="YOUR_API_KEY")
+    client = AsyncSportsDataIoClient(api_key_header="YOUR_API_KEY", api_key_query="YOUR_API_KEY")
     # TODO: call endpoints here, awaiting each -- see api-reference.md
     await client.aclose()
 
@@ -52,15 +52,15 @@ async def main() -> None:
 run(main())
 ```
 
-Alternatively, scope it — `async with AsyncSportsDataClient(...) as client:` closes the pool on exit.
+Alternatively, scope it — `async with AsyncSportsDataIoClient(...) as client:` closes the pool on exit.
 
-`AsyncClient` (`sports_data/async_client.py`) mirrors `Client` method for method, each endpoint method a coroutine. It takes the same keywords, except that each client accepts only its own transport and — where the **Async Type** column differs — only its own flavor.
+`AsyncClient` (`sports_data_io/async_client.py`) mirrors `Client` method for method, each endpoint method a coroutine. It takes the same keywords, except that each client accepts only its own transport and — where the **Async Type** column differs — only its own flavor.
 
-`Client` and `AsyncClient` are aliases of `SportsDataClient` and `AsyncSportsDataClient` — the names tracebacks and `repr()` show; all four import from the root.
+`Client` and `AsyncClient` are aliases of `SportsDataIoClient` and `AsyncSportsDataIoClient` — the names tracebacks and `repr()` show; all four import from the root.
 
 `close()` / `aclose()` closes the transport even when you supplied one via `custom_http_client=` / `custom_async_http_client=`, and a closed client cannot be reused.
 
-Every API group is a property on the client (e.g. `client.cbb_v3_odds`). Every constructor argument is optional and keyword-only. Sources: `sports_data/client.py`, `sports_data/async_client.py`:
+Every API group is a property on the client (e.g. `client.cbb_v3_odds`). Every constructor argument is optional and keyword-only. Sources: `sports_data_io/client.py`, `sports_data_io/async_client.py`:
 
 | Keyword | Sync Type | Async Type | Default |
 | --- | --- | --- | --- |
@@ -75,8 +75,8 @@ The types those columns name — where each imports from and, for a credentials 
 
 | Type | Import from | Shape |
 | --- | --- | --- |
-| `HttpClient` | `sports_data.core` | protocol — `send(request: HttpRequest) -> HttpResponse` · `close()` |
-| `AsyncHttpClient` | `sports_data.core` | protocol — `async send(request: HttpRequest) -> HttpResponse` · `async aclose()` |
+| `HttpClient` | `sports_data_io.core` | protocol — `send(request: HttpRequest) -> HttpResponse` · `close()` |
+| `AsyncHttpClient` | `sports_data_io.core` | protocol — `async send(request: HttpRequest) -> HttpResponse` · `async aclose()` |
 
 ---
 
@@ -89,22 +89,22 @@ Every operation is reached in two response modes:
 
 What `.error` holds is fixed per operation. There are two cases:
 
-- **Case A — typed error.** The operation documents at least one error status, so `sports_data/errors/` declares a union alias over the bodies those statuses map to — `RawError` is always its last arm, for any undocumented status — and `.error` is annotated with that alias. Narrow it with `isinstance`. The operation blocks name the alias and the status each arm maps from.
-- **Case B — raw error.** The operation documents no error status; `.error` is `RawError` (`sports_data/core/results.py`): `status_code: int` · `content: bytes` · `text(encoding="utf-8"): str` · `json(): Any` · `response: HttpResponse`.
+- **Case A — typed error.** The operation documents at least one error status, so `sports_data_io/errors/` declares a union alias over the bodies those statuses map to — `RawError` is always its last arm, for any undocumented status — and `.error` is annotated with that alias. Narrow it with `isinstance`. The operation blocks name the alias and the status each arm maps from.
+- **Case B — raw error.** The operation documents no error status; `.error` is `RawError` (`sports_data_io/core/results.py`): `status_code: int` · `content: bytes` · `text(encoding="utf-8"): str` · `json(): Any` · `response: HttpResponse`.
 
-Core runtime types (`sports_data/core/`) — public members with their **declared types**, verbatim from source:
+Core runtime types (`sports_data_io/core/`) — public members with their **declared types**, verbatim from source:
 
 | Type | Public members | Source |
 | --- | --- | --- |
-| `ApiError` — raised by every parsed call; `.error` is a Case A alias from `sports_data/errors/` or `RawError` | `error: E` · `status_code: int` · `response: HttpResponse` | `sports_data/core/exceptions.py` |
-| `ApiResult[T, E]` — returned by every raw call; the `Success[T] \| Failure[E]` union | `payload: T` (on `Success`) · `error: E` (on `Failure`) · `response: HttpResponse` (on both) | `sports_data/core/results.py` |
-| `RawError` | `status_code: int` · `content: bytes` · `text(encoding="utf-8"): str` · `json(): Any` · `response: HttpResponse` | `sports_data/core/results.py` |
+| `ApiError` — raised by every parsed call; `.error` is a Case A alias from `sports_data_io/errors/` or `RawError` | `error: E` · `status_code: int` · `response: HttpResponse` | `sports_data_io/core/exceptions.py` |
+| `ApiResult[T, E]` — returned by every raw call; the `Success[T] \| Failure[E]` union | `payload: T` (on `Success`) · `error: E` (on `Failure`) · `response: HttpResponse` (on both) | `sports_data_io/core/results.py` |
+| `RawError` | `status_code: int` · `content: bytes` · `text(encoding="utf-8"): str` · `json(): Any` · `response: HttpResponse` | `sports_data_io/core/results.py` |
 
 Typed error bodies (the arms of a Case A alias) are ordinary models — no special handling. The operation's **Type sources** table gives the module that declares each one; read field names, declared types and JSON aliases there, as for any other model.
 
 ```python
-from sports_data.core import ApiError, RawError
-from sports_data.models import Unauthorized
+from sports_data_io.core import ApiError, RawError
+from sports_data_io.models import Unauthorized
 
 try:
     response = client.cbb_v3_odds.cbb_v3_odds_alternate_market_pre_game_odds_by_date(format, date)
@@ -133,7 +133,7 @@ Each links to a sub-page with one block per operation, headed by its full access
 | **Four spellings, one signature** — the same method name and parameters on `Client` and `AsyncClient`, each also reachable through `.with_raw_response`; the async twin is a coroutine to `await`, with the same return types and error case, and where the **Async Type** column differs, pass the type it names | Getting a client |
 | **Parsed raises, raw returns** — `ApiError` versus `ApiResult` | Error-handling model |
 | **Case B error is always `RawError`** — also the last arm of every Case A alias, where a block's **Error arms** bullet ends in it | Error-handling model |
-| **A trailing `request_options`** — keyword-only and optional, for per-call overrides such as a timeout or extra headers; every signature ends with it | here (`sports_data/core/request_options.py`) |
+| **A trailing `request_options`** — keyword-only and optional, for per-call overrides such as a timeout or extra headers; every signature ends with it | here (`sports_data_io/core/request_options.py`) |
 | **Base URL `https://api.sportsdata.io`** — this SDK's only server; override it with `base_url="https://…"` | Servers & auth |
 | **Parameter names are literal** — signatures are generated code verbatim, and everything behind the bare `*` must be passed by name | here |
 | **A parameter's wire name is its Python name** — sent as-is on the path, query string, header or body, unless the block's **Params** bullet carries a wire name beside the role | here |
@@ -199,13 +199,13 @@ Sub-pages chunk per `###` block: each block is self-contained given the table ab
 
 ## Models — where they live, how to build them
 
-**Shapes live only in the source.** Every module under `sports_data/models/` declares one type plus its input companion, and every module under `sports_data/errors/` one alias plus the mapper that builds it; no two share a name. Take a type's module from the operation's **Type sources** table. When no retrieved chunk names it, the module is the type name in snake_case under the kind's directory below (`Area` ↔ `area.py`; an error alias drops its `Body` suffix: `CbbV3OddsAlternateMarketPreGameOddsByDateErrorBody` ↔ `cbb_v3_odds_alternate_market_pre_game_odds_by_date_error.py`). Never grep for a type.
+**Shapes live only in the source.** Every module under `sports_data_io/models/` declares one type plus its input companion, and every module under `sports_data_io/errors/` one alias plus the mapper that builds it; no two share a name. Take a type's module from the operation's **Type sources** table. When no retrieved chunk names it, the module is the type name in snake_case under the kind's directory below (`Area` ↔ `area.py`; an error alias drops its `Body` suffix: `CbbV3OddsAlternateMarketPreGameOddsByDateErrorBody` ↔ `cbb_v3_odds_alternate_market_pre_game_odds_by_date_error.py`). Never grep for a type.
 
 | Group | Count | Directory (module = `<type_name>.py`) |
 | --- | --- | --- |
-| Models (`SdkBaseModel` pydantic classes) | 406 | `sports_data/models/` |
-| Enums (`Enum` over `str`) — Python member names + wire values | 5 | `sports_data/models/enums/` |
-| Error aliases (one per Case A operation) | 741 | `sports_data/errors/` |
+| Models (`SdkBaseModel` pydantic classes) | 406 | `sports_data_io/models/` |
+| Enums (`Enum` over `str`) — Python member names + wire values | 5 | `sports_data_io/models/enums/` |
+| Error aliases (one per Case A operation) | 741 | `sports_data_io/errors/` |
 
 Conventions: a model is a `SdkBaseModel` (pydantic) class; a field whose wire name differs from its Python name carries it as `Field(alias=…)` (`area_id` ↔ `"AreaId"`) — read the alias off the field rather than deriving it. An omittable field is annotated `Optional[T]` and defaults to `UNSET`, and one that may also be explicitly null is `OptionalNullable[T]`; both come from `core` and neither is `typing.Optional` — there is no `None` arm unless the spec declared the property nullable, so passing `None` to the first is a type error rather than a value that serializes.
 
@@ -215,12 +215,12 @@ Import paths by content type (`from <package> import <Name>`):
 
 | Contents | Import from |
 | --- | --- |
-| Client (root) | `sports_data` |
-| Operation controllers | `sports_data.apis` |
-| Models | `sports_data.models` |
-| Enums | `sports_data.models.enums` |
-| Error aliases | `sports_data.errors` |
-| Core runtime (`ApiError`, `ApiResult`, `RawError`, …) | `sports_data.core` |
+| Client (root) | `sports_data_io` |
+| Operation controllers | `sports_data_io.apis` |
+| Models | `sports_data_io.models` |
+| Enums | `sports_data_io.models.enums` |
+| Error aliases | `sports_data_io.errors` |
+| Core runtime (`ApiError`, `ApiResult`, `RawError`, …) | `sports_data_io.core` |
 
 ---
 
@@ -230,7 +230,14 @@ Import paths by content type (`from <package> import <Name>`):
 
 **API key (query `key`).** Pass `api_key_query="<api_key>"`; sent as the `key` query parameter.
 
-**One environment, one server** (`sports_data/server/server_config.py`). The spec declares a single environment, so no `environment` keyword exists; the base URL and its override point:
+Operation blocks name their scheme in an **Auth** bullet; an operation whose spec declares no scheme carries no such bullet.
+
+- `AND` — every scheme listed must be configured for the call to succeed.
+- `OR` — any one of the schemes listed can be used; the first one you configured is the one sent, in the order listed.
+
+A scheme you did not configure is skipped silently rather than raising, and the request is sent anyway — so an authentication failure can mean no credential was sent rather than a bad one.
+
+**One environment, one server** (`sports_data_io/server/server_config.py`). The spec declares a single environment, so no `environment` keyword exists; the base URL and its override point:
 
 | Base URL | Override point |
 | --- | --- |
