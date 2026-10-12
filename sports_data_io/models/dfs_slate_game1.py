@@ -32,6 +32,6 @@ class DfsSlateGame1Dict(TypedDict):
     slate_game_id: NotRequired[int]
     slate_id: NotRequired[int]
     game_id: NotRequired[int | None]
-    game: NotRequired[Game1 | Game1Dict]
+    game: NotRequired[Game1Dict]
     operator_game_id: NotRequired[int | None]
     removed_by_operator: NotRequired[bool | None]

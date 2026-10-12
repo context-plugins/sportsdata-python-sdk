@@ -3,7 +3,7 @@ from __future__ import annotations
 from dataclasses import dataclass
 from typing import Final, TypeAlias
 
-from ..core import ErrorMapper, HttpResponse, RawError, decode_json
+from ..core import ErrorMapper, RawError, decode_json
 from ..models.unauthorized import Unauthorized
 
 CbbV3OddsBettingFuturesBySeasonSportsbookGroupErrorBody: TypeAlias = Unauthorized | RawError
@@ -11,12 +11,12 @@ CbbV3OddsBettingFuturesBySeasonSportsbookGroupErrorBody: TypeAlias = Unauthorize
 
 @dataclass(frozen=True, slots=True)
 class _CbbV3OddsBettingFuturesBySeasonSportsbookGroupError:
-    def map(self, response: HttpResponse) -> CbbV3OddsBettingFuturesBySeasonSportsbookGroupErrorBody:
-        match response.status_code:
+    def map(self, status_code: int, content: bytes) -> CbbV3OddsBettingFuturesBySeasonSportsbookGroupErrorBody:
+        match status_code:
             case 401:
-                return decode_json[Unauthorized](response)
+                return decode_json[Unauthorized](content)
             case _:
-                return RawError(response)
+                return RawError(status_code, content)
 
 
 cbb_v3_odds_betting_futures_by_season_sportsbook_group_error_mapper: Final[

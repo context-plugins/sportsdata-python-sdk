@@ -72,6 +72,6 @@ class BettingMarket3Dict(TypedDict):
     driver_name: NotRequired[str | None]
     created: NotRequired[str | None]
     updated: NotRequired[str | None]
-    available_sportsbooks: NotRequired[list[Sportsbook | SportsbookDict]]
+    available_sportsbooks: NotRequired[list[SportsbookDict]]
     any_bets_available: NotRequired[bool | None]
-    betting_outcomes: NotRequired[list[BettingOutcome3 | BettingOutcome3Dict]]
+    betting_outcomes: NotRequired[list[BettingOutcome3Dict]]

@@ -46,7 +46,7 @@ class DfsSlate(SdkBaseModel):
     dfs_slate_players: Optional[list[DfsSlatePlayer]] = Field(default=UNSET, alias="DfsSlatePlayers")
     """The players that are included in this slate"""
 
-    slate_roster_slots: OptionalNullable[list[str]] = Field(default=UNSET, alias="SlateRosterSlots")
+    slate_roster_slots: Optional[list[str | None]] = Field(default=UNSET, alias="SlateRosterSlots")
     """The positions that need to be filled for this particular slate"""
 
     salary_cap: OptionalNullable[int] = Field(default=UNSET, alias="SalaryCap")
@@ -64,7 +64,7 @@ class DfsSlateDict(TypedDict):
     is_multi_day_slate: NotRequired[bool | None]
     removed_by_operator: NotRequired[bool | None]
     operator_game_type: NotRequired[str | None]
-    dfs_slate_games: NotRequired[list[DfsSlateGame | DfsSlateGameDict]]
-    dfs_slate_players: NotRequired[list[DfsSlatePlayer | DfsSlatePlayerDict]]
-    slate_roster_slots: NotRequired[list[str] | None]
+    dfs_slate_games: NotRequired[list[DfsSlateGameDict]]
+    dfs_slate_players: NotRequired[list[DfsSlatePlayerDict]]
+    slate_roster_slots: NotRequired[list[str | None]]
     salary_cap: NotRequired[int | None]

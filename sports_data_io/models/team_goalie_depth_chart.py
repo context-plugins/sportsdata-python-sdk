@@ -16,5 +16,5 @@ class TeamGoalieDepthChart(SdkBaseModel):
 
 
 class TeamGoalieDepthChartDict(TypedDict):
-    goalie_depth_charts: NotRequired[list[GoalieDepthChart | GoalieDepthChartDict]]
+    goalie_depth_charts: NotRequired[list[GoalieDepthChartDict]]
     team_id: NotRequired[int]

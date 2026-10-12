@@ -47,4 +47,4 @@ class Season11Dict(TypedDict):
     start_date: NotRequired[str | None]
     end_date: NotRequired[str | None]
     current_season: NotRequired[bool]
-    rounds: NotRequired[list[Round | RoundDict]]
+    rounds: NotRequired[list[RoundDict]]

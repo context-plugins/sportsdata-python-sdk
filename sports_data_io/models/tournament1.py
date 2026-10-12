@@ -99,6 +99,6 @@ class Tournament1Dict(TypedDict):
     country: NotRequired[str | None]
     time_zone: NotRequired[str | None]
     format: NotRequired[str | None]
-    rounds: NotRequired[list[Round1 | Round1Dict]]
+    rounds: NotRequired[list[Round1Dict]]
     sport_radar_tournament_id: NotRequired[str | None]
     odds_coverage: NotRequired[str | None]

@@ -43,6 +43,4 @@ class DfsSlateWithOwnershipProjectionDict(TypedDict):
     operator_name: NotRequired[str | None]
     operator_day: NotRequired[str | None]
     operator_start_time: NotRequired[str | None]
-    slate_ownership_projections: NotRequired[
-        list[DfsSlatePlayerOwnershipProjection | DfsSlatePlayerOwnershipProjectionDict]
-    ]
+    slate_ownership_projections: NotRequired[list[DfsSlatePlayerOwnershipProjectionDict]]

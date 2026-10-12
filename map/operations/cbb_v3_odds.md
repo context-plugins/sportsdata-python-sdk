@@ -10,9 +10,9 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /v3/cbb/odds/{format}/AlternateMarketGameOddsByDate/{date}`
 - **Auth**: `api_key_header` OR `api_key_query`
-- **Signature**: `def cbb_v3_odds_alternate_market_pre_game_odds_by_date(format: FormatOrStr, date: str, *, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `format`, `date`
-- **Params**: `format` — path · `date` — path
+- **Signature**: `def cbb_v3_odds_alternate_market_pre_game_odds_by_date(date: str, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None)`
+  - required, positional: `date`
+- **Params**: `format_` — path `format` · `date` — path
 - **Returns (parsed)**: `list[GameInfo5]`
 - **Returns (raw)**: `ApiResult[list[GameInfo5], CbbV3OddsAlternateMarketPreGameOddsByDateErrorBody]`
 - **Error**: `CbbV3OddsAlternateMarketPreGameOddsByDateErrorBody` — **Case A (typed)**
@@ -29,9 +29,9 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /v3/cbb/odds/{format}/AlternateMarketGameOddsLineMovement/{gameid}`
 - **Auth**: `api_key_header` OR `api_key_query`
-- **Signature**: `def cbb_v3_odds_alternate_market_pre_game_odds_line_movement(format: FormatOrStr, gameid: str, *, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `format`, `gameid`
-- **Params**: `format` — path · `gameid` — path
+- **Signature**: `def cbb_v3_odds_alternate_market_pre_game_odds_line_movement(gameid: str, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None)`
+  - required, positional: `gameid`
+- **Params**: `format_` — path `format` · `gameid` — path
 - **Returns (parsed)**: `list[GameInfo5]`
 - **Returns (raw)**: `ApiResult[list[GameInfo5], CbbV3OddsAlternateMarketPreGameOddsLineMovementErrorBody]`
 - **Error**: `CbbV3OddsAlternateMarketPreGameOddsLineMovementErrorBody` — **Case A (typed)**
@@ -48,9 +48,9 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /v3/cbb/odds/{format}/BettingEventsByDate/{date}`
 - **Auth**: `api_key_header` OR `api_key_query`
-- **Signature**: `def cbb_v3_odds_betting_events_by_date(format: FormatOrStr, date: str, *, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `format`, `date`
-- **Params**: `format` — path · `date` — path
+- **Signature**: `def cbb_v3_odds_betting_events_by_date(date: str, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None)`
+  - required, positional: `date`
+- **Params**: `format_` — path `format` · `date` — path
 - **Returns (parsed)**: `list[BettingEvent2]`
 - **Returns (raw)**: `ApiResult[list[BettingEvent2], CbbV3OddsBettingEventsByDateErrorBody]`
 - **Error**: `CbbV3OddsBettingEventsByDateErrorBody` — **Case A (typed)**
@@ -67,9 +67,9 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /v3/cbb/odds/{format}/BettingEvents/{season}`
 - **Auth**: `api_key_header` OR `api_key_query`
-- **Signature**: `def cbb_v3_odds_betting_events_by_season(format: FormatOrStr, season: str, *, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `format`, `season`
-- **Params**: `format` — path · `season` — path
+- **Signature**: `def cbb_v3_odds_betting_events_by_season(season: str, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None)`
+  - required, positional: `season`
+- **Params**: `format_` — path `format` · `season` — path
 - **Returns (parsed)**: `list[BettingEvent2]`
 - **Returns (raw)**: `ApiResult[list[BettingEvent2], CbbV3OddsBettingEventsBySeasonErrorBody]`
 - **Error**: `CbbV3OddsBettingEventsBySeasonErrorBody` — **Case A (typed)**
@@ -86,9 +86,9 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /v3/cbb/odds/{format}/BettingFuturesBySeason/{season}`
 - **Auth**: `api_key_header` OR `api_key_query`
-- **Signature**: `def cbb_v3_odds_betting_futures_by_season(format: FormatOrStr, season: str, *, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `format`, `season`
-- **Params**: `format` — path · `season` — path
+- **Signature**: `def cbb_v3_odds_betting_futures_by_season(season: str, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None)`
+  - required, positional: `season`
+- **Params**: `format_` — path `format` · `season` — path
 - **Returns (parsed)**: `list[BettingEvent2]`
 - **Returns (raw)**: `ApiResult[list[BettingEvent2], CbbV3OddsBettingFuturesBySeasonErrorBody]`
 - **Error**: `CbbV3OddsBettingFuturesBySeasonErrorBody` — **Case A (typed)**
@@ -105,9 +105,9 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /v3/cbb/odds/{format}/BettingFuturesBySeason/{season}/{sportsbookgroup}`
 - **Auth**: `api_key_header` OR `api_key_query`
-- **Signature**: `def cbb_v3_odds_betting_futures_by_season_sportsbook_group(format: FormatOrStr, season: str, sportsbookgroup: str, *, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `format`, `season`, `sportsbookgroup`
-- **Params**: `format` — path · `season` — path · `sportsbookgroup` — path
+- **Signature**: `def cbb_v3_odds_betting_futures_by_season_sportsbook_group(season: str, sportsbookgroup: str, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None)`
+  - required, positional: `season`, `sportsbookgroup`
+- **Params**: `format_` — path `format` · `season` — path · `sportsbookgroup` — path
 - **Returns (parsed)**: `list[BettingEvent2]`
 - **Returns (raw)**: `ApiResult[list[BettingEvent2], CbbV3OddsBettingFuturesBySeasonSportsbookGroupErrorBody]`
 - **Error**: `CbbV3OddsBettingFuturesBySeasonSportsbookGroupErrorBody` — **Case A (typed)**
@@ -124,9 +124,9 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /v3/cbb/odds/{format}/BettingMarket/{marketId}`
 - **Auth**: `api_key_header` OR `api_key_query`
-- **Signature**: `def cbb_v3_odds_betting_market(format: FormatOrStr, market_id: str, *, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `format`, `market_id`
-- **Params**: `format` — path · `market_id` — path `marketId`
+- **Signature**: `def cbb_v3_odds_betting_market(market_id: str, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None)`
+  - required, positional: `market_id`
+- **Params**: `format_` — path `format` · `market_id` — path `marketId`
 - **Returns (parsed)**: `BettingMarket`
 - **Returns (raw)**: `ApiResult[BettingMarket, CbbV3OddsBettingMarketErrorBody]`
 - **Error**: `CbbV3OddsBettingMarketErrorBody` — **Case A (typed)**
@@ -143,9 +143,9 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /v3/cbb/odds/{format}/BettingMarket/{marketId}/{sportsbookgroup}`
 - **Auth**: `api_key_header` OR `api_key_query`
-- **Signature**: `def cbb_v3_odds_betting_market_sportsbook_group(format: FormatOrStr, market_id: str, sportsbookgroup: str, *, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `format`, `market_id`, `sportsbookgroup`
-- **Params**: `format` — path · `market_id` — path `marketId` · `sportsbookgroup` — path
+- **Signature**: `def cbb_v3_odds_betting_market_sportsbook_group(market_id: str, sportsbookgroup: str, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None)`
+  - required, positional: `market_id`, `sportsbookgroup`
+- **Params**: `format_` — path `format` · `market_id` — path `marketId` · `sportsbookgroup` — path
 - **Returns (parsed)**: `BettingMarket`
 - **Returns (raw)**: `ApiResult[BettingMarket, CbbV3OddsBettingMarketSportsbookGroupErrorBody]`
 - **Error**: `CbbV3OddsBettingMarketSportsbookGroupErrorBody` — **Case A (typed)**
@@ -162,9 +162,9 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /v3/cbb/odds/{format}/BettingMarkets/{eventId}`
 - **Auth**: `api_key_header` OR `api_key_query`
-- **Signature**: `def cbb_v3_odds_betting_markets_by_event(format: FormatOrStr, event_id: str, *, include: IncludeOrStr | None = None, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `format`, `event_id`
-- **Params**: `format` — path · `event_id` — path `eventId` · `include` — query
+- **Signature**: `def cbb_v3_odds_betting_markets_by_event(event_id: str, *, format_: FormatOrStr = Format.JSON, include: IncludeOrStr | None = Include.AVAILABLE, request_options: RequestOptionsOrDict | None = None)`
+  - required, positional: `event_id`
+- **Params**: `format_` — path `format` · `event_id` — path `eventId` · `include` — query
 - **Returns (parsed)**: `list[BettingMarket]`
 - **Returns (raw)**: `ApiResult[list[BettingMarket], CbbV3OddsBettingMarketsByEventErrorBody]`
 - **Error**: `CbbV3OddsBettingMarketsByEventErrorBody` — **Case A (typed)**
@@ -182,9 +182,9 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /v3/cbb/odds/{format}/BettingMarketsByEvent/{eventId}/{sportsbookgroup}`
 - **Auth**: `api_key_header` OR `api_key_query`
-- **Signature**: `def cbb_v3_odds_betting_markets_by_event_sportsbook_group(format: FormatOrStr, event_id: str, sportsbookgroup: str, *, include: IncludeOrStr | None = None, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `format`, `event_id`, `sportsbookgroup`
-- **Params**: `format` — path · `event_id` — path `eventId` · `sportsbookgroup` — path · `include` — query
+- **Signature**: `def cbb_v3_odds_betting_markets_by_event_sportsbook_group(event_id: str, sportsbookgroup: str, *, format_: FormatOrStr = Format.JSON, include: IncludeOrStr | None = Include.AVAILABLE, request_options: RequestOptionsOrDict | None = None)`
+  - required, positional: `event_id`, `sportsbookgroup`
+- **Params**: `format_` — path `format` · `event_id` — path `eventId` · `sportsbookgroup` — path · `include` — query
 - **Returns (parsed)**: `list[BettingMarket]`
 - **Returns (raw)**: `ApiResult[list[BettingMarket], CbbV3OddsBettingMarketsByEventSportsbookGroupErrorBody]`
 - **Error**: `CbbV3OddsBettingMarketsByEventSportsbookGroupErrorBody` — **Case A (typed)**
@@ -202,9 +202,9 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /v3/cbb/odds/{format}/BettingMarketsByGameID/{gameid}`
 - **Auth**: `api_key_header` OR `api_key_query`
-- **Signature**: `def cbb_v3_odds_betting_markets_by_game(format: FormatOrStr, gameid: str, *, include: IncludeOrStr | None = None, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `format`, `gameid`
-- **Params**: `format` — path · `gameid` — path · `include` — query
+- **Signature**: `def cbb_v3_odds_betting_markets_by_game(gameid: str, *, format_: FormatOrStr = Format.JSON, include: IncludeOrStr | None = Include.AVAILABLE, request_options: RequestOptionsOrDict | None = None)`
+  - required, positional: `gameid`
+- **Params**: `format_` — path `format` · `gameid` — path · `include` — query
 - **Returns (parsed)**: `list[BettingMarket]`
 - **Returns (raw)**: `ApiResult[list[BettingMarket], CbbV3OddsBettingMarketsByGameErrorBody]`
 - **Error**: `CbbV3OddsBettingMarketsByGameErrorBody` — **Case A (typed)**
@@ -222,9 +222,9 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /v3/cbb/odds/{format}/BettingMarketsByGameID/{gameid}/{sportsbookgroup}`
 - **Auth**: `api_key_header` OR `api_key_query`
-- **Signature**: `def cbb_v3_odds_betting_markets_by_game_sportsbook_group(format: FormatOrStr, gameid: str, sportsbookgroup: str, *, include: IncludeOrStr | None = None, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `format`, `gameid`, `sportsbookgroup`
-- **Params**: `format` — path · `gameid` — path · `sportsbookgroup` — path · `include` — query
+- **Signature**: `def cbb_v3_odds_betting_markets_by_game_sportsbook_group(gameid: str, sportsbookgroup: str, *, format_: FormatOrStr = Format.JSON, include: IncludeOrStr | None = Include.AVAILABLE, request_options: RequestOptionsOrDict | None = None)`
+  - required, positional: `gameid`, `sportsbookgroup`
+- **Params**: `format_` — path `format` · `gameid` — path · `sportsbookgroup` — path · `include` — query
 - **Returns (parsed)**: `list[BettingMarket]`
 - **Returns (raw)**: `ApiResult[list[BettingMarket], CbbV3OddsBettingMarketsByGameSportsbookGroupErrorBody]`
 - **Error**: `CbbV3OddsBettingMarketsByGameSportsbookGroupErrorBody` — **Case A (typed)**
@@ -242,9 +242,9 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /v3/cbb/odds/{format}/BettingMarketsByMarketType/{eventId}/{marketTypeID}`
 - **Auth**: `api_key_header` OR `api_key_query`
-- **Signature**: `def cbb_v3_odds_betting_markets_by_market_type(format: FormatOrStr, event_id: str, market_type_id: str, *, include: IncludeOrStr | None = None, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `format`, `event_id`, `market_type_id`
-- **Params**: `format` — path · `event_id` — path `eventId` · `market_type_id` — path `marketTypeID` · `include` — query
+- **Signature**: `def cbb_v3_odds_betting_markets_by_market_type(event_id: str, market_type_id: str, *, format_: FormatOrStr = Format.JSON, include: IncludeOrStr | None = Include.AVAILABLE, request_options: RequestOptionsOrDict | None = None)`
+  - required, positional: `event_id`, `market_type_id`
+- **Params**: `format_` — path `format` · `event_id` — path `eventId` · `market_type_id` — path `marketTypeID` · `include` — query
 - **Returns (parsed)**: `list[BettingMarket]`
 - **Returns (raw)**: `ApiResult[list[BettingMarket], CbbV3OddsBettingMarketsByMarketTypeErrorBody]`
 - **Error**: `CbbV3OddsBettingMarketsByMarketTypeErrorBody` — **Case A (typed)**
@@ -262,9 +262,9 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /v3/cbb/odds/{format}/BettingMarketsByMarketType/{eventId}/{marketTypeID}/{sportsbookgroup}`
 - **Auth**: `api_key_header` OR `api_key_query`
-- **Signature**: `def cbb_v3_odds_betting_markets_by_market_type_sportsbook_group(format: FormatOrStr, event_id: str, market_type_id: str, sportsbookgroup: str, *, include: IncludeOrStr | None = None, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `format`, `event_id`, `market_type_id`, `sportsbookgroup`
-- **Params**: `format` — path · `event_id` — path `eventId` · `market_type_id` — path `marketTypeID` · `sportsbookgroup` — path · `include` — query
+- **Signature**: `def cbb_v3_odds_betting_markets_by_market_type_sportsbook_group(event_id: str, market_type_id: str, sportsbookgroup: str, *, format_: FormatOrStr = Format.JSON, include: IncludeOrStr | None = Include.AVAILABLE, request_options: RequestOptionsOrDict | None = None)`
+  - required, positional: `event_id`, `market_type_id`, `sportsbookgroup`
+- **Params**: `format_` — path `format` · `event_id` — path `eventId` · `market_type_id` — path `marketTypeID` · `sportsbookgroup` — path · `include` — query
 - **Returns (parsed)**: `list[BettingMarket]`
 - **Returns (raw)**: `ApiResult[list[BettingMarket], CbbV3OddsBettingMarketsByMarketTypeSportsbookGroupErrorBody]`
 - **Error**: `CbbV3OddsBettingMarketsByMarketTypeSportsbookGroupErrorBody` — **Case A (typed)**
@@ -282,9 +282,8 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /v3/cbb/odds/{format}/BettingMetadata`
 - **Auth**: `api_key_header` OR `api_key_query`
-- **Signature**: `def cbb_v3_odds_betting_metadata(format: FormatOrStr, *, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `format`
-- **Params**: `format` — path
+- **Signature**: `def cbb_v3_odds_betting_metadata(*, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None)`
+- **Params**: `format_` — path `format`
 - **Returns (parsed)**: `BettingEntityMetadataCollection`
 - **Returns (raw)**: `ApiResult[BettingEntityMetadataCollection, CbbV3OddsBettingMetadataErrorBody]`
 - **Error**: `CbbV3OddsBettingMetadataErrorBody` — **Case A (typed)**
@@ -301,9 +300,9 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /v3/cbb/odds/{format}/BettingPlayerPropsByGameID/{gameId}`
 - **Auth**: `api_key_header` OR `api_key_query`
-- **Signature**: `def cbb_v3_odds_betting_player_props_by_game(format: FormatOrStr, game_id: str, *, include: IncludeOrStr | None = None, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `format`, `game_id`
-- **Params**: `format` — path · `game_id` — path `gameId` · `include` — query
+- **Signature**: `def cbb_v3_odds_betting_player_props_by_game(game_id: str, *, format_: FormatOrStr = Format.JSON, include: IncludeOrStr | None = Include.AVAILABLE, request_options: RequestOptionsOrDict | None = None)`
+  - required, positional: `game_id`
+- **Params**: `format_` — path `format` · `game_id` — path `gameId` · `include` — query
 - **Returns (parsed)**: `list[BettingMarket]`
 - **Returns (raw)**: `ApiResult[list[BettingMarket], CbbV3OddsBettingPlayerPropsByGameErrorBody]`
 - **Error**: `CbbV3OddsBettingPlayerPropsByGameErrorBody` — **Case A (typed)**
@@ -321,9 +320,9 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /v3/cbb/odds/{format}/BettingPlayerPropsByGameID/{gameId}/{sportsbookgroup}`
 - **Auth**: `api_key_header` OR `api_key_query`
-- **Signature**: `def cbb_v3_odds_betting_player_props_by_game_sportsbook_group(format: FormatOrStr, game_id: str, sportsbookgroup: str, *, include: IncludeOrStr | None = None, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `format`, `game_id`, `sportsbookgroup`
-- **Params**: `format` — path · `game_id` — path `gameId` · `sportsbookgroup` — path · `include` — query
+- **Signature**: `def cbb_v3_odds_betting_player_props_by_game_sportsbook_group(game_id: str, sportsbookgroup: str, *, format_: FormatOrStr = Format.JSON, include: IncludeOrStr | None = Include.AVAILABLE, request_options: RequestOptionsOrDict | None = None)`
+  - required, positional: `game_id`, `sportsbookgroup`
+- **Params**: `format_` — path `format` · `game_id` — path `gameId` · `sportsbookgroup` — path · `include` — query
 - **Returns (parsed)**: `list[BettingMarket]`
 - **Returns (raw)**: `ApiResult[list[BettingMarket], CbbV3OddsBettingPlayerPropsByGameSportsbookGroupErrorBody]`
 - **Error**: `CbbV3OddsBettingPlayerPropsByGameSportsbookGroupErrorBody` — **Case A (typed)**
@@ -341,9 +340,9 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /v3/cbb/odds/{format}/BettingMarketResults/{marketId}`
 - **Auth**: `api_key_header` OR `api_key_query`
-- **Signature**: `def cbb_v3_odds_betting_results_by_market(format: FormatOrStr, market_id: str, *, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `format`, `market_id`
-- **Params**: `format` — path · `market_id` — path `marketId`
+- **Signature**: `def cbb_v3_odds_betting_results_by_market(market_id: str, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None)`
+  - required, positional: `market_id`
+- **Params**: `format_` — path `format` · `market_id` — path `marketId`
 - **Returns (parsed)**: `BettingMarketResult`
 - **Returns (raw)**: `ApiResult[BettingMarketResult, CbbV3OddsBettingResultsByMarketErrorBody]`
 - **Error**: `CbbV3OddsBettingResultsByMarketErrorBody` — **Case A (typed)**
@@ -360,9 +359,9 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /v3/cbb/odds/{format}/BettingResultsByMarket/{marketId}/{sportsbookgroup}`
 - **Auth**: `api_key_header` OR `api_key_query`
-- **Signature**: `def cbb_v3_odds_betting_results_by_market_sportsbook_group(format: FormatOrStr, market_id: str, sportsbookgroup: str, *, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `format`, `market_id`, `sportsbookgroup`
-- **Params**: `format` — path · `market_id` — path `marketId` · `sportsbookgroup` — path
+- **Signature**: `def cbb_v3_odds_betting_results_by_market_sportsbook_group(market_id: str, sportsbookgroup: str, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None)`
+  - required, positional: `market_id`, `sportsbookgroup`
+- **Params**: `format_` — path `format` · `market_id` — path `marketId` · `sportsbookgroup` — path
 - **Returns (parsed)**: `BettingMarketResult`
 - **Returns (raw)**: `ApiResult[BettingMarketResult, CbbV3OddsBettingResultsByMarketSportsbookGroupErrorBody]`
 - **Error**: `CbbV3OddsBettingResultsByMarketSportsbookGroupErrorBody` — **Case A (typed)**
@@ -379,9 +378,9 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /v3/cbb/odds/{format}/BettingSplitsByMarketId/{marketId}`
 - **Auth**: `api_key_header` OR `api_key_query`
-- **Signature**: `def cbb_v3_odds_betting_splits_by_betting_market(format: FormatOrStr, market_id: str, *, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `format`, `market_id`
-- **Params**: `format` — path · `market_id` — path `marketId`
+- **Signature**: `def cbb_v3_odds_betting_splits_by_betting_market(market_id: str, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None)`
+  - required, positional: `market_id`
+- **Params**: `format_` — path `format` · `market_id` — path `marketId`
 - **Returns (parsed)**: `BettingMarketSplit`
 - **Returns (raw)**: `ApiResult[BettingMarketSplit, CbbV3OddsBettingSplitsByBettingMarketErrorBody]`
 - **Error**: `CbbV3OddsBettingSplitsByBettingMarketErrorBody` — **Case A (typed)**
@@ -398,9 +397,9 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /v3/cbb/odds/{format}/BettingSplitsByGameId/{gameId}`
 - **Auth**: `api_key_header` OR `api_key_query`
-- **Signature**: `def cbb_v3_odds_betting_splits_by_game(format: FormatOrStr, game_id: str, *, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `format`, `game_id`
-- **Params**: `format` — path · `game_id` — path `gameId`
+- **Signature**: `def cbb_v3_odds_betting_splits_by_game(game_id: str, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None)`
+  - required, positional: `game_id`
+- **Params**: `format_` — path `format` · `game_id` — path `gameId`
 - **Returns (parsed)**: `GameBettingSplit1`
 - **Returns (raw)**: `ApiResult[GameBettingSplit1, CbbV3OddsBettingSplitsByGameErrorBody]`
 - **Error**: `CbbV3OddsBettingSplitsByGameErrorBody` — **Case A (typed)**
@@ -417,9 +416,9 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /v3/cbb/odds/{format}/MatchupTrends/{team}/{opponent}`
 - **Auth**: `api_key_header` OR `api_key_query`
-- **Signature**: `def cbb_v3_odds_betting_trends_by_matchup(format: FormatOrStr, team: str, opponent: str, *, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `format`, `team`, `opponent`
-- **Params**: `format` — path · `team` — path · `opponent` — path
+- **Signature**: `def cbb_v3_odds_betting_trends_by_matchup(team: str, opponent: str, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None)`
+  - required, positional: `team`, `opponent`
+- **Params**: `format_` — path `format` · `team` — path · `opponent` — path
 - **Returns (parsed)**: `MatchupTrends5`
 - **Returns (raw)**: `ApiResult[MatchupTrends5, CbbV3OddsBettingTrendsByMatchupErrorBody]`
 - **Error**: `CbbV3OddsBettingTrendsByMatchupErrorBody` — **Case A (typed)**
@@ -436,9 +435,9 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /v3/cbb/odds/{format}/TeamTrends/{team}`
 - **Auth**: `api_key_header` OR `api_key_query`
-- **Signature**: `def cbb_v3_odds_betting_trends_by_team(format: FormatOrStr, team: str, *, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `format`, `team`
-- **Params**: `format` — path · `team` — path
+- **Signature**: `def cbb_v3_odds_betting_trends_by_team(team: str, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None)`
+  - required, positional: `team`
+- **Params**: `format_` — path `format` · `team` — path
 - **Returns (parsed)**: `TeamTrends3`
 - **Returns (raw)**: `ApiResult[TeamTrends3, CbbV3OddsBettingTrendsByTeamErrorBody]`
 - **Error**: `CbbV3OddsBettingTrendsByTeamErrorBody` — **Case A (typed)**
@@ -455,9 +454,9 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /v3/cbb/odds/{format}/LiveGameOddsByDate/{date}`
 - **Auth**: `api_key_header` OR `api_key_query`
-- **Signature**: `def cbb_v3_odds_in_game_odds_by_date(format: FormatOrStr, date: str, *, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `format`, `date`
-- **Params**: `format` — path · `date` — path
+- **Signature**: `def cbb_v3_odds_in_game_odds_by_date(date: str, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None)`
+  - required, positional: `date`
+- **Params**: `format_` — path `format` · `date` — path
 - **Returns (parsed)**: `list[GameInfo5]`
 - **Returns (raw)**: `ApiResult[list[GameInfo5], CbbV3OddsInGameOddsByDateErrorBody]`
 - **Error**: `CbbV3OddsInGameOddsByDateErrorBody` — **Case A (typed)**
@@ -474,9 +473,9 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /v3/cbb/odds/{format}/InGameOddsByDate/{date}/{sportsbookgroup}`
 - **Auth**: `api_key_header` OR `api_key_query`
-- **Signature**: `def cbb_v3_odds_in_game_odds_by_date_sportsbook_group(format: FormatOrStr, date: str, sportsbookgroup: str, *, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `format`, `date`, `sportsbookgroup`
-- **Params**: `format` — path · `date` — path · `sportsbookgroup` — path
+- **Signature**: `def cbb_v3_odds_in_game_odds_by_date_sportsbook_group(date: str, sportsbookgroup: str, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None)`
+  - required, positional: `date`, `sportsbookgroup`
+- **Params**: `format_` — path `format` · `date` — path · `sportsbookgroup` — path
 - **Returns (parsed)**: `list[GameInfo5]`
 - **Returns (raw)**: `ApiResult[list[GameInfo5], CbbV3OddsInGameOddsByDateSportsbookGroupErrorBody]`
 - **Error**: `CbbV3OddsInGameOddsByDateSportsbookGroupErrorBody` — **Case A (typed)**
@@ -493,9 +492,9 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /v3/cbb/odds/{format}/LiveGameOddsLineMovement/{gameid}`
 - **Auth**: `api_key_header` OR `api_key_query`
-- **Signature**: `def cbb_v3_odds_in_game_odds_line_movement(format: FormatOrStr, gameid: str, *, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `format`, `gameid`
-- **Params**: `format` — path · `gameid` — path
+- **Signature**: `def cbb_v3_odds_in_game_odds_line_movement(gameid: str, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None)`
+  - required, positional: `gameid`
+- **Params**: `format_` — path `format` · `gameid` — path
 - **Returns (parsed)**: `list[GameInfo5]`
 - **Returns (raw)**: `ApiResult[list[GameInfo5], CbbV3OddsInGameOddsLineMovementErrorBody]`
 - **Error**: `CbbV3OddsInGameOddsLineMovementErrorBody` — **Case A (typed)**
@@ -512,9 +511,9 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /v3/cbb/odds/{format}/InGameLineMovement/{gameid}/{sportsbookgroup}`
 - **Auth**: `api_key_header` OR `api_key_query`
-- **Signature**: `def cbb_v3_odds_in_game_odds_line_movement_sportsbook_group(format: FormatOrStr, gameid: str, sportsbookgroup: str, *, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `format`, `gameid`, `sportsbookgroup`
-- **Params**: `format` — path · `gameid` — path · `sportsbookgroup` — path
+- **Signature**: `def cbb_v3_odds_in_game_odds_line_movement_sportsbook_group(gameid: str, sportsbookgroup: str, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None)`
+  - required, positional: `gameid`, `sportsbookgroup`
+- **Params**: `format_` — path `format` · `gameid` — path · `sportsbookgroup` — path
 - **Returns (parsed)**: `list[GameInfo5]`
 - **Returns (raw)**: `ApiResult[list[GameInfo5], CbbV3OddsInGameOddsLineMovementSportsbookGroupErrorBody]`
 - **Error**: `CbbV3OddsInGameOddsLineMovementSportsbookGroupErrorBody` — **Case A (typed)**
@@ -531,9 +530,9 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /v3/cbb/odds/{format}/InGameLineMovementWithResulting/{gameid}/{sportsbookgroup}`
 - **Auth**: `api_key_header` OR `api_key_query`
-- **Signature**: `def cbb_v3_odds_in_game_odds_line_movement_with_resulting_sportsbook_group(format: FormatOrStr, gameid: str, sportsbookgroup: str, *, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `format`, `gameid`, `sportsbookgroup`
-- **Params**: `format` — path · `gameid` — path · `sportsbookgroup` — path
+- **Signature**: `def cbb_v3_odds_in_game_odds_line_movement_with_resulting_sportsbook_group(gameid: str, sportsbookgroup: str, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None)`
+  - required, positional: `gameid`, `sportsbookgroup`
+- **Params**: `format_` — path `format` · `gameid` — path · `sportsbookgroup` — path
 - **Returns (parsed)**: `list[GameInfoResult5]`
 - **Returns (raw)**: `ApiResult[list[GameInfoResult5], CbbV3OddsInGameOddsLineMovementWithResultingSportsbookGroupErrorBody]`
 - **Error**: `CbbV3OddsInGameOddsLineMovementWithResultingSportsbookGroupErrorBody` — **Case A (typed)**
@@ -550,9 +549,9 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /v3/cbb/odds/{format}/PreGameOddsByDate/{date}/{sportsbookgroup}`
 - **Auth**: `api_key_header` OR `api_key_query`
-- **Signature**: `def cbb_v3_odds_pre_game_and_period_game_odds_by_date_sportsbook_group(format: FormatOrStr, date: str, sportsbookgroup: str, *, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `format`, `date`, `sportsbookgroup`
-- **Params**: `format` — path · `date` — path · `sportsbookgroup` — path
+- **Signature**: `def cbb_v3_odds_pre_game_and_period_game_odds_by_date_sportsbook_group(date: str, sportsbookgroup: str, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None)`
+  - required, positional: `date`, `sportsbookgroup`
+- **Params**: `format_` — path `format` · `date` — path · `sportsbookgroup` — path
 - **Returns (parsed)**: `list[GameInfo5]`
 - **Returns (raw)**: `ApiResult[list[GameInfo5], CbbV3OddsPreGameAndPeriodGameOddsByDateSportsbookGroupErrorBody]`
 - **Error**: `CbbV3OddsPreGameAndPeriodGameOddsByDateSportsbookGroupErrorBody` — **Case A (typed)**
@@ -569,9 +568,9 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /v3/cbb/odds/{format}/PreGameOddsLineMovement/{gameid}/{sportsbookgroup}`
 - **Auth**: `api_key_header` OR `api_key_query`
-- **Signature**: `def cbb_v3_odds_pre_game_and_period_game_odds_line_movement_sportsbook_group(format: FormatOrStr, gameid: str, sportsbookgroup: str, *, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `format`, `gameid`, `sportsbookgroup`
-- **Params**: `format` — path · `gameid` — path · `sportsbookgroup` — path
+- **Signature**: `def cbb_v3_odds_pre_game_and_period_game_odds_line_movement_sportsbook_group(gameid: str, sportsbookgroup: str, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None)`
+  - required, positional: `gameid`, `sportsbookgroup`
+- **Params**: `format_` — path `format` · `gameid` — path · `sportsbookgroup` — path
 - **Returns (parsed)**: `list[GameInfo5]`
 - **Returns (raw)**: `ApiResult[list[GameInfo5], CbbV3OddsPreGameAndPeriodGameOddsLineMovementSportsbookGroupErrorBody]`
 - **Error**: `CbbV3OddsPreGameAndPeriodGameOddsLineMovementSportsbookGroupErrorBody` — **Case A (typed)**
@@ -588,9 +587,9 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /v3/cbb/odds/{format}/PreGameOddsLineMovementWithResulting/{gameid}/{sportsbookgroup}`
 - **Auth**: `api_key_header` OR `api_key_query`
-- **Signature**: `def cbb_v3_odds_pre_game_and_period_game_odds_line_movement_with_resulting_sportsbook_group(format: FormatOrStr, gameid: str, sportsbookgroup: str, *, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `format`, `gameid`, `sportsbookgroup`
-- **Params**: `format` — path · `gameid` — path · `sportsbookgroup` — path
+- **Signature**: `def cbb_v3_odds_pre_game_and_period_game_odds_line_movement_with_resulting_sportsbook_group(gameid: str, sportsbookgroup: str, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None)`
+  - required, positional: `gameid`, `sportsbookgroup`
+- **Params**: `format_` — path `format` · `gameid` — path · `sportsbookgroup` — path
 - **Returns (parsed)**: `list[GameInfoResult5]`
 - **Returns (raw)**: `ApiResult[list[GameInfoResult5], CbbV3OddsPreGameAndPeriodGameOddsLineMovementWithResultingSportsbookGroupErrorBody]`
 - **Error**: `CbbV3OddsPreGameAndPeriodGameOddsLineMovementWithResultingSportsbookGroupErrorBody` — **Case A (typed)**
@@ -607,9 +606,9 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /v3/cbb/odds/{format}/GameOddsByDate/{date}`
 - **Auth**: `api_key_header` OR `api_key_query`
-- **Signature**: `def cbb_v3_odds_pre_game_odds_by_date(format: FormatOrStr, date: str, *, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `format`, `date`
-- **Params**: `format` — path · `date` — path
+- **Signature**: `def cbb_v3_odds_pre_game_odds_by_date(date: str, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None)`
+  - required, positional: `date`
+- **Params**: `format_` — path `format` · `date` — path
 - **Returns (parsed)**: `list[GameInfo5]`
 - **Returns (raw)**: `ApiResult[list[GameInfo5], CbbV3OddsPreGameOddsByDateErrorBody]`
 - **Error**: `CbbV3OddsPreGameOddsByDateErrorBody` — **Case A (typed)**
@@ -626,9 +625,9 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /v3/cbb/odds/{format}/GameOddsLineMovement/{gameid}`
 - **Auth**: `api_key_header` OR `api_key_query`
-- **Signature**: `def cbb_v3_odds_pre_game_odds_line_movement(format: FormatOrStr, gameid: str, *, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `format`, `gameid`
-- **Params**: `format` — path · `gameid` — path
+- **Signature**: `def cbb_v3_odds_pre_game_odds_line_movement(gameid: str, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None)`
+  - required, positional: `gameid`
+- **Params**: `format_` — path `format` · `gameid` — path
 - **Returns (parsed)**: `list[GameInfo5]`
 - **Returns (raw)**: `ApiResult[list[GameInfo5], CbbV3OddsPreGameOddsLineMovementErrorBody]`
 - **Error**: `CbbV3OddsPreGameOddsLineMovementErrorBody` — **Case A (typed)**
@@ -645,9 +644,8 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /v3/cbb/odds/{format}/ActiveSportsbooks`
 - **Auth**: `api_key_header` OR `api_key_query`
-- **Signature**: `def cbb_v3_odds_sportsbooks_by_active(format: FormatOrStr, *, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `format`
-- **Params**: `format` — path
+- **Signature**: `def cbb_v3_odds_sportsbooks_by_active(*, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None)`
+- **Params**: `format_` — path `format`
 - **Returns (parsed)**: `list[Sportsbook]`
 - **Returns (raw)**: `ApiResult[list[Sportsbook], CbbV3OddsSportsbooksByActiveErrorBody]`
 - **Error**: `CbbV3OddsSportsbooksByActiveErrorBody` — **Case A (typed)**

@@ -3,7 +3,7 @@ from __future__ import annotations
 from dataclasses import dataclass
 from typing import Final, TypeAlias
 
-from ..core import ErrorMapper, HttpResponse, RawError, decode_json
+from ..core import ErrorMapper, RawError, decode_json
 from ..models.unauthorized import Unauthorized
 
 NascarV2EntrylistbyraceEntryListByRaceErrorBody: TypeAlias = Unauthorized | RawError
@@ -11,12 +11,12 @@ NascarV2EntrylistbyraceEntryListByRaceErrorBody: TypeAlias = Unauthorized | RawE
 
 @dataclass(frozen=True, slots=True)
 class _NascarV2EntrylistbyraceEntryListByRaceError:
-    def map(self, response: HttpResponse) -> NascarV2EntrylistbyraceEntryListByRaceErrorBody:
-        match response.status_code:
+    def map(self, status_code: int, content: bytes) -> NascarV2EntrylistbyraceEntryListByRaceErrorBody:
+        match status_code:
             case 401:
-                return decode_json[Unauthorized](response)
+                return decode_json[Unauthorized](content)
             case _:
-                return RawError(response)
+                return RawError(status_code, content)
 
 
 nascar_v2_entrylistbyrace_entry_list_by_race_error_mapper: Final[

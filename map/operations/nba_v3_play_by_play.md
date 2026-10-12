@@ -10,9 +10,9 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /v3/nba/pbp/{format}/PlayByPlayFinal/{gameid}`
 - **Auth**: `api_key_header` OR `api_key_query`
-- **Signature**: `def nba_v3_pbp_play_by_play_final(format: FormatOrStr, gameid: str, *, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `format`, `gameid`
-- **Params**: `format` — path · `gameid` — path
+- **Signature**: `def nba_v3_pbp_play_by_play_final(gameid: str, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None)`
+  - required, positional: `gameid`
+- **Params**: `format_` — path `format` · `gameid` — path
 - **Returns (parsed)**: `PlayByPlay1`
 - **Returns (raw)**: `ApiResult[PlayByPlay1, NbaV3PbpPlayByPlayFinalErrorBody]`
 - **Error**: `NbaV3PbpPlayByPlayFinalErrorBody` — **Case A (typed)**
@@ -29,9 +29,9 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /v3/nba/pbp/{format}/PlayByPlay/{gameid}`
 - **Auth**: `api_key_header` OR `api_key_query`
-- **Signature**: `def nba_v3_pbp_play_by_play_live_final(format: FormatOrStr, gameid: str, *, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `format`, `gameid`
-- **Params**: `format` — path · `gameid` — path
+- **Signature**: `def nba_v3_pbp_play_by_play_live_final(gameid: str, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None)`
+  - required, positional: `gameid`
+- **Params**: `format_` — path `format` · `gameid` — path
 - **Returns (parsed)**: `PlayByPlay1`
 - **Returns (raw)**: `ApiResult[PlayByPlay1, NbaV3PbpPlayByPlayLiveFinalErrorBody]`
 - **Error**: `NbaV3PbpPlayByPlayLiveFinalErrorBody` — **Case A (typed)**
@@ -48,9 +48,9 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /v3/nba/pbp/{format}/PlayByPlayDelta/{date}/{minutes}`
 - **Auth**: `api_key_header` OR `api_key_query`
-- **Signature**: `def nba_v3_pbp_play_by_play_delta(format: FormatOrStr, date: str, minutes: str, *, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `format`, `date`, `minutes`
-- **Params**: `format` — path · `date` — path · `minutes` — path
+- **Signature**: `def nba_v3_pbp_play_by_play_delta(date: str, minutes: str, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None)`
+  - required, positional: `date`, `minutes`
+- **Params**: `format_` — path `format` · `date` — path · `minutes` — path
 - **Returns (parsed)**: `list[PlayByPlay1]`
 - **Returns (raw)**: `ApiResult[list[PlayByPlay1], NbaV3PbpPlayByPlayDeltaErrorBody]`
 - **Error**: `NbaV3PbpPlayByPlayDeltaErrorBody` — **Case A (typed)**

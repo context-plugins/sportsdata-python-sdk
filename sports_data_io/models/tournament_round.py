@@ -63,7 +63,7 @@ class TournamentRoundDict(TypedDict):
     player_tournament_id: NotRequired[int]
     total_score: NotRequired[float | None]
     total_strokes: NotRequired[float | None]
-    player_round_score: NotRequired[list[PlayerRoundScore | PlayerRoundScoreDict]]
+    player_round_score: NotRequired[list[PlayerRoundScoreDict]]
     player_id: NotRequired[int]
     first_name: NotRequired[str | None]
     last_name: NotRequired[str | None]

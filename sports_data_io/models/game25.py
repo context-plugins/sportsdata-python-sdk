@@ -235,4 +235,4 @@ class Game25Dict(TypedDict):
     is_closed: NotRequired[bool | None]
     home_team_formation: NotRequired[str | None]
     away_team_formation: NotRequired[str | None]
-    playoff_aggregate_score: NotRequired[PlayoffAggregateScore2 | PlayoffAggregateScore2Dict]
+    playoff_aggregate_score: NotRequired[PlayoffAggregateScore2Dict]

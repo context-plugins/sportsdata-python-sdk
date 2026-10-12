@@ -73,7 +73,7 @@ class BettingOutcome1(SdkBaseModel):
 class BettingOutcome1Dict(TypedDict):
     betting_outcome_id: NotRequired[int | None]
     betting_market_id: NotRequired[int | None]
-    sports_book: NotRequired[Sportsbook | SportsbookDict]
+    sports_book: NotRequired[SportsbookDict]
     betting_outcome_type_id: NotRequired[int | None]
     betting_outcome_type: NotRequired[str | None]
     payout_american: NotRequired[int | None]

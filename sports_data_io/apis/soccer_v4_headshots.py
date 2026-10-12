@@ -9,14 +9,16 @@ from ..core import (
     RawClient,
     RequestOptionsOrDict,
     SecuredRawResponse,
+    async_json_decoder,
     json_decoder,
     param,
+    unwrap,
 )
 from ..errors.soccer_v4_headshots_headshots_error import (
     SoccerV4HeadshotsHeadshotsErrorBody,
     soccer_v4_headshots_headshots_error_mapper,
 )
-from ..models.enums.format import FormatOrStr
+from ..models.enums.format import Format, FormatOrStr
 from ..models.headshot import Headshot
 from ..server.server import Server
 
@@ -26,21 +28,24 @@ class SoccerV4Headshots:
         self._with_raw_response = SoccerV4HeadshotsWithRawResponse(client, server, auth)
 
     def soccer_v4_headshots_headshots(
-        self, format: FormatOrStr, *, request_options: RequestOptionsOrDict | None = None
+        self, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None
     ) -> list[Headshot]:
         """USA Today/IMAGN cropped action headshots for all active MLS players only, delivered shortly after the season
         starts.
 
         Args:
-            format: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            format_: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             Success
 
         Raises:
             ApiError: Unauthorized ``error`` is ``Unauthorized | RawError``."""
-        return self._with_raw_response.soccer_v4_headshots_headshots(format, request_options=request_options).unwrap()
+        return unwrap(
+            self._with_raw_response.soccer_v4_headshots_headshots(format_=format_, request_options=request_options)
+        )
 
     @property
     def with_raw_response(self) -> SoccerV4HeadshotsWithRawResponse:
@@ -52,23 +57,26 @@ class AsyncSoccerV4Headshots:
         self._with_raw_response = AsyncSoccerV4HeadshotsWithRawResponse(client, server, auth)
 
     async def soccer_v4_headshots_headshots(
-        self, format: FormatOrStr, *, request_options: RequestOptionsOrDict | None = None
+        self, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None
     ) -> list[Headshot]:
         """USA Today/IMAGN cropped action headshots for all active MLS players only, delivered shortly after the season
         starts.
 
         Args:
-            format: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            format_: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             Success
 
         Raises:
             ApiError: Unauthorized ``error`` is ``Unauthorized | RawError``."""
-        return (
-            await self._with_raw_response.soccer_v4_headshots_headshots(format, request_options=request_options)
-        ).unwrap()
+        return unwrap(
+            await self._with_raw_response.soccer_v4_headshots_headshots(
+                format_=format_, request_options=request_options
+            ),
+        )
 
     @property
     def with_raw_response(self) -> AsyncSoccerV4HeadshotsWithRawResponse:
@@ -77,21 +85,22 @@ class AsyncSoccerV4Headshots:
 
 class SoccerV4HeadshotsWithRawResponse(SecuredRawResponse[RawClient, Server, AuthSchemes]):
     def soccer_v4_headshots_headshots(
-        self, format: FormatOrStr, *, request_options: RequestOptionsOrDict | None = None
+        self, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None
     ) -> ApiResult[list[Headshot], SoccerV4HeadshotsHeadshotsErrorBody]:
         """USA Today/IMAGN cropped action headshots for all active MLS players only, delivered shortly after the season
         starts.
 
         Args:
-            format: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            format_: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
         return self._client.execute(
             http_method="GET",
             url_template=self._server.default("/v4/soccer/headshots/{format}/Headshots"),
-            path_params=[param[FormatOrStr]("format", format)],
+            path_params=[param[FormatOrStr]("format", format_)],
             auth_scheme=AnySchemes(self._auth.api_key_header, self._auth.api_key_query),
             decoder=json_decoder[list[Headshot]],
             error_mapper=soccer_v4_headshots_headshots_error_mapper,
@@ -101,23 +110,24 @@ class SoccerV4HeadshotsWithRawResponse(SecuredRawResponse[RawClient, Server, Aut
 
 class AsyncSoccerV4HeadshotsWithRawResponse(SecuredRawResponse[AsyncRawClient, Server, AsyncAuthSchemes]):
     async def soccer_v4_headshots_headshots(
-        self, format: FormatOrStr, *, request_options: RequestOptionsOrDict | None = None
+        self, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None
     ) -> ApiResult[list[Headshot], SoccerV4HeadshotsHeadshotsErrorBody]:
         """USA Today/IMAGN cropped action headshots for all active MLS players only, delivered shortly after the season
         starts.
 
         Args:
-            format: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            format_: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
         return await self._client.execute(
             http_method="GET",
             url_template=self._server.default("/v4/soccer/headshots/{format}/Headshots"),
-            path_params=[param[FormatOrStr]("format", format)],
+            path_params=[param[FormatOrStr]("format", format_)],
             auth_scheme=AsyncAnySchemes(self._auth.api_key_header, self._auth.api_key_query),
-            decoder=json_decoder[list[Headshot]],
+            decoder=async_json_decoder[list[Headshot]],
             error_mapper=soccer_v4_headshots_headshots_error_mapper,
             request_options=request_options,
         )

@@ -16,5 +16,5 @@ class TeamDepthChart1(SdkBaseModel):
 
 
 class TeamDepthChart1Dict(TypedDict):
-    depth_charts: NotRequired[list[DepthChart | DepthChartDict]]
+    depth_charts: NotRequired[list[DepthChartDict]]
     team_id: NotRequired[int]

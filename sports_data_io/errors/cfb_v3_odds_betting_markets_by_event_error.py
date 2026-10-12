@@ -3,7 +3,7 @@ from __future__ import annotations
 from dataclasses import dataclass
 from typing import Final, TypeAlias
 
-from ..core import ErrorMapper, HttpResponse, RawError, decode_json
+from ..core import ErrorMapper, RawError, decode_json
 from ..models.unauthorized import Unauthorized
 
 CfbV3OddsBettingMarketsByEventErrorBody: TypeAlias = Unauthorized | RawError
@@ -11,12 +11,12 @@ CfbV3OddsBettingMarketsByEventErrorBody: TypeAlias = Unauthorized | RawError
 
 @dataclass(frozen=True, slots=True)
 class _CfbV3OddsBettingMarketsByEventError:
-    def map(self, response: HttpResponse) -> CfbV3OddsBettingMarketsByEventErrorBody:
-        match response.status_code:
+    def map(self, status_code: int, content: bytes) -> CfbV3OddsBettingMarketsByEventErrorBody:
+        match status_code:
             case 401:
-                return decode_json[Unauthorized](response)
+                return decode_json[Unauthorized](content)
             case _:
-                return RawError(response)
+                return RawError(status_code, content)
 
 
 cfb_v3_odds_betting_markets_by_event_error_mapper: Final[

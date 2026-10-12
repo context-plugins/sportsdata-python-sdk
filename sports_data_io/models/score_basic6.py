@@ -94,7 +94,7 @@ class ScoreBasic6(SdkBaseModel):
 
 class ScoreBasic6Dict(TypedDict):
     game_end_date_time: NotRequired[str | None]
-    series_info: NotRequired[Series | SeriesDict]
+    series_info: NotRequired[SeriesDict]
     away_team_score2: NotRequired[int | None]
     home_team_score2: NotRequired[int | None]
     game_id: NotRequired[int]

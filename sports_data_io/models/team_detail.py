@@ -100,7 +100,7 @@ class TeamDetail(SdkBaseModel):
 
 
 class TeamDetailDict(TypedDict):
-    players: NotRequired[list[Player7 | Player7Dict]]
+    players: NotRequired[list[Player7Dict]]
     team_id: NotRequired[int]
     area_id: NotRequired[int | None]
     venue_id: NotRequired[int | None]

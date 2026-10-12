@@ -100,5 +100,5 @@ class PlayDict(TypedDict):
     yards_gained: NotRequired[int | None]
     description: NotRequired[str | None]
     is_scoring_play: NotRequired[bool | None]
-    scoring_play: NotRequired[ScoringPlay1 | ScoringPlay1Dict]
-    play_stats: NotRequired[list[PlayStat | PlayStatDict]]
+    scoring_play: NotRequired[ScoringPlay1Dict]
+    play_stats: NotRequired[list[PlayStatDict]]

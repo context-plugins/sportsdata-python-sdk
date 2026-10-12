@@ -3,7 +3,7 @@ from __future__ import annotations
 from dataclasses import dataclass
 from typing import Final, TypeAlias
 
-from ..core import ErrorMapper, HttpResponse, RawError, decode_json
+from ..core import ErrorMapper, RawError, decode_json
 from ..models.unauthorized import Unauthorized
 
 WnbaV3ScoresTeamGameStatsByDateLiveFinalErrorBody: TypeAlias = Unauthorized | RawError
@@ -11,12 +11,12 @@ WnbaV3ScoresTeamGameStatsByDateLiveFinalErrorBody: TypeAlias = Unauthorized | Ra
 
 @dataclass(frozen=True, slots=True)
 class _WnbaV3ScoresTeamGameStatsByDateLiveFinalError:
-    def map(self, response: HttpResponse) -> WnbaV3ScoresTeamGameStatsByDateLiveFinalErrorBody:
-        match response.status_code:
+    def map(self, status_code: int, content: bytes) -> WnbaV3ScoresTeamGameStatsByDateLiveFinalErrorBody:
+        match status_code:
             case 401:
-                return decode_json[Unauthorized](response)
+                return decode_json[Unauthorized](content)
             case _:
-                return RawError(response)
+                return RawError(status_code, content)
 
 
 wnba_v3_scores_team_game_stats_by_date_live_final_error_mapper: Final[

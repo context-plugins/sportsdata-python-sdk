@@ -21,4 +21,4 @@ class Conference1(SdkBaseModel):
 class Conference1Dict(TypedDict):
     conference_id: NotRequired[int]
     name: NotRequired[str | None]
-    teams: NotRequired[list[Team5 | Team5Dict]]
+    teams: NotRequired[list[Team5Dict]]

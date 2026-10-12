@@ -10,9 +10,8 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /v3/wnba/scores/{format}/AreAnyGamesInProgress`
 - **Auth**: `api_key_header` OR `api_key_query`
-- **Signature**: `def wnba_v3_scores_are_games_in_progress(format: FormatOrStr, *, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `format`
-- **Params**: `format` — path
+- **Signature**: `def wnba_v3_scores_are_games_in_progress(*, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None)`
+- **Params**: `format_` — path `format`
 - **Returns (parsed)**: `bool`
 - **Returns (raw)**: `ApiResult[bool, WnbaV3ScoresAreGamesInProgressErrorBody]`
 - **Error**: `WnbaV3ScoresAreGamesInProgressErrorBody` — **Case A (typed)**
@@ -28,9 +27,9 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /v3/wnba/scores/{format}/BettingEventsByDate/{date}`
 - **Auth**: `api_key_header` OR `api_key_query`
-- **Signature**: `def wnba_v3_scores_betting_events_by_date(format: FormatOrStr, date: str, *, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `format`, `date`
-- **Params**: `format` — path · `date` — path
+- **Signature**: `def wnba_v3_scores_betting_events_by_date(date: str, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None)`
+  - required, positional: `date`
+- **Params**: `format_` — path `format` · `date` — path
 - **Returns (parsed)**: `list[BettingEvent1]`
 - **Returns (raw)**: `ApiResult[list[BettingEvent1], WnbaV3ScoresBettingEventsByDateErrorBody]`
 - **Error**: `WnbaV3ScoresBettingEventsByDateErrorBody` — **Case A (typed)**
@@ -47,9 +46,9 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /v3/wnba/scores/{format}/BettingEvents/{season}`
 - **Auth**: `api_key_header` OR `api_key_query`
-- **Signature**: `def wnba_v3_scores_betting_events_by_season(format: FormatOrStr, season: str, *, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `format`, `season`
-- **Params**: `format` — path · `season` — path
+- **Signature**: `def wnba_v3_scores_betting_events_by_season(season: str, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None)`
+  - required, positional: `season`
+- **Params**: `format_` — path `format` · `season` — path
 - **Returns (parsed)**: `list[BettingEvent1]`
 - **Returns (raw)**: `ApiResult[list[BettingEvent1], WnbaV3ScoresBettingEventsBySeasonErrorBody]`
 - **Error**: `WnbaV3ScoresBettingEventsBySeasonErrorBody` — **Case A (typed)**
@@ -66,9 +65,9 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /v3/wnba/scores/{format}/BettingFuturesBySeason/{season}`
 - **Auth**: `api_key_header` OR `api_key_query`
-- **Signature**: `def wnba_v3_scores_betting_futures_by_season(format: FormatOrStr, season: str, *, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `format`, `season`
-- **Params**: `format` — path · `season` — path
+- **Signature**: `def wnba_v3_scores_betting_futures_by_season(season: str, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None)`
+  - required, positional: `season`
+- **Params**: `format_` — path `format` · `season` — path
 - **Returns (parsed)**: `list[BettingEvent1]`
 - **Returns (raw)**: `ApiResult[list[BettingEvent1], WnbaV3ScoresBettingFuturesBySeasonErrorBody]`
 - **Error**: `WnbaV3ScoresBettingFuturesBySeasonErrorBody` — **Case A (typed)**
@@ -85,9 +84,9 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /v3/wnba/scores/{format}/BettingFuturesBySeason/{season}/{sportsbookgroup}`
 - **Auth**: `api_key_header` OR `api_key_query`
-- **Signature**: `def wnba_v3_scores_betting_futures_by_season_sportsbook_group(format: FormatOrStr, season: str, sportsbookgroup: str, *, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `format`, `season`, `sportsbookgroup`
-- **Params**: `format` — path · `season` — path · `sportsbookgroup` — path
+- **Signature**: `def wnba_v3_scores_betting_futures_by_season_sportsbook_group(season: str, sportsbookgroup: str, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None)`
+  - required, positional: `season`, `sportsbookgroup`
+- **Params**: `format_` — path `format` · `season` — path · `sportsbookgroup` — path
 - **Returns (parsed)**: `list[BettingEvent1]`
 - **Returns (raw)**: `ApiResult[list[BettingEvent1], WnbaV3ScoresBettingFuturesBySeasonSportsbookGroupErrorBody]`
 - **Error**: `WnbaV3ScoresBettingFuturesBySeasonSportsbookGroupErrorBody` — **Case A (typed)**
@@ -104,9 +103,9 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /v3/wnba/scores/{format}/BettingMarket/{marketId}`
 - **Auth**: `api_key_header` OR `api_key_query`
-- **Signature**: `def wnba_v3_scores_betting_market(format: FormatOrStr, market_id: str, *, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `format`, `market_id`
-- **Params**: `format` — path · `market_id` — path `marketId`
+- **Signature**: `def wnba_v3_scores_betting_market(market_id: str, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None)`
+  - required, positional: `market_id`
+- **Params**: `format_` — path `format` · `market_id` — path `marketId`
 - **Returns (parsed)**: `BettingMarket`
 - **Returns (raw)**: `ApiResult[BettingMarket, WnbaV3ScoresBettingMarketErrorBody]`
 - **Error**: `WnbaV3ScoresBettingMarketErrorBody` — **Case A (typed)**
@@ -123,9 +122,9 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /v3/wnba/scores/{format}/BettingMarket/{marketId}/{sportsbookgroup}`
 - **Auth**: `api_key_header` OR `api_key_query`
-- **Signature**: `def wnba_v3_scores_betting_market_sportsbook_group(format: FormatOrStr, market_id: str, sportsbookgroup: str, *, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `format`, `market_id`, `sportsbookgroup`
-- **Params**: `format` — path · `market_id` — path `marketId` · `sportsbookgroup` — path
+- **Signature**: `def wnba_v3_scores_betting_market_sportsbook_group(market_id: str, sportsbookgroup: str, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None)`
+  - required, positional: `market_id`, `sportsbookgroup`
+- **Params**: `format_` — path `format` · `market_id` — path `marketId` · `sportsbookgroup` — path
 - **Returns (parsed)**: `BettingMarket`
 - **Returns (raw)**: `ApiResult[BettingMarket, WnbaV3ScoresBettingMarketSportsbookGroupErrorBody]`
 - **Error**: `WnbaV3ScoresBettingMarketSportsbookGroupErrorBody` — **Case A (typed)**
@@ -142,9 +141,9 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /v3/wnba/scores/{format}/BettingMarkets/{eventId}`
 - **Auth**: `api_key_header` OR `api_key_query`
-- **Signature**: `def wnba_v3_scores_betting_markets_by_event(format: FormatOrStr, event_id: str, *, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `format`, `event_id`
-- **Params**: `format` — path · `event_id` — path `eventId`
+- **Signature**: `def wnba_v3_scores_betting_markets_by_event(event_id: str, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None)`
+  - required, positional: `event_id`
+- **Params**: `format_` — path `format` · `event_id` — path `eventId`
 - **Returns (parsed)**: `list[BettingMarket]`
 - **Returns (raw)**: `ApiResult[list[BettingMarket], WnbaV3ScoresBettingMarketsByEventErrorBody]`
 - **Error**: `WnbaV3ScoresBettingMarketsByEventErrorBody` — **Case A (typed)**
@@ -161,9 +160,9 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /v3/wnba/scores/{format}/BettingMarketsByEvent/{eventId}/{sportsbookgroup}`
 - **Auth**: `api_key_header` OR `api_key_query`
-- **Signature**: `def wnba_v3_scores_betting_markets_by_event_sportsbook_group(format: FormatOrStr, event_id: str, sportsbookgroup: str, *, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `format`, `event_id`, `sportsbookgroup`
-- **Params**: `format` — path · `event_id` — path `eventId` · `sportsbookgroup` — path
+- **Signature**: `def wnba_v3_scores_betting_markets_by_event_sportsbook_group(event_id: str, sportsbookgroup: str, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None)`
+  - required, positional: `event_id`, `sportsbookgroup`
+- **Params**: `format_` — path `format` · `event_id` — path `eventId` · `sportsbookgroup` — path
 - **Returns (parsed)**: `list[BettingMarket]`
 - **Returns (raw)**: `ApiResult[list[BettingMarket], WnbaV3ScoresBettingMarketsByEventSportsbookGroupErrorBody]`
 - **Error**: `WnbaV3ScoresBettingMarketsByEventSportsbookGroupErrorBody` — **Case A (typed)**
@@ -180,9 +179,9 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /v3/wnba/scores/{format}/BettingMarketsByGameID/{gameID}`
 - **Auth**: `api_key_header` OR `api_key_query`
-- **Signature**: `def wnba_v3_scores_betting_markets_by_game(format: FormatOrStr, game_id: str, *, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `format`, `game_id`
-- **Params**: `format` — path · `game_id` — path `gameID`
+- **Signature**: `def wnba_v3_scores_betting_markets_by_game(game_id: str, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None)`
+  - required, positional: `game_id`
+- **Params**: `format_` — path `format` · `game_id` — path `gameID`
 - **Returns (parsed)**: `list[BettingMarket]`
 - **Returns (raw)**: `ApiResult[list[BettingMarket], WnbaV3ScoresBettingMarketsByGameErrorBody]`
 - **Error**: `WnbaV3ScoresBettingMarketsByGameErrorBody` — **Case A (typed)**
@@ -199,9 +198,9 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /v3/wnba/scores/{format}/BettingMarketsByGameID/{gameID}/{sportsbookgroup}`
 - **Auth**: `api_key_header` OR `api_key_query`
-- **Signature**: `def wnba_v3_scores_betting_markets_by_game_sportsbook_group(format: FormatOrStr, game_id: str, sportsbookgroup: str, *, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `format`, `game_id`, `sportsbookgroup`
-- **Params**: `format` — path · `game_id` — path `gameID` · `sportsbookgroup` — path
+- **Signature**: `def wnba_v3_scores_betting_markets_by_game_sportsbook_group(game_id: str, sportsbookgroup: str, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None)`
+  - required, positional: `game_id`, `sportsbookgroup`
+- **Params**: `format_` — path `format` · `game_id` — path `gameID` · `sportsbookgroup` — path
 - **Returns (parsed)**: `list[BettingMarket]`
 - **Returns (raw)**: `ApiResult[list[BettingMarket], WnbaV3ScoresBettingMarketsByGameSportsbookGroupErrorBody]`
 - **Error**: `WnbaV3ScoresBettingMarketsByGameSportsbookGroupErrorBody` — **Case A (typed)**
@@ -218,9 +217,9 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /v3/wnba/scores/{format}/BettingMarketsByMarketType/{eventId}/{marketTypeID}`
 - **Auth**: `api_key_header` OR `api_key_query`
-- **Signature**: `def wnba_v3_scores_betting_markets_by_market_type(format: FormatOrStr, event_id: str, market_type_id: str, *, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `format`, `event_id`, `market_type_id`
-- **Params**: `format` — path · `event_id` — path `eventId` · `market_type_id` — path `marketTypeID`
+- **Signature**: `def wnba_v3_scores_betting_markets_by_market_type(event_id: str, market_type_id: str, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None)`
+  - required, positional: `event_id`, `market_type_id`
+- **Params**: `format_` — path `format` · `event_id` — path `eventId` · `market_type_id` — path `marketTypeID`
 - **Returns (parsed)**: `list[BettingMarket]`
 - **Returns (raw)**: `ApiResult[list[BettingMarket], WnbaV3ScoresBettingMarketsByMarketTypeErrorBody]`
 - **Error**: `WnbaV3ScoresBettingMarketsByMarketTypeErrorBody` — **Case A (typed)**
@@ -237,9 +236,9 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /v3/wnba/scores/{format}/BettingMarketsByMarketType/{eventId}/{marketTypeID}/{sportsbookgroup}`
 - **Auth**: `api_key_header` OR `api_key_query`
-- **Signature**: `def wnba_v3_scores_betting_markets_by_market_type_sportsbook_group(format: FormatOrStr, event_id: str, market_type_id: str, sportsbookgroup: str, *, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `format`, `event_id`, `market_type_id`, `sportsbookgroup`
-- **Params**: `format` — path · `event_id` — path `eventId` · `market_type_id` — path `marketTypeID` · `sportsbookgroup` — path
+- **Signature**: `def wnba_v3_scores_betting_markets_by_market_type_sportsbook_group(event_id: str, market_type_id: str, sportsbookgroup: str, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None)`
+  - required, positional: `event_id`, `market_type_id`, `sportsbookgroup`
+- **Params**: `format_` — path `format` · `event_id` — path `eventId` · `market_type_id` — path `marketTypeID` · `sportsbookgroup` — path
 - **Returns (parsed)**: `list[BettingMarket]`
 - **Returns (raw)**: `ApiResult[list[BettingMarket], WnbaV3ScoresBettingMarketsByMarketTypeSportsbookGroupErrorBody]`
 - **Error**: `WnbaV3ScoresBettingMarketsByMarketTypeSportsbookGroupErrorBody` — **Case A (typed)**
@@ -256,9 +255,8 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /v3/wnba/scores/{format}/BettingMetadata`
 - **Auth**: `api_key_header` OR `api_key_query`
-- **Signature**: `def wnba_v3_scores_betting_metadata(format: FormatOrStr, *, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `format`
-- **Params**: `format` — path
+- **Signature**: `def wnba_v3_scores_betting_metadata(*, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None)`
+- **Params**: `format_` — path `format`
 - **Returns (parsed)**: `BettingEntityMetadataCollection`
 - **Returns (raw)**: `ApiResult[BettingEntityMetadataCollection, WnbaV3ScoresBettingMetadataErrorBody]`
 - **Error**: `WnbaV3ScoresBettingMetadataErrorBody` — **Case A (typed)**
@@ -275,9 +273,9 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /v3/wnba/scores/{format}/BettingPlayerPropsByGameID/{gameId}`
 - **Auth**: `api_key_header` OR `api_key_query`
-- **Signature**: `def wnba_v3_scores_betting_player_props_by_game(format: FormatOrStr, game_id: str, *, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `format`, `game_id`
-- **Params**: `format` — path · `game_id` — path `gameId`
+- **Signature**: `def wnba_v3_scores_betting_player_props_by_game(game_id: str, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None)`
+  - required, positional: `game_id`
+- **Params**: `format_` — path `format` · `game_id` — path `gameId`
 - **Returns (parsed)**: `list[BettingMarket]`
 - **Returns (raw)**: `ApiResult[list[BettingMarket], WnbaV3ScoresBettingPlayerPropsByGameErrorBody]`
 - **Error**: `WnbaV3ScoresBettingPlayerPropsByGameErrorBody` — **Case A (typed)**
@@ -294,9 +292,9 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /v3/wnba/scores/{format}/BettingPlayerPropsByGameID/{gameId}/{sportsbookgroup}`
 - **Auth**: `api_key_header` OR `api_key_query`
-- **Signature**: `def wnba_v3_scores_betting_player_props_by_game_sportsbook_group(format: FormatOrStr, game_id: str, sportsbookgroup: str, *, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `format`, `game_id`, `sportsbookgroup`
-- **Params**: `format` — path · `game_id` — path `gameId` · `sportsbookgroup` — path
+- **Signature**: `def wnba_v3_scores_betting_player_props_by_game_sportsbook_group(game_id: str, sportsbookgroup: str, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None)`
+  - required, positional: `game_id`, `sportsbookgroup`
+- **Params**: `format_` — path `format` · `game_id` — path `gameId` · `sportsbookgroup` — path
 - **Returns (parsed)**: `list[BettingMarket]`
 - **Returns (raw)**: `ApiResult[list[BettingMarket], WnbaV3ScoresBettingPlayerPropsByGameSportsbookGroupErrorBody]`
 - **Error**: `WnbaV3ScoresBettingPlayerPropsByGameSportsbookGroupErrorBody` — **Case A (typed)**
@@ -313,9 +311,9 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /v3/wnba/scores/{format}/BoxScoreFinal/{gameid}`
 - **Auth**: `api_key_header` OR `api_key_query`
-- **Signature**: `def wnba_v3_scores_box_score_final(format: FormatOrStr, gameid: str, *, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `format`, `gameid`
-- **Params**: `format` — path · `gameid` — path
+- **Signature**: `def wnba_v3_scores_box_score_final(gameid: str, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None)`
+  - required, positional: `gameid`
+- **Params**: `format_` — path `format` · `gameid` — path
 - **Returns (parsed)**: `BoxScore5`
 - **Returns (raw)**: `ApiResult[BoxScore5, WnbaV3ScoresBoxScoreFinalErrorBody]`
 - **Error**: `WnbaV3ScoresBoxScoreFinalErrorBody` — **Case A (typed)**
@@ -332,9 +330,9 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /v3/wnba/scores/{format}/BoxScore/{gameid}`
 - **Auth**: `api_key_header` OR `api_key_query`
-- **Signature**: `def wnba_v3_scores_box_score_live_final(format: FormatOrStr, gameid: str, *, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `format`, `gameid`
-- **Params**: `format` — path · `gameid` — path
+- **Signature**: `def wnba_v3_scores_box_score_live_final(gameid: str, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None)`
+  - required, positional: `gameid`
+- **Params**: `format_` — path `format` · `gameid` — path
 - **Returns (parsed)**: `BoxScore5`
 - **Returns (raw)**: `ApiResult[BoxScore5, WnbaV3ScoresBoxScoreLiveFinalErrorBody]`
 - **Error**: `WnbaV3ScoresBoxScoreLiveFinalErrorBody` — **Case A (typed)**
@@ -351,9 +349,9 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /v3/wnba/scores/{format}/BoxScoresFinal/{date}`
 - **Auth**: `api_key_header` OR `api_key_query`
-- **Signature**: `def wnba_v3_scores_box_scores_by_date_final(format: FormatOrStr, date: str, *, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `format`, `date`
-- **Params**: `format` — path · `date` — path
+- **Signature**: `def wnba_v3_scores_box_scores_by_date_final(date: str, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None)`
+  - required, positional: `date`
+- **Params**: `format_` — path `format` · `date` — path
 - **Returns (parsed)**: `list[BoxScore5]`
 - **Returns (raw)**: `ApiResult[list[BoxScore5], WnbaV3ScoresBoxScoresByDateFinalErrorBody]`
 - **Error**: `WnbaV3ScoresBoxScoresByDateFinalErrorBody` — **Case A (typed)**
@@ -370,9 +368,9 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /v3/wnba/scores/{format}/BoxScores/{date}`
 - **Auth**: `api_key_header` OR `api_key_query`
-- **Signature**: `def wnba_v3_scores_box_scores_by_date_live_final(format: FormatOrStr, date: str, *, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `format`, `date`
-- **Params**: `format` — path · `date` — path
+- **Signature**: `def wnba_v3_scores_box_scores_by_date_live_final(date: str, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None)`
+  - required, positional: `date`
+- **Params**: `format_` — path `format` · `date` — path
 - **Returns (parsed)**: `list[BoxScore5]`
 - **Returns (raw)**: `ApiResult[list[BoxScore5], WnbaV3ScoresBoxScoresByDateLiveFinalErrorBody]`
 - **Error**: `WnbaV3ScoresBoxScoresByDateLiveFinalErrorBody` — **Case A (typed)**
@@ -389,9 +387,9 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /v3/wnba/scores/{format}/GamesByDateFinal/{date}`
 - **Auth**: `api_key_header` OR `api_key_query`
-- **Signature**: `def wnba_v3_scores_games_by_date_final(format: FormatOrStr, date: str, *, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `format`, `date`
-- **Params**: `format` — path · `date` — path
+- **Signature**: `def wnba_v3_scores_games_by_date_final(date: str, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None)`
+  - required, positional: `date`
+- **Params**: `format_` — path `format` · `date` — path
 - **Returns (parsed)**: `list[Game10]`
 - **Returns (raw)**: `ApiResult[list[Game10], WnbaV3ScoresGamesByDateFinalErrorBody]`
 - **Error**: `WnbaV3ScoresGamesByDateFinalErrorBody` — **Case A (typed)**
@@ -408,9 +406,9 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /v3/wnba/scores/{format}/GamesByDate/{date}`
 - **Auth**: `api_key_header` OR `api_key_query`
-- **Signature**: `def wnba_v3_scores_games_by_date_live_final(format: FormatOrStr, date: str, *, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `format`, `date`
-- **Params**: `format` — path · `date` — path
+- **Signature**: `def wnba_v3_scores_games_by_date_live_final(date: str, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None)`
+  - required, positional: `date`
+- **Params**: `format_` — path `format` · `date` — path
 - **Returns (parsed)**: `list[Game10]`
 - **Returns (raw)**: `ApiResult[list[Game10], WnbaV3ScoresGamesByDateLiveFinalErrorBody]`
 - **Error**: `WnbaV3ScoresGamesByDateLiveFinalErrorBody` — **Case A (typed)**
@@ -427,9 +425,9 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /v3/wnba/scores/{format}/ScoresBasicFinal/{date}`
 - **Auth**: `api_key_header` OR `api_key_query`
-- **Signature**: `def wnba_v3_scores_games_basic_by_date_final(format: FormatOrStr, date: str, *, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `format`, `date`
-- **Params**: `format` — path · `date` — path
+- **Signature**: `def wnba_v3_scores_games_basic_by_date_final(date: str, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None)`
+  - required, positional: `date`
+- **Params**: `format_` — path `format` · `date` — path
 - **Returns (parsed)**: `list[ScoreBasic6]`
 - **Returns (raw)**: `ApiResult[list[ScoreBasic6], WnbaV3ScoresGamesBasicByDateFinalErrorBody]`
 - **Error**: `WnbaV3ScoresGamesBasicByDateFinalErrorBody` — **Case A (typed)**
@@ -446,9 +444,9 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /v3/wnba/scores/{format}/ScoresBasic/{date}`
 - **Auth**: `api_key_header` OR `api_key_query`
-- **Signature**: `def wnba_v3_scores_games_basic_by_date_live_final(format: FormatOrStr, date: str, *, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `format`, `date`
-- **Params**: `format` — path · `date` — path
+- **Signature**: `def wnba_v3_scores_games_basic_by_date_live_final(date: str, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None)`
+  - required, positional: `date`
+- **Params**: `format_` — path `format` · `date` — path
 - **Returns (parsed)**: `list[ScoreBasic6]`
 - **Returns (raw)**: `ApiResult[list[ScoreBasic6], WnbaV3ScoresGamesBasicByDateLiveFinalErrorBody]`
 - **Error**: `WnbaV3ScoresGamesBasicByDateLiveFinalErrorBody` — **Case A (typed)**
@@ -465,9 +463,8 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /v3/wnba/scores/{format}/Players`
 - **Auth**: `api_key_header` OR `api_key_query`
-- **Signature**: `def wnba_v3_scores_player_details_by_active(format: FormatOrStr, *, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `format`
-- **Params**: `format` — path
+- **Signature**: `def wnba_v3_scores_player_details_by_active(*, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None)`
+- **Params**: `format_` — path `format`
 - **Returns (parsed)**: `list[Player6]`
 - **Returns (raw)**: `ApiResult[list[Player6], WnbaV3ScoresPlayerDetailsByActiveErrorBody]`
 - **Error**: `WnbaV3ScoresPlayerDetailsByActiveErrorBody` — **Case A (typed)**
@@ -484,9 +481,9 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /v3/wnba/scores/{format}/Players/{team}`
 - **Auth**: `api_key_header` OR `api_key_query`
-- **Signature**: `def wnba_v3_scores_player_details_by_team(format: FormatOrStr, team: str, *, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `format`, `team`
-- **Params**: `format` — path · `team` — path
+- **Signature**: `def wnba_v3_scores_player_details_by_team(team: str, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None)`
+  - required, positional: `team`
+- **Params**: `format_` — path `format` · `team` — path
 - **Returns (parsed)**: `list[Player6]`
 - **Returns (raw)**: `ApiResult[list[Player6], WnbaV3ScoresPlayerDetailsByTeamErrorBody]`
 - **Error**: `WnbaV3ScoresPlayerDetailsByTeamErrorBody` — **Case A (typed)**
@@ -503,9 +500,9 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /v3/wnba/scores/{format}/PlayerSeasonStats/{season}`
 - **Auth**: `api_key_header` OR `api_key_query`
-- **Signature**: `def wnba_v3_scores_player_season_stats(format: FormatOrStr, season: str, *, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `format`, `season`
-- **Params**: `format` — path · `season` — path
+- **Signature**: `def wnba_v3_scores_player_season_stats(season: str, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None)`
+  - required, positional: `season`
+- **Params**: `format_` — path `format` · `season` — path
 - **Returns (parsed)**: `list[PlayerSeason7]`
 - **Returns (raw)**: `ApiResult[list[PlayerSeason7], WnbaV3ScoresPlayerSeasonStatsErrorBody]`
 - **Error**: `WnbaV3ScoresPlayerSeasonStatsErrorBody` — **Case A (typed)**
@@ -522,9 +519,9 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /v3/wnba/scores/{format}/PlayerSeasonStatsByTeam/{season}/{team}`
 - **Auth**: `api_key_header` OR `api_key_query`
-- **Signature**: `def wnba_v3_scores_player_season_stats_by_team(format: FormatOrStr, season: str, team: str, *, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `format`, `season`, `team`
-- **Params**: `format` — path · `season` — path · `team` — path
+- **Signature**: `def wnba_v3_scores_player_season_stats_by_team(season: str, team: str, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None)`
+  - required, positional: `season`, `team`
+- **Params**: `format_` — path `format` · `season` — path · `team` — path
 - **Returns (parsed)**: `list[PlayerSeason7]`
 - **Returns (raw)**: `ApiResult[list[PlayerSeason7], WnbaV3ScoresPlayerSeasonStatsByTeamErrorBody]`
 - **Error**: `WnbaV3ScoresPlayerSeasonStatsByTeamErrorBody` — **Case A (typed)**
@@ -541,9 +538,9 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /v3/wnba/scores/{format}/GameOddsByDate/{date}`
 - **Auth**: `api_key_header` OR `api_key_query`
-- **Signature**: `def wnba_v3_scores_pre_game_odds_by_date(format: FormatOrStr, date: str, *, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `format`, `date`
-- **Params**: `format` — path · `date` — path
+- **Signature**: `def wnba_v3_scores_pre_game_odds_by_date(date: str, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None)`
+  - required, positional: `date`
+- **Params**: `format_` — path `format` · `date` — path
 - **Returns (parsed)**: `list[GameInfo6]`
 - **Returns (raw)**: `ApiResult[list[GameInfo6], WnbaV3ScoresPreGameOddsByDateErrorBody]`
 - **Error**: `WnbaV3ScoresPreGameOddsByDateErrorBody` — **Case A (typed)**
@@ -560,9 +557,9 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /v3/wnba/scores/{format}/GameOddsLineMovement/{gameid}`
 - **Auth**: `api_key_header` OR `api_key_query`
-- **Signature**: `def wnba_v3_scores_pre_game_odds_line_movement(format: FormatOrStr, gameid: str, *, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `format`, `gameid`
-- **Params**: `format` — path · `gameid` — path
+- **Signature**: `def wnba_v3_scores_pre_game_odds_line_movement(gameid: str, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None)`
+  - required, positional: `gameid`
+- **Params**: `format_` — path `format` · `gameid` — path
 - **Returns (parsed)**: `list[GameInfo6]`
 - **Returns (raw)**: `ApiResult[list[GameInfo6], WnbaV3ScoresPreGameOddsLineMovementErrorBody]`
 - **Error**: `WnbaV3ScoresPreGameOddsLineMovementErrorBody` — **Case A (typed)**
@@ -579,9 +576,9 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /v3/wnba/scores/{format}/Games/{Season}`
 - **Auth**: `api_key_header` OR `api_key_query`
-- **Signature**: `def wnba_v3_scores_schedules(format: FormatOrStr, season: str, *, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `format`, `season`
-- **Params**: `format` — path · `season` — path `Season`
+- **Signature**: `def wnba_v3_scores_schedules(season: str, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None)`
+  - required, positional: `season`
+- **Params**: `format_` — path `format` · `season` — path `Season`
 - **Returns (parsed)**: `list[Game10]`
 - **Returns (raw)**: `ApiResult[list[Game10], WnbaV3ScoresSchedulesErrorBody]`
 - **Error**: `WnbaV3ScoresSchedulesErrorBody` — **Case A (typed)**
@@ -598,9 +595,9 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /v3/wnba/scores/{format}/SchedulesBasic/{Season}`
 - **Auth**: `api_key_header` OR `api_key_query`
-- **Signature**: `def wnba_v3_scores_schedules_basic(format: FormatOrStr, season: str, *, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `format`, `season`
-- **Params**: `format` — path · `season` — path `Season`
+- **Signature**: `def wnba_v3_scores_schedules_basic(season: str, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None)`
+  - required, positional: `season`
+- **Params**: `format_` — path `format` · `season` — path `Season`
 - **Returns (parsed)**: `list[SchedulesBasic]`
 - **Returns (raw)**: `ApiResult[list[SchedulesBasic], WnbaV3ScoresSchedulesBasicErrorBody]`
 - **Error**: `WnbaV3ScoresSchedulesBasicErrorBody` — **Case A (typed)**
@@ -617,9 +614,8 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /v3/wnba/scores/{format}/CurrentSeason`
 - **Auth**: `api_key_header` OR `api_key_query`
-- **Signature**: `def wnba_v3_scores_season_current(format: FormatOrStr, *, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `format`
-- **Params**: `format` — path
+- **Signature**: `def wnba_v3_scores_season_current(*, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None)`
+- **Params**: `format_` — path `format`
 - **Returns (parsed)**: `Season4`
 - **Returns (raw)**: `ApiResult[Season4, WnbaV3ScoresSeasonCurrentErrorBody]`
 - **Error**: `WnbaV3ScoresSeasonCurrentErrorBody` — **Case A (typed)**
@@ -636,9 +632,8 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /v3/wnba/scores/{format}/ActiveSportsbooks`
 - **Auth**: `api_key_header` OR `api_key_query`
-- **Signature**: `def wnba_v3_scores_sportsbooks_by_active(format: FormatOrStr, *, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `format`
-- **Params**: `format` — path
+- **Signature**: `def wnba_v3_scores_sportsbooks_by_active(*, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None)`
+- **Params**: `format_` — path `format`
 - **Returns (parsed)**: `list[Sportsbook]`
 - **Returns (raw)**: `ApiResult[list[Sportsbook], WnbaV3ScoresSportsbooksByActiveErrorBody]`
 - **Error**: `WnbaV3ScoresSportsbooksByActiveErrorBody` — **Case A (typed)**
@@ -655,9 +650,8 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /v3/wnba/scores/{format}/Stadiums`
 - **Auth**: `api_key_header` OR `api_key_query`
-- **Signature**: `def wnba_v3_scores_stadiums(format: FormatOrStr, *, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `format`
-- **Params**: `format` — path
+- **Signature**: `def wnba_v3_scores_stadiums(*, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None)`
+- **Params**: `format_` — path `format`
 - **Returns (parsed)**: `list[Stadium6]`
 - **Returns (raw)**: `ApiResult[list[Stadium6], WnbaV3ScoresStadiumsErrorBody]`
 - **Error**: `WnbaV3ScoresStadiumsErrorBody` — **Case A (typed)**
@@ -674,9 +668,9 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /v3/wnba/scores/{format}/Standings/{season}`
 - **Auth**: `api_key_header` OR `api_key_query`
-- **Signature**: `def wnba_v3_scores_standings(format: FormatOrStr, season: str, *, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `format`, `season`
-- **Params**: `format` — path · `season` — path
+- **Signature**: `def wnba_v3_scores_standings(season: str, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None)`
+  - required, positional: `season`
+- **Params**: `format_` — path `format` · `season` — path
 - **Returns (parsed)**: `None`
 - **Returns (raw)**: `ApiResult[None, WnbaV3ScoresStandingsErrorBody]`
 - **Error**: `WnbaV3ScoresStandingsErrorBody` — **Case A (typed)**
@@ -692,9 +686,9 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /v3/wnba/scores/{format}/TeamGameStatsByDateFinal/{date}`
 - **Auth**: `api_key_header` OR `api_key_query`
-- **Signature**: `def wnba_v3_scores_team_game_stats_by_date_final(format: FormatOrStr, date: str, *, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `format`, `date`
-- **Params**: `format` — path · `date` — path
+- **Signature**: `def wnba_v3_scores_team_game_stats_by_date_final(date: str, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None)`
+  - required, positional: `date`
+- **Params**: `format_` — path `format` · `date` — path
 - **Returns (parsed)**: `list[TeamGame6]`
 - **Returns (raw)**: `ApiResult[list[TeamGame6], WnbaV3ScoresTeamGameStatsByDateFinalErrorBody]`
 - **Error**: `WnbaV3ScoresTeamGameStatsByDateFinalErrorBody` — **Case A (typed)**
@@ -711,9 +705,9 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /v3/wnba/scores/{format}/TeamGameStatsByDate/{date}`
 - **Auth**: `api_key_header` OR `api_key_query`
-- **Signature**: `def wnba_v3_scores_team_game_stats_by_date_live_final(format: FormatOrStr, date: str, *, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `format`, `date`
-- **Params**: `format` — path · `date` — path
+- **Signature**: `def wnba_v3_scores_team_game_stats_by_date_live_final(date: str, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None)`
+  - required, positional: `date`
+- **Params**: `format_` — path `format` · `date` — path
 - **Returns (parsed)**: `list[TeamGame6]`
 - **Returns (raw)**: `ApiResult[list[TeamGame6], WnbaV3ScoresTeamGameStatsByDateLiveFinalErrorBody]`
 - **Error**: `WnbaV3ScoresTeamGameStatsByDateLiveFinalErrorBody` — **Case A (typed)**
@@ -730,9 +724,8 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /v3/wnba/scores/{format}/Teams`
 - **Auth**: `api_key_header` OR `api_key_query`
-- **Signature**: `def wnba_v3_scores_team_profiles_all(format: FormatOrStr, *, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `format`
-- **Params**: `format` — path
+- **Signature**: `def wnba_v3_scores_team_profiles_all(*, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None)`
+- **Params**: `format_` — path `format`
 - **Returns (parsed)**: `list[Team6]`
 - **Returns (raw)**: `ApiResult[list[Team6], WnbaV3ScoresTeamProfilesAllErrorBody]`
 - **Error**: `WnbaV3ScoresTeamProfilesAllErrorBody` — **Case A (typed)**
@@ -749,9 +742,9 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /v3/wnba/scores/{format}/TeamSeasonStats/{season}`
 - **Auth**: `api_key_header` OR `api_key_query`
-- **Signature**: `def wnba_v3_scores_team_season_stats(format: FormatOrStr, season: str, *, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `format`, `season`
-- **Params**: `format` — path · `season` — path
+- **Signature**: `def wnba_v3_scores_team_season_stats(season: str, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None)`
+  - required, positional: `season`
+- **Params**: `format_` — path `format` · `season` — path
 - **Returns (parsed)**: `list[TeamSeason6]`
 - **Returns (raw)**: `ApiResult[list[TeamSeason6], WnbaV3ScoresTeamSeasonStatsErrorBody]`
 - **Error**: `WnbaV3ScoresTeamSeasonStatsErrorBody` — **Case A (typed)**

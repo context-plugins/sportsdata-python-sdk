@@ -87,7 +87,7 @@ class Team5Dict(TypedDict):
     conference: NotRequired[str | None]
     team_logo_url: NotRequired[str | None]
     short_display_name: NotRequired[str | None]
-    stadium: NotRequired[Stadium1 | Stadium1Dict]
+    stadium: NotRequired[Stadium1Dict]
     primary_color: NotRequired[str | None]
     secondary_color: NotRequired[str | None]
     tertiary_color: NotRequired[str | None]

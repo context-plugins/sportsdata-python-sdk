@@ -707,7 +707,7 @@ class PlayerGameProjectionDict(TypedDict):
     global_opponent_id: NotRequired[int | None]
     score_id: NotRequired[int]
     fantasy_points_fantasy_draft: NotRequired[float | None]
-    scoring_details: NotRequired[list[ScoringDetail | ScoringDetailDict]]
+    scoring_details: NotRequired[list[ScoringDetailDict]]
     offensive_fumble_recovery_touchdowns: NotRequired[float | None]
     snap_counts_confirmed: NotRequired[bool | None]
     updated: NotRequired[str | None]

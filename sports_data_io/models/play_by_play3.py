@@ -17,5 +17,5 @@ class PlayByPlay3(SdkBaseModel):
 
 
 class PlayByPlay3Dict(TypedDict):
-    game: NotRequired[Game52 | Game52Dict]
-    plays: NotRequired[list[Play3 | Play3Dict]]
+    game: NotRequired[Game52Dict]
+    plays: NotRequired[list[Play3Dict]]

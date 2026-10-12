@@ -35,10 +35,10 @@ class BettingEntityMetadataCollection(SdkBaseModel):
 
 
 class BettingEntityMetadataCollectionDict(TypedDict):
-    betting_bet_types: NotRequired[list[BettingEntityMetadata | BettingEntityMetadataDict]]
-    betting_market_types: NotRequired[list[BettingEntityMetadata | BettingEntityMetadataDict]]
-    betting_period_types: NotRequired[list[BettingEntityMetadata | BettingEntityMetadataDict]]
-    betting_event_types: NotRequired[list[BettingEntityMetadata | BettingEntityMetadataDict]]
-    betting_outcome_types: NotRequired[list[BettingEntityMetadata | BettingEntityMetadataDict]]
-    resulted_market_meta_data: NotRequired[list[BettingResultingMetadata | BettingResultingMetadataDict]]
-    betting_result_types: NotRequired[list[BettingEntityMetadata | BettingEntityMetadataDict]]
+    betting_bet_types: NotRequired[list[BettingEntityMetadataDict]]
+    betting_market_types: NotRequired[list[BettingEntityMetadataDict]]
+    betting_period_types: NotRequired[list[BettingEntityMetadataDict]]
+    betting_event_types: NotRequired[list[BettingEntityMetadataDict]]
+    betting_outcome_types: NotRequired[list[BettingEntityMetadataDict]]
+    resulted_market_meta_data: NotRequired[list[BettingResultingMetadataDict]]
+    betting_result_types: NotRequired[list[BettingEntityMetadataDict]]

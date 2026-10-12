@@ -53,4 +53,4 @@ class RaceOddsDict(TypedDict):
     track: NotRequired[str | None]
     is_in_progress: NotRequired[bool | None]
     is_over: NotRequired[bool | None]
-    pre_game_odds: NotRequired[list[DriverRaceOdd | DriverRaceOddDict]]
+    pre_game_odds: NotRequired[list[DriverRaceOddDict]]

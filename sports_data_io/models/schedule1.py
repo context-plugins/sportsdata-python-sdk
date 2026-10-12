@@ -140,7 +140,7 @@ class Schedule1Dict(TypedDict):
     global_away_team_id: NotRequired[int | None]
     global_home_team_id: NotRequired[int | None]
     score_id: NotRequired[int]
-    stadium_details: NotRequired[Stadium2 | Stadium2Dict]
+    stadium_details: NotRequired[Stadium2Dict]
     status: NotRequired[str | None]
     is_closed: NotRequired[bool | None]
     date_time_utc: NotRequired[str | None]

@@ -177,4 +177,4 @@ class ScoreBasic7Dict(TypedDict):
     global_away_team_id: NotRequired[int | None]
     global_home_team_id: NotRequired[int | None]
     is_closed: NotRequired[bool | None]
-    playoff_aggregate_score: NotRequired[PlayoffAggregateScore2 | PlayoffAggregateScore2Dict]
+    playoff_aggregate_score: NotRequired[PlayoffAggregateScore2Dict]

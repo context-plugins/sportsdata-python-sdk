@@ -41,4 +41,4 @@ class SeasonTeamDict(TypedDict):
     active: NotRequired[bool]
     gender: NotRequired[str | None]
     type_: NotRequired[str | None]
-    team: NotRequired[Team11 | Team11Dict]
+    team: NotRequired[Team11Dict]

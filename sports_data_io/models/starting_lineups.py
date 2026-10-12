@@ -58,5 +58,5 @@ class StartingLineupsDict(TypedDict):
     home_team: NotRequired[str | None]
     away_team_id: NotRequired[int | None]
     away_team: NotRequired[str | None]
-    home_lineup: NotRequired[list[Lineup | LineupDict]]
-    away_lineup: NotRequired[list[Lineup | LineupDict]]
+    home_lineup: NotRequired[list[LineupDict]]
+    away_lineup: NotRequired[list[LineupDict]]

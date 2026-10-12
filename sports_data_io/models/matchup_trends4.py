@@ -28,8 +28,8 @@ class MatchupTrends4(SdkBaseModel):
 
 
 class MatchupTrends4Dict(TypedDict):
-    upcoming_game: NotRequired[Game23 | Game23Dict]
-    team_trends: NotRequired[list[TeamTrends2 | TeamTrends2Dict]]
-    team_matchup_trends: NotRequired[list[TeamGameTrends | TeamGameTrendsDict]]
-    opponent_matchup_trends: NotRequired[list[TeamGameTrends | TeamGameTrendsDict]]
-    previous_games: NotRequired[list[Game8 | Game8Dict]]
+    upcoming_game: NotRequired[Game23Dict]
+    team_trends: NotRequired[list[TeamTrends2Dict]]
+    team_matchup_trends: NotRequired[list[TeamGameTrendsDict]]
+    opponent_matchup_trends: NotRequired[list[TeamGameTrendsDict]]
+    previous_games: NotRequired[list[Game8Dict]]

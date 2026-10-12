@@ -25,7 +25,7 @@ class BoxScore1(SdkBaseModel):
 
 
 class BoxScore1Dict(TypedDict):
-    game: NotRequired[Game41 | Game41Dict]
-    innings: NotRequired[list[Inning | InningDict]]
-    team_games: NotRequired[list[TeamGame2 | TeamGame2Dict]]
-    player_games: NotRequired[list[PlayerGame2 | PlayerGame2Dict]]
+    game: NotRequired[Game41Dict]
+    innings: NotRequired[list[InningDict]]
+    team_games: NotRequired[list[TeamGame2Dict]]
+    player_games: NotRequired[list[PlayerGame2Dict]]

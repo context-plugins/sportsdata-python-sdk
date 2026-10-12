@@ -17,5 +17,5 @@ class TournamentOdds(SdkBaseModel):
 
 
 class TournamentOddsDict(TypedDict):
-    tournament: NotRequired[Tournament3 | Tournament3Dict]
-    player_tournament_odds: NotRequired[list[PlayerTournamentOdd | PlayerTournamentOddDict]]
+    tournament: NotRequired[Tournament3Dict]
+    player_tournament_odds: NotRequired[list[PlayerTournamentOddDict]]

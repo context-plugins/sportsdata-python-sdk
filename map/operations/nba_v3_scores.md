@@ -10,9 +10,8 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /v3/nba/scores/{format}/AreAnyGamesInProgress`
 - **Auth**: `api_key_header` OR `api_key_query`
-- **Signature**: `def nba_v3_scores_are_games_in_progress(format: FormatOrStr, *, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `format`
-- **Params**: `format` — path
+- **Signature**: `def nba_v3_scores_are_games_in_progress(*, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None)`
+- **Params**: `format_` — path `format`
 - **Returns (parsed)**: `bool`
 - **Returns (raw)**: `ApiResult[bool, NbaV3ScoresAreGamesInProgressErrorBody]`
 - **Error**: `NbaV3ScoresAreGamesInProgressErrorBody` — **Case A (typed)**
@@ -28,9 +27,8 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /v3/nba/scores/{format}/DepthCharts`
 - **Auth**: `api_key_header` OR `api_key_query`
-- **Signature**: `def nba_v3_scores_depth_charts(format: FormatOrStr, *, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `format`
-- **Params**: `format` — path
+- **Signature**: `def nba_v3_scores_depth_charts(*, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None)`
+- **Params**: `format_` — path `format`
 - **Returns (parsed)**: `list[TeamDepthChart1]`
 - **Returns (raw)**: `ApiResult[list[TeamDepthChart1], NbaV3ScoresDepthChartsErrorBody]`
 - **Error**: `NbaV3ScoresDepthChartsErrorBody` — **Case A (typed)**
@@ -47,9 +45,9 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /v3/nba/scores/{format}/GamesByDateFinal/{date}`
 - **Auth**: `api_key_header` OR `api_key_query`
-- **Signature**: `def nba_v3_scores_games_by_date_final(format: FormatOrStr, date: str, *, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `format`, `date`
-- **Params**: `format` — path · `date` — path
+- **Signature**: `def nba_v3_scores_games_by_date_final(date: str, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None)`
+  - required, positional: `date`
+- **Params**: `format_` — path `format` · `date` — path
 - **Returns (parsed)**: `list[Game]`
 - **Returns (raw)**: `ApiResult[list[Game], NbaV3ScoresGamesByDateFinalErrorBody]`
 - **Error**: `NbaV3ScoresGamesByDateFinalErrorBody` — **Case A (typed)**
@@ -66,9 +64,9 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /v3/nba/scores/{format}/GamesByDate/{date}`
 - **Auth**: `api_key_header` OR `api_key_query`
-- **Signature**: `def nba_v3_scores_games_by_date_live_final(format: FormatOrStr, date: str, *, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `format`, `date`
-- **Params**: `format` — path · `date` — path
+- **Signature**: `def nba_v3_scores_games_by_date_live_final(date: str, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None)`
+  - required, positional: `date`
+- **Params**: `format_` — path `format` · `date` — path
 - **Returns (parsed)**: `list[Game]`
 - **Returns (raw)**: `ApiResult[list[Game], NbaV3ScoresGamesByDateLiveFinalErrorBody]`
 - **Error**: `NbaV3ScoresGamesByDateLiveFinalErrorBody` — **Case A (typed)**
@@ -85,9 +83,9 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /v3/nba/scores/{format}/ScoresBasicFinal/{date}`
 - **Auth**: `api_key_header` OR `api_key_query`
-- **Signature**: `def nba_v3_scores_games_basic_by_date_final(format: FormatOrStr, date: str, *, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `format`, `date`
-- **Params**: `format` — path · `date` — path
+- **Signature**: `def nba_v3_scores_games_basic_by_date_final(date: str, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None)`
+  - required, positional: `date`
+- **Params**: `format_` — path `format` · `date` — path
 - **Returns (parsed)**: `list[ScoreBasic1]`
 - **Returns (raw)**: `ApiResult[list[ScoreBasic1], NbaV3ScoresGamesBasicByDateFinalErrorBody]`
 - **Error**: `NbaV3ScoresGamesBasicByDateFinalErrorBody` — **Case A (typed)**
@@ -104,9 +102,9 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /v3/nba/scores/{format}/ScoresBasic/{date}`
 - **Auth**: `api_key_header` OR `api_key_query`
-- **Signature**: `def nba_v3_scores_games_basic_by_date_live_final(format: FormatOrStr, date: str, *, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `format`, `date`
-- **Params**: `format` — path · `date` — path
+- **Signature**: `def nba_v3_scores_games_basic_by_date_live_final(date: str, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None)`
+  - required, positional: `date`
+- **Params**: `format_` — path `format` · `date` — path
 - **Returns (parsed)**: `list[ScoreBasic1]`
 - **Returns (raw)**: `ApiResult[list[ScoreBasic1], NbaV3ScoresGamesBasicByDateLiveFinalErrorBody]`
 - **Error**: `NbaV3ScoresGamesBasicByDateLiveFinalErrorBody` — **Case A (typed)**
@@ -123,9 +121,8 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /v3/nba/scores/{format}/News`
 - **Auth**: `api_key_header` OR `api_key_query`
-- **Signature**: `def nba_v3_scores_news(format: FormatOrStr, *, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `format`
-- **Params**: `format` — path
+- **Signature**: `def nba_v3_scores_news(*, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None)`
+- **Params**: `format_` — path `format`
 - **Returns (parsed)**: `list[News]`
 - **Returns (raw)**: `ApiResult[list[News], NbaV3ScoresNewsErrorBody]`
 - **Error**: `NbaV3ScoresNewsErrorBody` — **Case A (typed)**
@@ -142,9 +139,9 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /v3/nba/scores/{format}/NewsByDate/{date}`
 - **Auth**: `api_key_header` OR `api_key_query`
-- **Signature**: `def nba_v3_scores_news_by_date(format: FormatOrStr, date: str, *, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `format`, `date`
-- **Params**: `format` — path · `date` — path
+- **Signature**: `def nba_v3_scores_news_by_date(date: str, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None)`
+  - required, positional: `date`
+- **Params**: `format_` — path `format` · `date` — path
 - **Returns (parsed)**: `list[News]`
 - **Returns (raw)**: `ApiResult[list[News], NbaV3ScoresNewsByDateErrorBody]`
 - **Error**: `NbaV3ScoresNewsByDateErrorBody` — **Case A (typed)**
@@ -161,9 +158,8 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /v3/nba/scores/{format}/Players`
 - **Auth**: `api_key_header` OR `api_key_query`
-- **Signature**: `def nba_v3_scores_player_details_by_active(format: FormatOrStr, *, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `format`
-- **Params**: `format` — path
+- **Signature**: `def nba_v3_scores_player_details_by_active(*, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None)`
+- **Params**: `format_` — path `format`
 - **Returns (parsed)**: `list[Player1]`
 - **Returns (raw)**: `ApiResult[list[Player1], NbaV3ScoresPlayerDetailsByActiveErrorBody]`
 - **Error**: `NbaV3ScoresPlayerDetailsByActiveErrorBody` — **Case A (typed)**
@@ -180,9 +176,8 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /v3/nba/scores/{format}/FreeAgents`
 - **Auth**: `api_key_header` OR `api_key_query`
-- **Signature**: `def nba_v3_scores_player_details_by_free_agent(format: FormatOrStr, *, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `format`
-- **Params**: `format` — path
+- **Signature**: `def nba_v3_scores_player_details_by_free_agent(*, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None)`
+- **Params**: `format_` — path `format`
 - **Returns (parsed)**: `list[Player1]`
 - **Returns (raw)**: `ApiResult[list[Player1], NbaV3ScoresPlayerDetailsByFreeAgentErrorBody]`
 - **Error**: `NbaV3ScoresPlayerDetailsByFreeAgentErrorBody` — **Case A (typed)**
@@ -199,9 +194,9 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /v3/nba/scores/{format}/Players/{team}`
 - **Auth**: `api_key_header` OR `api_key_query`
-- **Signature**: `def nba_v3_scores_player_details_by_team(format: FormatOrStr, team: str, *, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `format`, `team`
-- **Params**: `format` — path · `team` — path
+- **Signature**: `def nba_v3_scores_player_details_by_team(team: str, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None)`
+  - required, positional: `team`
+- **Params**: `format_` — path `format` · `team` — path
 - **Returns (parsed)**: `list[Player1]`
 - **Returns (raw)**: `ApiResult[list[Player1], NbaV3ScoresPlayerDetailsByTeamErrorBody]`
 - **Error**: `NbaV3ScoresPlayerDetailsByTeamErrorBody` — **Case A (typed)**
@@ -218,9 +213,8 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /v3/nba/scores/{format}/PlayersActiveBasic`
 - **Auth**: `api_key_header` OR `api_key_query`
-- **Signature**: `def nba_v3_scores_player_profiles_by_active(format: FormatOrStr, *, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `format`
-- **Params**: `format` — path
+- **Signature**: `def nba_v3_scores_player_profiles_by_active(*, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None)`
+- **Params**: `format_` — path `format`
 - **Returns (parsed)**: `list[PlayerBasic1]`
 - **Returns (raw)**: `ApiResult[list[PlayerBasic1], NbaV3ScoresPlayerProfilesByActiveErrorBody]`
 - **Error**: `NbaV3ScoresPlayerProfilesByActiveErrorBody` — **Case A (typed)**
@@ -237,9 +231,8 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /v3/nba/scores/{format}/PlayersByFreeAgents`
 - **Auth**: `api_key_header` OR `api_key_query`
-- **Signature**: `def nba_v3_scores_player_profiles_by_free_agent(format: FormatOrStr, *, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `format`
-- **Params**: `format` — path
+- **Signature**: `def nba_v3_scores_player_profiles_by_free_agent(*, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None)`
+- **Params**: `format_` — path `format`
 - **Returns (parsed)**: `list[PlayerBasic1]`
 - **Returns (raw)**: `ApiResult[list[PlayerBasic1], NbaV3ScoresPlayerProfilesByFreeAgentErrorBody]`
 - **Error**: `NbaV3ScoresPlayerProfilesByFreeAgentErrorBody` — **Case A (typed)**
@@ -256,9 +249,9 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /v3/nba/scores/{format}/PlayersBasic/{team}`
 - **Auth**: `api_key_header` OR `api_key_query`
-- **Signature**: `def nba_v3_scores_players_profiles_by_team(format: FormatOrStr, team: str, *, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `format`, `team`
-- **Params**: `format` — path · `team` — path
+- **Signature**: `def nba_v3_scores_players_profiles_by_team(team: str, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None)`
+  - required, positional: `team`
+- **Params**: `format_` — path `format` · `team` — path
 - **Returns (parsed)**: `list[PlayerBasic1]`
 - **Returns (raw)**: `ApiResult[list[PlayerBasic1], NbaV3ScoresPlayersProfilesByTeamErrorBody]`
 - **Error**: `NbaV3ScoresPlayersProfilesByTeamErrorBody` — **Case A (typed)**
@@ -275,9 +268,8 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /v3/nba/scores/{format}/Referees`
 - **Auth**: `api_key_header` OR `api_key_query`
-- **Signature**: `def nba_v3_scores_referees(format: FormatOrStr, *, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `format`
-- **Params**: `format` — path
+- **Signature**: `def nba_v3_scores_referees(*, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None)`
+- **Params**: `format_` — path `format`
 - **Returns (parsed)**: `list[Referee1]`
 - **Returns (raw)**: `ApiResult[list[Referee1], NbaV3ScoresRefereesErrorBody]`
 - **Error**: `NbaV3ScoresRefereesErrorBody` — **Case A (typed)**
@@ -294,9 +286,9 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /v3/nba/scores/{format}/Games/{season}`
 - **Auth**: `api_key_header` OR `api_key_query`
-- **Signature**: `def nba_v3_scores_schedules(format: FormatOrStr, season: str, *, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `format`, `season`
-- **Params**: `format` — path · `season` — path
+- **Signature**: `def nba_v3_scores_schedules(season: str, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None)`
+  - required, positional: `season`
+- **Params**: `format_` — path `format` · `season` — path
 - **Returns (parsed)**: `list[Game]`
 - **Returns (raw)**: `ApiResult[list[Game], NbaV3ScoresSchedulesErrorBody]`
 - **Error**: `NbaV3ScoresSchedulesErrorBody` — **Case A (typed)**
@@ -313,9 +305,9 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /v3/nba/scores/{format}/SchedulesBasic/{season}`
 - **Auth**: `api_key_header` OR `api_key_query`
-- **Signature**: `def nba_v3_scores_schedules_basic(format: FormatOrStr, season: str, *, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `format`, `season`
-- **Params**: `format` — path · `season` — path
+- **Signature**: `def nba_v3_scores_schedules_basic(season: str, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None)`
+  - required, positional: `season`
+- **Params**: `format_` — path `format` · `season` — path
 - **Returns (parsed)**: `list[ScheduleBasic1]`
 - **Returns (raw)**: `ApiResult[list[ScheduleBasic1], NbaV3ScoresSchedulesBasicErrorBody]`
 - **Error**: `NbaV3ScoresSchedulesBasicErrorBody` — **Case A (typed)**
@@ -332,9 +324,8 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /v3/nba/scores/{format}/CurrentSeason`
 - **Auth**: `api_key_header` OR `api_key_query`
-- **Signature**: `def nba_v3_scores_season_current(format: FormatOrStr, *, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `format`
-- **Params**: `format` — path
+- **Signature**: `def nba_v3_scores_season_current(*, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None)`
+- **Params**: `format_` — path `format`
 - **Returns (parsed)**: `Season`
 - **Returns (raw)**: `ApiResult[Season, NbaV3ScoresSeasonCurrentErrorBody]`
 - **Error**: `NbaV3ScoresSeasonCurrentErrorBody` — **Case A (typed)**
@@ -351,9 +342,8 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /v3/nba/scores/{format}/Stadiums`
 - **Auth**: `api_key_header` OR `api_key_query`
-- **Signature**: `def nba_v3_scores_stadiums(format: FormatOrStr, *, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `format`
-- **Params**: `format` — path
+- **Signature**: `def nba_v3_scores_stadiums(*, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None)`
+- **Params**: `format_` — path `format`
 - **Returns (parsed)**: `list[Stadium1]`
 - **Returns (raw)**: `ApiResult[list[Stadium1], NbaV3ScoresStadiumsErrorBody]`
 - **Error**: `NbaV3ScoresStadiumsErrorBody` — **Case A (typed)**
@@ -370,9 +360,9 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /v3/nba/scores/{format}/Standings/{season}`
 - **Auth**: `api_key_header` OR `api_key_query`
-- **Signature**: `def nba_v3_scores_standings(format: FormatOrStr, season: str, *, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `format`, `season`
-- **Params**: `format` — path · `season` — path
+- **Signature**: `def nba_v3_scores_standings(season: str, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None)`
+  - required, positional: `season`
+- **Params**: `format_` — path `format` · `season` — path
 - **Returns (parsed)**: `list[Standing1]`
 - **Returns (raw)**: `ApiResult[list[Standing1], NbaV3ScoresStandingsErrorBody]`
 - **Error**: `NbaV3ScoresStandingsErrorBody` — **Case A (typed)**
@@ -389,9 +379,9 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /v3/nba/scores/{format}/TeamGameStatsBySeason/{season}/{teamid}/{numberofgames}`
 - **Auth**: `api_key_header` OR `api_key_query`
-- **Signature**: `def nba_v3_scores_team_game_logs_by_season(format: FormatOrStr, season: str, teamid: str, numberofgames: str, *, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `format`, `season`, `teamid`, `numberofgames`
-- **Params**: `format` — path · `season` — path · `teamid` — path · `numberofgames` — path
+- **Signature**: `def nba_v3_scores_team_game_logs_by_season(season: str, teamid: str, numberofgames: str, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None)`
+  - required, positional: `season`, `teamid`, `numberofgames`
+- **Params**: `format_` — path `format` · `season` — path · `teamid` — path · `numberofgames` — path
 - **Returns (parsed)**: `list[TeamGame1]`
 - **Returns (raw)**: `ApiResult[list[TeamGame1], NbaV3ScoresTeamGameLogsBySeasonErrorBody]`
 - **Error**: `NbaV3ScoresTeamGameLogsBySeasonErrorBody` — **Case A (typed)**
@@ -408,9 +398,9 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /v3/nba/scores/{format}/TeamGameStatsByDate/{date}`
 - **Auth**: `api_key_header` OR `api_key_query`
-- **Signature**: `def nba_v3_scores_team_game_stats_by_date_live_final(format: FormatOrStr, date: str, *, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `format`, `date`
-- **Params**: `format` — path · `date` — path
+- **Signature**: `def nba_v3_scores_team_game_stats_by_date_live_final(date: str, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None)`
+  - required, positional: `date`
+- **Params**: `format_` — path `format` · `date` — path
 - **Returns (parsed)**: `list[TeamGame1]`
 - **Returns (raw)**: `ApiResult[list[TeamGame1], NbaV3ScoresTeamGameStatsByDateLiveFinalErrorBody]`
 - **Error**: `NbaV3ScoresTeamGameStatsByDateLiveFinalErrorBody` — **Case A (typed)**
@@ -427,9 +417,8 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /v3/nba/scores/{format}/AllTeams`
 - **Auth**: `api_key_header` OR `api_key_query`
-- **Signature**: `def nba_v3_scores_team_profiles_all(format: FormatOrStr, *, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `format`
-- **Params**: `format` — path
+- **Signature**: `def nba_v3_scores_team_profiles_all(*, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None)`
+- **Params**: `format_` — path `format`
 - **Returns (parsed)**: `list[Team1]`
 - **Returns (raw)**: `ApiResult[list[Team1], NbaV3ScoresTeamProfilesAllErrorBody]`
 - **Error**: `NbaV3ScoresTeamProfilesAllErrorBody` — **Case A (typed)**
@@ -446,9 +435,8 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /v3/nba/scores/{format}/teams`
 - **Auth**: `api_key_header` OR `api_key_query`
-- **Signature**: `def nba_v3_scores_team_profiles_by_active(format: FormatOrStr, *, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `format`
-- **Params**: `format` — path
+- **Signature**: `def nba_v3_scores_team_profiles_by_active(*, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None)`
+- **Params**: `format_` — path `format`
 - **Returns (parsed)**: `list[Team1]`
 - **Returns (raw)**: `ApiResult[list[Team1], NbaV3ScoresTeamProfilesByActiveErrorBody]`
 - **Error**: `NbaV3ScoresTeamProfilesByActiveErrorBody` — **Case A (typed)**
@@ -465,9 +453,9 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /v3/nba/scores/{format}/teams/{season}`
 - **Auth**: `api_key_header` OR `api_key_query`
-- **Signature**: `def nba_v3_scores_team_profiles_by_season(format: FormatOrStr, season: str, *, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `format`, `season`
-- **Params**: `format` — path · `season` — path
+- **Signature**: `def nba_v3_scores_team_profiles_by_season(season: str, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None)`
+  - required, positional: `season`
+- **Params**: `format_` — path `format` · `season` — path
 - **Returns (parsed)**: `list[Team1]`
 - **Returns (raw)**: `ApiResult[list[Team1], NbaV3ScoresTeamProfilesBySeasonErrorBody]`
 - **Error**: `NbaV3ScoresTeamProfilesBySeasonErrorBody` — **Case A (typed)**
@@ -484,9 +472,9 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /v3/nba/scores/{format}/TeamSeasonStats/{season}`
 - **Auth**: `api_key_header` OR `api_key_query`
-- **Signature**: `def nba_v3_scores_team_season_stats(format: FormatOrStr, season: str, *, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `format`, `season`
-- **Params**: `format` — path · `season` — path
+- **Signature**: `def nba_v3_scores_team_season_stats(season: str, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None)`
+  - required, positional: `season`
+- **Params**: `format_` — path `format` · `season` — path
 - **Returns (parsed)**: `list[TeamSeason1]`
 - **Returns (raw)**: `ApiResult[list[TeamSeason1], NbaV3ScoresTeamSeasonStatsErrorBody]`
 - **Error**: `NbaV3ScoresTeamSeasonStatsErrorBody` — **Case A (typed)**
@@ -503,9 +491,9 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /v3/nba/scores/{format}/TransactionsByDate/{date}`
 - **Auth**: `api_key_header` OR `api_key_query`
-- **Signature**: `def nba_v3_scores_transactions(format: FormatOrStr, date: str, *, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `format`, `date`
-- **Params**: `format` — path · `date` — path
+- **Signature**: `def nba_v3_scores_transactions(date: str, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None)`
+  - required, positional: `date`
+- **Params**: `format_` — path `format` · `date` — path
 - **Returns (parsed)**: `list[Transaction]`
 - **Returns (raw)**: `ApiResult[list[Transaction], NbaV3ScoresTransactionsErrorBody]`
 - **Error**: `NbaV3ScoresTransactionsErrorBody` — **Case A (typed)**

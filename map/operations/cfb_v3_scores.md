@@ -10,9 +10,8 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /v3/cfb/scores/{format}/AreAnyGamesInProgress`
 - **Auth**: `api_key_header` OR `api_key_query`
-- **Signature**: `def cfb_v3_scores_are_games_in_progress(format: FormatOrStr, *, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `format`
-- **Params**: `format` — path
+- **Signature**: `def cfb_v3_scores_are_games_in_progress(*, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None)`
+- **Params**: `format_` — path `format`
 - **Returns (parsed)**: `bool`
 - **Returns (raw)**: `ApiResult[bool, CfbV3ScoresAreGamesInProgressErrorBody]`
 - **Error**: `CfbV3ScoresAreGamesInProgressErrorBody` — **Case A (typed)**
@@ -28,9 +27,8 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /v3/cfb/scores/{format}/LeagueHierarchy`
 - **Auth**: `api_key_header` OR `api_key_query`
-- **Signature**: `def cfb_v3_scores_conference_hierarchy(format: FormatOrStr, *, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `format`
-- **Params**: `format` — path
+- **Signature**: `def cfb_v3_scores_conference_hierarchy(*, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None)`
+- **Params**: `format_` — path `format`
 - **Returns (parsed)**: `list[Conference]`
 - **Returns (raw)**: `ApiResult[list[Conference], CfbV3ScoresConferenceHierarchyErrorBody]`
 - **Error**: `CfbV3ScoresConferenceHierarchyErrorBody` — **Case A (typed)**
@@ -47,9 +45,9 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /v3/cfb/scores/{format}/GamesByDate/{date}`
 - **Auth**: `api_key_header` OR `api_key_query`
-- **Signature**: `def cfb_v3_scores_games_by_date_live_final(format: FormatOrStr, date: str, *, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `format`, `date`
-- **Params**: `format` — path · `date` — path
+- **Signature**: `def cfb_v3_scores_games_by_date_live_final(date: str, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None)`
+  - required, positional: `date`
+- **Params**: `format_` — path `format` · `date` — path
 - **Returns (parsed)**: `list[Game8]`
 - **Returns (raw)**: `ApiResult[list[Game8], CfbV3ScoresGamesByDateLiveFinalErrorBody]`
 - **Error**: `CfbV3ScoresGamesByDateLiveFinalErrorBody` — **Case A (typed)**
@@ -66,9 +64,9 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /v3/cfb/scores/{format}/GamesByWeekFinal/{season}/{week}`
 - **Auth**: `api_key_header` OR `api_key_query`
-- **Signature**: `def cfb_v3_scores_games_by_week_final(format: FormatOrStr, season: str, week: str, *, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `format`, `season`, `week`
-- **Params**: `format` — path · `season` — path · `week` — path
+- **Signature**: `def cfb_v3_scores_games_by_week_final(season: str, week: str, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None)`
+  - required, positional: `season`, `week`
+- **Params**: `format_` — path `format` · `season` — path · `week` — path
 - **Returns (parsed)**: `list[Game8]`
 - **Returns (raw)**: `ApiResult[list[Game8], CfbV3ScoresGamesByWeekFinalErrorBody]`
 - **Error**: `CfbV3ScoresGamesByWeekFinalErrorBody` — **Case A (typed)**
@@ -85,9 +83,9 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /v3/cfb/scores/{format}/GamesByWeek/{season}/{week}`
 - **Auth**: `api_key_header` OR `api_key_query`
-- **Signature**: `def cfb_v3_scores_games_by_week_live_final(format: FormatOrStr, season: str, week: str, *, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `format`, `season`, `week`
-- **Params**: `format` — path · `season` — path · `week` — path
+- **Signature**: `def cfb_v3_scores_games_by_week_live_final(season: str, week: str, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None)`
+  - required, positional: `season`, `week`
+- **Params**: `format_` — path `format` · `season` — path · `week` — path
 - **Returns (parsed)**: `list[Game8]`
 - **Returns (raw)**: `ApiResult[list[Game8], CfbV3ScoresGamesByWeekLiveFinalErrorBody]`
 - **Error**: `CfbV3ScoresGamesByWeekLiveFinalErrorBody` — **Case A (typed)**
@@ -104,9 +102,9 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /v3/cfb/scores/{format}/ScoresBasic/{date}`
 - **Auth**: `api_key_header` OR `api_key_query`
-- **Signature**: `def cfb_v3_scores_games_basic_by_date_live_final(format: FormatOrStr, date: str, *, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `format`, `date`
-- **Params**: `format` — path · `date` — path
+- **Signature**: `def cfb_v3_scores_games_basic_by_date_live_final(date: str, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None)`
+  - required, positional: `date`
+- **Params**: `format_` — path `format` · `date` — path
 - **Returns (parsed)**: `list[ScoreBasic4]`
 - **Returns (raw)**: `ApiResult[list[ScoreBasic4], CfbV3ScoresGamesBasicByDateLiveFinalErrorBody]`
 - **Error**: `CfbV3ScoresGamesBasicByDateLiveFinalErrorBody` — **Case A (typed)**
@@ -123,9 +121,9 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /v3/cfb/scores/{format}/ScoresBasicFinal/{season}/{week}`
 - **Auth**: `api_key_header` OR `api_key_query`
-- **Signature**: `def cfb_v3_scores_games_basic_by_week_final(format: FormatOrStr, season: str, week: str, *, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `format`, `season`, `week`
-- **Params**: `format` — path · `season` — path · `week` — path
+- **Signature**: `def cfb_v3_scores_games_basic_by_week_final(season: str, week: str, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None)`
+  - required, positional: `season`, `week`
+- **Params**: `format_` — path `format` · `season` — path · `week` — path
 - **Returns (parsed)**: `list[ScoreBasic4]`
 - **Returns (raw)**: `ApiResult[list[ScoreBasic4], CfbV3ScoresGamesBasicByWeekFinalErrorBody]`
 - **Error**: `CfbV3ScoresGamesBasicByWeekFinalErrorBody` — **Case A (typed)**
@@ -142,9 +140,9 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /v3/cfb/scores/{format}/ScoresBasicFinal/{date}`
 - **Auth**: `api_key_header` OR `api_key_query`
-- **Signature**: `def cfb_v3_scores_games_basic_by_date_final(format: FormatOrStr, date: str, *, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `format`, `date`
-- **Params**: `format` — path · `date` — path
+- **Signature**: `def cfb_v3_scores_games_basic_by_date_final(date: str, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None)`
+  - required, positional: `date`
+- **Params**: `format_` — path `format` · `date` — path
 - **Returns (parsed)**: `list[ScoreBasic4]`
 - **Returns (raw)**: `ApiResult[list[ScoreBasic4], CfbV3ScoresGamesBasicByDateFinalErrorBody]`
 - **Error**: `CfbV3ScoresGamesBasicByDateFinalErrorBody` — **Case A (typed)**
@@ -161,9 +159,9 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /v3/cfb/scores/{format}/GamesByDateFinal/{date}`
 - **Auth**: `api_key_header` OR `api_key_query`
-- **Signature**: `def cfb_v3_scores_games_by_date_final(format: FormatOrStr, date: str, *, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `format`, `date`
-- **Params**: `format` — path · `date` — path
+- **Signature**: `def cfb_v3_scores_games_by_date_final(date: str, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None)`
+  - required, positional: `date`
+- **Params**: `format_` — path `format` · `date` — path
 - **Returns (parsed)**: `list[Game8]`
 - **Returns (raw)**: `ApiResult[list[Game8], CfbV3ScoresGamesByDateFinalErrorBody]`
 - **Error**: `CfbV3ScoresGamesByDateFinalErrorBody` — **Case A (typed)**
@@ -180,9 +178,8 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /v3/cfb/scores/{format}/Players`
 - **Auth**: `api_key_header` OR `api_key_query`
-- **Signature**: `def cfb_v3_scores_player_details_by_active(format: FormatOrStr, *, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `format`
-- **Params**: `format` — path
+- **Signature**: `def cfb_v3_scores_player_details_by_active(*, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None)`
+- **Params**: `format_` — path `format`
 - **Returns (parsed)**: `list[Player4]`
 - **Returns (raw)**: `ApiResult[list[Player4], CfbV3ScoresPlayerDetailsByActiveErrorBody]`
 - **Error**: `CfbV3ScoresPlayerDetailsByActiveErrorBody` — **Case A (typed)**
@@ -199,9 +196,8 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /v3/cfb/scores/{format}/PlayersByActive`
 - **Auth**: `api_key_header` OR `api_key_query`
-- **Signature**: `def cfb_v3_scores_player_details_by_active2(format: FormatOrStr, *, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `format`
-- **Params**: `format` — path
+- **Signature**: `def cfb_v3_scores_player_details_by_active2(*, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None)`
+- **Params**: `format_` — path `format`
 - **Returns (parsed)**: `list[PlayerBasic4]`
 - **Returns (raw)**: `ApiResult[list[PlayerBasic4], CfbV3ScoresPlayerDetailsByActive2ErrorBody]`
 - **Error**: `CfbV3ScoresPlayerDetailsByActive2ErrorBody` — **Case A (typed)**
@@ -218,9 +214,8 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /v3/cfb/scores/{format}/InjuredPlayers`
 - **Auth**: `api_key_header` OR `api_key_query`
-- **Signature**: `def cfb_v3_scores_player_details_by_injured(format: FormatOrStr, *, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `format`
-- **Params**: `format` — path
+- **Signature**: `def cfb_v3_scores_player_details_by_injured(*, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None)`
+- **Params**: `format_` — path `format`
 - **Returns (parsed)**: `list[Player4]`
 - **Returns (raw)**: `ApiResult[list[Player4], CfbV3ScoresPlayerDetailsByInjuredErrorBody]`
 - **Error**: `CfbV3ScoresPlayerDetailsByInjuredErrorBody` — **Case A (typed)**
@@ -237,9 +232,9 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /v3/cfb/scores/{format}/Players/{team}`
 - **Auth**: `api_key_header` OR `api_key_query`
-- **Signature**: `def cfb_v3_scores_player_details_by_team(format: FormatOrStr, team: str, *, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `format`, `team`
-- **Params**: `format` — path · `team` — path
+- **Signature**: `def cfb_v3_scores_player_details_by_team(team: str, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None)`
+  - required, positional: `team`
+- **Params**: `format_` — path `format` · `team` — path
 - **Returns (parsed)**: `list[Player4]`
 - **Returns (raw)**: `ApiResult[list[Player4], CfbV3ScoresPlayerDetailsByTeamErrorBody]`
 - **Error**: `CfbV3ScoresPlayerDetailsByTeamErrorBody` — **Case A (typed)**
@@ -256,9 +251,9 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /v3/cfb/scores/{format}/PlayersBasic/{team}`
 - **Auth**: `api_key_header` OR `api_key_query`
-- **Signature**: `def cfb_v3_scores_player_profiles_by_team(format: FormatOrStr, team: str, *, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `format`, `team`
-- **Params**: `format` — path · `team` — path
+- **Signature**: `def cfb_v3_scores_player_profiles_by_team(team: str, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None)`
+  - required, positional: `team`
+- **Params**: `format_` — path `format` · `team` — path
 - **Returns (parsed)**: `list[PlayerBasic4]`
 - **Returns (raw)**: `ApiResult[list[PlayerBasic4], CfbV3ScoresPlayerProfilesByTeamErrorBody]`
 - **Error**: `CfbV3ScoresPlayerProfilesByTeamErrorBody` — **Case A (typed)**
@@ -275,9 +270,9 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /v3/cfb/scores/{format}/Games/{season}`
 - **Auth**: `api_key_header` OR `api_key_query`
-- **Signature**: `def cfb_v3_scores_schedules(format: FormatOrStr, season: str, *, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `format`, `season`
-- **Params**: `format` — path · `season` — path
+- **Signature**: `def cfb_v3_scores_schedules(season: str, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None)`
+  - required, positional: `season`
+- **Params**: `format_` — path `format` · `season` — path
 - **Returns (parsed)**: `list[Game8]`
 - **Returns (raw)**: `ApiResult[list[Game8], CfbV3ScoresSchedulesErrorBody]`
 - **Error**: `CfbV3ScoresSchedulesErrorBody` — **Case A (typed)**
@@ -294,9 +289,9 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /v3/cfb/scores/{format}/SchedulesBasic/{season}`
 - **Auth**: `api_key_header` OR `api_key_query`
-- **Signature**: `def cfb_v3_scores_schedules_basic(format: FormatOrStr, season: str, *, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `format`, `season`
-- **Params**: `format` — path · `season` — path
+- **Signature**: `def cfb_v3_scores_schedules_basic(season: str, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None)`
+  - required, positional: `season`
+- **Params**: `format_` — path `format` · `season` — path
 - **Returns (parsed)**: `list[ScheduleBasic4]`
 - **Returns (raw)**: `ApiResult[list[ScheduleBasic4], CfbV3ScoresSchedulesBasicErrorBody]`
 - **Error**: `CfbV3ScoresSchedulesBasicErrorBody` — **Case A (typed)**
@@ -313,9 +308,8 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /v3/cfb/scores/{format}/CurrentSeason`
 - **Auth**: `api_key_header` OR `api_key_query`
-- **Signature**: `def cfb_v3_scores_season_current(format: FormatOrStr, *, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `format`
-- **Params**: `format` — path
+- **Signature**: `def cfb_v3_scores_season_current(*, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None)`
+- **Params**: `format_` — path `format`
 - **Returns (parsed)**: `int`
 - **Returns (raw)**: `ApiResult[int, CfbV3ScoresSeasonCurrentErrorBody]`
 - **Error**: `CfbV3ScoresSeasonCurrentErrorBody` — **Case A (typed)**
@@ -331,9 +325,8 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /v3/cfb/scores/{format}/CurrentSeasonDetails`
 - **Auth**: `api_key_header` OR `api_key_query`
-- **Signature**: `def cfb_v3_scores_season_current_details(format: FormatOrStr, *, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `format`
-- **Params**: `format` — path
+- **Signature**: `def cfb_v3_scores_season_current_details(*, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None)`
+- **Params**: `format_` — path `format`
 - **Returns (parsed)**: `Season2`
 - **Returns (raw)**: `ApiResult[Season2, CfbV3ScoresSeasonCurrentDetailsErrorBody]`
 - **Error**: `CfbV3ScoresSeasonCurrentDetailsErrorBody` — **Case A (typed)**
@@ -350,9 +343,8 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /v3/cfb/scores/{format}/CurrentSeasonType`
 - **Auth**: `api_key_header` OR `api_key_query`
-- **Signature**: `def cfb_v3_scores_season_type_current(format: FormatOrStr, *, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `format`
-- **Params**: `format` — path
+- **Signature**: `def cfb_v3_scores_season_type_current(*, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None)`
+- **Params**: `format_` — path `format`
 - **Returns (parsed)**: `str | None`
 - **Returns (raw)**: `ApiResult[str | None, CfbV3ScoresSeasonTypeCurrentErrorBody]`
 - **Error**: `CfbV3ScoresSeasonTypeCurrentErrorBody` — **Case A (typed)**
@@ -368,9 +360,8 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /v3/cfb/scores/{format}/Stadiums`
 - **Auth**: `api_key_header` OR `api_key_query`
-- **Signature**: `def cfb_v3_scores_stadiums(format: FormatOrStr, *, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `format`
-- **Params**: `format` — path
+- **Signature**: `def cfb_v3_scores_stadiums(*, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None)`
+- **Params**: `format_` — path `format`
 - **Returns (parsed)**: `list[Stadium5]`
 - **Returns (raw)**: `ApiResult[list[Stadium5], CfbV3ScoresStadiumsErrorBody]`
 - **Error**: `CfbV3ScoresStadiumsErrorBody` — **Case A (typed)**
@@ -387,9 +378,9 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /v3/cfb/scores/{format}/TeamGameStatsBySeason/{season}/{teamid}/{numberofgames}`
 - **Auth**: `api_key_header` OR `api_key_query`
-- **Signature**: `def cfb_v3_scores_team_game_logs_by_season(format: FormatOrStr, season: str, teamid: str, numberofgames: str, *, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `format`, `season`, `teamid`, `numberofgames`
-- **Params**: `format` — path · `season` — path · `teamid` — path · `numberofgames` — path
+- **Signature**: `def cfb_v3_scores_team_game_logs_by_season(season: str, teamid: str, numberofgames: str, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None)`
+  - required, positional: `season`, `teamid`, `numberofgames`
+- **Params**: `format_` — path `format` · `season` — path · `teamid` — path · `numberofgames` — path
 - **Returns (parsed)**: `list[TeamGame4]`
 - **Returns (raw)**: `ApiResult[list[TeamGame4], CfbV3ScoresTeamGameLogsBySeasonErrorBody]`
 - **Error**: `CfbV3ScoresTeamGameLogsBySeasonErrorBody` — **Case A (typed)**
@@ -406,9 +397,9 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /v3/cfb/scores/{format}/TeamGameStatsByWeek/{season}/{week}`
 - **Auth**: `api_key_header` OR `api_key_query`
-- **Signature**: `def cfb_v3_scores_team_game_stats_by_week_live_final(format: FormatOrStr, season: str, week: str, *, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `format`, `season`, `week`
-- **Params**: `format` — path · `season` — path · `week` — path
+- **Signature**: `def cfb_v3_scores_team_game_stats_by_week_live_final(season: str, week: str, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None)`
+  - required, positional: `season`, `week`
+- **Params**: `format_` — path `format` · `season` — path · `week` — path
 - **Returns (parsed)**: `list[TeamGame4]`
 - **Returns (raw)**: `ApiResult[list[TeamGame4], CfbV3ScoresTeamGameStatsByWeekLiveFinalErrorBody]`
 - **Error**: `CfbV3ScoresTeamGameStatsByWeekLiveFinalErrorBody` — **Case A (typed)**
@@ -425,9 +416,8 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /v3/cfb/scores/{format}/Teams`
 - **Auth**: `api_key_header` OR `api_key_query`
-- **Signature**: `def cfb_v3_scores_team_profiles_all(format: FormatOrStr, *, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `format`
-- **Params**: `format` — path
+- **Signature**: `def cfb_v3_scores_team_profiles_all(*, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None)`
+- **Params**: `format_` — path `format`
 - **Returns (parsed)**: `list[Team4]`
 - **Returns (raw)**: `ApiResult[list[Team4], CfbV3ScoresTeamProfilesAllErrorBody]`
 - **Error**: `CfbV3ScoresTeamProfilesAllErrorBody` — **Case A (typed)**
@@ -444,9 +434,9 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /v3/cfb/scores/{format}/TeamSeasonStats/{season}`
 - **Auth**: `api_key_header` OR `api_key_query`
-- **Signature**: `def cfb_v3_scores_team_season_stats_standings(format: FormatOrStr, season: str, *, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `format`, `season`
-- **Params**: `format` — path · `season` — path
+- **Signature**: `def cfb_v3_scores_team_season_stats_standings(season: str, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None)`
+  - required, positional: `season`
+- **Params**: `format_` — path `format` · `season` — path
 - **Returns (parsed)**: `list[TeamSeason4]`
 - **Returns (raw)**: `ApiResult[list[TeamSeason4], CfbV3ScoresTeamSeasonStatsStandingsErrorBody]`
 - **Error**: `CfbV3ScoresTeamSeasonStatsStandingsErrorBody` — **Case A (typed)**
@@ -463,9 +453,8 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /v3/cfb/scores/{format}/TeamsBasic`
 - **Auth**: `api_key_header` OR `api_key_query`
-- **Signature**: `def cfb_v3_scores_teams_basic_all(format: FormatOrStr, *, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `format`
-- **Params**: `format` — path
+- **Signature**: `def cfb_v3_scores_teams_basic_all(*, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None)`
+- **Params**: `format_` — path `format`
 - **Returns (parsed)**: `list[TeamBasic1]`
 - **Returns (raw)**: `ApiResult[list[TeamBasic1], CfbV3ScoresTeamsBasicAllErrorBody]`
 - **Error**: `CfbV3ScoresTeamsBasicAllErrorBody` — **Case A (typed)**
@@ -482,9 +471,8 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /v3/cfb/scores/{format}/CurrentWeek`
 - **Auth**: `api_key_header` OR `api_key_query`
-- **Signature**: `def cfb_v3_scores_week_current(format: FormatOrStr, *, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `format`
-- **Params**: `format` — path
+- **Signature**: `def cfb_v3_scores_week_current(*, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None)`
+- **Params**: `format_` — path `format`
 - **Returns (parsed)**: `int | None`
 - **Returns (raw)**: `ApiResult[int | None, CfbV3ScoresWeekCurrentErrorBody]`
 - **Error**: `CfbV3ScoresWeekCurrentErrorBody` — **Case A (typed)**

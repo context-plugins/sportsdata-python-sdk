@@ -87,4 +87,4 @@ class GameOddResult4Dict(TypedDict):
     sportsbook_id: NotRequired[int | None]
     sportsbook_url: NotRequired[str | None]
     odd_type: NotRequired[str | None]
-    game_odd_outcome_results: NotRequired[list[GameOddOutcome | GameOddOutcomeDict]]
+    game_odd_outcome_results: NotRequired[list[GameOddOutcomeDict]]

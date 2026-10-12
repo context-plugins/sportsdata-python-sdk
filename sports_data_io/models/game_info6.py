@@ -76,7 +76,7 @@ class GameInfo6Dict(TypedDict):
     global_game_id: NotRequired[int]
     global_away_team_id: NotRequired[int | None]
     global_home_team_id: NotRequired[int | None]
-    pregame_odds: NotRequired[list[GameOdd3 | GameOdd3Dict]]
+    pregame_odds: NotRequired[list[GameOdd3Dict]]
     home_team_score: NotRequired[int | None]
     away_team_score: NotRequired[int | None]
     total_score: NotRequired[int | None]

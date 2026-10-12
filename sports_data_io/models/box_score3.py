@@ -29,8 +29,8 @@ class BoxScore3(SdkBaseModel):
 
 
 class BoxScore3Dict(TypedDict):
-    game: NotRequired[Game33 | Game33Dict]
-    periods: NotRequired[list[Period1 | Period1Dict]]
-    player_games: NotRequired[list[PlayerGame4 | PlayerGame4Dict]]
-    team_games: NotRequired[list[TeamGame4 | TeamGame4Dict]]
-    scoring_plays: NotRequired[list[ScoringPlay3 | ScoringPlay3Dict]]
+    game: NotRequired[Game33Dict]
+    periods: NotRequired[list[Period1Dict]]
+    player_games: NotRequired[list[PlayerGame4Dict]]
+    team_games: NotRequired[list[TeamGame4Dict]]
+    scoring_plays: NotRequired[list[ScoringPlay3Dict]]

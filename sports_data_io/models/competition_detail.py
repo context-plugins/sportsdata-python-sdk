@@ -49,9 +49,9 @@ class CompetitionDetail(SdkBaseModel):
 
 
 class CompetitionDetailDict(TypedDict):
-    current_season: NotRequired[Season11 | Season11Dict]
-    teams: NotRequired[list[TeamDetail | TeamDetailDict]]
-    games: NotRequired[list[Game17 | Game17Dict]]
+    current_season: NotRequired[Season11Dict]
+    teams: NotRequired[list[TeamDetailDict]]
+    games: NotRequired[list[Game17Dict]]
     competition_id: NotRequired[int]
     area_id: NotRequired[int]
     area_name: NotRequired[str | None]
@@ -59,5 +59,5 @@ class CompetitionDetailDict(TypedDict):
     gender: NotRequired[str | None]
     type_: NotRequired[str | None]
     format: NotRequired[str | None]
-    seasons: NotRequired[list[Season6 | Season6Dict]]
+    seasons: NotRequired[list[Season6Dict]]
     key: NotRequired[str | None]

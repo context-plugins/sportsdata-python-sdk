@@ -10,9 +10,8 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /golf/v2/{format}/Courses`
 - **Auth**: `api_key_header` OR `api_key_query`
-- **Signature**: `def golf_v2_courses_courses(format: FormatOrStr, *, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `format`
-- **Params**: `format` — path
+- **Signature**: `def golf_v2_courses_courses(*, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None)`
+- **Params**: `format_` — path `format`
 - **Returns (parsed)**: `list[Courses]`
 - **Returns (raw)**: `ApiResult[list[Courses], GolfV2CoursesCoursesErrorBody]`
 - **Error**: `GolfV2CoursesCoursesErrorBody` — **Case A (typed)**
@@ -29,9 +28,8 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /golf/v2/{format}/CurrentSeason`
 - **Auth**: `api_key_header` OR `api_key_query`
-- **Signature**: `def golf_v2_currentseason_season_current(format: FormatOrStr, *, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `format`
-- **Params**: `format` — path
+- **Signature**: `def golf_v2_currentseason_season_current(*, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None)`
+- **Params**: `format_` — path `format`
 - **Returns (parsed)**: `Season7`
 - **Returns (raw)**: `ApiResult[Season7, GolfV2CurrentseasonSeasonCurrentErrorBody]`
 - **Error**: `GolfV2CurrentseasonSeasonCurrentErrorBody` — **Case A (typed)**
@@ -48,9 +46,9 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /golf/v2/{format}/DfsSlateOwnershipProjectionsBySlateID/{slateId}`
 - **Auth**: `api_key_header` OR `api_key_query`
-- **Signature**: `def golf_v2_dfsslateownershipprojectionsbyslateid_dfs_slate_ownership_projections_by_slate(format: FormatOrStr, slate_id: int, *, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `format`, `slate_id`
-- **Params**: `format` — path · `slate_id` — path `slateId`
+- **Signature**: `def golf_v2_dfsslateownershipprojectionsbyslateid_dfs_slate_ownership_projections_by_slate(slate_id: int, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None)`
+  - required, positional: `slate_id`
+- **Params**: `format_` — path `format` · `slate_id` — path `slateId`
 - **Returns (parsed)**: `DfsSlateWithOwnershipProjection`
 - **Returns (raw)**: `ApiResult[DfsSlateWithOwnershipProjection, GolfV2DfsslateownershipprojectionsbyslateidDfsSlateOwnershipProjectionsBySlateErrorBody]`
 - **Error**: `GolfV2DfsslateownershipprojectionsbyslateidDfsSlateOwnershipProjectionsBySlateErrorBody` — **Case A (typed)**
@@ -67,9 +65,9 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /golf/v2/{format}/DfsSlatesByTournament/{tournamentid}`
 - **Auth**: `api_key_header` OR `api_key_query`
-- **Signature**: `def golf_v2_dfsslatesbytournament_dfs_slates_by_tournament(format: FormatOrStr, tournamentid: str, *, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `format`, `tournamentid`
-- **Params**: `format` — path · `tournamentid` — path
+- **Signature**: `def golf_v2_dfsslatesbytournament_dfs_slates_by_tournament(tournamentid: str, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None)`
+  - required, positional: `tournamentid`
+- **Params**: `format_` — path `format` · `tournamentid` — path
 - **Returns (parsed)**: `list[DfsSlate2]`
 - **Returns (raw)**: `ApiResult[list[DfsSlate2], GolfV2DfsslatesbytournamentDfsSlatesByTournamentErrorBody]`
 - **Error**: `GolfV2DfsslatesbytournamentDfsSlatesByTournamentErrorBody` — **Case A (typed)**
@@ -86,9 +84,9 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /golf/v2/{format}/FantasyGameStatsByTournament/{tournamentid}`
 - **Auth**: `api_key_header` OR `api_key_query`
-- **Signature**: `def golf_v2_fantasygamestatsbytournament_fantasy_points_by_tournament(format: FormatOrStr, tournamentid: str, *, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `format`, `tournamentid`
-- **Params**: `format` — path · `tournamentid` — path
+- **Signature**: `def golf_v2_fantasygamestatsbytournament_fantasy_points_by_tournament(tournamentid: str, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None)`
+  - required, positional: `tournamentid`
+- **Params**: `format_` — path `format` · `tournamentid` — path
 - **Returns (parsed)**: `FantasyTournament`
 - **Returns (raw)**: `ApiResult[FantasyTournament, GolfV2FantasygamestatsbytournamentFantasyPointsByTournamentErrorBody]`
 - **Error**: `GolfV2FantasygamestatsbytournamentFantasyPointsByTournamentErrorBody` — **Case A (typed)**
@@ -105,9 +103,9 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /golf/v2/{format}/Leaderboard/{tournamentid}`
 - **Auth**: `api_key_header` OR `api_key_query`
-- **Signature**: `def golf_v2_leaderboard_leaderboard_live_final(format: FormatOrStr, tournamentid: str, *, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `format`, `tournamentid`
-- **Params**: `format` — path · `tournamentid` — path
+- **Signature**: `def golf_v2_leaderboard_leaderboard_live_final(tournamentid: str, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None)`
+  - required, positional: `tournamentid`
+- **Params**: `format_` — path `format` · `tournamentid` — path
 - **Returns (parsed)**: `Leaderboard`
 - **Returns (raw)**: `ApiResult[Leaderboard, GolfV2LeaderboardLeaderboardLiveFinalErrorBody]`
 - **Error**: `GolfV2LeaderboardLeaderboardLiveFinalErrorBody` — **Case A (typed)**
@@ -124,9 +122,9 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /golf/v2/{format}/LeaderboardBasic/{tournamentid}`
 - **Auth**: `api_key_header` OR `api_key_query`
-- **Signature**: `def golf_v2_leaderboardbasic_leaderboard_basic(format: FormatOrStr, tournamentid: str, *, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `format`, `tournamentid`
-- **Params**: `format` — path · `tournamentid` — path
+- **Signature**: `def golf_v2_leaderboardbasic_leaderboard_basic(tournamentid: str, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None)`
+  - required, positional: `tournamentid`
+- **Params**: `format_` — path `format` · `tournamentid` — path
 - **Returns (parsed)**: `LeaderboardBasic`
 - **Returns (raw)**: `ApiResult[LeaderboardBasic, GolfV2LeaderboardbasicLeaderboardBasicErrorBody]`
 - **Error**: `GolfV2LeaderboardbasicLeaderboardBasicErrorBody` — **Case A (typed)**
@@ -143,9 +141,9 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /golf/v2/{format}/LeaderboardBasicFinal/{tournamentid}`
 - **Auth**: `api_key_header` OR `api_key_query`
-- **Signature**: `def golf_v2_leaderboardbasicfinal_leaderboard_basic_final(format: FormatOrStr, tournamentid: str, *, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `format`, `tournamentid`
-- **Params**: `format` — path · `tournamentid` — path
+- **Signature**: `def golf_v2_leaderboardbasicfinal_leaderboard_basic_final(tournamentid: str, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None)`
+  - required, positional: `tournamentid`
+- **Params**: `format_` — path `format` · `tournamentid` — path
 - **Returns (parsed)**: `LeaderboardBasic`
 - **Returns (raw)**: `ApiResult[LeaderboardBasic, GolfV2LeaderboardbasicfinalLeaderboardBasicFinalErrorBody]`
 - **Error**: `GolfV2LeaderboardbasicfinalLeaderboardBasicFinalErrorBody` — **Case A (typed)**
@@ -162,9 +160,9 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /golf/v2/{format}/LeaderboardFinal/{tournamentid}`
 - **Auth**: `api_key_header` OR `api_key_query`
-- **Signature**: `def golf_v2_leaderboardfinal_leaderboard_final(format: FormatOrStr, tournamentid: str, *, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `format`, `tournamentid`
-- **Params**: `format` — path · `tournamentid` — path
+- **Signature**: `def golf_v2_leaderboardfinal_leaderboard_final(tournamentid: str, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None)`
+  - required, positional: `tournamentid`
+- **Params**: `format_` — path `format` · `tournamentid` — path
 - **Returns (parsed)**: `Leaderboard`
 - **Returns (raw)**: `ApiResult[Leaderboard, GolfV2LeaderboardfinalLeaderboardFinalErrorBody]`
 - **Error**: `GolfV2LeaderboardfinalLeaderboardFinalErrorBody` — **Case A (typed)**
@@ -181,9 +179,8 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /golf/v2/{format}/News`
 - **Auth**: `api_key_header` OR `api_key_query`
-- **Signature**: `def golf_v2_news_news(format: FormatOrStr, *, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `format`
-- **Params**: `format` — path
+- **Signature**: `def golf_v2_news_news(*, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None)`
+- **Params**: `format_` — path `format`
 - **Returns (parsed)**: `list[News2]`
 - **Returns (raw)**: `ApiResult[list[News2], GolfV2NewsNewsErrorBody]`
 - **Error**: `GolfV2NewsNewsErrorBody` — **Case A (typed)**
@@ -200,9 +197,9 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /golf/v2/{format}/NewsByDate/{date}`
 - **Auth**: `api_key_header` OR `api_key_query`
-- **Signature**: `def golf_v2_newsbydate_news_by_date(format: FormatOrStr, date: str, *, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `format`, `date`
-- **Params**: `format` — path · `date` — path
+- **Signature**: `def golf_v2_newsbydate_news_by_date(date: str, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None)`
+  - required, positional: `date`
+- **Params**: `format_` — path `format` · `date` — path
 - **Returns (parsed)**: `list[News2]`
 - **Returns (raw)**: `ApiResult[list[News2], GolfV2NewsbydateNewsByDateErrorBody]`
 - **Error**: `GolfV2NewsbydateNewsByDateErrorBody` — **Case A (typed)**
@@ -219,9 +216,9 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /golf/v2/{format}/Player/{playerid}`
 - **Auth**: `api_key_header` OR `api_key_query`
-- **Signature**: `def golf_v2_player_player(format: FormatOrStr, playerid: str, *, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `format`, `playerid`
-- **Params**: `format` — path · `playerid` — path
+- **Signature**: `def golf_v2_player_player(playerid: str, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None)`
+  - required, positional: `playerid`
+- **Params**: `format_` — path `format` · `playerid` — path
 - **Returns (parsed)**: `Player8`
 - **Returns (raw)**: `ApiResult[Player8, GolfV2PlayerPlayerErrorBody]`
 - **Error**: `GolfV2PlayerPlayerErrorBody` — **Case A (typed)**
@@ -238,9 +235,8 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /golf/v2/{format}/Players`
 - **Auth**: `api_key_header` OR `api_key_query`
-- **Signature**: `def golf_v2_players_player_profiles_all(format: FormatOrStr, *, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `format`
-- **Params**: `format` — path
+- **Signature**: `def golf_v2_players_player_profiles_all(*, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None)`
+- **Params**: `format_` — path `format`
 - **Returns (parsed)**: `list[Player8]`
 - **Returns (raw)**: `ApiResult[list[Player8], GolfV2PlayersPlayerProfilesAllErrorBody]`
 - **Error**: `GolfV2PlayersPlayerProfilesAllErrorBody` — **Case A (typed)**
@@ -257,9 +253,9 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /golf/v2/{format}/PlayerSeasonStats/{season}`
 - **Auth**: `api_key_header` OR `api_key_query`
-- **Signature**: `def golf_v2_playerseasonstats_player_season_stats(format: FormatOrStr, season: str, *, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `format`, `season`
-- **Params**: `format` — path · `season` — path
+- **Signature**: `def golf_v2_playerseasonstats_player_season_stats(season: str, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None)`
+  - required, positional: `season`
+- **Params**: `format_` — path `format` · `season` — path
 - **Returns (parsed)**: `list[PlayerSeason9]`
 - **Returns (raw)**: `ApiResult[list[PlayerSeason9], GolfV2PlayerseasonstatsPlayerSeasonStatsErrorBody]`
 - **Error**: `GolfV2PlayerseasonstatsPlayerSeasonStatsErrorBody` — **Case A (typed)**
@@ -276,9 +272,9 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /golf/v2/{format}/PlayerTournamentHoleScores/{tournamentid}`
 - **Auth**: `api_key_header` OR `api_key_query`
-- **Signature**: `def golf_v2_playertournamentholescores_player_hole_scores_by_tournament_live_final(format: FormatOrStr, tournamentid: str, *, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `format`, `tournamentid`
-- **Params**: `format` — path · `tournamentid` — path
+- **Signature**: `def golf_v2_playertournamentholescores_player_hole_scores_by_tournament_live_final(tournamentid: str, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None)`
+  - required, positional: `tournamentid`
+- **Params**: `format_` — path `format` · `tournamentid` — path
 - **Returns (parsed)**: `list[PlayerTournamentBasic]`
 - **Returns (raw)**: `ApiResult[list[PlayerTournamentBasic], GolfV2PlayertournamentholescoresPlayerHoleScoresByTournamentLiveFinalErrorBody]`
 - **Error**: `GolfV2PlayertournamentholescoresPlayerHoleScoresByTournamentLiveFinalErrorBody` — **Case A (typed)**
@@ -295,9 +291,9 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /golf/v2/{format}/PlayerTournamentHoleScoresFinal/{tournamentid}`
 - **Auth**: `api_key_header` OR `api_key_query`
-- **Signature**: `def golf_v2_playertournamentholescoresfinal_player_hole_scores_by_tournament_final(format: FormatOrStr, tournamentid: str, *, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `format`, `tournamentid`
-- **Params**: `format` — path · `tournamentid` — path
+- **Signature**: `def golf_v2_playertournamentholescoresfinal_player_hole_scores_by_tournament_final(tournamentid: str, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None)`
+  - required, positional: `tournamentid`
+- **Params**: `format_` — path `format` · `tournamentid` — path
 - **Returns (parsed)**: `list[PlayerTournamentBasic]`
 - **Returns (raw)**: `ApiResult[list[PlayerTournamentBasic], GolfV2PlayertournamentholescoresfinalPlayerHoleScoresByTournamentFinalErrorBody]`
 - **Error**: `GolfV2PlayertournamentholescoresfinalPlayerHoleScoresByTournamentFinalErrorBody` — **Case A (typed)**
@@ -314,9 +310,9 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /golf/v2/{format}/PlayerTournamentProjectionStats/{tournamentid}`
 - **Auth**: `api_key_header` OR `api_key_query`
-- **Signature**: `def golf_v2_playertournamentprojectionstats_player_projected_stats_by_tournament(format: FormatOrStr, tournamentid: str, *, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `format`, `tournamentid`
-- **Params**: `format` — path · `tournamentid` — path
+- **Signature**: `def golf_v2_playertournamentprojectionstats_player_projected_stats_by_tournament(tournamentid: str, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None)`
+  - required, positional: `tournamentid`
+- **Params**: `format_` — path `format` · `tournamentid` — path
 - **Returns (parsed)**: `list[PlayerTournamentProjection]`
 - **Returns (raw)**: `ApiResult[list[PlayerTournamentProjection], GolfV2PlayertournamentprojectionstatsPlayerProjectedStatsByTournamentErrorBody]`
 - **Error**: `GolfV2PlayertournamentprojectionstatsPlayerProjectedStatsByTournamentErrorBody` — **Case A (typed)**
@@ -333,9 +329,9 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /golf/v2/{format}/PlayerTournamentRoundScores/{tournamentid}`
 - **Auth**: `api_key_header` OR `api_key_query`
-- **Signature**: `def golf_v2_playertournamentroundscores_scores_by_tournament_live_final(format: FormatOrStr, tournamentid: str, *, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `format`, `tournamentid`
-- **Params**: `format` — path · `tournamentid` — path
+- **Signature**: `def golf_v2_playertournamentroundscores_scores_by_tournament_live_final(tournamentid: str, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None)`
+  - required, positional: `tournamentid`
+- **Params**: `format_` — path `format` · `tournamentid` — path
 - **Returns (parsed)**: `list[TournamentRound]`
 - **Returns (raw)**: `ApiResult[list[TournamentRound], GolfV2PlayertournamentroundscoresScoresByTournamentLiveFinalErrorBody]`
 - **Error**: `GolfV2PlayertournamentroundscoresScoresByTournamentLiveFinalErrorBody` — **Case A (typed)**
@@ -352,9 +348,9 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /golf/v2/{format}/PlayerTournamentRoundScoresFinal/{tournamentid}`
 - **Auth**: `api_key_header` OR `api_key_query`
-- **Signature**: `def golf_v2_playertournamentroundscoresfinal_scores_by_tournament_final(format: FormatOrStr, tournamentid: str, *, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `format`, `tournamentid`
-- **Params**: `format` — path · `tournamentid` — path
+- **Signature**: `def golf_v2_playertournamentroundscoresfinal_scores_by_tournament_final(tournamentid: str, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None)`
+  - required, positional: `tournamentid`
+- **Params**: `format_` — path `format` · `tournamentid` — path
 - **Returns (parsed)**: `list[TournamentRound]`
 - **Returns (raw)**: `ApiResult[list[TournamentRound], GolfV2PlayertournamentroundscoresfinalScoresByTournamentFinalErrorBody]`
 - **Error**: `GolfV2PlayertournamentroundscoresfinalScoresByTournamentFinalErrorBody` — **Case A (typed)**
@@ -371,9 +367,9 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /golf/v2/{format}/Rankings/{season}`
 - **Auth**: `api_key_header` OR `api_key_query`
-- **Signature**: `def golf_v2_rankings_rankings(format: FormatOrStr, season: str, *, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `format`, `season`
-- **Params**: `format` — path · `season` — path
+- **Signature**: `def golf_v2_rankings_rankings(season: str, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None)`
+  - required, positional: `season`
+- **Params**: `format_` — path `format` · `season` — path
 - **Returns (parsed)**: `list[PlayerSeason9]`
 - **Returns (raw)**: `ApiResult[list[PlayerSeason9], GolfV2RankingsRankingsErrorBody]`
 - **Error**: `GolfV2RankingsRankingsErrorBody` — **Case A (typed)**
@@ -390,9 +386,9 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /golf/v2/{format}/Tournaments/{season}`
 - **Auth**: `api_key_header` OR `api_key_query`
-- **Signature**: `def golf_v2_tournaments_schedule_by_season(format: FormatOrStr, season: str, *, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `format`, `season`
-- **Params**: `format` — path · `season` — path
+- **Signature**: `def golf_v2_tournaments_schedule_by_season(season: str, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None)`
+  - required, positional: `season`
+- **Params**: `format_` — path `format` · `season` — path
 - **Returns (parsed)**: `list[Tournament1]`
 - **Returns (raw)**: `ApiResult[list[Tournament1], GolfV2TournamentsScheduleBySeasonErrorBody]`
 - **Error**: `GolfV2TournamentsScheduleBySeasonErrorBody` — **Case A (typed)**
@@ -409,9 +405,8 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /golf/v2/{format}/Tournaments`
 - **Auth**: `api_key_header` OR `api_key_query`
-- **Signature**: `def golf_v2_tournaments_schedules(format: FormatOrStr, *, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `format`
-- **Params**: `format` — path
+- **Signature**: `def golf_v2_tournaments_schedules(*, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None)`
+- **Params**: `format_` — path `format`
 - **Returns (parsed)**: `list[Tournament1]`
 - **Returns (raw)**: `ApiResult[list[Tournament1], GolfV2TournamentsSchedulesErrorBody]`
 - **Error**: `GolfV2TournamentsSchedulesErrorBody` — **Case A (typed)**
@@ -428,9 +423,8 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /golf/v2/{format}/UpcomingDfsSlateOwnershipProjections`
 - **Auth**: `api_key_header` OR `api_key_query`
-- **Signature**: `def golf_v2_upcomingdfsslateownershipprojections_dfs_slate_ownership_projections_upcoming(format: FormatOrStr, *, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `format`
-- **Params**: `format` — path
+- **Signature**: `def golf_v2_upcomingdfsslateownershipprojections_dfs_slate_ownership_projections_upcoming(*, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None)`
+- **Params**: `format_` — path `format`
 - **Returns (parsed)**: `list[DfsSlateWithOwnershipProjection]`
 - **Returns (raw)**: `ApiResult[list[DfsSlateWithOwnershipProjection], GolfV2UpcomingdfsslateownershipprojectionsDfsSlateOwnershipProjectionsUpcomingErrorBody]`
 - **Error**: `GolfV2UpcomingdfsslateownershipprojectionsDfsSlateOwnershipProjectionsUpcomingErrorBody` — **Case A (typed)**

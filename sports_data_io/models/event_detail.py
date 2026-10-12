@@ -41,7 +41,7 @@ class EventDetail(SdkBaseModel):
 
 
 class EventDetailDict(TypedDict):
-    fights: NotRequired[list[Fight | FightDict]]
+    fights: NotRequired[list[FightDict]]
     event_id: NotRequired[int]
     league_id: NotRequired[int]
     name: NotRequired[str | None]

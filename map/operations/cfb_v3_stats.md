@@ -10,9 +10,9 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /v3/cfb/stats/{format}/BoxScoreFinal/{gameid}`
 - **Auth**: `api_key_header` OR `api_key_query`
-- **Signature**: `def cfb_v3_stats_box_score_final(format: FormatOrStr, gameid: str, *, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `format`, `gameid`
-- **Params**: `format` — path · `gameid` — path
+- **Signature**: `def cfb_v3_stats_box_score_final(gameid: str, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None)`
+  - required, positional: `gameid`
+- **Params**: `format_` — path `format` · `gameid` — path
 - **Returns (parsed)**: `list[BoxScore3]`
 - **Returns (raw)**: `ApiResult[list[BoxScore3], CfbV3StatsBoxScoreFinalErrorBody]`
 - **Error**: `CfbV3StatsBoxScoreFinalErrorBody` — **Case A (typed)**
@@ -29,9 +29,9 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /v3/cfb/stats/{format}/BoxScore/{gameid}`
 - **Auth**: `api_key_header` OR `api_key_query`
-- **Signature**: `def cfb_v3_stats_box_score_live_final(format: FormatOrStr, gameid: str, *, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `format`, `gameid`
-- **Params**: `format` — path · `gameid` — path
+- **Signature**: `def cfb_v3_stats_box_score_live_final(gameid: str, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None)`
+  - required, positional: `gameid`
+- **Params**: `format_` — path `format` · `gameid` — path
 - **Returns (parsed)**: `list[BoxScore3]`
 - **Returns (raw)**: `ApiResult[list[BoxScore3], CfbV3StatsBoxScoreLiveFinalErrorBody]`
 - **Error**: `CfbV3StatsBoxScoreLiveFinalErrorBody` — **Case A (typed)**
@@ -48,9 +48,9 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /v3/cfb/stats/{format}/BoxScoresFinal/{date}`
 - **Auth**: `api_key_header` OR `api_key_query`
-- **Signature**: `def cfb_v3_stats_box_scores_by_date_final(format: FormatOrStr, date: str, *, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `format`, `date`
-- **Params**: `format` — path · `date` — path
+- **Signature**: `def cfb_v3_stats_box_scores_by_date_final(date: str, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None)`
+  - required, positional: `date`
+- **Params**: `format_` — path `format` · `date` — path
 - **Returns (parsed)**: `list[BoxScore3]`
 - **Returns (raw)**: `ApiResult[list[BoxScore3], CfbV3StatsBoxScoresByDateFinalErrorBody]`
 - **Error**: `CfbV3StatsBoxScoresByDateFinalErrorBody` — **Case A (typed)**
@@ -67,9 +67,9 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /v3/cfb/stats/{format}/BoxScoresByDate/{date}`
 - **Auth**: `api_key_header` OR `api_key_query`
-- **Signature**: `def cfb_v3_stats_box_scores_by_date_live_final(format: FormatOrStr, date: str, *, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `format`, `date`
-- **Params**: `format` — path · `date` — path
+- **Signature**: `def cfb_v3_stats_box_scores_by_date_live_final(date: str, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None)`
+  - required, positional: `date`
+- **Params**: `format_` — path `format` · `date` — path
 - **Returns (parsed)**: `list[BoxScore3]`
 - **Returns (raw)**: `ApiResult[list[BoxScore3], CfbV3StatsBoxScoresByDateLiveFinalErrorBody]`
 - **Error**: `CfbV3StatsBoxScoresByDateLiveFinalErrorBody` — **Case A (typed)**
@@ -86,9 +86,9 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /v3/cfb/stats/{format}/BoxScoresByWeekFinal/{season}/{week}`
 - **Auth**: `api_key_header` OR `api_key_query`
-- **Signature**: `def cfb_v3_stats_box_scores_by_week_final(format: FormatOrStr, season: str, week: str, *, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `format`, `season`, `week`
-- **Params**: `format` — path · `season` — path · `week` — path
+- **Signature**: `def cfb_v3_stats_box_scores_by_week_final(season: str, week: str, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None)`
+  - required, positional: `season`, `week`
+- **Params**: `format_` — path `format` · `season` — path · `week` — path
 - **Returns (parsed)**: `list[BoxScore3]`
 - **Returns (raw)**: `ApiResult[list[BoxScore3], CfbV3StatsBoxScoresByWeekFinalErrorBody]`
 - **Error**: `CfbV3StatsBoxScoresByWeekFinalErrorBody` — **Case A (typed)**
@@ -105,9 +105,9 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /v3/cfb/stats/{format}/BoxScoresByWeek/{season}/{week}`
 - **Auth**: `api_key_header` OR `api_key_query`
-- **Signature**: `def cfb_v3_stats_box_scores_by_week_live_final(format: FormatOrStr, season: str, week: str, *, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `format`, `season`, `week`
-- **Params**: `format` — path · `season` — path · `week` — path
+- **Signature**: `def cfb_v3_stats_box_scores_by_week_live_final(season: str, week: str, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None)`
+  - required, positional: `season`, `week`
+- **Params**: `format_` — path `format` · `season` — path · `week` — path
 - **Returns (parsed)**: `list[BoxScore3]`
 - **Returns (raw)**: `ApiResult[list[BoxScore3], CfbV3StatsBoxScoresByWeekLiveFinalErrorBody]`
 - **Error**: `CfbV3StatsBoxScoresByWeekLiveFinalErrorBody` — **Case A (typed)**
@@ -124,9 +124,9 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /v3/cfb/stats/{format}/BoxScoresByWeekDelta/{season}/{week}/{minutes}`
 - **Auth**: `api_key_header` OR `api_key_query`
-- **Signature**: `def cfb_v3_stats_box_scores_delta_by_week(format: FormatOrStr, season: str, week: str, minutes: str, *, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `format`, `season`, `week`, `minutes`
-- **Params**: `format` — path · `season` — path · `week` — path · `minutes` — path
+- **Signature**: `def cfb_v3_stats_box_scores_delta_by_week(season: str, week: str, minutes: str, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None)`
+  - required, positional: `season`, `week`, `minutes`
+- **Params**: `format_` — path `format` · `season` — path · `week` — path · `minutes` — path
 - **Returns (parsed)**: `list[BoxScore3]`
 - **Returns (raw)**: `ApiResult[list[BoxScore3], CfbV3StatsBoxScoresDeltaByWeekErrorBody]`
 - **Error**: `CfbV3StatsBoxScoresDeltaByWeekErrorBody` — **Case A (typed)**
@@ -143,9 +143,9 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /v3/cfb/stats/{format}/PlayerGameStatsBySeason/{season}/{playerid}/{numberofgames}`
 - **Auth**: `api_key_header` OR `api_key_query`
-- **Signature**: `def cfb_v3_stats_player_game_logs_by_season(format: FormatOrStr, season: str, playerid: str, numberofgames: str, *, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `format`, `season`, `playerid`, `numberofgames`
-- **Params**: `format` — path · `season` — path · `playerid` — path · `numberofgames` — path
+- **Signature**: `def cfb_v3_stats_player_game_logs_by_season(season: str, playerid: str, numberofgames: str, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None)`
+  - required, positional: `season`, `playerid`, `numberofgames`
+- **Params**: `format_` — path `format` · `season` — path · `playerid` — path · `numberofgames` — path
 - **Returns (parsed)**: `list[PlayerGame4]`
 - **Returns (raw)**: `ApiResult[list[PlayerGame4], CfbV3StatsPlayerGameLogsBySeasonErrorBody]`
 - **Error**: `CfbV3StatsPlayerGameLogsBySeasonErrorBody` — **Case A (typed)**
@@ -162,9 +162,9 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /v3/cfb/stats/{format}/PlayerGameStatsByWeekFinal/{season}/{week}`
 - **Auth**: `api_key_header` OR `api_key_query`
-- **Signature**: `def cfb_v3_stats_player_game_stats_by_week_final(format: FormatOrStr, season: str, week: str, *, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `format`, `season`, `week`
-- **Params**: `format` — path · `season` — path · `week` — path
+- **Signature**: `def cfb_v3_stats_player_game_stats_by_week_final(season: str, week: str, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None)`
+  - required, positional: `season`, `week`
+- **Params**: `format_` — path `format` · `season` — path · `week` — path
 - **Returns (parsed)**: `list[PlayerGame4]`
 - **Returns (raw)**: `ApiResult[list[PlayerGame4], CfbV3StatsPlayerGameStatsByWeekFinalErrorBody]`
 - **Error**: `CfbV3StatsPlayerGameStatsByWeekFinalErrorBody` — **Case A (typed)**
@@ -181,9 +181,9 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /v3/cfb/stats/{format}/PlayerGameStatsByWeek/{season}/{week}`
 - **Auth**: `api_key_header` OR `api_key_query`
-- **Signature**: `def cfb_v3_stats_player_game_stats_by_week_live_final(format: FormatOrStr, season: str, week: str, *, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `format`, `season`, `week`
-- **Params**: `format` — path · `season` — path · `week` — path
+- **Signature**: `def cfb_v3_stats_player_game_stats_by_week_live_final(season: str, week: str, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None)`
+  - required, positional: `season`, `week`
+- **Params**: `format_` — path `format` · `season` — path · `week` — path
 - **Returns (parsed)**: `list[PlayerGame4]`
 - **Returns (raw)**: `ApiResult[list[PlayerGame4], CfbV3StatsPlayerGameStatsByWeekLiveFinalErrorBody]`
 - **Error**: `CfbV3StatsPlayerGameStatsByWeekLiveFinalErrorBody` — **Case A (typed)**
@@ -200,9 +200,9 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /v3/cfb/stats/{format}/PlayerSeasonStats/{season}`
 - **Auth**: `api_key_header` OR `api_key_query`
-- **Signature**: `def cfb_v3_stats_player_season_stats(format: FormatOrStr, season: str, *, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `format`, `season`
-- **Params**: `format` — path · `season` — path
+- **Signature**: `def cfb_v3_stats_player_season_stats(season: str, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None)`
+  - required, positional: `season`
+- **Params**: `format_` — path `format` · `season` — path
 - **Returns (parsed)**: `list[PlayerSeason5]`
 - **Returns (raw)**: `ApiResult[list[PlayerSeason5], CfbV3StatsPlayerSeasonStatsErrorBody]`
 - **Error**: `CfbV3StatsPlayerSeasonStatsErrorBody` — **Case A (typed)**
@@ -219,9 +219,9 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /v3/cfb/stats/{format}/PlayerSeasonStatsByTeam/{season}/{team}`
 - **Auth**: `api_key_header` OR `api_key_query`
-- **Signature**: `def cfb_v3_stats_player_season_stats_by_team(format: FormatOrStr, season: str, team: str, *, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `format`, `season`, `team`
-- **Params**: `format` — path · `season` — path · `team` — path
+- **Signature**: `def cfb_v3_stats_player_season_stats_by_team(season: str, team: str, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None)`
+  - required, positional: `season`, `team`
+- **Params**: `format_` — path `format` · `season` — path · `team` — path
 - **Returns (parsed)**: `list[PlayerSeason5]`
 - **Returns (raw)**: `ApiResult[list[PlayerSeason5], CfbV3StatsPlayerSeasonStatsByTeamErrorBody]`
 - **Error**: `CfbV3StatsPlayerSeasonStatsByTeamErrorBody` — **Case A (typed)**
@@ -238,9 +238,9 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /v3/cfb/stats/{format}/TeamGameStatsByWeekFinal/{season}/{week}`
 - **Auth**: `api_key_header` OR `api_key_query`
-- **Signature**: `def cfb_v3_stats_team_game_stats_by_week_final(format: FormatOrStr, season: str, week: str, *, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `format`, `season`, `week`
-- **Params**: `format` — path · `season` — path · `week` — path
+- **Signature**: `def cfb_v3_stats_team_game_stats_by_week_final(season: str, week: str, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None)`
+  - required, positional: `season`, `week`
+- **Params**: `format_` — path `format` · `season` — path · `week` — path
 - **Returns (parsed)**: `list[TeamGame4]`
 - **Returns (raw)**: `ApiResult[list[TeamGame4], CfbV3StatsTeamGameStatsByWeekFinalErrorBody]`
 - **Error**: `CfbV3StatsTeamGameStatsByWeekFinalErrorBody` — **Case A (typed)**

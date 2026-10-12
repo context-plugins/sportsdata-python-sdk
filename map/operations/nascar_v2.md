@@ -10,9 +10,9 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /nascar/v2/{format}/driver/{driverid}`
 - **Auth**: `api_key_header` OR `api_key_query`
-- **Signature**: `def nascar_v2_driver_driver_profiles_by_driver(format: FormatOrStr, driverid: str, *, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `format`, `driverid`
-- **Params**: `format` — path · `driverid` — path
+- **Signature**: `def nascar_v2_driver_driver_profiles_by_driver(driverid: str, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None)`
+  - required, positional: `driverid`
+- **Params**: `format_` — path `format` · `driverid` — path
 - **Returns (parsed)**: `Driver`
 - **Returns (raw)**: `ApiResult[Driver, NascarV2DriverDriverProfilesByDriverErrorBody]`
 - **Error**: `NascarV2DriverDriverProfilesByDriverErrorBody` — **Case A (typed)**
@@ -29,9 +29,9 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /nascar/v2/{format}/DriverRaceProjections/{raceid}`
 - **Auth**: `api_key_header` OR `api_key_query`
-- **Signature**: `def nascar_v2_driverraceprojections_projected_player_race_stats_by_race(format: FormatOrStr, raceid: str, *, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `format`, `raceid`
-- **Params**: `format` — path · `raceid` — path
+- **Signature**: `def nascar_v2_driverraceprojections_projected_player_race_stats_by_race(raceid: str, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None)`
+  - required, positional: `raceid`
+- **Params**: `format_` — path `format` · `raceid` — path
 - **Returns (parsed)**: `list[DriverRaceProjection]`
 - **Returns (raw)**: `ApiResult[list[DriverRaceProjection], NascarV2DriverraceprojectionsProjectedPlayerRaceStatsByRaceErrorBody]`
 - **Error**: `NascarV2DriverraceprojectionsProjectedPlayerRaceStatsByRaceErrorBody` — **Case A (typed)**
@@ -48,9 +48,8 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /nascar/v2/{format}/drivers`
 - **Auth**: `api_key_header` OR `api_key_query`
-- **Signature**: `def nascar_v2_drivers_driver_profiles_all(format: FormatOrStr, *, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `format`
-- **Params**: `format` — path
+- **Signature**: `def nascar_v2_drivers_driver_profiles_all(*, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None)`
+- **Params**: `format_` — path `format`
 - **Returns (parsed)**: `list[Driver]`
 - **Returns (raw)**: `ApiResult[list[Driver], NascarV2DriversDriverProfilesAllErrorBody]`
 - **Error**: `NascarV2DriversDriverProfilesAllErrorBody` — **Case A (typed)**
@@ -67,9 +66,8 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /nascar/v2/{format}/driversbyactive`
 - **Auth**: `api_key_header` OR `api_key_query`
-- **Signature**: `def nascar_v2_driversbyactive_drivers_by_active(format: FormatOrStr, *, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `format`
-- **Params**: `format` — path
+- **Signature**: `def nascar_v2_driversbyactive_drivers_by_active(*, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None)`
+- **Params**: `format_` — path `format`
 - **Returns (parsed)**: `list[DriverBasic]`
 - **Returns (raw)**: `ApiResult[list[DriverBasic], NascarV2DriversbyactiveDriversByActiveErrorBody]`
 - **Error**: `NascarV2DriversbyactiveDriversByActiveErrorBody` — **Case A (typed)**
@@ -86,9 +84,9 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /nascar/v2/{format}/EntryListbyRace/{raceid}`
 - **Auth**: `api_key_header` OR `api_key_query`
-- **Signature**: `def nascar_v2_entrylistbyrace_entry_list_by_race(format: FormatOrStr, raceid: str, *, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `format`, `raceid`
-- **Params**: `format` — path · `raceid` — path
+- **Signature**: `def nascar_v2_entrylistbyrace_entry_list_by_race(raceid: str, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None)`
+  - required, positional: `raceid`
+- **Params**: `format_` — path `format` · `raceid` — path
 - **Returns (parsed)**: `list[DriverRaceBasic]`
 - **Returns (raw)**: `ApiResult[list[DriverRaceBasic], NascarV2EntrylistbyraceEntryListByRaceErrorBody]`
 - **Error**: `NascarV2EntrylistbyraceEntryListByRaceErrorBody` — **Case A (typed)**
@@ -105,9 +103,9 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /nascar/v2/{format}/FantasyGameStatsByRace/{raceid}`
 - **Auth**: `api_key_header` OR `api_key_query`
-- **Signature**: `def nascar_v2_fantasygamestatsbyrace_fantasy_points_by_race(format: FormatOrStr, raceid: str, *, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `format`, `raceid`
-- **Params**: `format` — path · `raceid` — path
+- **Signature**: `def nascar_v2_fantasygamestatsbyrace_fantasy_points_by_race(raceid: str, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None)`
+  - required, positional: `raceid`
+- **Params**: `format_` — path `format` · `raceid` — path
 - **Returns (parsed)**: `FantasyRace`
 - **Returns (raw)**: `ApiResult[FantasyRace, NascarV2FantasygamestatsbyraceFantasyPointsByRaceErrorBody]`
 - **Error**: `NascarV2FantasygamestatsbyraceFantasyPointsByRaceErrorBody` — **Case A (typed)**
@@ -124,9 +122,9 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /nascar/v2/{format}/LeaderboardBasic/{raceid}`
 - **Auth**: `api_key_header` OR `api_key_query`
-- **Signature**: `def nascar_v2_leaderboardbasic_leaderboard_basic(format: FormatOrStr, raceid: str, *, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `format`, `raceid`
-- **Params**: `format` — path · `raceid` — path
+- **Signature**: `def nascar_v2_leaderboardbasic_leaderboard_basic(raceid: str, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None)`
+  - required, positional: `raceid`
+- **Params**: `format_` — path `format` · `raceid` — path
 - **Returns (parsed)**: `RaceResultBasic`
 - **Returns (raw)**: `ApiResult[RaceResultBasic, NascarV2LeaderboardbasicLeaderboardBasicErrorBody]`
 - **Error**: `NascarV2LeaderboardbasicLeaderboardBasicErrorBody` — **Case A (typed)**
@@ -143,9 +141,9 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /nascar/v2/{format}/LeaderboardBasicFinal/{raceid}`
 - **Auth**: `api_key_header` OR `api_key_query`
-- **Signature**: `def nascar_v2_leaderboardbasicfinal_leaderboard_basic_final(format: FormatOrStr, raceid: str, *, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `format`, `raceid`
-- **Params**: `format` — path · `raceid` — path
+- **Signature**: `def nascar_v2_leaderboardbasicfinal_leaderboard_basic_final(raceid: str, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None)`
+  - required, positional: `raceid`
+- **Params**: `format_` — path `format` · `raceid` — path
 - **Returns (parsed)**: `RaceResultBasic`
 - **Returns (raw)**: `ApiResult[RaceResultBasic, NascarV2LeaderboardbasicfinalLeaderboardBasicFinalErrorBody]`
 - **Error**: `NascarV2LeaderboardbasicfinalLeaderboardBasicFinalErrorBody` — **Case A (typed)**
@@ -162,9 +160,9 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /nascar/v2/{format}/raceresult/{raceid}`
 - **Auth**: `api_key_header` OR `api_key_query`
-- **Signature**: `def nascar_v2_raceresult_leaderboard_live_final(format: FormatOrStr, raceid: str, *, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `format`, `raceid`
-- **Params**: `format` — path · `raceid` — path
+- **Signature**: `def nascar_v2_raceresult_leaderboard_live_final(raceid: str, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None)`
+  - required, positional: `raceid`
+- **Params**: `format_` — path `format` · `raceid` — path
 - **Returns (parsed)**: `RaceResult`
 - **Returns (raw)**: `ApiResult[RaceResult, NascarV2RaceresultLeaderboardLiveFinalErrorBody]`
 - **Error**: `NascarV2RaceresultLeaderboardLiveFinalErrorBody` — **Case A (typed)**
@@ -181,9 +179,9 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /nascar/v2/{format}/raceresultfinal/{raceid}`
 - **Auth**: `api_key_header` OR `api_key_query`
-- **Signature**: `def nascar_v2_raceresultfinal_leaderboard_final(format: FormatOrStr, raceid: str, *, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `format`, `raceid`
-- **Params**: `format` — path · `raceid` — path
+- **Signature**: `def nascar_v2_raceresultfinal_leaderboard_final(raceid: str, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None)`
+  - required, positional: `raceid`
+- **Params**: `format_` — path `format` · `raceid` — path
 - **Returns (parsed)**: `RaceResult`
 - **Returns (raw)**: `ApiResult[RaceResult, NascarV2RaceresultfinalLeaderboardFinalErrorBody]`
 - **Error**: `NascarV2RaceresultfinalLeaderboardFinalErrorBody` — **Case A (typed)**
@@ -200,9 +198,9 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /nascar/v2/{format}/races/{season}`
 - **Auth**: `api_key_header` OR `api_key_query`
-- **Signature**: `def nascar_v2_races_schedules(format: FormatOrStr, season: str, *, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `format`, `season`
-- **Params**: `format` — path · `season` — path
+- **Signature**: `def nascar_v2_races_schedules(season: str, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None)`
+  - required, positional: `season`
+- **Params**: `format_` — path `format` · `season` — path
 - **Returns (parsed)**: `list[Race]`
 - **Returns (raw)**: `ApiResult[list[Race], NascarV2RacesSchedulesErrorBody]`
 - **Error**: `NascarV2RacesSchedulesErrorBody` — **Case A (typed)**
@@ -219,9 +217,8 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /nascar/v2/{format}/series`
 - **Auth**: `api_key_header` OR `api_key_query`
-- **Signature**: `def nascar_v2_series_series(format: FormatOrStr, *, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `format`
-- **Params**: `format` — path
+- **Signature**: `def nascar_v2_series_series(*, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None)`
+- **Params**: `format_` — path `format`
 - **Returns (parsed)**: `list[Series1]`
 - **Returns (raw)**: `ApiResult[list[Series1], NascarV2SeriesSeriesErrorBody]`
 - **Error**: `NascarV2SeriesSeriesErrorBody` — **Case A (typed)**
@@ -238,9 +235,9 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /nascar/v2/{format}/tracks/{season}`
 - **Auth**: `api_key_header` OR `api_key_query`
-- **Signature**: `def nascar_v2_tracks_tracks(format: FormatOrStr, season: str, *, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `format`, `season`
-- **Params**: `format` — path · `season` — path
+- **Signature**: `def nascar_v2_tracks_tracks(season: str, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None)`
+  - required, positional: `season`
+- **Params**: `format_` — path `format` · `season` — path
 - **Returns (parsed)**: `list[Tracks]`
 - **Returns (raw)**: `ApiResult[list[Tracks], NascarV2TracksTracksErrorBody]`
 - **Error**: `NascarV2TracksTracksErrorBody` — **Case A (typed)**

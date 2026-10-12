@@ -44,5 +44,5 @@ class CompetitionDict(TypedDict):
     gender: NotRequired[str | None]
     type_: NotRequired[str | None]
     format: NotRequired[str | None]
-    seasons: NotRequired[list[Season6 | Season6Dict]]
+    seasons: NotRequired[list[Season6Dict]]
     key: NotRequired[str | None]

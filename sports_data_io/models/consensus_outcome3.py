@@ -66,7 +66,7 @@ class ConsensusOutcome3Dict(TypedDict):
     number_of_sportsbooks: NotRequired[int]
     betting_outcome_id: NotRequired[int]
     betting_market_id: NotRequired[int]
-    sportsbook: NotRequired[Sportsbook | SportsbookDict]
+    sportsbook: NotRequired[SportsbookDict]
     betting_outcome_type_id: NotRequired[int | None]
     betting_outcome_type: NotRequired[str | None]
     payout_american: NotRequired[int]

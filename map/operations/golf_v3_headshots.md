@@ -10,9 +10,8 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /v3/golf/headshots/{format}/Headshots`
 - **Auth**: `api_key_header` OR `api_key_query`
-- **Signature**: `def golf_v3_headshots_headshots(format: FormatOrStr, *, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `format`
-- **Params**: `format` — path
+- **Signature**: `def golf_v3_headshots_headshots(*, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None)`
+- **Params**: `format_` — path `format`
 - **Returns (parsed)**: `list[Headshot1]`
 - **Returns (raw)**: `ApiResult[list[Headshot1], GolfV3HeadshotsHeadshotsErrorBody]`
 - **Error**: `GolfV3HeadshotsHeadshotsErrorBody` — **Case A (typed)**

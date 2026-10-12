@@ -93,4 +93,4 @@ class FighterDict(TypedDict):
     title_wins: NotRequired[int | None]
     title_losses: NotRequired[int | None]
     title_draws: NotRequired[int | None]
-    career_stats: NotRequired[CareerStat2 | CareerStat2Dict]
+    career_stats: NotRequired[CareerStat2Dict]

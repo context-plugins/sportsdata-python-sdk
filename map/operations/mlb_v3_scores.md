@@ -10,9 +10,8 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /v3/mlb/scores/{format}/AreAnyGamesInProgress`
 - **Auth**: `api_key_header` OR `api_key_query`
-- **Signature**: `def mlb_v3_scores_are_games_in_progress(format: FormatOrStr, *, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `format`
-- **Params**: `format` — path
+- **Signature**: `def mlb_v3_scores_are_games_in_progress(*, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None)`
+- **Params**: `format_` — path `format`
 - **Returns (parsed)**: `bool`
 - **Returns (raw)**: `ApiResult[bool, MlbV3ScoresAreGamesInProgressErrorBody]`
 - **Error**: `MlbV3ScoresAreGamesInProgressErrorBody` — **Case A (typed)**
@@ -28,9 +27,9 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /v3/mlb/scores/{format}/GamesByDateFinal/{date}`
 - **Auth**: `api_key_header` OR `api_key_query`
-- **Signature**: `def mlb_v3_scores_games_by_date_final(format: FormatOrStr, date: str, *, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `format`, `date`
-- **Params**: `format` — path · `date` — path
+- **Signature**: `def mlb_v3_scores_games_by_date_final(date: str, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None)`
+  - required, positional: `date`
+- **Params**: `format_` — path `format` · `date` — path
 - **Returns (parsed)**: `list[Game6]`
 - **Returns (raw)**: `ApiResult[list[Game6], MlbV3ScoresGamesByDateFinalErrorBody]`
 - **Error**: `MlbV3ScoresGamesByDateFinalErrorBody` — **Case A (typed)**
@@ -47,9 +46,9 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /v3/mlb/scores/{format}/GamesByDate/{date}`
 - **Auth**: `api_key_header` OR `api_key_query`
-- **Signature**: `def mlb_v3_scores_games_by_date_live_final(format: FormatOrStr, date: str, *, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `format`, `date`
-- **Params**: `format` — path · `date` — path
+- **Signature**: `def mlb_v3_scores_games_by_date_live_final(date: str, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None)`
+  - required, positional: `date`
+- **Params**: `format_` — path `format` · `date` — path
 - **Returns (parsed)**: `list[Game6]`
 - **Returns (raw)**: `ApiResult[list[Game6], MlbV3ScoresGamesByDateLiveFinalErrorBody]`
 - **Error**: `MlbV3ScoresGamesByDateLiveFinalErrorBody` — **Case A (typed)**
@@ -66,9 +65,9 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /v3/mlb/scores/{format}/ScoresBasicFinal/{date}`
 - **Auth**: `api_key_header` OR `api_key_query`
-- **Signature**: `def mlb_v3_scores_games_basic_by_date_final(format: FormatOrStr, date: str, *, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `format`, `date`
-- **Params**: `format` — path · `date` — path
+- **Signature**: `def mlb_v3_scores_games_basic_by_date_final(date: str, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None)`
+  - required, positional: `date`
+- **Params**: `format_` — path `format` · `date` — path
 - **Returns (parsed)**: `list[ScoreBasic2]`
 - **Returns (raw)**: `ApiResult[list[ScoreBasic2], MlbV3ScoresGamesBasicByDateFinalErrorBody]`
 - **Error**: `MlbV3ScoresGamesBasicByDateFinalErrorBody` — **Case A (typed)**
@@ -85,9 +84,9 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /v3/mlb/scores/{format}/ScoresBasic/{date}`
 - **Auth**: `api_key_header` OR `api_key_query`
-- **Signature**: `def mlb_v3_scores_games_basic_by_date_live_final(format: FormatOrStr, date: str, *, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `format`, `date`
-- **Params**: `format` — path · `date` — path
+- **Signature**: `def mlb_v3_scores_games_basic_by_date_live_final(date: str, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None)`
+  - required, positional: `date`
+- **Params**: `format_` — path `format` · `date` — path
 - **Returns (parsed)**: `list[ScoreBasic2]`
 - **Returns (raw)**: `ApiResult[list[ScoreBasic2], MlbV3ScoresGamesBasicByDateLiveFinalErrorBody]`
 - **Error**: `MlbV3ScoresGamesBasicByDateLiveFinalErrorBody` — **Case A (typed)**
@@ -104,9 +103,8 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /v3/mlb/scores/{format}/News`
 - **Auth**: `api_key_header` OR `api_key_query`
-- **Signature**: `def mlb_v3_scores_news(format: FormatOrStr, *, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `format`
-- **Params**: `format` — path
+- **Signature**: `def mlb_v3_scores_news(*, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None)`
+- **Params**: `format_` — path `format`
 - **Returns (parsed)**: `list[News]`
 - **Returns (raw)**: `ApiResult[list[News], MlbV3ScoresNewsErrorBody]`
 - **Error**: `MlbV3ScoresNewsErrorBody` — **Case A (typed)**
@@ -123,9 +121,9 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /v3/mlb/scores/{format}/NewsByDate/{date}`
 - **Auth**: `api_key_header` OR `api_key_query`
-- **Signature**: `def mlb_v3_scores_news_by_date(format: FormatOrStr, date: str, *, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `format`, `date`
-- **Params**: `format` — path · `date` — path
+- **Signature**: `def mlb_v3_scores_news_by_date(date: str, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None)`
+  - required, positional: `date`
+- **Params**: `format_` — path `format` · `date` — path
 - **Returns (parsed)**: `list[News]`
 - **Returns (raw)**: `ApiResult[list[News], MlbV3ScoresNewsByDateErrorBody]`
 - **Error**: `MlbV3ScoresNewsByDateErrorBody` — **Case A (typed)**
@@ -142,9 +140,8 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /v3/mlb/scores/{format}/Players`
 - **Auth**: `api_key_header` OR `api_key_query`
-- **Signature**: `def mlb_v3_scores_player_details_by_active(format: FormatOrStr, *, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `format`
-- **Params**: `format` — path
+- **Signature**: `def mlb_v3_scores_player_details_by_active(*, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None)`
+- **Params**: `format_` — path `format`
 - **Returns (parsed)**: `list[Player2]`
 - **Returns (raw)**: `ApiResult[list[Player2], MlbV3ScoresPlayerDetailsByActiveErrorBody]`
 - **Error**: `MlbV3ScoresPlayerDetailsByActiveErrorBody` — **Case A (typed)**
@@ -161,9 +158,8 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /v3/mlb/scores/{format}/FreeAgents`
 - **Auth**: `api_key_header` OR `api_key_query`
-- **Signature**: `def mlb_v3_scores_player_details_by_free_agents(format: FormatOrStr, *, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `format`
-- **Params**: `format` — path
+- **Signature**: `def mlb_v3_scores_player_details_by_free_agents(*, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None)`
+- **Params**: `format_` — path `format`
 - **Returns (parsed)**: `list[Player2]`
 - **Returns (raw)**: `ApiResult[list[Player2], MlbV3ScoresPlayerDetailsByFreeAgentsErrorBody]`
 - **Error**: `MlbV3ScoresPlayerDetailsByFreeAgentsErrorBody` — **Case A (typed)**
@@ -180,9 +176,8 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /v3/mlb/scores/{format}/PlayersByActive`
 - **Auth**: `api_key_header` OR `api_key_query`
-- **Signature**: `def mlb_v3_scores_player_profiles_by_active(format: FormatOrStr, *, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `format`
-- **Params**: `format` — path
+- **Signature**: `def mlb_v3_scores_player_profiles_by_active(*, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None)`
+- **Params**: `format_` — path `format`
 - **Returns (parsed)**: `list[PlayerBasic2]`
 - **Returns (raw)**: `ApiResult[list[PlayerBasic2], MlbV3ScoresPlayerProfilesByActiveErrorBody]`
 - **Error**: `MlbV3ScoresPlayerProfilesByActiveErrorBody` — **Case A (typed)**
@@ -199,9 +194,8 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /v3/mlb/scores/{format}/PlayersByFreeAgents`
 - **Auth**: `api_key_header` OR `api_key_query`
-- **Signature**: `def mlb_v3_scores_player_profiles_by_free_agents(format: FormatOrStr, *, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `format`
-- **Params**: `format` — path
+- **Signature**: `def mlb_v3_scores_player_profiles_by_free_agents(*, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None)`
+- **Params**: `format_` — path `format`
 - **Returns (parsed)**: `list[PlayerBasic2]`
 - **Returns (raw)**: `ApiResult[list[PlayerBasic2], MlbV3ScoresPlayerProfilesByFreeAgentsErrorBody]`
 - **Error**: `MlbV3ScoresPlayerProfilesByFreeAgentsErrorBody` — **Case A (typed)**
@@ -218,9 +212,9 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /v3/mlb/scores/{format}/PlayersBasic/{team}`
 - **Auth**: `api_key_header` OR `api_key_query`
-- **Signature**: `def mlb_v3_scores_player_profiles_by_team(format: FormatOrStr, team: str, *, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `format`, `team`
-- **Params**: `format` — path · `team` — path
+- **Signature**: `def mlb_v3_scores_player_profiles_by_team(team: str, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None)`
+  - required, positional: `team`
+- **Params**: `format_` — path `format` · `team` — path
 - **Returns (parsed)**: `list[PlayerBasic2]`
 - **Returns (raw)**: `ApiResult[list[PlayerBasic2], MlbV3ScoresPlayerProfilesByTeamErrorBody]`
 - **Error**: `MlbV3ScoresPlayerProfilesByTeamErrorBody` — **Case A (typed)**
@@ -237,9 +231,9 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /v3/mlb/scores/{format}/Players/{team}`
 - **Auth**: `api_key_header` OR `api_key_query`
-- **Signature**: `def mlb_v3_scores_players_details_by_team(format: FormatOrStr, team: str, *, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `format`, `team`
-- **Params**: `format` — path · `team` — path
+- **Signature**: `def mlb_v3_scores_players_details_by_team(team: str, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None)`
+  - required, positional: `team`
+- **Params**: `format_` — path `format` · `team` — path
 - **Returns (parsed)**: `list[Player2]`
 - **Returns (raw)**: `ApiResult[list[Player2], MlbV3ScoresPlayersDetailsByTeamErrorBody]`
 - **Error**: `MlbV3ScoresPlayersDetailsByTeamErrorBody` — **Case A (typed)**
@@ -256,9 +250,9 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /v3/mlb/scores/{format}/Games/{season}`
 - **Auth**: `api_key_header` OR `api_key_query`
-- **Signature**: `def mlb_v3_scores_schedules(format: FormatOrStr, season: str, *, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `format`, `season`
-- **Params**: `format` — path · `season` — path
+- **Signature**: `def mlb_v3_scores_schedules(season: str, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None)`
+  - required, positional: `season`
+- **Params**: `format_` — path `format` · `season` — path
 - **Returns (parsed)**: `list[Game6]`
 - **Returns (raw)**: `ApiResult[list[Game6], MlbV3ScoresSchedulesErrorBody]`
 - **Error**: `MlbV3ScoresSchedulesErrorBody` — **Case A (typed)**
@@ -275,9 +269,9 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /v3/mlb/scores/{format}/SchedulesBasic/{season}`
 - **Auth**: `api_key_header` OR `api_key_query`
-- **Signature**: `def mlb_v3_scores_schedules_basic(format: FormatOrStr, season: str, *, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `format`, `season`
-- **Params**: `format` — path · `season` — path
+- **Signature**: `def mlb_v3_scores_schedules_basic(season: str, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None)`
+  - required, positional: `season`
+- **Params**: `format_` — path `format` · `season` — path
 - **Returns (parsed)**: `list[ScheduleBasic2]`
 - **Returns (raw)**: `ApiResult[list[ScheduleBasic2], MlbV3ScoresSchedulesBasicErrorBody]`
 - **Error**: `MlbV3ScoresSchedulesBasicErrorBody` — **Case A (typed)**
@@ -294,9 +288,8 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /v3/mlb/scores/{format}/CurrentSeason`
 - **Auth**: `api_key_header` OR `api_key_query`
-- **Signature**: `def mlb_v3_scores_season_current(format: FormatOrStr, *, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `format`
-- **Params**: `format` — path
+- **Signature**: `def mlb_v3_scores_season_current(*, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None)`
+- **Params**: `format_` — path `format`
 - **Returns (parsed)**: `Season1`
 - **Returns (raw)**: `ApiResult[Season1, MlbV3ScoresSeasonCurrentErrorBody]`
 - **Error**: `MlbV3ScoresSeasonCurrentErrorBody` — **Case A (typed)**
@@ -313,9 +306,8 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /v3/mlb/scores/{format}/Stadiums`
 - **Auth**: `api_key_header` OR `api_key_query`
-- **Signature**: `def mlb_v3_scores_stadiums(format: FormatOrStr, *, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `format`
-- **Params**: `format` — path
+- **Signature**: `def mlb_v3_scores_stadiums(*, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None)`
+- **Params**: `format_` — path `format`
 - **Returns (parsed)**: `list[Stadium3]`
 - **Returns (raw)**: `ApiResult[list[Stadium3], MlbV3ScoresStadiumsErrorBody]`
 - **Error**: `MlbV3ScoresStadiumsErrorBody` — **Case A (typed)**
@@ -332,9 +324,9 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /v3/mlb/scores/{format}/Standings/{season}`
 - **Auth**: `api_key_header` OR `api_key_query`
-- **Signature**: `def mlb_v3_scores_standings(format: FormatOrStr, season: str, *, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `format`, `season`
-- **Params**: `format` — path · `season` — path
+- **Signature**: `def mlb_v3_scores_standings(season: str, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None)`
+  - required, positional: `season`
+- **Params**: `format_` — path `format` · `season` — path
 - **Returns (parsed)**: `list[Standing2]`
 - **Returns (raw)**: `ApiResult[list[Standing2], MlbV3ScoresStandingsErrorBody]`
 - **Error**: `MlbV3ScoresStandingsErrorBody` — **Case A (typed)**
@@ -351,9 +343,9 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /v3/mlb/scores/{format}/TeamGameStatsBySeason/{season}/{teamid}/{numberofgames}`
 - **Auth**: `api_key_header` OR `api_key_query`
-- **Signature**: `def mlb_v3_scores_team_game_logs_by_season(format: FormatOrStr, season: str, teamid: str, numberofgames: str, *, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `format`, `season`, `teamid`, `numberofgames`
-- **Params**: `format` — path · `season` — path · `teamid` — path · `numberofgames` — path
+- **Signature**: `def mlb_v3_scores_team_game_logs_by_season(season: str, teamid: str, numberofgames: str, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None)`
+  - required, positional: `season`, `teamid`, `numberofgames`
+- **Params**: `format_` — path `format` · `season` — path · `teamid` — path · `numberofgames` — path
 - **Returns (parsed)**: `list[TeamGame2]`
 - **Returns (raw)**: `ApiResult[list[TeamGame2], MlbV3ScoresTeamGameLogsBySeasonErrorBody]`
 - **Error**: `MlbV3ScoresTeamGameLogsBySeasonErrorBody` — **Case A (typed)**
@@ -370,9 +362,9 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /v3/mlb/scores/{format}/TeamGameStatsByDateFinal/{date}`
 - **Auth**: `api_key_header` OR `api_key_query`
-- **Signature**: `def mlb_v3_scores_team_game_stats_by_date_final(format: FormatOrStr, date: str, *, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `format`, `date`
-- **Params**: `format` — path · `date` — path
+- **Signature**: `def mlb_v3_scores_team_game_stats_by_date_final(date: str, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None)`
+  - required, positional: `date`
+- **Params**: `format_` — path `format` · `date` — path
 - **Returns (parsed)**: `list[TeamGame2]`
 - **Returns (raw)**: `ApiResult[list[TeamGame2], MlbV3ScoresTeamGameStatsByDateFinalErrorBody]`
 - **Error**: `MlbV3ScoresTeamGameStatsByDateFinalErrorBody` — **Case A (typed)**
@@ -389,9 +381,9 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /v3/mlb/scores/{format}/TeamGameStatsByDate/{date}`
 - **Auth**: `api_key_header` OR `api_key_query`
-- **Signature**: `def mlb_v3_scores_team_game_stats_by_date_live_final(format: FormatOrStr, date: str, *, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `format`, `date`
-- **Params**: `format` — path · `date` — path
+- **Signature**: `def mlb_v3_scores_team_game_stats_by_date_live_final(date: str, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None)`
+  - required, positional: `date`
+- **Params**: `format_` — path `format` · `date` — path
 - **Returns (parsed)**: `list[TeamGame2]`
 - **Returns (raw)**: `ApiResult[list[TeamGame2], MlbV3ScoresTeamGameStatsByDateLiveFinalErrorBody]`
 - **Error**: `MlbV3ScoresTeamGameStatsByDateLiveFinalErrorBody` — **Case A (typed)**
@@ -408,9 +400,8 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /v3/mlb/scores/{format}/AllTeams`
 - **Auth**: `api_key_header` OR `api_key_query`
-- **Signature**: `def mlb_v3_scores_team_profiles_all(format: FormatOrStr, *, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `format`
-- **Params**: `format` — path
+- **Signature**: `def mlb_v3_scores_team_profiles_all(*, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None)`
+- **Params**: `format_` — path `format`
 - **Returns (parsed)**: `list[Team2]`
 - **Returns (raw)**: `ApiResult[list[Team2], MlbV3ScoresTeamProfilesAllErrorBody]`
 - **Error**: `MlbV3ScoresTeamProfilesAllErrorBody` — **Case A (typed)**
@@ -427,9 +418,8 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /v3/mlb/scores/{format}/teams`
 - **Auth**: `api_key_header` OR `api_key_query`
-- **Signature**: `def mlb_v3_scores_team_profiles_by_active(format: FormatOrStr, *, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `format`
-- **Params**: `format` — path
+- **Signature**: `def mlb_v3_scores_team_profiles_by_active(*, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None)`
+- **Params**: `format_` — path `format`
 - **Returns (parsed)**: `list[Team2]`
 - **Returns (raw)**: `ApiResult[list[Team2], MlbV3ScoresTeamProfilesByActiveErrorBody]`
 - **Error**: `MlbV3ScoresTeamProfilesByActiveErrorBody` — **Case A (typed)**
@@ -446,9 +436,9 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /v3/mlb/scores/{format}/teams/{season}`
 - **Auth**: `api_key_header` OR `api_key_query`
-- **Signature**: `def mlb_v3_scores_team_profiles_by_season(format: FormatOrStr, season: str, *, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `format`, `season`
-- **Params**: `format` — path · `season` — path
+- **Signature**: `def mlb_v3_scores_team_profiles_by_season(season: str, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None)`
+  - required, positional: `season`
+- **Params**: `format_` — path `format` · `season` — path
 - **Returns (parsed)**: `list[Team2]`
 - **Returns (raw)**: `ApiResult[list[Team2], MlbV3ScoresTeamProfilesBySeasonErrorBody]`
 - **Error**: `MlbV3ScoresTeamProfilesBySeasonErrorBody` — **Case A (typed)**
@@ -465,9 +455,9 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /v3/mlb/scores/{format}/TeamSeasonStats/{season}`
 - **Auth**: `api_key_header` OR `api_key_query`
-- **Signature**: `def mlb_v3_scores_team_season_stats(format: FormatOrStr, season: str, *, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `format`, `season`
-- **Params**: `format` — path · `season` — path
+- **Signature**: `def mlb_v3_scores_team_season_stats(season: str, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None)`
+  - required, positional: `season`
+- **Params**: `format_` — path `format` · `season` — path
 - **Returns (parsed)**: `list[TeamSeason2]`
 - **Returns (raw)**: `ApiResult[list[TeamSeason2], MlbV3ScoresTeamSeasonStatsErrorBody]`
 - **Error**: `MlbV3ScoresTeamSeasonStatsErrorBody` — **Case A (typed)**
@@ -484,9 +474,9 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /v3/mlb/scores/{format}/TransactionsByDate/{date}`
 - **Auth**: `api_key_header` OR `api_key_query`
-- **Signature**: `def mlb_v3_scores_transactions(format: FormatOrStr, date: str, *, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `format`, `date`
-- **Params**: `format` — path · `date` — path
+- **Signature**: `def mlb_v3_scores_transactions(date: str, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None)`
+  - required, positional: `date`
+- **Params**: `format_` — path `format` · `date` — path
 - **Returns (parsed)**: `list[Transaction]`
 - **Returns (raw)**: `ApiResult[list[Transaction], MlbV3ScoresTransactionsErrorBody]`
 - **Error**: `MlbV3ScoresTransactionsErrorBody` — **Case A (typed)**

@@ -9,8 +9,10 @@ from ..core import (
     RawClient,
     RequestOptionsOrDict,
     SecuredRawResponse,
+    async_json_decoder,
     json_decoder,
     param,
+    unwrap,
 )
 from ..errors.nba_v3_odds_betting_events_by_date_error import (
     NbaV3OddsBettingEventsByDateErrorBody,
@@ -153,8 +155,8 @@ from ..models.betting_event1 import BettingEvent1
 from ..models.betting_market import BettingMarket
 from ..models.betting_market_result import BettingMarketResult
 from ..models.betting_market_split import BettingMarketSplit
-from ..models.enums.format import FormatOrStr
-from ..models.enums.include import IncludeOrStr
+from ..models.enums.format import Format, FormatOrStr
+from ..models.enums.include import Include, IncludeOrStr
 from ..models.game_betting_split1 import GameBettingSplit1
 from ..models.game_info1 import GameInfo1
 from ..models.game_info_result1 import GameInfoResult1
@@ -169,7 +171,7 @@ class NbaV3Odds:
         self._with_raw_response = NbaV3OddsWithRawResponse(client, server, auth)
 
     def nba_v3_odds_betting_events_by_date(
-        self, format: FormatOrStr, date: str, *, request_options: RequestOptionsOrDict | None = None
+        self, date: str, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None
     ) -> list[BettingEvent1]:
         """The list of current BettingEvents for the given date. Events in this include market information but no
         outcomes will be included here. Intended to allow both visibility to Events in order to match up Events -> Games
@@ -177,112 +179,127 @@ class NbaV3Odds:
         given event.
 
         Args:
-            format: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
             date: The date of the game(s). <br>Examples: <code>2020-02-15</code>, <code>2020-02-23</code>.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            format_: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             Success
 
         Raises:
             ApiError: Unauthorized ``error`` is ``Unauthorized | RawError``."""
-        return self._with_raw_response.nba_v3_odds_betting_events_by_date(
-            format, date, request_options=request_options
-        ).unwrap()
+        return unwrap(
+            self._with_raw_response.nba_v3_odds_betting_events_by_date(
+                date, format_=format_, request_options=request_options
+            ),
+        )
 
     def nba_v3_odds_betting_events_by_season(
-        self, format: FormatOrStr, season: str, *, request_options: RequestOptionsOrDict | None = None
+        self, season: str, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None
     ) -> list[BettingEvent1]:
         """Returns the full list of BetttingEvents for the given season. Intended for those who need to tie
         BettingEventIDs to GameIDs.
 
         Args:
-            format: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
             season: Year of the season (with optional season type).<br>Examples: <code>2020</code>,
                 <code>2020PRE</code>, <code>2020POST</code>, <code>2020STAR</code>, <code>2021</code>, etc.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            format_: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             Success
 
         Raises:
             ApiError: Unauthorized ``error`` is ``Unauthorized | RawError``."""
-        return self._with_raw_response.nba_v3_odds_betting_events_by_season(
-            format, season, request_options=request_options
-        ).unwrap()
+        return unwrap(
+            self._with_raw_response.nba_v3_odds_betting_events_by_season(
+                season, format_=format_, request_options=request_options
+            ),
+        )
 
     def nba_v3_odds_betting_futures_by_season(
-        self, format: FormatOrStr, season: str, *, request_options: RequestOptionsOrDict | None = None
+        self, season: str, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None
     ) -> list[BettingEvent1]:
         """Returns available Futures outcomes for the given season. Does not include line movement.
 
         Args:
-            format: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
             season: Year of the season <br>Examples: <code>2020</code>, <code>2021</code>, etc
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            format_: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             Success
 
         Raises:
             ApiError: Unauthorized ``error`` is ``Unauthorized | RawError``."""
-        return self._with_raw_response.nba_v3_odds_betting_futures_by_season(
-            format, season, request_options=request_options
-        ).unwrap()
+        return unwrap(
+            self._with_raw_response.nba_v3_odds_betting_futures_by_season(
+                season, format_=format_, request_options=request_options
+            ),
+        )
 
     def nba_v3_odds_betting_futures_by_season_sportsbook_group(
         self,
-        format: FormatOrStr,
         season: str,
         sportsbookgroup: str,
         *,
+        format_: FormatOrStr = Format.JSON,
         request_options: RequestOptionsOrDict | None = None,
     ) -> list[BettingEvent1]:
         """Returns available Futures markets for the given season. Does not include line movement. A Sportsbook Group
         must be specified as a URL parameter.
 
         Args:
-            format: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
             season: Year of the season <br>Examples: <code>2020</code>, <code>2021</code>, etc
             sportsbookgroup: The name of the Sportsbook grouping. <br>Examples: <code>G1100</code>
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            format_: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             Success
 
         Raises:
             ApiError: Unauthorized ``error`` is ``Unauthorized | RawError``."""
-        return self._with_raw_response.nba_v3_odds_betting_futures_by_season_sportsbook_group(
-            format, season, sportsbookgroup, request_options=request_options
-        ).unwrap()
+        return unwrap(
+            self._with_raw_response.nba_v3_odds_betting_futures_by_season_sportsbook_group(
+                season, sportsbookgroup, format_=format_, request_options=request_options
+            ),
+        )
 
     def nba_v3_odds_betting_market(
-        self, format: FormatOrStr, market_id: str, *, request_options: RequestOptionsOrDict | None = None
+        self, market_id: str, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None
     ) -> BettingMarket:
         """Returns full line movement for a given BettingMarket. Due to the sheer size of the output and the level of
         detail, it is intended for historical data purposes and not for the most up-to-the-second lines.
 
         Args:
-            format: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
             market_id: The MarketId of the desired market for which to pull all outcomes/bets. Valid entries include:
                 <code>421</code>, <code>1041</code>, etc.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            format_: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             Success
 
         Raises:
             ApiError: Unauthorized ``error`` is ``Unauthorized | RawError``."""
-        return self._with_raw_response.nba_v3_odds_betting_market(
-            format, market_id, request_options=request_options
-        ).unwrap()
+        return unwrap(
+            self._with_raw_response.nba_v3_odds_betting_market(
+                market_id, format_=format_, request_options=request_options
+            ),
+        )
 
     def nba_v3_odds_betting_market_sportsbook_group(
         self,
-        format: FormatOrStr,
         market_id: str,
         sportsbookgroup: str,
         *,
+        format_: FormatOrStr = Format.JSON,
         request_options: RequestOptionsOrDict | None = None,
     ) -> BettingMarket:
         """Returns full line movement for a given BettingMarket. Due to the sheer size of the output and the level of
@@ -290,36 +307,39 @@ class NbaV3Odds:
         Group must be specified as a URL parameter.
 
         Args:
-            format: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
             market_id: The MarketId of the desired market for which to pull all outcomes/bets. Valid entries include:
                 <code>421</code>, <code>1041</code>, etc.
             sportsbookgroup: The name of the Sportsbook grouping. <br>Examples: <code>G1100</code>
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            format_: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             Success
 
         Raises:
             ApiError: Unauthorized ``error`` is ``Unauthorized | RawError``."""
-        return self._with_raw_response.nba_v3_odds_betting_market_sportsbook_group(
-            format, market_id, sportsbookgroup, request_options=request_options
-        ).unwrap()
+        return unwrap(
+            self._with_raw_response.nba_v3_odds_betting_market_sportsbook_group(
+                market_id, sportsbookgroup, format_=format_, request_options=request_options
+            ),
+        )
 
     def nba_v3_odds_betting_markets_by_event(
         self,
-        format: FormatOrStr,
         event_id: str,
         *,
-        include: IncludeOrStr | None = None,
+        format_: FormatOrStr = Format.JSON,
+        include: IncludeOrStr | None = Include.AVAILABLE,
         request_options: RequestOptionsOrDict | None = None,
     ) -> list[BettingMarket]:
         """Returns the markets of all available types (e.g. Player Props, Team Props) and available outcomes for a given
         BettingEventID.
 
         Args:
-            format: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
             event_id: The EventId of the desired event/game for which to pull all betting markets (includes
                 outcomes/bets). Valid entries include: <code>134</code>, <code>155</code>, etc.
+            format_: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
             include: This parameter indicates which <code>BettingOutcome</code> records to return in the payload. By
                 default, this endpoint only returns available outcomes, excluding the unlisted bets.
                 <br><br><b>Important Note:</b> the default parameter of <code>available</code> is much faster and
@@ -331,33 +351,36 @@ class NbaV3Odds:
                 recently available betting outcome per sportsbook, for each listed market, even those outcomes are
                 expired/unlisted or otherwise unavailable from the respective sportsbook. This is a far heavier payload,
                 and it's cached for much longer than available. <br><br>
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             Success
 
         Raises:
             ApiError: Unauthorized ``error`` is ``Unauthorized | RawError``."""
-        return self._with_raw_response.nba_v3_odds_betting_markets_by_event(
-            format, event_id, include=include, request_options=request_options
-        ).unwrap()
+        return unwrap(
+            self._with_raw_response.nba_v3_odds_betting_markets_by_event(
+                event_id, format_=format_, include=include, request_options=request_options
+            ),
+        )
 
     def nba_v3_odds_betting_markets_by_event_sportsbook_group(
         self,
-        format: FormatOrStr,
         event_id: str,
         sportsbookgroup: str,
         *,
-        include: IncludeOrStr | None = None,
+        format_: FormatOrStr = Format.JSON,
+        include: IncludeOrStr | None = Include.AVAILABLE,
         request_options: RequestOptionsOrDict | None = None,
     ) -> list[BettingMarket]:
         """Returns the markets and available outcomes for a given BettingEventID.
 
         Args:
-            format: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
             event_id: The EventId of the desired event/game for which to pull all betting markets (includes
                 outcomes/bets). Valid entries include: <code>134</code>, <code>155</code>, etc.
             sportsbookgroup: The name of the Sportsbook grouping. <br>Examples: <code>G1100</code>
+            format_: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
             include: This parameter indicates which <code>BettingOutcome</code> records to return in the payload. By
                 default, this endpoint only returns available outcomes, excluding the unlisted bets.
                 <br><br><b>Important Note:</b> the default parameter of <code>available</code> is much faster and
@@ -369,32 +392,35 @@ class NbaV3Odds:
                 recently available betting outcome per sportsbook, for each listed market, even those outcomes are
                 expired/unlisted or otherwise unavailable from the respective sportsbook. This is a far heavier payload,
                 and it's cached for much longer than available. <br><br>
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             Success
 
         Raises:
             ApiError: Unauthorized ``error`` is ``Unauthorized | RawError``."""
-        return self._with_raw_response.nba_v3_odds_betting_markets_by_event_sportsbook_group(
-            format, event_id, sportsbookgroup, include=include, request_options=request_options
-        ).unwrap()
+        return unwrap(
+            self._with_raw_response.nba_v3_odds_betting_markets_by_event_sportsbook_group(
+                event_id, sportsbookgroup, format_=format_, include=include, request_options=request_options
+            ),
+        )
 
     def nba_v3_odds_betting_markets_by_game(
         self,
-        format: FormatOrStr,
         game_id: str,
         *,
-        include: IncludeOrStr | None = None,
+        format_: FormatOrStr = Format.JSON,
+        include: IncludeOrStr | None = Include.AVAILABLE,
         request_options: RequestOptionsOrDict | None = None,
     ) -> list[BettingMarket]:
         """Returns the markets of all available types (e.g. Player Props, Team Props) and available outcomes for a given
         GameID.
 
         Args:
-            format: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
             game_id: The GameID of the desired game for which to pull all betting markets (includes outcomes/bets).
                 Valid entries include: <code>14814</code>
+            format_: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
             include: This parameter indicates which <code>BettingOutcome</code> records to return in the payload. By
                 default, this endpoint only returns available outcomes, excluding the unlisted bets.
                 <br><br><b>Important Note:</b> the default parameter of <code>available</code> is much faster and
@@ -406,34 +432,37 @@ class NbaV3Odds:
                 recently available betting outcome per sportsbook, for each listed market, even those outcomes are
                 expired/unlisted or otherwise unavailable from the respective sportsbook. This is a far heavier payload,
                 and it's cached for much longer than available. <br><br>
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             Success
 
         Raises:
             ApiError: Unauthorized ``error`` is ``Unauthorized | RawError``."""
-        return self._with_raw_response.nba_v3_odds_betting_markets_by_game(
-            format, game_id, include=include, request_options=request_options
-        ).unwrap()
+        return unwrap(
+            self._with_raw_response.nba_v3_odds_betting_markets_by_game(
+                game_id, format_=format_, include=include, request_options=request_options
+            ),
+        )
 
     def nba_v3_odds_betting_markets_by_game_sportsbook_group(
         self,
-        format: FormatOrStr,
         game_id: str,
         sportsbookgroup: str,
         *,
-        include: IncludeOrStr | None = None,
+        format_: FormatOrStr = Format.JSON,
+        include: IncludeOrStr | None = Include.AVAILABLE,
         request_options: RequestOptionsOrDict | None = None,
     ) -> list[BettingMarket]:
         """Returns the markets of all available types (e.g. Player Props, Team Props) and available outcomes for a given
         GameID. A Sportsbook Group must be specified as a URL parameter.
 
         Args:
-            format: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
             game_id: The GameID of the desired game for which to pull all betting markets (includes outcomes/bets).
                 Valid entries include: <code>14814</code>
             sportsbookgroup: The name of the Sportsbook grouping. <br>Examples: <code>G1100</code>
+            format_: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
             include: This parameter indicates which <code>BettingOutcome</code> records to return in the payload. By
                 default, this endpoint only returns available outcomes, excluding the unlisted bets.
                 <br><br><b>Important Note:</b> the default parameter of <code>available</code> is much faster and
@@ -445,24 +474,27 @@ class NbaV3Odds:
                 recently available betting outcome per sportsbook, for each listed market, even those outcomes are
                 expired/unlisted or otherwise unavailable from the respective sportsbook. This is a far heavier payload,
                 and it's cached for much longer than available. <br><br>
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             Success
 
         Raises:
             ApiError: Unauthorized ``error`` is ``Unauthorized | RawError``."""
-        return self._with_raw_response.nba_v3_odds_betting_markets_by_game_sportsbook_group(
-            format, game_id, sportsbookgroup, include=include, request_options=request_options
-        ).unwrap()
+        return unwrap(
+            self._with_raw_response.nba_v3_odds_betting_markets_by_game_sportsbook_group(
+                game_id, sportsbookgroup, format_=format_, include=include, request_options=request_options
+            ),
+        )
 
     def nba_v3_odds_betting_markets_by_market_type(
         self,
-        format: FormatOrStr,
         event_id: str,
         market_type_id: str,
         *,
-        include: IncludeOrStr | None = None,
+        format_: FormatOrStr = Format.JSON,
+        include: IncludeOrStr | None = Include.AVAILABLE,
         request_options: RequestOptionsOrDict | None = None,
     ) -> list[BettingMarket]:
         """Returns Markets and available outcomes for a given event and market type requested. A lighter call than by
@@ -470,12 +502,12 @@ class NbaV3Odds:
         available for each sport in its Betting Metadata endpoint.
 
         Args:
-            format: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
             event_id: The EventId of the desired event/game for which to pull all betting markets (includes
                 outcomes/bets). Valid entries include: <code>134</code>, <code>155</code>, etc.
             market_type_id: The Market Type ID of the desired MarketTypes to pull. Some common types include:
                 <code>1</code> for ``Game Lines`` <code>2</code> for ``Player Props`` <code>3</code> for ``Team Props``
                 <code>6</code> for ``Game Props``
+            format_: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
             include: This parameter indicates which <code>BettingOutcome</code> records to return in the payload. By
                 default, this endpoint only returns available outcomes, excluding the unlisted bets.
                 <br><br><b>Important Note:</b> the default parameter of <code>available</code> is much faster and
@@ -487,25 +519,28 @@ class NbaV3Odds:
                 recently available betting outcome per sportsbook, for each listed market, even those outcomes are
                 expired/unlisted or otherwise unavailable from the respective sportsbook. This is a far heavier payload,
                 and it's cached for much longer than available. <br><br>
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             Success
 
         Raises:
             ApiError: Unauthorized ``error`` is ``Unauthorized | RawError``."""
-        return self._with_raw_response.nba_v3_odds_betting_markets_by_market_type(
-            format, event_id, market_type_id, include=include, request_options=request_options
-        ).unwrap()
+        return unwrap(
+            self._with_raw_response.nba_v3_odds_betting_markets_by_market_type(
+                event_id, market_type_id, format_=format_, include=include, request_options=request_options
+            ),
+        )
 
     def nba_v3_odds_betting_markets_by_market_type_sportsbook_group(
         self,
-        format: FormatOrStr,
         event_id: str,
         market_type_id: str,
         sportsbookgroup: str,
         *,
-        include: IncludeOrStr | None = None,
+        format_: FormatOrStr = Format.JSON,
+        include: IncludeOrStr | None = Include.AVAILABLE,
         request_options: RequestOptionsOrDict | None = None,
     ) -> list[BettingMarket]:
         """Returns Markets and available outcomes for a given event and market type requested. A lighter call than by
@@ -514,13 +549,13 @@ class NbaV3Odds:
         parameter.
 
         Args:
-            format: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
             event_id: The EventId of the desired event/game for which to pull all betting markets (includes
                 outcomes/bets). Valid entries include: <code>134</code>, <code>155</code>, etc.
             market_type_id: The Market Type ID of the desired MarketTypes to pull. Some common types include:
                 <code>1</code> for ``Game Lines`` <code>2</code> for ``Player Props`` <code>3</code> for ``Team Props``
                 <code>6</code> for ``Game Props``
             sportsbookgroup: The name of the Sportsbook grouping. <br>Examples: <code>G1100</code>
+            format_: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
             include: This parameter indicates which <code>BettingOutcome</code> records to return in the payload. By
                 default, this endpoint only returns available outcomes, excluding the unlisted bets.
                 <br><br><b>Important Note:</b> the default parameter of <code>available</code> is much faster and
@@ -532,41 +567,52 @@ class NbaV3Odds:
                 recently available betting outcome per sportsbook, for each listed market, even those outcomes are
                 expired/unlisted or otherwise unavailable from the respective sportsbook. This is a far heavier payload,
                 and it's cached for much longer than available. <br><br>
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             Success
 
         Raises:
             ApiError: Unauthorized ``error`` is ``Unauthorized | RawError``."""
-        return self._with_raw_response.nba_v3_odds_betting_markets_by_market_type_sportsbook_group(
-            format, event_id, market_type_id, sportsbookgroup, include=include, request_options=request_options
-        ).unwrap()
+        return unwrap(
+            self._with_raw_response.nba_v3_odds_betting_markets_by_market_type_sportsbook_group(
+                event_id,
+                market_type_id,
+                sportsbookgroup,
+                format_=format_,
+                include=include,
+                request_options=request_options,
+            ),
+        )
 
     def nba_v3_odds_betting_metadata(
-        self, format: FormatOrStr, *, request_options: RequestOptionsOrDict | None = None
+        self, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None
     ) -> BettingEntityMetadataCollection:
         """Returns the list of MarketTypes, BetTypes, PeriodTypes, OutcomeTypes, and ResultTypes to map the IDs to
         descriptive names. Also includes a list of the MarketType, BetType & PeriodType combinations which we will have
         resulting for.
 
         Args:
-            format: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            format_: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             Success
 
         Raises:
             ApiError: Unauthorized ``error`` is ``Unauthorized | RawError``."""
-        return self._with_raw_response.nba_v3_odds_betting_metadata(format, request_options=request_options).unwrap()
+        return unwrap(
+            self._with_raw_response.nba_v3_odds_betting_metadata(format_=format_, request_options=request_options)
+        )
 
     def nba_v3_odds_betting_player_props_by_game(
         self,
-        format: FormatOrStr,
         game_id: str,
         *,
-        include: IncludeOrStr | None = None,
+        format_: FormatOrStr = Format.JSON,
+        include: IncludeOrStr | None = Include.AVAILABLE,
         request_options: RequestOptionsOrDict | None = None,
     ) -> list[BettingMarket]:
         """This works in the same way as Betting Markets by Market Type but is prefiltered to the Player Props type
@@ -574,8 +620,8 @@ class NbaV3Odds:
         recommended to use the by Market Type endpoint.
 
         Args:
-            format: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
             game_id: The unique GameID of the game in question.
+            format_: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
             include: This parameter indicates which <code>BettingOutcome</code> records to return in the payload. By
                 default, this endpoint only returns available outcomes, excluding the unlisted bets.
                 <br><br><b>Important Note:</b> the default parameter of <code>available</code> is much faster and
@@ -587,24 +633,27 @@ class NbaV3Odds:
                 recently available betting outcome per sportsbook, for each listed market, even those outcomes are
                 expired/unlisted or otherwise unavailable from the respective sportsbook. This is a far heavier payload,
                 and it's cached for much longer than available. <br><br>
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             Success
 
         Raises:
             ApiError: Unauthorized ``error`` is ``Unauthorized | RawError``."""
-        return self._with_raw_response.nba_v3_odds_betting_player_props_by_game(
-            format, game_id, include=include, request_options=request_options
-        ).unwrap()
+        return unwrap(
+            self._with_raw_response.nba_v3_odds_betting_player_props_by_game(
+                game_id, format_=format_, include=include, request_options=request_options
+            ),
+        )
 
     def nba_v3_odds_betting_player_props_by_game_sportsbook_group(
         self,
-        format: FormatOrStr,
         game_id: str,
         sportsbookgroup: str,
         *,
-        include: IncludeOrStr | None = None,
+        format_: FormatOrStr = Format.JSON,
+        include: IncludeOrStr | None = Include.AVAILABLE,
         request_options: RequestOptionsOrDict | None = None,
     ) -> list[BettingMarket]:
         """This works in the same way as Betting Markets by Market Type but is prefiltered to the Player Props type
@@ -612,9 +661,9 @@ class NbaV3Odds:
         recommended to use the by Market Type endpoint. A Sportsbook Group must be specified as a URL parameter.
 
         Args:
-            format: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
             game_id: The unique GameID of the game in question.
             sportsbookgroup: The name of the Sportsbook grouping. <br>Examples: <code>G1100</code>
+            format_: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
             include: This parameter indicates which <code>BettingOutcome</code> records to return in the payload. By
                 default, this endpoint only returns available outcomes, excluding the unlisted bets.
                 <br><br><b>Important Note:</b> the default parameter of <code>available</code> is much faster and
@@ -626,45 +675,51 @@ class NbaV3Odds:
                 recently available betting outcome per sportsbook, for each listed market, even those outcomes are
                 expired/unlisted or otherwise unavailable from the respective sportsbook. This is a far heavier payload,
                 and it's cached for much longer than available. <br><br>
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             Success
 
         Raises:
             ApiError: Unauthorized ``error`` is ``Unauthorized | RawError``."""
-        return self._with_raw_response.nba_v3_odds_betting_player_props_by_game_sportsbook_group(
-            format, game_id, sportsbookgroup, include=include, request_options=request_options
-        ).unwrap()
+        return unwrap(
+            self._with_raw_response.nba_v3_odds_betting_player_props_by_game_sportsbook_group(
+                game_id, sportsbookgroup, format_=format_, include=include, request_options=request_options
+            ),
+        )
 
     def nba_v3_odds_betting_results_by_market(
-        self, format: FormatOrStr, market_id: str, *, request_options: RequestOptionsOrDict | None = None
+        self, market_id: str, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None
     ) -> BettingMarketResult:
         """Provide a market ID that supports resulting (i.e. has a ResultType) and this endpoint will return a result:
         for markets with a ResultType, each line will be graded and it will be determined whether the bet would have won
         or lost.
 
         Args:
-            format: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
             market_id: The MarketId of the desired market for which to pull all outcomes/bets. Valid entries include:
                 <code>406451</code>, <code>404168</code>, etc.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            format_: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             Success
 
         Raises:
             ApiError: Unauthorized ``error`` is ``Unauthorized | RawError``."""
-        return self._with_raw_response.nba_v3_odds_betting_results_by_market(
-            format, market_id, request_options=request_options
-        ).unwrap()
+        return unwrap(
+            self._with_raw_response.nba_v3_odds_betting_results_by_market(
+                market_id, format_=format_, request_options=request_options
+            ),
+        )
 
     def nba_v3_odds_betting_results_by_market_sportsbook_group(
         self,
-        format: FormatOrStr,
         market_id: str,
         sportsbookgroup: str,
         *,
+        format_: FormatOrStr = Format.JSON,
         request_options: RequestOptionsOrDict | None = None,
     ) -> BettingMarketResult:
         """Provide a market ID that supports resulting (i.e. has a ResultType) and this endpoint will return a result:
@@ -672,133 +727,156 @@ class NbaV3Odds:
         or lost. A Sportsbook Group must be specified as a URL parameter.
 
         Args:
-            format: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
             market_id: The MarketId of the desired market for which to pull all outcomes/bets. Valid entries include:
                 <code>406451</code>, <code>404168</code>, etc.
             sportsbookgroup: The name of the Sportsbook grouping. <br>Examples: <code>G1100</code>
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            format_: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             Success
 
         Raises:
             ApiError: Unauthorized ``error`` is ``Unauthorized | RawError``."""
-        return self._with_raw_response.nba_v3_odds_betting_results_by_market_sportsbook_group(
-            format, market_id, sportsbookgroup, request_options=request_options
-        ).unwrap()
+        return unwrap(
+            self._with_raw_response.nba_v3_odds_betting_results_by_market_sportsbook_group(
+                market_id, sportsbookgroup, format_=format_, request_options=request_options
+            ),
+        )
 
     def nba_v3_odds_betting_splits_by_betting_market(
-        self, format: FormatOrStr, market_id: str, *, request_options: RequestOptionsOrDict | None = None
+        self, market_id: str, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None
     ) -> BettingMarketSplit:
         """List of Money and Bet Percentage splits for each outcome type available in this market. This specific
         endpoint will return the movement from this market as well as the most recent.
 
         Args:
-            format: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
             market_id: The MarketId of the desired market for which to pull splits. MarketIds are pulled from the
                 Betting Markets endpoints.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            format_: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             Success
 
         Raises:
             ApiError: Unauthorized ``error`` is ``Unauthorized | RawError``."""
-        return self._with_raw_response.nba_v3_odds_betting_splits_by_betting_market(
-            format, market_id, request_options=request_options
-        ).unwrap()
+        return unwrap(
+            self._with_raw_response.nba_v3_odds_betting_splits_by_betting_market(
+                market_id, format_=format_, request_options=request_options
+            ),
+        )
 
     def nba_v3_odds_betting_splits_by_game(
-        self, format: FormatOrStr, game_id: str, *, request_options: RequestOptionsOrDict | None = None
+        self, game_id: str, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None
     ) -> GameBettingSplit1:
         """List of Money and Bet Percentage splits for each market and their respective outcome types available in this
         game. This specific endpoint will return current splits for each available market and no line movement.
 
         Args:
-            format: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
             game_id: The ID of the game for which you want to receive splits for. GameIds are pulled from the Schedules
                 and Games by Date endpoints.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            format_: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             Success
 
         Raises:
             ApiError: Unauthorized ``error`` is ``Unauthorized | RawError``."""
-        return self._with_raw_response.nba_v3_odds_betting_splits_by_game(
-            format, game_id, request_options=request_options
-        ).unwrap()
+        return unwrap(
+            self._with_raw_response.nba_v3_odds_betting_splits_by_game(
+                game_id, format_=format_, request_options=request_options
+            ),
+        )
 
     def nba_v3_odds_betting_trends_by_matchup(
-        self, format: FormatOrStr, team: str, opponent: str, *, request_options: RequestOptionsOrDict | None = None
+        self,
+        team: str,
+        opponent: str,
+        *,
+        format_: FormatOrStr = Format.JSON,
+        request_options: RequestOptionsOrDict | None = None,
     ) -> MatchupTrends1:
         """Returns trends data for a given pairing of teams. Will return data even if the teams are not set to play this
         season. Intended for use on a specific game, though it will work for other comparisons if applicable.
 
         Args:
-            format: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
             team: The abbreviation of the requested team. <br> Examples: <code>PHI</code>, <code>MIN</code>,
                 <code>DET</code>, etc.
             opponent: The abbreviation of the requested opponent. <br> Examples: <code>PHI</code>, <code>MIN</code>,
                 <code>DET</code>, etc.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            format_: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             Success
 
         Raises:
             ApiError: Unauthorized ``error`` is ``Unauthorized | RawError``."""
-        return self._with_raw_response.nba_v3_odds_betting_trends_by_matchup(
-            format, team, opponent, request_options=request_options
-        ).unwrap()
+        return unwrap(
+            self._with_raw_response.nba_v3_odds_betting_trends_by_matchup(
+                team, opponent, format_=format_, request_options=request_options
+            ),
+        )
 
     def nba_v3_odds_betting_trends_by_team(
-        self, format: FormatOrStr, team: str, *, request_options: RequestOptionsOrDict | None = None
+        self, team: str, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None
     ) -> TeamTrends1:
         """Describes recent team trends and performance against betting data in recent sets of games.
 
         Args:
-            format: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
             team: The abbreviation of the requested team. <br> Examples: <code>PHI</code>, <code>MIN</code>,
                 <code>DET</code>, etc.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            format_: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             Success
 
         Raises:
             ApiError: Unauthorized ``error`` is ``Unauthorized | RawError``."""
-        return self._with_raw_response.nba_v3_odds_betting_trends_by_team(
-            format, team, request_options=request_options
-        ).unwrap()
+        return unwrap(
+            self._with_raw_response.nba_v3_odds_betting_trends_by_team(
+                team, format_=format_, request_options=request_options
+            ),
+        )
 
     def nba_v3_odds_in_game_odds_by_date(
-        self, format: FormatOrStr, date: str, *, request_options: RequestOptionsOrDict | None = None
+        self, date: str, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None
     ) -> list[GameInfo1]:
         """Returns in-play game odds (spread, moneyline, total) for games on a given date. Only returns the most
         recently seen odds, not inclusive of line movement. As this is in-game, it will only return results while the
         game is in progress.
 
         Args:
-            format: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
             date: The date of the game(s). <br>Examples: <code>2018-06-20</code>, <code>2018-06-23</code>.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            format_: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             Success
 
         Raises:
             ApiError: Unauthorized ``error`` is ``Unauthorized | RawError``."""
-        return self._with_raw_response.nba_v3_odds_in_game_odds_by_date(
-            format, date, request_options=request_options
-        ).unwrap()
+        return unwrap(
+            self._with_raw_response.nba_v3_odds_in_game_odds_by_date(
+                date, format_=format_, request_options=request_options
+            ),
+        )
 
     def nba_v3_odds_in_game_odds_by_date_sportsbook_group(
         self,
-        format: FormatOrStr,
         date: str,
         sportsbookgroup: str,
         *,
+        format_: FormatOrStr = Format.JSON,
         request_options: RequestOptionsOrDict | None = None,
     ) -> list[GameInfo1]:
         """Returns in-play game odds (spread, moneyline, total) for games on a given date. Only returns the most
@@ -806,48 +884,54 @@ class NbaV3Odds:
         game is in progress. A Sportsbook Group must be specified as a URL parameter.
 
         Args:
-            format: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
             date: The date of the game(s). <br>Examples: <code>2018-06-20</code>, <code>2018-06-23</code>.
             sportsbookgroup: The name of the Sportsbook grouping. <br>Examples: <code>G1100</code>
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            format_: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             Success
 
         Raises:
             ApiError: Unauthorized ``error`` is ``Unauthorized | RawError``."""
-        return self._with_raw_response.nba_v3_odds_in_game_odds_by_date_sportsbook_group(
-            format, date, sportsbookgroup, request_options=request_options
-        ).unwrap()
+        return unwrap(
+            self._with_raw_response.nba_v3_odds_in_game_odds_by_date_sportsbook_group(
+                date, sportsbookgroup, format_=format_, request_options=request_options
+            ),
+        )
 
     def nba_v3_odds_in_game_odds_line_movement(
-        self, format: FormatOrStr, gameid: str, *, request_options: RequestOptionsOrDict | None = None
+        self, gameid: str, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None
     ) -> list[GameInfo1]:
         """Returns in-play game odds (spread, moneyline, total) for games on a given date. Returns the full line
         movement for the given game. This endpoint has a longer cache as it is meant for historical data/line movement
         rather than the most up to the second line.
 
         Args:
-            format: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
             gameid: The GameID of an NBA game. GameIDs can be found in the Games API. Valid entries are
                 <code>12780</code> or <code>12781</code>
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            format_: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             Success
 
         Raises:
             ApiError: Unauthorized ``error`` is ``Unauthorized | RawError``."""
-        return self._with_raw_response.nba_v3_odds_in_game_odds_line_movement(
-            format, gameid, request_options=request_options
-        ).unwrap()
+        return unwrap(
+            self._with_raw_response.nba_v3_odds_in_game_odds_line_movement(
+                gameid, format_=format_, request_options=request_options
+            ),
+        )
 
     def nba_v3_odds_in_game_odds_line_movement_sportsbook_group(
         self,
-        format: FormatOrStr,
         gameid: str,
         sportsbookgroup: str,
         *,
+        format_: FormatOrStr = Format.JSON,
         request_options: RequestOptionsOrDict | None = None,
     ) -> list[GameInfo1]:
         """Returns in-play game odds (spread, moneyline, total) for games on a given date. Returns the full line
@@ -855,27 +939,30 @@ class NbaV3Odds:
         rather than the most up to the second line. A Sportsbook Group must be specified as a URL parameter.
 
         Args:
-            format: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
             gameid: The GameID of an NBA game. GameIDs can be found in the Games API. Valid entries are
                 <code>12780</code> or <code>12781</code>
             sportsbookgroup: The name of the Sportsbook grouping. <br>Examples: <code>G1100</code>
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            format_: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             Success
 
         Raises:
             ApiError: Unauthorized ``error`` is ``Unauthorized | RawError``."""
-        return self._with_raw_response.nba_v3_odds_in_game_odds_line_movement_sportsbook_group(
-            format, gameid, sportsbookgroup, request_options=request_options
-        ).unwrap()
+        return unwrap(
+            self._with_raw_response.nba_v3_odds_in_game_odds_line_movement_sportsbook_group(
+                gameid, sportsbookgroup, format_=format_, request_options=request_options
+            ),
+        )
 
     def nba_v3_odds_in_game_odds_line_movement_with_resulting_sportsbook_group(
         self,
-        format: FormatOrStr,
         gameid: str,
         sportsbookgroup: str,
         *,
+        format_: FormatOrStr = Format.JSON,
         request_options: RequestOptionsOrDict | None = None,
     ) -> list[GameInfoResult1]:
         """Returns in-play game odds (spread, moneyline, total) for games on a given date. This also includes Resulting:
@@ -885,44 +972,50 @@ class NbaV3Odds:
         as a URL parameter.
 
         Args:
-            format: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
             gameid: The GameID of an NBA game. GameIDs can be found in the Games API. Valid entries are
                 <code>12780</code> or <code>12781</code>
             sportsbookgroup: The name of the Sportsbook grouping. <br>Examples: <code>G1100</code>
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            format_: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             Success
 
         Raises:
             ApiError: Unauthorized ``error`` is ``Unauthorized | RawError``."""
-        return self._with_raw_response.nba_v3_odds_in_game_odds_line_movement_with_resulting_sportsbook_group(
-            format, gameid, sportsbookgroup, request_options=request_options
-        ).unwrap()
+        return unwrap(
+            self._with_raw_response.nba_v3_odds_in_game_odds_line_movement_with_resulting_sportsbook_group(
+                gameid, sportsbookgroup, format_=format_, request_options=request_options
+            ),
+        )
 
     def nba_v3_odds_period_game_odds_by_date(
-        self, format: FormatOrStr, date: str, *, request_options: RequestOptionsOrDict | None = None
+        self, date: str, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None
     ) -> list[GameInfo1]:
         """Returns the non-full-game odds (spread, moneyline, total) for games on a given date. Non-full-game means
         1st-half or 1st-quarter, for example, rather than full game. Only returns the most recently seen odds, not
         inclusive of line movement.
 
         Args:
-            format: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
             date: The date of the game(s). <br>Examples: <code>2018-06-20</code>, <code>2018-06-23</code>.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            format_: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             Success
 
         Raises:
             ApiError: Unauthorized ``error`` is ``Unauthorized | RawError``."""
-        return self._with_raw_response.nba_v3_odds_period_game_odds_by_date(
-            format, date, request_options=request_options
-        ).unwrap()
+        return unwrap(
+            self._with_raw_response.nba_v3_odds_period_game_odds_by_date(
+                date, format_=format_, request_options=request_options
+            ),
+        )
 
     def nba_v3_odds_period_game_odds_line_movement(
-        self, format: FormatOrStr, gameid: str, *, request_options: RequestOptionsOrDict | None = None
+        self, gameid: str, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None
     ) -> list[GameInfo1]:
         """Returns the non-full-game odds (spread, moneyline, total) for games on a given date. Non-full-game means
         1st-half or 1st-quarter, for example, rather than full game. Returns the full line movement for the given game.
@@ -930,26 +1023,29 @@ class NbaV3Odds:
         second line.
 
         Args:
-            format: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
             gameid: The GameID of an NBA game. GameIDs can be found in the Games API. Valid entries are
                 <code>12780</code> or <code>12781</code>
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            format_: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             Success
 
         Raises:
             ApiError: Unauthorized ``error`` is ``Unauthorized | RawError``."""
-        return self._with_raw_response.nba_v3_odds_period_game_odds_line_movement(
-            format, gameid, request_options=request_options
-        ).unwrap()
+        return unwrap(
+            self._with_raw_response.nba_v3_odds_period_game_odds_line_movement(
+                gameid, format_=format_, request_options=request_options
+            ),
+        )
 
     def nba_v3_odds_pre_game_and_period_game_odds_by_date_sportsbook_group(
         self,
-        format: FormatOrStr,
         date: str,
         sportsbookgroup: str,
         *,
+        format_: FormatOrStr = Format.JSON,
         request_options: RequestOptionsOrDict | None = None,
     ) -> list[GameInfo1]:
         """Returns the full-game and non-full-game odds (spread, moneyline, total) for games in a given week and season.
@@ -957,26 +1053,29 @@ class NbaV3Odds:
         as a URL parameter.
 
         Args:
-            format: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
             date: The date of the game(s). <br>Examples: <code>2018-06-20</code>, <code>2018-06-23</code>.
             sportsbookgroup: The name of the Sportsbook grouping. <br>Examples: <code>G1100</code>
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            format_: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             Success
 
         Raises:
             ApiError: Unauthorized ``error`` is ``Unauthorized | RawError``."""
-        return self._with_raw_response.nba_v3_odds_pre_game_and_period_game_odds_by_date_sportsbook_group(
-            format, date, sportsbookgroup, request_options=request_options
-        ).unwrap()
+        return unwrap(
+            self._with_raw_response.nba_v3_odds_pre_game_and_period_game_odds_by_date_sportsbook_group(
+                date, sportsbookgroup, format_=format_, request_options=request_options
+            ),
+        )
 
     def nba_v3_odds_pre_game_and_period_game_odds_line_movement_sportsbook_group(
         self,
-        format: FormatOrStr,
         gameid: str,
         sportsbookgroup: str,
         *,
+        format_: FormatOrStr = Format.JSON,
         request_options: RequestOptionsOrDict | None = None,
     ) -> list[GameInfo1]:
         """Returns the game odds ( for games on a given date. In this endpoint both full-game and partial-game odds are
@@ -985,27 +1084,30 @@ class NbaV3Odds:
         as a URL parameter.
 
         Args:
-            format: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
             gameid: The GameID of an NBA game. GameIDs can be found in the Games API. Valid entries are
                 <code>12780</code> or <code>12781</code>
             sportsbookgroup: The name of the Sportsbook grouping. <br>Examples: <code>G1100</code>
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            format_: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             Success
 
         Raises:
             ApiError: Unauthorized ``error`` is ``Unauthorized | RawError``."""
-        return self._with_raw_response.nba_v3_odds_pre_game_and_period_game_odds_line_movement_sportsbook_group(
-            format, gameid, sportsbookgroup, request_options=request_options
-        ).unwrap()
+        return unwrap(
+            self._with_raw_response.nba_v3_odds_pre_game_and_period_game_odds_line_movement_sportsbook_group(
+                gameid, sportsbookgroup, format_=format_, request_options=request_options
+            ),
+        )
 
     def nba_v3_odds_pre_game_and_period_game_odds_line_movement_with_resulting_sportsbook_group(
         self,
-        format: FormatOrStr,
         gameid: str,
         sportsbookgroup: str,
         *,
+        format_: FormatOrStr = Format.JSON,
         request_options: RequestOptionsOrDict | None = None,
     ) -> list[GameInfoResult1]:
         """Returns the game odds ( for games on a given date. In this endpoint both full-game and partial-game odds are
@@ -1015,43 +1117,49 @@ class NbaV3Odds:
         second line. A Sportsbook Group must be specified as a URL parameter.
 
         Args:
-            format: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
             gameid: The GameID of an NBA game. GameIDs can be found in the Games API. Valid entries are
                 <code>12780</code> or <code>12781</code>
             sportsbookgroup: The name of the Sportsbook grouping. <br>Examples: <code>G1100</code>
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            format_: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             Success
 
         Raises:
             ApiError: Unauthorized ``error`` is ``Unauthorized | RawError``."""
-        return self._with_raw_response.nba_v3_odds_pre_game_and_period_game_odds_line_movement_with_resulting_sportsbook_group(
-            format, gameid, sportsbookgroup, request_options=request_options
-        ).unwrap()
+        return unwrap(
+            self._with_raw_response.nba_v3_odds_pre_game_and_period_game_odds_line_movement_with_resulting_sportsbook_group(
+                gameid, sportsbookgroup, format_=format_, request_options=request_options
+            ),
+        )
 
     def nba_v3_odds_pre_game_odds_by_date(
-        self, format: FormatOrStr, date: str, *, request_options: RequestOptionsOrDict | None = None
+        self, date: str, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None
     ) -> list[GameInfo1]:
         """Returns full game odds (spread, moneyline, total) for games on a given date. Only returns the most recently
         seen odds, not inclusive of line movement.
 
         Args:
-            format: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
             date: The date of the game(s). <br>Examples: <code>2018-06-20</code>, <code>2018-06-23</code>.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            format_: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             Success
 
         Raises:
             ApiError: Unauthorized ``error`` is ``Unauthorized | RawError``."""
-        return self._with_raw_response.nba_v3_odds_pre_game_odds_by_date(
-            format, date, request_options=request_options
-        ).unwrap()
+        return unwrap(
+            self._with_raw_response.nba_v3_odds_pre_game_odds_by_date(
+                date, format_=format_, request_options=request_options
+            ),
+        )
 
     def nba_v3_odds_pre_game_odds_line_movement(
-        self, format: FormatOrStr, gameid: str, *, request_options: RequestOptionsOrDict | None = None
+        self, gameid: str, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None
     ) -> list[GameInfo1]:
         """Returns the non-full-game odds (spread, moneyline, total) for games on a given date. Non-full-game means
         1st-half or 1st-quarter, for example, rather than full game. Returns the full line movement for the given game.
@@ -1059,37 +1167,41 @@ class NbaV3Odds:
         second line.
 
         Args:
-            format: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
             gameid: The GameID of an NBA game. GameIDs can be found in the Games API. Valid entries are
                 <code>12780</code> or <code>12781</code>
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            format_: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             Success
 
         Raises:
             ApiError: Unauthorized ``error`` is ``Unauthorized | RawError``."""
-        return self._with_raw_response.nba_v3_odds_pre_game_odds_line_movement(
-            format, gameid, request_options=request_options
-        ).unwrap()
+        return unwrap(
+            self._with_raw_response.nba_v3_odds_pre_game_odds_line_movement(
+                gameid, format_=format_, request_options=request_options
+            ),
+        )
 
     def nba_v3_odds_sportsbooks_by_active(
-        self, format: FormatOrStr, *, request_options: RequestOptionsOrDict | None = None
+        self, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None
     ) -> list[Sportsbook]:
         """A list of all available sportsbooks with their associated unique IDs.
 
         Args:
-            format: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            format_: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             Success
 
         Raises:
             ApiError: Unauthorized ``error`` is ``Unauthorized | RawError``."""
-        return self._with_raw_response.nba_v3_odds_sportsbooks_by_active(
-            format, request_options=request_options
-        ).unwrap()
+        return unwrap(
+            self._with_raw_response.nba_v3_odds_sportsbooks_by_active(format_=format_, request_options=request_options)
+        )
 
     @property
     def with_raw_response(self) -> NbaV3OddsWithRawResponse:
@@ -1101,7 +1213,7 @@ class AsyncNbaV3Odds:
         self._with_raw_response = AsyncNbaV3OddsWithRawResponse(client, server, auth)
 
     async def nba_v3_odds_betting_events_by_date(
-        self, format: FormatOrStr, date: str, *, request_options: RequestOptionsOrDict | None = None
+        self, date: str, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None
     ) -> list[BettingEvent1]:
         """The list of current BettingEvents for the given date. Events in this include market information but no
         outcomes will be included here. Intended to allow both visibility to Events in order to match up Events -> Games
@@ -1109,120 +1221,127 @@ class AsyncNbaV3Odds:
         given event.
 
         Args:
-            format: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
             date: The date of the game(s). <br>Examples: <code>2020-02-15</code>, <code>2020-02-23</code>.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            format_: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             Success
 
         Raises:
             ApiError: Unauthorized ``error`` is ``Unauthorized | RawError``."""
-        return (
+        return unwrap(
             await self._with_raw_response.nba_v3_odds_betting_events_by_date(
-                format, date, request_options=request_options
-            )
-        ).unwrap()
+                date, format_=format_, request_options=request_options
+            ),
+        )
 
     async def nba_v3_odds_betting_events_by_season(
-        self, format: FormatOrStr, season: str, *, request_options: RequestOptionsOrDict | None = None
+        self, season: str, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None
     ) -> list[BettingEvent1]:
         """Returns the full list of BetttingEvents for the given season. Intended for those who need to tie
         BettingEventIDs to GameIDs.
 
         Args:
-            format: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
             season: Year of the season (with optional season type).<br>Examples: <code>2020</code>,
                 <code>2020PRE</code>, <code>2020POST</code>, <code>2020STAR</code>, <code>2021</code>, etc.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            format_: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             Success
 
         Raises:
             ApiError: Unauthorized ``error`` is ``Unauthorized | RawError``."""
-        return (
+        return unwrap(
             await self._with_raw_response.nba_v3_odds_betting_events_by_season(
-                format, season, request_options=request_options
-            )
-        ).unwrap()
+                season, format_=format_, request_options=request_options
+            ),
+        )
 
     async def nba_v3_odds_betting_futures_by_season(
-        self, format: FormatOrStr, season: str, *, request_options: RequestOptionsOrDict | None = None
+        self, season: str, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None
     ) -> list[BettingEvent1]:
         """Returns available Futures outcomes for the given season. Does not include line movement.
 
         Args:
-            format: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
             season: Year of the season <br>Examples: <code>2020</code>, <code>2021</code>, etc
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            format_: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             Success
 
         Raises:
             ApiError: Unauthorized ``error`` is ``Unauthorized | RawError``."""
-        return (
+        return unwrap(
             await self._with_raw_response.nba_v3_odds_betting_futures_by_season(
-                format, season, request_options=request_options
-            )
-        ).unwrap()
+                season, format_=format_, request_options=request_options
+            ),
+        )
 
     async def nba_v3_odds_betting_futures_by_season_sportsbook_group(
         self,
-        format: FormatOrStr,
         season: str,
         sportsbookgroup: str,
         *,
+        format_: FormatOrStr = Format.JSON,
         request_options: RequestOptionsOrDict | None = None,
     ) -> list[BettingEvent1]:
         """Returns available Futures markets for the given season. Does not include line movement. A Sportsbook Group
         must be specified as a URL parameter.
 
         Args:
-            format: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
             season: Year of the season <br>Examples: <code>2020</code>, <code>2021</code>, etc
             sportsbookgroup: The name of the Sportsbook grouping. <br>Examples: <code>G1100</code>
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            format_: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             Success
 
         Raises:
             ApiError: Unauthorized ``error`` is ``Unauthorized | RawError``."""
-        return (
+        return unwrap(
             await self._with_raw_response.nba_v3_odds_betting_futures_by_season_sportsbook_group(
-                format, season, sportsbookgroup, request_options=request_options
-            )
-        ).unwrap()
+                season, sportsbookgroup, format_=format_, request_options=request_options
+            ),
+        )
 
     async def nba_v3_odds_betting_market(
-        self, format: FormatOrStr, market_id: str, *, request_options: RequestOptionsOrDict | None = None
+        self, market_id: str, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None
     ) -> BettingMarket:
         """Returns full line movement for a given BettingMarket. Due to the sheer size of the output and the level of
         detail, it is intended for historical data purposes and not for the most up-to-the-second lines.
 
         Args:
-            format: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
             market_id: The MarketId of the desired market for which to pull all outcomes/bets. Valid entries include:
                 <code>421</code>, <code>1041</code>, etc.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            format_: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             Success
 
         Raises:
             ApiError: Unauthorized ``error`` is ``Unauthorized | RawError``."""
-        return (
-            await self._with_raw_response.nba_v3_odds_betting_market(format, market_id, request_options=request_options)
-        ).unwrap()
+        return unwrap(
+            await self._with_raw_response.nba_v3_odds_betting_market(
+                market_id, format_=format_, request_options=request_options
+            ),
+        )
 
     async def nba_v3_odds_betting_market_sportsbook_group(
         self,
-        format: FormatOrStr,
         market_id: str,
         sportsbookgroup: str,
         *,
+        format_: FormatOrStr = Format.JSON,
         request_options: RequestOptionsOrDict | None = None,
     ) -> BettingMarket:
         """Returns full line movement for a given BettingMarket. Due to the sheer size of the output and the level of
@@ -1230,38 +1349,39 @@ class AsyncNbaV3Odds:
         Group must be specified as a URL parameter.
 
         Args:
-            format: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
             market_id: The MarketId of the desired market for which to pull all outcomes/bets. Valid entries include:
                 <code>421</code>, <code>1041</code>, etc.
             sportsbookgroup: The name of the Sportsbook grouping. <br>Examples: <code>G1100</code>
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            format_: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             Success
 
         Raises:
             ApiError: Unauthorized ``error`` is ``Unauthorized | RawError``."""
-        return (
+        return unwrap(
             await self._with_raw_response.nba_v3_odds_betting_market_sportsbook_group(
-                format, market_id, sportsbookgroup, request_options=request_options
-            )
-        ).unwrap()
+                market_id, sportsbookgroup, format_=format_, request_options=request_options
+            ),
+        )
 
     async def nba_v3_odds_betting_markets_by_event(
         self,
-        format: FormatOrStr,
         event_id: str,
         *,
-        include: IncludeOrStr | None = None,
+        format_: FormatOrStr = Format.JSON,
+        include: IncludeOrStr | None = Include.AVAILABLE,
         request_options: RequestOptionsOrDict | None = None,
     ) -> list[BettingMarket]:
         """Returns the markets of all available types (e.g. Player Props, Team Props) and available outcomes for a given
         BettingEventID.
 
         Args:
-            format: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
             event_id: The EventId of the desired event/game for which to pull all betting markets (includes
                 outcomes/bets). Valid entries include: <code>134</code>, <code>155</code>, etc.
+            format_: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
             include: This parameter indicates which <code>BettingOutcome</code> records to return in the payload. By
                 default, this endpoint only returns available outcomes, excluding the unlisted bets.
                 <br><br><b>Important Note:</b> the default parameter of <code>available</code> is much faster and
@@ -1273,35 +1393,36 @@ class AsyncNbaV3Odds:
                 recently available betting outcome per sportsbook, for each listed market, even those outcomes are
                 expired/unlisted or otherwise unavailable from the respective sportsbook. This is a far heavier payload,
                 and it's cached for much longer than available. <br><br>
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             Success
 
         Raises:
             ApiError: Unauthorized ``error`` is ``Unauthorized | RawError``."""
-        return (
+        return unwrap(
             await self._with_raw_response.nba_v3_odds_betting_markets_by_event(
-                format, event_id, include=include, request_options=request_options
-            )
-        ).unwrap()
+                event_id, format_=format_, include=include, request_options=request_options
+            ),
+        )
 
     async def nba_v3_odds_betting_markets_by_event_sportsbook_group(
         self,
-        format: FormatOrStr,
         event_id: str,
         sportsbookgroup: str,
         *,
-        include: IncludeOrStr | None = None,
+        format_: FormatOrStr = Format.JSON,
+        include: IncludeOrStr | None = Include.AVAILABLE,
         request_options: RequestOptionsOrDict | None = None,
     ) -> list[BettingMarket]:
         """Returns the markets and available outcomes for a given BettingEventID.
 
         Args:
-            format: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
             event_id: The EventId of the desired event/game for which to pull all betting markets (includes
                 outcomes/bets). Valid entries include: <code>134</code>, <code>155</code>, etc.
             sportsbookgroup: The name of the Sportsbook grouping. <br>Examples: <code>G1100</code>
+            format_: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
             include: This parameter indicates which <code>BettingOutcome</code> records to return in the payload. By
                 default, this endpoint only returns available outcomes, excluding the unlisted bets.
                 <br><br><b>Important Note:</b> the default parameter of <code>available</code> is much faster and
@@ -1313,34 +1434,35 @@ class AsyncNbaV3Odds:
                 recently available betting outcome per sportsbook, for each listed market, even those outcomes are
                 expired/unlisted or otherwise unavailable from the respective sportsbook. This is a far heavier payload,
                 and it's cached for much longer than available. <br><br>
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             Success
 
         Raises:
             ApiError: Unauthorized ``error`` is ``Unauthorized | RawError``."""
-        return (
+        return unwrap(
             await self._with_raw_response.nba_v3_odds_betting_markets_by_event_sportsbook_group(
-                format, event_id, sportsbookgroup, include=include, request_options=request_options
-            )
-        ).unwrap()
+                event_id, sportsbookgroup, format_=format_, include=include, request_options=request_options
+            ),
+        )
 
     async def nba_v3_odds_betting_markets_by_game(
         self,
-        format: FormatOrStr,
         game_id: str,
         *,
-        include: IncludeOrStr | None = None,
+        format_: FormatOrStr = Format.JSON,
+        include: IncludeOrStr | None = Include.AVAILABLE,
         request_options: RequestOptionsOrDict | None = None,
     ) -> list[BettingMarket]:
         """Returns the markets of all available types (e.g. Player Props, Team Props) and available outcomes for a given
         GameID.
 
         Args:
-            format: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
             game_id: The GameID of the desired game for which to pull all betting markets (includes outcomes/bets).
                 Valid entries include: <code>14814</code>
+            format_: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
             include: This parameter indicates which <code>BettingOutcome</code> records to return in the payload. By
                 default, this endpoint only returns available outcomes, excluding the unlisted bets.
                 <br><br><b>Important Note:</b> the default parameter of <code>available</code> is much faster and
@@ -1352,36 +1474,37 @@ class AsyncNbaV3Odds:
                 recently available betting outcome per sportsbook, for each listed market, even those outcomes are
                 expired/unlisted or otherwise unavailable from the respective sportsbook. This is a far heavier payload,
                 and it's cached for much longer than available. <br><br>
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             Success
 
         Raises:
             ApiError: Unauthorized ``error`` is ``Unauthorized | RawError``."""
-        return (
+        return unwrap(
             await self._with_raw_response.nba_v3_odds_betting_markets_by_game(
-                format, game_id, include=include, request_options=request_options
-            )
-        ).unwrap()
+                game_id, format_=format_, include=include, request_options=request_options
+            ),
+        )
 
     async def nba_v3_odds_betting_markets_by_game_sportsbook_group(
         self,
-        format: FormatOrStr,
         game_id: str,
         sportsbookgroup: str,
         *,
-        include: IncludeOrStr | None = None,
+        format_: FormatOrStr = Format.JSON,
+        include: IncludeOrStr | None = Include.AVAILABLE,
         request_options: RequestOptionsOrDict | None = None,
     ) -> list[BettingMarket]:
         """Returns the markets of all available types (e.g. Player Props, Team Props) and available outcomes for a given
         GameID. A Sportsbook Group must be specified as a URL parameter.
 
         Args:
-            format: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
             game_id: The GameID of the desired game for which to pull all betting markets (includes outcomes/bets).
                 Valid entries include: <code>14814</code>
             sportsbookgroup: The name of the Sportsbook grouping. <br>Examples: <code>G1100</code>
+            format_: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
             include: This parameter indicates which <code>BettingOutcome</code> records to return in the payload. By
                 default, this endpoint only returns available outcomes, excluding the unlisted bets.
                 <br><br><b>Important Note:</b> the default parameter of <code>available</code> is much faster and
@@ -1393,26 +1516,27 @@ class AsyncNbaV3Odds:
                 recently available betting outcome per sportsbook, for each listed market, even those outcomes are
                 expired/unlisted or otherwise unavailable from the respective sportsbook. This is a far heavier payload,
                 and it's cached for much longer than available. <br><br>
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             Success
 
         Raises:
             ApiError: Unauthorized ``error`` is ``Unauthorized | RawError``."""
-        return (
+        return unwrap(
             await self._with_raw_response.nba_v3_odds_betting_markets_by_game_sportsbook_group(
-                format, game_id, sportsbookgroup, include=include, request_options=request_options
-            )
-        ).unwrap()
+                game_id, sportsbookgroup, format_=format_, include=include, request_options=request_options
+            ),
+        )
 
     async def nba_v3_odds_betting_markets_by_market_type(
         self,
-        format: FormatOrStr,
         event_id: str,
         market_type_id: str,
         *,
-        include: IncludeOrStr | None = None,
+        format_: FormatOrStr = Format.JSON,
+        include: IncludeOrStr | None = Include.AVAILABLE,
         request_options: RequestOptionsOrDict | None = None,
     ) -> list[BettingMarket]:
         """Returns Markets and available outcomes for a given event and market type requested. A lighter call than by
@@ -1420,12 +1544,12 @@ class AsyncNbaV3Odds:
         available for each sport in its Betting Metadata endpoint.
 
         Args:
-            format: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
             event_id: The EventId of the desired event/game for which to pull all betting markets (includes
                 outcomes/bets). Valid entries include: <code>134</code>, <code>155</code>, etc.
             market_type_id: The Market Type ID of the desired MarketTypes to pull. Some common types include:
                 <code>1</code> for ``Game Lines`` <code>2</code> for ``Player Props`` <code>3</code> for ``Team Props``
                 <code>6</code> for ``Game Props``
+            format_: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
             include: This parameter indicates which <code>BettingOutcome</code> records to return in the payload. By
                 default, this endpoint only returns available outcomes, excluding the unlisted bets.
                 <br><br><b>Important Note:</b> the default parameter of <code>available</code> is much faster and
@@ -1437,27 +1561,28 @@ class AsyncNbaV3Odds:
                 recently available betting outcome per sportsbook, for each listed market, even those outcomes are
                 expired/unlisted or otherwise unavailable from the respective sportsbook. This is a far heavier payload,
                 and it's cached for much longer than available. <br><br>
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             Success
 
         Raises:
             ApiError: Unauthorized ``error`` is ``Unauthorized | RawError``."""
-        return (
+        return unwrap(
             await self._with_raw_response.nba_v3_odds_betting_markets_by_market_type(
-                format, event_id, market_type_id, include=include, request_options=request_options
-            )
-        ).unwrap()
+                event_id, market_type_id, format_=format_, include=include, request_options=request_options
+            ),
+        )
 
     async def nba_v3_odds_betting_markets_by_market_type_sportsbook_group(
         self,
-        format: FormatOrStr,
         event_id: str,
         market_type_id: str,
         sportsbookgroup: str,
         *,
-        include: IncludeOrStr | None = None,
+        format_: FormatOrStr = Format.JSON,
+        include: IncludeOrStr | None = Include.AVAILABLE,
         request_options: RequestOptionsOrDict | None = None,
     ) -> list[BettingMarket]:
         """Returns Markets and available outcomes for a given event and market type requested. A lighter call than by
@@ -1466,13 +1591,13 @@ class AsyncNbaV3Odds:
         parameter.
 
         Args:
-            format: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
             event_id: The EventId of the desired event/game for which to pull all betting markets (includes
                 outcomes/bets). Valid entries include: <code>134</code>, <code>155</code>, etc.
             market_type_id: The Market Type ID of the desired MarketTypes to pull. Some common types include:
                 <code>1</code> for ``Game Lines`` <code>2</code> for ``Player Props`` <code>3</code> for ``Team Props``
                 <code>6</code> for ``Game Props``
             sportsbookgroup: The name of the Sportsbook grouping. <br>Examples: <code>G1100</code>
+            format_: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
             include: This parameter indicates which <code>BettingOutcome</code> records to return in the payload. By
                 default, this endpoint only returns available outcomes, excluding the unlisted bets.
                 <br><br><b>Important Note:</b> the default parameter of <code>available</code> is much faster and
@@ -1484,45 +1609,52 @@ class AsyncNbaV3Odds:
                 recently available betting outcome per sportsbook, for each listed market, even those outcomes are
                 expired/unlisted or otherwise unavailable from the respective sportsbook. This is a far heavier payload,
                 and it's cached for much longer than available. <br><br>
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             Success
 
         Raises:
             ApiError: Unauthorized ``error`` is ``Unauthorized | RawError``."""
-        return (
+        return unwrap(
             await self._with_raw_response.nba_v3_odds_betting_markets_by_market_type_sportsbook_group(
-                format, event_id, market_type_id, sportsbookgroup, include=include, request_options=request_options
-            )
-        ).unwrap()
+                event_id,
+                market_type_id,
+                sportsbookgroup,
+                format_=format_,
+                include=include,
+                request_options=request_options,
+            ),
+        )
 
     async def nba_v3_odds_betting_metadata(
-        self, format: FormatOrStr, *, request_options: RequestOptionsOrDict | None = None
+        self, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None
     ) -> BettingEntityMetadataCollection:
         """Returns the list of MarketTypes, BetTypes, PeriodTypes, OutcomeTypes, and ResultTypes to map the IDs to
         descriptive names. Also includes a list of the MarketType, BetType & PeriodType combinations which we will have
         resulting for.
 
         Args:
-            format: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            format_: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             Success
 
         Raises:
             ApiError: Unauthorized ``error`` is ``Unauthorized | RawError``."""
-        return (
-            await self._with_raw_response.nba_v3_odds_betting_metadata(format, request_options=request_options)
-        ).unwrap()
+        return unwrap(
+            await self._with_raw_response.nba_v3_odds_betting_metadata(format_=format_, request_options=request_options)
+        )
 
     async def nba_v3_odds_betting_player_props_by_game(
         self,
-        format: FormatOrStr,
         game_id: str,
         *,
-        include: IncludeOrStr | None = None,
+        format_: FormatOrStr = Format.JSON,
+        include: IncludeOrStr | None = Include.AVAILABLE,
         request_options: RequestOptionsOrDict | None = None,
     ) -> list[BettingMarket]:
         """This works in the same way as Betting Markets by Market Type but is prefiltered to the Player Props type
@@ -1530,8 +1662,8 @@ class AsyncNbaV3Odds:
         recommended to use the by Market Type endpoint.
 
         Args:
-            format: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
             game_id: The unique GameID of the game in question.
+            format_: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
             include: This parameter indicates which <code>BettingOutcome</code> records to return in the payload. By
                 default, this endpoint only returns available outcomes, excluding the unlisted bets.
                 <br><br><b>Important Note:</b> the default parameter of <code>available</code> is much faster and
@@ -1543,26 +1675,27 @@ class AsyncNbaV3Odds:
                 recently available betting outcome per sportsbook, for each listed market, even those outcomes are
                 expired/unlisted or otherwise unavailable from the respective sportsbook. This is a far heavier payload,
                 and it's cached for much longer than available. <br><br>
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             Success
 
         Raises:
             ApiError: Unauthorized ``error`` is ``Unauthorized | RawError``."""
-        return (
+        return unwrap(
             await self._with_raw_response.nba_v3_odds_betting_player_props_by_game(
-                format, game_id, include=include, request_options=request_options
-            )
-        ).unwrap()
+                game_id, format_=format_, include=include, request_options=request_options
+            ),
+        )
 
     async def nba_v3_odds_betting_player_props_by_game_sportsbook_group(
         self,
-        format: FormatOrStr,
         game_id: str,
         sportsbookgroup: str,
         *,
-        include: IncludeOrStr | None = None,
+        format_: FormatOrStr = Format.JSON,
+        include: IncludeOrStr | None = Include.AVAILABLE,
         request_options: RequestOptionsOrDict | None = None,
     ) -> list[BettingMarket]:
         """This works in the same way as Betting Markets by Market Type but is prefiltered to the Player Props type
@@ -1570,9 +1703,9 @@ class AsyncNbaV3Odds:
         recommended to use the by Market Type endpoint. A Sportsbook Group must be specified as a URL parameter.
 
         Args:
-            format: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
             game_id: The unique GameID of the game in question.
             sportsbookgroup: The name of the Sportsbook grouping. <br>Examples: <code>G1100</code>
+            format_: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
             include: This parameter indicates which <code>BettingOutcome</code> records to return in the payload. By
                 default, this endpoint only returns available outcomes, excluding the unlisted bets.
                 <br><br><b>Important Note:</b> the default parameter of <code>available</code> is much faster and
@@ -1584,49 +1717,51 @@ class AsyncNbaV3Odds:
                 recently available betting outcome per sportsbook, for each listed market, even those outcomes are
                 expired/unlisted or otherwise unavailable from the respective sportsbook. This is a far heavier payload,
                 and it's cached for much longer than available. <br><br>
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             Success
 
         Raises:
             ApiError: Unauthorized ``error`` is ``Unauthorized | RawError``."""
-        return (
+        return unwrap(
             await self._with_raw_response.nba_v3_odds_betting_player_props_by_game_sportsbook_group(
-                format, game_id, sportsbookgroup, include=include, request_options=request_options
-            )
-        ).unwrap()
+                game_id, sportsbookgroup, format_=format_, include=include, request_options=request_options
+            ),
+        )
 
     async def nba_v3_odds_betting_results_by_market(
-        self, format: FormatOrStr, market_id: str, *, request_options: RequestOptionsOrDict | None = None
+        self, market_id: str, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None
     ) -> BettingMarketResult:
         """Provide a market ID that supports resulting (i.e. has a ResultType) and this endpoint will return a result:
         for markets with a ResultType, each line will be graded and it will be determined whether the bet would have won
         or lost.
 
         Args:
-            format: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
             market_id: The MarketId of the desired market for which to pull all outcomes/bets. Valid entries include:
                 <code>406451</code>, <code>404168</code>, etc.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            format_: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             Success
 
         Raises:
             ApiError: Unauthorized ``error`` is ``Unauthorized | RawError``."""
-        return (
+        return unwrap(
             await self._with_raw_response.nba_v3_odds_betting_results_by_market(
-                format, market_id, request_options=request_options
-            )
-        ).unwrap()
+                market_id, format_=format_, request_options=request_options
+            ),
+        )
 
     async def nba_v3_odds_betting_results_by_market_sportsbook_group(
         self,
-        format: FormatOrStr,
         market_id: str,
         sportsbookgroup: str,
         *,
+        format_: FormatOrStr = Format.JSON,
         request_options: RequestOptionsOrDict | None = None,
     ) -> BettingMarketResult:
         """Provide a market ID that supports resulting (i.e. has a ResultType) and this endpoint will return a result:
@@ -1634,145 +1769,156 @@ class AsyncNbaV3Odds:
         or lost. A Sportsbook Group must be specified as a URL parameter.
 
         Args:
-            format: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
             market_id: The MarketId of the desired market for which to pull all outcomes/bets. Valid entries include:
                 <code>406451</code>, <code>404168</code>, etc.
             sportsbookgroup: The name of the Sportsbook grouping. <br>Examples: <code>G1100</code>
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            format_: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             Success
 
         Raises:
             ApiError: Unauthorized ``error`` is ``Unauthorized | RawError``."""
-        return (
+        return unwrap(
             await self._with_raw_response.nba_v3_odds_betting_results_by_market_sportsbook_group(
-                format, market_id, sportsbookgroup, request_options=request_options
-            )
-        ).unwrap()
+                market_id, sportsbookgroup, format_=format_, request_options=request_options
+            ),
+        )
 
     async def nba_v3_odds_betting_splits_by_betting_market(
-        self, format: FormatOrStr, market_id: str, *, request_options: RequestOptionsOrDict | None = None
+        self, market_id: str, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None
     ) -> BettingMarketSplit:
         """List of Money and Bet Percentage splits for each outcome type available in this market. This specific
         endpoint will return the movement from this market as well as the most recent.
 
         Args:
-            format: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
             market_id: The MarketId of the desired market for which to pull splits. MarketIds are pulled from the
                 Betting Markets endpoints.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            format_: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             Success
 
         Raises:
             ApiError: Unauthorized ``error`` is ``Unauthorized | RawError``."""
-        return (
+        return unwrap(
             await self._with_raw_response.nba_v3_odds_betting_splits_by_betting_market(
-                format, market_id, request_options=request_options
-            )
-        ).unwrap()
+                market_id, format_=format_, request_options=request_options
+            ),
+        )
 
     async def nba_v3_odds_betting_splits_by_game(
-        self, format: FormatOrStr, game_id: str, *, request_options: RequestOptionsOrDict | None = None
+        self, game_id: str, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None
     ) -> GameBettingSplit1:
         """List of Money and Bet Percentage splits for each market and their respective outcome types available in this
         game. This specific endpoint will return current splits for each available market and no line movement.
 
         Args:
-            format: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
             game_id: The ID of the game for which you want to receive splits for. GameIds are pulled from the Schedules
                 and Games by Date endpoints.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            format_: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             Success
 
         Raises:
             ApiError: Unauthorized ``error`` is ``Unauthorized | RawError``."""
-        return (
+        return unwrap(
             await self._with_raw_response.nba_v3_odds_betting_splits_by_game(
-                format, game_id, request_options=request_options
-            )
-        ).unwrap()
+                game_id, format_=format_, request_options=request_options
+            ),
+        )
 
     async def nba_v3_odds_betting_trends_by_matchup(
-        self, format: FormatOrStr, team: str, opponent: str, *, request_options: RequestOptionsOrDict | None = None
+        self,
+        team: str,
+        opponent: str,
+        *,
+        format_: FormatOrStr = Format.JSON,
+        request_options: RequestOptionsOrDict | None = None,
     ) -> MatchupTrends1:
         """Returns trends data for a given pairing of teams. Will return data even if the teams are not set to play this
         season. Intended for use on a specific game, though it will work for other comparisons if applicable.
 
         Args:
-            format: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
             team: The abbreviation of the requested team. <br> Examples: <code>PHI</code>, <code>MIN</code>,
                 <code>DET</code>, etc.
             opponent: The abbreviation of the requested opponent. <br> Examples: <code>PHI</code>, <code>MIN</code>,
                 <code>DET</code>, etc.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            format_: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             Success
 
         Raises:
             ApiError: Unauthorized ``error`` is ``Unauthorized | RawError``."""
-        return (
+        return unwrap(
             await self._with_raw_response.nba_v3_odds_betting_trends_by_matchup(
-                format, team, opponent, request_options=request_options
-            )
-        ).unwrap()
+                team, opponent, format_=format_, request_options=request_options
+            ),
+        )
 
     async def nba_v3_odds_betting_trends_by_team(
-        self, format: FormatOrStr, team: str, *, request_options: RequestOptionsOrDict | None = None
+        self, team: str, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None
     ) -> TeamTrends1:
         """Describes recent team trends and performance against betting data in recent sets of games.
 
         Args:
-            format: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
             team: The abbreviation of the requested team. <br> Examples: <code>PHI</code>, <code>MIN</code>,
                 <code>DET</code>, etc.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            format_: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             Success
 
         Raises:
             ApiError: Unauthorized ``error`` is ``Unauthorized | RawError``."""
-        return (
+        return unwrap(
             await self._with_raw_response.nba_v3_odds_betting_trends_by_team(
-                format, team, request_options=request_options
-            )
-        ).unwrap()
+                team, format_=format_, request_options=request_options
+            ),
+        )
 
     async def nba_v3_odds_in_game_odds_by_date(
-        self, format: FormatOrStr, date: str, *, request_options: RequestOptionsOrDict | None = None
+        self, date: str, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None
     ) -> list[GameInfo1]:
         """Returns in-play game odds (spread, moneyline, total) for games on a given date. Only returns the most
         recently seen odds, not inclusive of line movement. As this is in-game, it will only return results while the
         game is in progress.
 
         Args:
-            format: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
             date: The date of the game(s). <br>Examples: <code>2018-06-20</code>, <code>2018-06-23</code>.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            format_: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             Success
 
         Raises:
             ApiError: Unauthorized ``error`` is ``Unauthorized | RawError``."""
-        return (
+        return unwrap(
             await self._with_raw_response.nba_v3_odds_in_game_odds_by_date(
-                format, date, request_options=request_options
-            )
-        ).unwrap()
+                date, format_=format_, request_options=request_options
+            ),
+        )
 
     async def nba_v3_odds_in_game_odds_by_date_sportsbook_group(
         self,
-        format: FormatOrStr,
         date: str,
         sportsbookgroup: str,
         *,
+        format_: FormatOrStr = Format.JSON,
         request_options: RequestOptionsOrDict | None = None,
     ) -> list[GameInfo1]:
         """Returns in-play game odds (spread, moneyline, total) for games on a given date. Only returns the most
@@ -1780,52 +1926,54 @@ class AsyncNbaV3Odds:
         game is in progress. A Sportsbook Group must be specified as a URL parameter.
 
         Args:
-            format: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
             date: The date of the game(s). <br>Examples: <code>2018-06-20</code>, <code>2018-06-23</code>.
             sportsbookgroup: The name of the Sportsbook grouping. <br>Examples: <code>G1100</code>
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            format_: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             Success
 
         Raises:
             ApiError: Unauthorized ``error`` is ``Unauthorized | RawError``."""
-        return (
+        return unwrap(
             await self._with_raw_response.nba_v3_odds_in_game_odds_by_date_sportsbook_group(
-                format, date, sportsbookgroup, request_options=request_options
-            )
-        ).unwrap()
+                date, sportsbookgroup, format_=format_, request_options=request_options
+            ),
+        )
 
     async def nba_v3_odds_in_game_odds_line_movement(
-        self, format: FormatOrStr, gameid: str, *, request_options: RequestOptionsOrDict | None = None
+        self, gameid: str, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None
     ) -> list[GameInfo1]:
         """Returns in-play game odds (spread, moneyline, total) for games on a given date. Returns the full line
         movement for the given game. This endpoint has a longer cache as it is meant for historical data/line movement
         rather than the most up to the second line.
 
         Args:
-            format: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
             gameid: The GameID of an NBA game. GameIDs can be found in the Games API. Valid entries are
                 <code>12780</code> or <code>12781</code>
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            format_: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             Success
 
         Raises:
             ApiError: Unauthorized ``error`` is ``Unauthorized | RawError``."""
-        return (
+        return unwrap(
             await self._with_raw_response.nba_v3_odds_in_game_odds_line_movement(
-                format, gameid, request_options=request_options
-            )
-        ).unwrap()
+                gameid, format_=format_, request_options=request_options
+            ),
+        )
 
     async def nba_v3_odds_in_game_odds_line_movement_sportsbook_group(
         self,
-        format: FormatOrStr,
         gameid: str,
         sportsbookgroup: str,
         *,
+        format_: FormatOrStr = Format.JSON,
         request_options: RequestOptionsOrDict | None = None,
     ) -> list[GameInfo1]:
         """Returns in-play game odds (spread, moneyline, total) for games on a given date. Returns the full line
@@ -1833,29 +1981,30 @@ class AsyncNbaV3Odds:
         rather than the most up to the second line. A Sportsbook Group must be specified as a URL parameter.
 
         Args:
-            format: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
             gameid: The GameID of an NBA game. GameIDs can be found in the Games API. Valid entries are
                 <code>12780</code> or <code>12781</code>
             sportsbookgroup: The name of the Sportsbook grouping. <br>Examples: <code>G1100</code>
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            format_: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             Success
 
         Raises:
             ApiError: Unauthorized ``error`` is ``Unauthorized | RawError``."""
-        return (
+        return unwrap(
             await self._with_raw_response.nba_v3_odds_in_game_odds_line_movement_sportsbook_group(
-                format, gameid, sportsbookgroup, request_options=request_options
-            )
-        ).unwrap()
+                gameid, sportsbookgroup, format_=format_, request_options=request_options
+            ),
+        )
 
     async def nba_v3_odds_in_game_odds_line_movement_with_resulting_sportsbook_group(
         self,
-        format: FormatOrStr,
         gameid: str,
         sportsbookgroup: str,
         *,
+        format_: FormatOrStr = Format.JSON,
         request_options: RequestOptionsOrDict | None = None,
     ) -> list[GameInfoResult1]:
         """Returns in-play game odds (spread, moneyline, total) for games on a given date. This also includes Resulting:
@@ -1865,48 +2014,50 @@ class AsyncNbaV3Odds:
         as a URL parameter.
 
         Args:
-            format: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
             gameid: The GameID of an NBA game. GameIDs can be found in the Games API. Valid entries are
                 <code>12780</code> or <code>12781</code>
             sportsbookgroup: The name of the Sportsbook grouping. <br>Examples: <code>G1100</code>
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            format_: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             Success
 
         Raises:
             ApiError: Unauthorized ``error`` is ``Unauthorized | RawError``."""
-        return (
+        return unwrap(
             await self._with_raw_response.nba_v3_odds_in_game_odds_line_movement_with_resulting_sportsbook_group(
-                format, gameid, sportsbookgroup, request_options=request_options
-            )
-        ).unwrap()
+                gameid, sportsbookgroup, format_=format_, request_options=request_options
+            ),
+        )
 
     async def nba_v3_odds_period_game_odds_by_date(
-        self, format: FormatOrStr, date: str, *, request_options: RequestOptionsOrDict | None = None
+        self, date: str, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None
     ) -> list[GameInfo1]:
         """Returns the non-full-game odds (spread, moneyline, total) for games on a given date. Non-full-game means
         1st-half or 1st-quarter, for example, rather than full game. Only returns the most recently seen odds, not
         inclusive of line movement.
 
         Args:
-            format: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
             date: The date of the game(s). <br>Examples: <code>2018-06-20</code>, <code>2018-06-23</code>.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            format_: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             Success
 
         Raises:
             ApiError: Unauthorized ``error`` is ``Unauthorized | RawError``."""
-        return (
+        return unwrap(
             await self._with_raw_response.nba_v3_odds_period_game_odds_by_date(
-                format, date, request_options=request_options
-            )
-        ).unwrap()
+                date, format_=format_, request_options=request_options
+            ),
+        )
 
     async def nba_v3_odds_period_game_odds_line_movement(
-        self, format: FormatOrStr, gameid: str, *, request_options: RequestOptionsOrDict | None = None
+        self, gameid: str, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None
     ) -> list[GameInfo1]:
         """Returns the non-full-game odds (spread, moneyline, total) for games on a given date. Non-full-game means
         1st-half or 1st-quarter, for example, rather than full game. Returns the full line movement for the given game.
@@ -1914,28 +2065,29 @@ class AsyncNbaV3Odds:
         second line.
 
         Args:
-            format: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
             gameid: The GameID of an NBA game. GameIDs can be found in the Games API. Valid entries are
                 <code>12780</code> or <code>12781</code>
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            format_: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             Success
 
         Raises:
             ApiError: Unauthorized ``error`` is ``Unauthorized | RawError``."""
-        return (
+        return unwrap(
             await self._with_raw_response.nba_v3_odds_period_game_odds_line_movement(
-                format, gameid, request_options=request_options
-            )
-        ).unwrap()
+                gameid, format_=format_, request_options=request_options
+            ),
+        )
 
     async def nba_v3_odds_pre_game_and_period_game_odds_by_date_sportsbook_group(
         self,
-        format: FormatOrStr,
         date: str,
         sportsbookgroup: str,
         *,
+        format_: FormatOrStr = Format.JSON,
         request_options: RequestOptionsOrDict | None = None,
     ) -> list[GameInfo1]:
         """Returns the full-game and non-full-game odds (spread, moneyline, total) for games in a given week and season.
@@ -1943,28 +2095,29 @@ class AsyncNbaV3Odds:
         as a URL parameter.
 
         Args:
-            format: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
             date: The date of the game(s). <br>Examples: <code>2018-06-20</code>, <code>2018-06-23</code>.
             sportsbookgroup: The name of the Sportsbook grouping. <br>Examples: <code>G1100</code>
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            format_: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             Success
 
         Raises:
             ApiError: Unauthorized ``error`` is ``Unauthorized | RawError``."""
-        return (
+        return unwrap(
             await self._with_raw_response.nba_v3_odds_pre_game_and_period_game_odds_by_date_sportsbook_group(
-                format, date, sportsbookgroup, request_options=request_options
-            )
-        ).unwrap()
+                date, sportsbookgroup, format_=format_, request_options=request_options
+            ),
+        )
 
     async def nba_v3_odds_pre_game_and_period_game_odds_line_movement_sportsbook_group(
         self,
-        format: FormatOrStr,
         gameid: str,
         sportsbookgroup: str,
         *,
+        format_: FormatOrStr = Format.JSON,
         request_options: RequestOptionsOrDict | None = None,
     ) -> list[GameInfo1]:
         """Returns the game odds ( for games on a given date. In this endpoint both full-game and partial-game odds are
@@ -1973,29 +2126,30 @@ class AsyncNbaV3Odds:
         as a URL parameter.
 
         Args:
-            format: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
             gameid: The GameID of an NBA game. GameIDs can be found in the Games API. Valid entries are
                 <code>12780</code> or <code>12781</code>
             sportsbookgroup: The name of the Sportsbook grouping. <br>Examples: <code>G1100</code>
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            format_: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             Success
 
         Raises:
             ApiError: Unauthorized ``error`` is ``Unauthorized | RawError``."""
-        return (
+        return unwrap(
             await self._with_raw_response.nba_v3_odds_pre_game_and_period_game_odds_line_movement_sportsbook_group(
-                format, gameid, sportsbookgroup, request_options=request_options
-            )
-        ).unwrap()
+                gameid, sportsbookgroup, format_=format_, request_options=request_options
+            ),
+        )
 
     async def nba_v3_odds_pre_game_and_period_game_odds_line_movement_with_resulting_sportsbook_group(
         self,
-        format: FormatOrStr,
         gameid: str,
         sportsbookgroup: str,
         *,
+        format_: FormatOrStr = Format.JSON,
         request_options: RequestOptionsOrDict | None = None,
     ) -> list[GameInfoResult1]:
         """Returns the game odds ( for games on a given date. In this endpoint both full-game and partial-game odds are
@@ -2005,47 +2159,49 @@ class AsyncNbaV3Odds:
         second line. A Sportsbook Group must be specified as a URL parameter.
 
         Args:
-            format: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
             gameid: The GameID of an NBA game. GameIDs can be found in the Games API. Valid entries are
                 <code>12780</code> or <code>12781</code>
             sportsbookgroup: The name of the Sportsbook grouping. <br>Examples: <code>G1100</code>
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            format_: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             Success
 
         Raises:
             ApiError: Unauthorized ``error`` is ``Unauthorized | RawError``."""
-        return (
+        return unwrap(
             await self._with_raw_response.nba_v3_odds_pre_game_and_period_game_odds_line_movement_with_resulting_sportsbook_group(
-                format, gameid, sportsbookgroup, request_options=request_options
-            )
-        ).unwrap()
+                gameid, sportsbookgroup, format_=format_, request_options=request_options
+            ),
+        )
 
     async def nba_v3_odds_pre_game_odds_by_date(
-        self, format: FormatOrStr, date: str, *, request_options: RequestOptionsOrDict | None = None
+        self, date: str, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None
     ) -> list[GameInfo1]:
         """Returns full game odds (spread, moneyline, total) for games on a given date. Only returns the most recently
         seen odds, not inclusive of line movement.
 
         Args:
-            format: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
             date: The date of the game(s). <br>Examples: <code>2018-06-20</code>, <code>2018-06-23</code>.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            format_: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             Success
 
         Raises:
             ApiError: Unauthorized ``error`` is ``Unauthorized | RawError``."""
-        return (
+        return unwrap(
             await self._with_raw_response.nba_v3_odds_pre_game_odds_by_date(
-                format, date, request_options=request_options
-            )
-        ).unwrap()
+                date, format_=format_, request_options=request_options
+            ),
+        )
 
     async def nba_v3_odds_pre_game_odds_line_movement(
-        self, format: FormatOrStr, gameid: str, *, request_options: RequestOptionsOrDict | None = None
+        self, gameid: str, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None
     ) -> list[GameInfo1]:
         """Returns the non-full-game odds (spread, moneyline, total) for games on a given date. Non-full-game means
         1st-half or 1st-quarter, for example, rather than full game. Returns the full line movement for the given game.
@@ -2053,39 +2209,43 @@ class AsyncNbaV3Odds:
         second line.
 
         Args:
-            format: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
             gameid: The GameID of an NBA game. GameIDs can be found in the Games API. Valid entries are
                 <code>12780</code> or <code>12781</code>
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            format_: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             Success
 
         Raises:
             ApiError: Unauthorized ``error`` is ``Unauthorized | RawError``."""
-        return (
+        return unwrap(
             await self._with_raw_response.nba_v3_odds_pre_game_odds_line_movement(
-                format, gameid, request_options=request_options
-            )
-        ).unwrap()
+                gameid, format_=format_, request_options=request_options
+            ),
+        )
 
     async def nba_v3_odds_sportsbooks_by_active(
-        self, format: FormatOrStr, *, request_options: RequestOptionsOrDict | None = None
+        self, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None
     ) -> list[Sportsbook]:
         """A list of all available sportsbooks with their associated unique IDs.
 
         Args:
-            format: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            format_: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             Success
 
         Raises:
             ApiError: Unauthorized ``error`` is ``Unauthorized | RawError``."""
-        return (
-            await self._with_raw_response.nba_v3_odds_sportsbooks_by_active(format, request_options=request_options)
-        ).unwrap()
+        return unwrap(
+            await self._with_raw_response.nba_v3_odds_sportsbooks_by_active(
+                format_=format_, request_options=request_options
+            ),
+        )
 
     @property
     def with_raw_response(self) -> AsyncNbaV3OddsWithRawResponse:
@@ -2094,7 +2254,7 @@ class AsyncNbaV3Odds:
 
 class NbaV3OddsWithRawResponse(SecuredRawResponse[RawClient, Server, AuthSchemes]):
     def nba_v3_odds_betting_events_by_date(
-        self, format: FormatOrStr, date: str, *, request_options: RequestOptionsOrDict | None = None
+        self, date: str, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None
     ) -> ApiResult[list[BettingEvent1], NbaV3OddsBettingEventsByDateErrorBody]:
         """The list of current BettingEvents for the given date. Events in this include market information but no
         outcomes will be included here. Intended to allow both visibility to Events in order to match up Events -> Games
@@ -2102,16 +2262,17 @@ class NbaV3OddsWithRawResponse(SecuredRawResponse[RawClient, Server, AuthSchemes
         given event.
 
         Args:
-            format: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
             date: The date of the game(s). <br>Examples: <code>2020-02-15</code>, <code>2020-02-23</code>.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            format_: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
         return self._client.execute(
             http_method="GET",
             url_template=self._server.default("/v3/nba/odds/{format}/BettingEventsByDate/{date}"),
-            path_params=[param[FormatOrStr]("format", format), param[str]("date", date)],
+            path_params=[param[FormatOrStr]("format", format_), param[str]("date", date)],
             auth_scheme=AnySchemes(self._auth.api_key_header, self._auth.api_key_query),
             decoder=json_decoder[list[BettingEvent1]],
             error_mapper=nba_v3_odds_betting_events_by_date_error_mapper,
@@ -2119,23 +2280,24 @@ class NbaV3OddsWithRawResponse(SecuredRawResponse[RawClient, Server, AuthSchemes
         )
 
     def nba_v3_odds_betting_events_by_season(
-        self, format: FormatOrStr, season: str, *, request_options: RequestOptionsOrDict | None = None
+        self, season: str, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None
     ) -> ApiResult[list[BettingEvent1], NbaV3OddsBettingEventsBySeasonErrorBody]:
         """Returns the full list of BetttingEvents for the given season. Intended for those who need to tie
         BettingEventIDs to GameIDs.
 
         Args:
-            format: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
             season: Year of the season (with optional season type).<br>Examples: <code>2020</code>,
                 <code>2020PRE</code>, <code>2020POST</code>, <code>2020STAR</code>, <code>2021</code>, etc.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            format_: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
         return self._client.execute(
             http_method="GET",
             url_template=self._server.default("/v3/nba/odds/{format}/BettingEvents/{season}"),
-            path_params=[param[FormatOrStr]("format", format), param[str]("season", season)],
+            path_params=[param[FormatOrStr]("format", format_), param[str]("season", season)],
             auth_scheme=AnySchemes(self._auth.api_key_header, self._auth.api_key_query),
             decoder=json_decoder[list[BettingEvent1]],
             error_mapper=nba_v3_odds_betting_events_by_season_error_mapper,
@@ -2143,21 +2305,22 @@ class NbaV3OddsWithRawResponse(SecuredRawResponse[RawClient, Server, AuthSchemes
         )
 
     def nba_v3_odds_betting_futures_by_season(
-        self, format: FormatOrStr, season: str, *, request_options: RequestOptionsOrDict | None = None
+        self, season: str, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None
     ) -> ApiResult[list[BettingEvent1], NbaV3OddsBettingFuturesBySeasonErrorBody]:
         """Returns available Futures outcomes for the given season. Does not include line movement.
 
         Args:
-            format: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
             season: Year of the season <br>Examples: <code>2020</code>, <code>2021</code>, etc
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            format_: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
         return self._client.execute(
             http_method="GET",
             url_template=self._server.default("/v3/nba/odds/{format}/BettingFuturesBySeason/{season}"),
-            path_params=[param[FormatOrStr]("format", format), param[str]("season", season)],
+            path_params=[param[FormatOrStr]("format", format_), param[str]("season", season)],
             auth_scheme=AnySchemes(self._auth.api_key_header, self._auth.api_key_query),
             decoder=json_decoder[list[BettingEvent1]],
             error_mapper=nba_v3_odds_betting_futures_by_season_error_mapper,
@@ -2166,20 +2329,21 @@ class NbaV3OddsWithRawResponse(SecuredRawResponse[RawClient, Server, AuthSchemes
 
     def nba_v3_odds_betting_futures_by_season_sportsbook_group(
         self,
-        format: FormatOrStr,
         season: str,
         sportsbookgroup: str,
         *,
+        format_: FormatOrStr = Format.JSON,
         request_options: RequestOptionsOrDict | None = None,
     ) -> ApiResult[list[BettingEvent1], NbaV3OddsBettingFuturesBySeasonSportsbookGroupErrorBody]:
         """Returns available Futures markets for the given season. Does not include line movement. A Sportsbook Group
         must be specified as a URL parameter.
 
         Args:
-            format: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
             season: Year of the season <br>Examples: <code>2020</code>, <code>2021</code>, etc
             sportsbookgroup: The name of the Sportsbook grouping. <br>Examples: <code>G1100</code>
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            format_: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
@@ -2189,7 +2353,7 @@ class NbaV3OddsWithRawResponse(SecuredRawResponse[RawClient, Server, AuthSchemes
                 "/v3/nba/odds/{format}/BettingFuturesBySeason/{season}/{sportsbookgroup}"
             ),
             path_params=[
-                param[FormatOrStr]("format", format),
+                param[FormatOrStr]("format", format_),
                 param[str]("season", season),
                 param[str]("sportsbookgroup", sportsbookgroup),
             ],
@@ -2200,23 +2364,24 @@ class NbaV3OddsWithRawResponse(SecuredRawResponse[RawClient, Server, AuthSchemes
         )
 
     def nba_v3_odds_betting_market(
-        self, format: FormatOrStr, market_id: str, *, request_options: RequestOptionsOrDict | None = None
+        self, market_id: str, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None
     ) -> ApiResult[BettingMarket, NbaV3OddsBettingMarketErrorBody]:
         """Returns full line movement for a given BettingMarket. Due to the sheer size of the output and the level of
         detail, it is intended for historical data purposes and not for the most up-to-the-second lines.
 
         Args:
-            format: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
             market_id: The MarketId of the desired market for which to pull all outcomes/bets. Valid entries include:
                 <code>421</code>, <code>1041</code>, etc.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            format_: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
         return self._client.execute(
             http_method="GET",
             url_template=self._server.default("/v3/nba/odds/{format}/BettingMarket/{marketId}"),
-            path_params=[param[FormatOrStr]("format", format), param[str]("marketId", market_id)],
+            path_params=[param[FormatOrStr]("format", format_), param[str]("marketId", market_id)],
             auth_scheme=AnySchemes(self._auth.api_key_header, self._auth.api_key_query),
             decoder=json_decoder[BettingMarket],
             error_mapper=nba_v3_odds_betting_market_error_mapper,
@@ -2225,10 +2390,10 @@ class NbaV3OddsWithRawResponse(SecuredRawResponse[RawClient, Server, AuthSchemes
 
     def nba_v3_odds_betting_market_sportsbook_group(
         self,
-        format: FormatOrStr,
         market_id: str,
         sportsbookgroup: str,
         *,
+        format_: FormatOrStr = Format.JSON,
         request_options: RequestOptionsOrDict | None = None,
     ) -> ApiResult[BettingMarket, NbaV3OddsBettingMarketSportsbookGroupErrorBody]:
         """Returns full line movement for a given BettingMarket. Due to the sheer size of the output and the level of
@@ -2236,11 +2401,12 @@ class NbaV3OddsWithRawResponse(SecuredRawResponse[RawClient, Server, AuthSchemes
         Group must be specified as a URL parameter.
 
         Args:
-            format: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
             market_id: The MarketId of the desired market for which to pull all outcomes/bets. Valid entries include:
                 <code>421</code>, <code>1041</code>, etc.
             sportsbookgroup: The name of the Sportsbook grouping. <br>Examples: <code>G1100</code>
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            format_: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
@@ -2248,7 +2414,7 @@ class NbaV3OddsWithRawResponse(SecuredRawResponse[RawClient, Server, AuthSchemes
             http_method="GET",
             url_template=self._server.default("/v3/nba/odds/{format}/BettingMarket/{marketId}/{sportsbookgroup}"),
             path_params=[
-                param[FormatOrStr]("format", format),
+                param[FormatOrStr]("format", format_),
                 param[str]("marketId", market_id),
                 param[str]("sportsbookgroup", sportsbookgroup),
             ],
@@ -2260,19 +2426,19 @@ class NbaV3OddsWithRawResponse(SecuredRawResponse[RawClient, Server, AuthSchemes
 
     def nba_v3_odds_betting_markets_by_event(
         self,
-        format: FormatOrStr,
         event_id: str,
         *,
-        include: IncludeOrStr | None = None,
+        format_: FormatOrStr = Format.JSON,
+        include: IncludeOrStr | None = Include.AVAILABLE,
         request_options: RequestOptionsOrDict | None = None,
     ) -> ApiResult[list[BettingMarket], NbaV3OddsBettingMarketsByEventErrorBody]:
         """Returns the markets of all available types (e.g. Player Props, Team Props) and available outcomes for a given
         BettingEventID.
 
         Args:
-            format: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
             event_id: The EventId of the desired event/game for which to pull all betting markets (includes
                 outcomes/bets). Valid entries include: <code>134</code>, <code>155</code>, etc.
+            format_: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
             include: This parameter indicates which <code>BettingOutcome</code> records to return in the payload. By
                 default, this endpoint only returns available outcomes, excluding the unlisted bets.
                 <br><br><b>Important Note:</b> the default parameter of <code>available</code> is much faster and
@@ -2284,14 +2450,15 @@ class NbaV3OddsWithRawResponse(SecuredRawResponse[RawClient, Server, AuthSchemes
                 recently available betting outcome per sportsbook, for each listed market, even those outcomes are
                 expired/unlisted or otherwise unavailable from the respective sportsbook. This is a far heavier payload,
                 and it's cached for much longer than available. <br><br>
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
         return self._client.execute(
             http_method="GET",
             url_template=self._server.default("/v3/nba/odds/{format}/BettingMarkets/{eventId}"),
-            path_params=[param[FormatOrStr]("format", format), param[str]("eventId", event_id)],
+            path_params=[param[FormatOrStr]("format", format_), param[str]("eventId", event_id)],
             query_params=[param[IncludeOrStr | None]("include", include)],
             auth_scheme=AnySchemes(self._auth.api_key_header, self._auth.api_key_query),
             decoder=json_decoder[list[BettingMarket]],
@@ -2301,20 +2468,20 @@ class NbaV3OddsWithRawResponse(SecuredRawResponse[RawClient, Server, AuthSchemes
 
     def nba_v3_odds_betting_markets_by_event_sportsbook_group(
         self,
-        format: FormatOrStr,
         event_id: str,
         sportsbookgroup: str,
         *,
-        include: IncludeOrStr | None = None,
+        format_: FormatOrStr = Format.JSON,
+        include: IncludeOrStr | None = Include.AVAILABLE,
         request_options: RequestOptionsOrDict | None = None,
     ) -> ApiResult[list[BettingMarket], NbaV3OddsBettingMarketsByEventSportsbookGroupErrorBody]:
         """Returns the markets and available outcomes for a given BettingEventID.
 
         Args:
-            format: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
             event_id: The EventId of the desired event/game for which to pull all betting markets (includes
                 outcomes/bets). Valid entries include: <code>134</code>, <code>155</code>, etc.
             sportsbookgroup: The name of the Sportsbook grouping. <br>Examples: <code>G1100</code>
+            format_: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
             include: This parameter indicates which <code>BettingOutcome</code> records to return in the payload. By
                 default, this endpoint only returns available outcomes, excluding the unlisted bets.
                 <br><br><b>Important Note:</b> the default parameter of <code>available</code> is much faster and
@@ -2326,7 +2493,8 @@ class NbaV3OddsWithRawResponse(SecuredRawResponse[RawClient, Server, AuthSchemes
                 recently available betting outcome per sportsbook, for each listed market, even those outcomes are
                 expired/unlisted or otherwise unavailable from the respective sportsbook. This is a far heavier payload,
                 and it's cached for much longer than available. <br><br>
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
@@ -2336,7 +2504,7 @@ class NbaV3OddsWithRawResponse(SecuredRawResponse[RawClient, Server, AuthSchemes
                 "/v3/nba/odds/{format}/BettingMarketsByEvent/{eventId}/{sportsbookgroup}"
             ),
             path_params=[
-                param[FormatOrStr]("format", format),
+                param[FormatOrStr]("format", format_),
                 param[str]("eventId", event_id),
                 param[str]("sportsbookgroup", sportsbookgroup),
             ],
@@ -2349,19 +2517,19 @@ class NbaV3OddsWithRawResponse(SecuredRawResponse[RawClient, Server, AuthSchemes
 
     def nba_v3_odds_betting_markets_by_game(
         self,
-        format: FormatOrStr,
         game_id: str,
         *,
-        include: IncludeOrStr | None = None,
+        format_: FormatOrStr = Format.JSON,
+        include: IncludeOrStr | None = Include.AVAILABLE,
         request_options: RequestOptionsOrDict | None = None,
     ) -> ApiResult[list[BettingMarket], NbaV3OddsBettingMarketsByGameErrorBody]:
         """Returns the markets of all available types (e.g. Player Props, Team Props) and available outcomes for a given
         GameID.
 
         Args:
-            format: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
             game_id: The GameID of the desired game for which to pull all betting markets (includes outcomes/bets).
                 Valid entries include: <code>14814</code>
+            format_: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
             include: This parameter indicates which <code>BettingOutcome</code> records to return in the payload. By
                 default, this endpoint only returns available outcomes, excluding the unlisted bets.
                 <br><br><b>Important Note:</b> the default parameter of <code>available</code> is much faster and
@@ -2373,14 +2541,15 @@ class NbaV3OddsWithRawResponse(SecuredRawResponse[RawClient, Server, AuthSchemes
                 recently available betting outcome per sportsbook, for each listed market, even those outcomes are
                 expired/unlisted or otherwise unavailable from the respective sportsbook. This is a far heavier payload,
                 and it's cached for much longer than available. <br><br>
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
         return self._client.execute(
             http_method="GET",
             url_template=self._server.default("/v3/nba/odds/{format}/BettingMarketsByGameID/{gameID}"),
-            path_params=[param[FormatOrStr]("format", format), param[str]("gameID", game_id)],
+            path_params=[param[FormatOrStr]("format", format_), param[str]("gameID", game_id)],
             query_params=[param[IncludeOrStr | None]("include", include)],
             auth_scheme=AnySchemes(self._auth.api_key_header, self._auth.api_key_query),
             decoder=json_decoder[list[BettingMarket]],
@@ -2390,21 +2559,21 @@ class NbaV3OddsWithRawResponse(SecuredRawResponse[RawClient, Server, AuthSchemes
 
     def nba_v3_odds_betting_markets_by_game_sportsbook_group(
         self,
-        format: FormatOrStr,
         game_id: str,
         sportsbookgroup: str,
         *,
-        include: IncludeOrStr | None = None,
+        format_: FormatOrStr = Format.JSON,
+        include: IncludeOrStr | None = Include.AVAILABLE,
         request_options: RequestOptionsOrDict | None = None,
     ) -> ApiResult[list[BettingMarket], NbaV3OddsBettingMarketsByGameSportsbookGroupErrorBody]:
         """Returns the markets of all available types (e.g. Player Props, Team Props) and available outcomes for a given
         GameID. A Sportsbook Group must be specified as a URL parameter.
 
         Args:
-            format: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
             game_id: The GameID of the desired game for which to pull all betting markets (includes outcomes/bets).
                 Valid entries include: <code>14814</code>
             sportsbookgroup: The name of the Sportsbook grouping. <br>Examples: <code>G1100</code>
+            format_: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
             include: This parameter indicates which <code>BettingOutcome</code> records to return in the payload. By
                 default, this endpoint only returns available outcomes, excluding the unlisted bets.
                 <br><br><b>Important Note:</b> the default parameter of <code>available</code> is much faster and
@@ -2416,7 +2585,8 @@ class NbaV3OddsWithRawResponse(SecuredRawResponse[RawClient, Server, AuthSchemes
                 recently available betting outcome per sportsbook, for each listed market, even those outcomes are
                 expired/unlisted or otherwise unavailable from the respective sportsbook. This is a far heavier payload,
                 and it's cached for much longer than available. <br><br>
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
@@ -2426,7 +2596,7 @@ class NbaV3OddsWithRawResponse(SecuredRawResponse[RawClient, Server, AuthSchemes
                 "/v3/nba/odds/{format}/BettingMarketsByGameID/{gameID}/{sportsbookgroup}"
             ),
             path_params=[
-                param[FormatOrStr]("format", format),
+                param[FormatOrStr]("format", format_),
                 param[str]("gameID", game_id),
                 param[str]("sportsbookgroup", sportsbookgroup),
             ],
@@ -2439,11 +2609,11 @@ class NbaV3OddsWithRawResponse(SecuredRawResponse[RawClient, Server, AuthSchemes
 
     def nba_v3_odds_betting_markets_by_market_type(
         self,
-        format: FormatOrStr,
         event_id: str,
         market_type_id: str,
         *,
-        include: IncludeOrStr | None = None,
+        format_: FormatOrStr = Format.JSON,
+        include: IncludeOrStr | None = Include.AVAILABLE,
         request_options: RequestOptionsOrDict | None = None,
     ) -> ApiResult[list[BettingMarket], NbaV3OddsBettingMarketsByMarketTypeErrorBody]:
         """Returns Markets and available outcomes for a given event and market type requested. A lighter call than by
@@ -2451,12 +2621,12 @@ class NbaV3OddsWithRawResponse(SecuredRawResponse[RawClient, Server, AuthSchemes
         available for each sport in its Betting Metadata endpoint.
 
         Args:
-            format: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
             event_id: The EventId of the desired event/game for which to pull all betting markets (includes
                 outcomes/bets). Valid entries include: <code>134</code>, <code>155</code>, etc.
             market_type_id: The Market Type ID of the desired MarketTypes to pull. Some common types include:
                 <code>1</code> for ``Game Lines`` <code>2</code> for ``Player Props`` <code>3</code> for ``Team Props``
                 <code>6</code> for ``Game Props``
+            format_: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
             include: This parameter indicates which <code>BettingOutcome</code> records to return in the payload. By
                 default, this endpoint only returns available outcomes, excluding the unlisted bets.
                 <br><br><b>Important Note:</b> the default parameter of <code>available</code> is much faster and
@@ -2468,7 +2638,8 @@ class NbaV3OddsWithRawResponse(SecuredRawResponse[RawClient, Server, AuthSchemes
                 recently available betting outcome per sportsbook, for each listed market, even those outcomes are
                 expired/unlisted or otherwise unavailable from the respective sportsbook. This is a far heavier payload,
                 and it's cached for much longer than available. <br><br>
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
@@ -2478,7 +2649,7 @@ class NbaV3OddsWithRawResponse(SecuredRawResponse[RawClient, Server, AuthSchemes
                 "/v3/nba/odds/{format}/BettingMarketsByMarketType/{eventId}/{marketTypeID}"
             ),
             path_params=[
-                param[FormatOrStr]("format", format),
+                param[FormatOrStr]("format", format_),
                 param[str]("eventId", event_id),
                 param[str]("marketTypeID", market_type_id),
             ],
@@ -2491,12 +2662,12 @@ class NbaV3OddsWithRawResponse(SecuredRawResponse[RawClient, Server, AuthSchemes
 
     def nba_v3_odds_betting_markets_by_market_type_sportsbook_group(
         self,
-        format: FormatOrStr,
         event_id: str,
         market_type_id: str,
         sportsbookgroup: str,
         *,
-        include: IncludeOrStr | None = None,
+        format_: FormatOrStr = Format.JSON,
+        include: IncludeOrStr | None = Include.AVAILABLE,
         request_options: RequestOptionsOrDict | None = None,
     ) -> ApiResult[list[BettingMarket], NbaV3OddsBettingMarketsByMarketTypeSportsbookGroupErrorBody]:
         """Returns Markets and available outcomes for a given event and market type requested. A lighter call than by
@@ -2505,13 +2676,13 @@ class NbaV3OddsWithRawResponse(SecuredRawResponse[RawClient, Server, AuthSchemes
         parameter.
 
         Args:
-            format: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
             event_id: The EventId of the desired event/game for which to pull all betting markets (includes
                 outcomes/bets). Valid entries include: <code>134</code>, <code>155</code>, etc.
             market_type_id: The Market Type ID of the desired MarketTypes to pull. Some common types include:
                 <code>1</code> for ``Game Lines`` <code>2</code> for ``Player Props`` <code>3</code> for ``Team Props``
                 <code>6</code> for ``Game Props``
             sportsbookgroup: The name of the Sportsbook grouping. <br>Examples: <code>G1100</code>
+            format_: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
             include: This parameter indicates which <code>BettingOutcome</code> records to return in the payload. By
                 default, this endpoint only returns available outcomes, excluding the unlisted bets.
                 <br><br><b>Important Note:</b> the default parameter of <code>available</code> is much faster and
@@ -2523,7 +2694,8 @@ class NbaV3OddsWithRawResponse(SecuredRawResponse[RawClient, Server, AuthSchemes
                 recently available betting outcome per sportsbook, for each listed market, even those outcomes are
                 expired/unlisted or otherwise unavailable from the respective sportsbook. This is a far heavier payload,
                 and it's cached for much longer than available. <br><br>
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
@@ -2533,7 +2705,7 @@ class NbaV3OddsWithRawResponse(SecuredRawResponse[RawClient, Server, AuthSchemes
                 "/v3/nba/odds/{format}/BettingMarketsByMarketType/{eventId}/{marketTypeID}/{sportsbookgroup}"
             ),
             path_params=[
-                param[FormatOrStr]("format", format),
+                param[FormatOrStr]("format", format_),
                 param[str]("eventId", event_id),
                 param[str]("marketTypeID", market_type_id),
                 param[str]("sportsbookgroup", sportsbookgroup),
@@ -2546,22 +2718,23 @@ class NbaV3OddsWithRawResponse(SecuredRawResponse[RawClient, Server, AuthSchemes
         )
 
     def nba_v3_odds_betting_metadata(
-        self, format: FormatOrStr, *, request_options: RequestOptionsOrDict | None = None
+        self, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None
     ) -> ApiResult[BettingEntityMetadataCollection, NbaV3OddsBettingMetadataErrorBody]:
         """Returns the list of MarketTypes, BetTypes, PeriodTypes, OutcomeTypes, and ResultTypes to map the IDs to
         descriptive names. Also includes a list of the MarketType, BetType & PeriodType combinations which we will have
         resulting for.
 
         Args:
-            format: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            format_: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
         return self._client.execute(
             http_method="GET",
             url_template=self._server.default("/v3/nba/odds/{format}/BettingMetadata"),
-            path_params=[param[FormatOrStr]("format", format)],
+            path_params=[param[FormatOrStr]("format", format_)],
             auth_scheme=AnySchemes(self._auth.api_key_header, self._auth.api_key_query),
             decoder=json_decoder[BettingEntityMetadataCollection],
             error_mapper=nba_v3_odds_betting_metadata_error_mapper,
@@ -2570,10 +2743,10 @@ class NbaV3OddsWithRawResponse(SecuredRawResponse[RawClient, Server, AuthSchemes
 
     def nba_v3_odds_betting_player_props_by_game(
         self,
-        format: FormatOrStr,
         game_id: str,
         *,
-        include: IncludeOrStr | None = None,
+        format_: FormatOrStr = Format.JSON,
+        include: IncludeOrStr | None = Include.AVAILABLE,
         request_options: RequestOptionsOrDict | None = None,
     ) -> ApiResult[list[BettingMarket], NbaV3OddsBettingPlayerPropsByGameErrorBody]:
         """This works in the same way as Betting Markets by Market Type but is prefiltered to the Player Props type
@@ -2581,8 +2754,8 @@ class NbaV3OddsWithRawResponse(SecuredRawResponse[RawClient, Server, AuthSchemes
         recommended to use the by Market Type endpoint.
 
         Args:
-            format: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
             game_id: The unique GameID of the game in question.
+            format_: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
             include: This parameter indicates which <code>BettingOutcome</code> records to return in the payload. By
                 default, this endpoint only returns available outcomes, excluding the unlisted bets.
                 <br><br><b>Important Note:</b> the default parameter of <code>available</code> is much faster and
@@ -2594,14 +2767,15 @@ class NbaV3OddsWithRawResponse(SecuredRawResponse[RawClient, Server, AuthSchemes
                 recently available betting outcome per sportsbook, for each listed market, even those outcomes are
                 expired/unlisted or otherwise unavailable from the respective sportsbook. This is a far heavier payload,
                 and it's cached for much longer than available. <br><br>
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
         return self._client.execute(
             http_method="GET",
             url_template=self._server.default("/v3/nba/odds/{format}/BettingPlayerPropsByGameID/{gameId}"),
-            path_params=[param[FormatOrStr]("format", format), param[str]("gameId", game_id)],
+            path_params=[param[FormatOrStr]("format", format_), param[str]("gameId", game_id)],
             query_params=[param[IncludeOrStr | None]("include", include)],
             auth_scheme=AnySchemes(self._auth.api_key_header, self._auth.api_key_query),
             decoder=json_decoder[list[BettingMarket]],
@@ -2611,11 +2785,11 @@ class NbaV3OddsWithRawResponse(SecuredRawResponse[RawClient, Server, AuthSchemes
 
     def nba_v3_odds_betting_player_props_by_game_sportsbook_group(
         self,
-        format: FormatOrStr,
         game_id: str,
         sportsbookgroup: str,
         *,
-        include: IncludeOrStr | None = None,
+        format_: FormatOrStr = Format.JSON,
+        include: IncludeOrStr | None = Include.AVAILABLE,
         request_options: RequestOptionsOrDict | None = None,
     ) -> ApiResult[list[BettingMarket], NbaV3OddsBettingPlayerPropsByGameSportsbookGroupErrorBody]:
         """This works in the same way as Betting Markets by Market Type but is prefiltered to the Player Props type
@@ -2623,9 +2797,9 @@ class NbaV3OddsWithRawResponse(SecuredRawResponse[RawClient, Server, AuthSchemes
         recommended to use the by Market Type endpoint. A Sportsbook Group must be specified as a URL parameter.
 
         Args:
-            format: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
             game_id: The unique GameID of the game in question.
             sportsbookgroup: The name of the Sportsbook grouping. <br>Examples: <code>G1100</code>
+            format_: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
             include: This parameter indicates which <code>BettingOutcome</code> records to return in the payload. By
                 default, this endpoint only returns available outcomes, excluding the unlisted bets.
                 <br><br><b>Important Note:</b> the default parameter of <code>available</code> is much faster and
@@ -2637,7 +2811,8 @@ class NbaV3OddsWithRawResponse(SecuredRawResponse[RawClient, Server, AuthSchemes
                 recently available betting outcome per sportsbook, for each listed market, even those outcomes are
                 expired/unlisted or otherwise unavailable from the respective sportsbook. This is a far heavier payload,
                 and it's cached for much longer than available. <br><br>
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
@@ -2647,7 +2822,7 @@ class NbaV3OddsWithRawResponse(SecuredRawResponse[RawClient, Server, AuthSchemes
                 "/v3/nba/odds/{format}/BettingPlayerPropsByGameID/{gameId}/{sportsbookgroup}"
             ),
             path_params=[
-                param[FormatOrStr]("format", format),
+                param[FormatOrStr]("format", format_),
                 param[str]("gameId", game_id),
                 param[str]("sportsbookgroup", sportsbookgroup),
             ],
@@ -2659,24 +2834,25 @@ class NbaV3OddsWithRawResponse(SecuredRawResponse[RawClient, Server, AuthSchemes
         )
 
     def nba_v3_odds_betting_results_by_market(
-        self, format: FormatOrStr, market_id: str, *, request_options: RequestOptionsOrDict | None = None
+        self, market_id: str, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None
     ) -> ApiResult[BettingMarketResult, NbaV3OddsBettingResultsByMarketErrorBody]:
         """Provide a market ID that supports resulting (i.e. has a ResultType) and this endpoint will return a result:
         for markets with a ResultType, each line will be graded and it will be determined whether the bet would have won
         or lost.
 
         Args:
-            format: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
             market_id: The MarketId of the desired market for which to pull all outcomes/bets. Valid entries include:
                 <code>406451</code>, <code>404168</code>, etc.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            format_: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
         return self._client.execute(
             http_method="GET",
             url_template=self._server.default("/v3/nba/odds/{format}/BettingMarketResults/{marketId}"),
-            path_params=[param[FormatOrStr]("format", format), param[str]("marketId", market_id)],
+            path_params=[param[FormatOrStr]("format", format_), param[str]("marketId", market_id)],
             auth_scheme=AnySchemes(self._auth.api_key_header, self._auth.api_key_query),
             decoder=json_decoder[BettingMarketResult],
             error_mapper=nba_v3_odds_betting_results_by_market_error_mapper,
@@ -2685,10 +2861,10 @@ class NbaV3OddsWithRawResponse(SecuredRawResponse[RawClient, Server, AuthSchemes
 
     def nba_v3_odds_betting_results_by_market_sportsbook_group(
         self,
-        format: FormatOrStr,
         market_id: str,
         sportsbookgroup: str,
         *,
+        format_: FormatOrStr = Format.JSON,
         request_options: RequestOptionsOrDict | None = None,
     ) -> ApiResult[BettingMarketResult, NbaV3OddsBettingResultsByMarketSportsbookGroupErrorBody]:
         """Provide a market ID that supports resulting (i.e. has a ResultType) and this endpoint will return a result:
@@ -2696,11 +2872,12 @@ class NbaV3OddsWithRawResponse(SecuredRawResponse[RawClient, Server, AuthSchemes
         or lost. A Sportsbook Group must be specified as a URL parameter.
 
         Args:
-            format: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
             market_id: The MarketId of the desired market for which to pull all outcomes/bets. Valid entries include:
                 <code>406451</code>, <code>404168</code>, etc.
             sportsbookgroup: The name of the Sportsbook grouping. <br>Examples: <code>G1100</code>
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            format_: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
@@ -2710,7 +2887,7 @@ class NbaV3OddsWithRawResponse(SecuredRawResponse[RawClient, Server, AuthSchemes
                 "/v3/nba/odds/{format}/BettingResultsByMarket/{marketId}/{sportsbookgroup}"
             ),
             path_params=[
-                param[FormatOrStr]("format", format),
+                param[FormatOrStr]("format", format_),
                 param[str]("marketId", market_id),
                 param[str]("sportsbookgroup", sportsbookgroup),
             ],
@@ -2721,23 +2898,24 @@ class NbaV3OddsWithRawResponse(SecuredRawResponse[RawClient, Server, AuthSchemes
         )
 
     def nba_v3_odds_betting_splits_by_betting_market(
-        self, format: FormatOrStr, market_id: str, *, request_options: RequestOptionsOrDict | None = None
+        self, market_id: str, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None
     ) -> ApiResult[BettingMarketSplit, NbaV3OddsBettingSplitsByBettingMarketErrorBody]:
         """List of Money and Bet Percentage splits for each outcome type available in this market. This specific
         endpoint will return the movement from this market as well as the most recent.
 
         Args:
-            format: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
             market_id: The MarketId of the desired market for which to pull splits. MarketIds are pulled from the
                 Betting Markets endpoints.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            format_: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
         return self._client.execute(
             http_method="GET",
             url_template=self._server.default("/v3/nba/odds/{format}/BettingSplitsByMarketId/{marketId}"),
-            path_params=[param[FormatOrStr]("format", format), param[str]("marketId", market_id)],
+            path_params=[param[FormatOrStr]("format", format_), param[str]("marketId", market_id)],
             auth_scheme=AnySchemes(self._auth.api_key_header, self._auth.api_key_query),
             decoder=json_decoder[BettingMarketSplit],
             error_mapper=nba_v3_odds_betting_splits_by_betting_market_error_mapper,
@@ -2745,23 +2923,24 @@ class NbaV3OddsWithRawResponse(SecuredRawResponse[RawClient, Server, AuthSchemes
         )
 
     def nba_v3_odds_betting_splits_by_game(
-        self, format: FormatOrStr, game_id: str, *, request_options: RequestOptionsOrDict | None = None
+        self, game_id: str, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None
     ) -> ApiResult[GameBettingSplit1, NbaV3OddsBettingSplitsByGameErrorBody]:
         """List of Money and Bet Percentage splits for each market and their respective outcome types available in this
         game. This specific endpoint will return current splits for each available market and no line movement.
 
         Args:
-            format: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
             game_id: The ID of the game for which you want to receive splits for. GameIds are pulled from the Schedules
                 and Games by Date endpoints.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            format_: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
         return self._client.execute(
             http_method="GET",
             url_template=self._server.default("/v3/nba/odds/{format}/BettingSplitsByGameId/{gameId}"),
-            path_params=[param[FormatOrStr]("format", format), param[str]("gameId", game_id)],
+            path_params=[param[FormatOrStr]("format", format_), param[str]("gameId", game_id)],
             auth_scheme=AnySchemes(self._auth.api_key_header, self._auth.api_key_query),
             decoder=json_decoder[GameBettingSplit1],
             error_mapper=nba_v3_odds_betting_splits_by_game_error_mapper,
@@ -2769,18 +2948,24 @@ class NbaV3OddsWithRawResponse(SecuredRawResponse[RawClient, Server, AuthSchemes
         )
 
     def nba_v3_odds_betting_trends_by_matchup(
-        self, format: FormatOrStr, team: str, opponent: str, *, request_options: RequestOptionsOrDict | None = None
+        self,
+        team: str,
+        opponent: str,
+        *,
+        format_: FormatOrStr = Format.JSON,
+        request_options: RequestOptionsOrDict | None = None,
     ) -> ApiResult[MatchupTrends1, NbaV3OddsBettingTrendsByMatchupErrorBody]:
         """Returns trends data for a given pairing of teams. Will return data even if the teams are not set to play this
         season. Intended for use on a specific game, though it will work for other comparisons if applicable.
 
         Args:
-            format: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
             team: The abbreviation of the requested team. <br> Examples: <code>PHI</code>, <code>MIN</code>,
                 <code>DET</code>, etc.
             opponent: The abbreviation of the requested opponent. <br> Examples: <code>PHI</code>, <code>MIN</code>,
                 <code>DET</code>, etc.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            format_: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
@@ -2788,7 +2973,7 @@ class NbaV3OddsWithRawResponse(SecuredRawResponse[RawClient, Server, AuthSchemes
             http_method="GET",
             url_template=self._server.default("/v3/nba/odds/{format}/MatchupTrends/{team}/{opponent}"),
             path_params=[
-                param[FormatOrStr]("format", format), param[str]("team", team), param[str]("opponent", opponent)
+                param[FormatOrStr]("format", format_), param[str]("team", team), param[str]("opponent", opponent)
             ],
             auth_scheme=AnySchemes(self._auth.api_key_header, self._auth.api_key_query),
             decoder=json_decoder[MatchupTrends1],
@@ -2797,22 +2982,23 @@ class NbaV3OddsWithRawResponse(SecuredRawResponse[RawClient, Server, AuthSchemes
         )
 
     def nba_v3_odds_betting_trends_by_team(
-        self, format: FormatOrStr, team: str, *, request_options: RequestOptionsOrDict | None = None
+        self, team: str, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None
     ) -> ApiResult[TeamTrends1, NbaV3OddsBettingTrendsByTeamErrorBody]:
         """Describes recent team trends and performance against betting data in recent sets of games.
 
         Args:
-            format: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
             team: The abbreviation of the requested team. <br> Examples: <code>PHI</code>, <code>MIN</code>,
                 <code>DET</code>, etc.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            format_: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
         return self._client.execute(
             http_method="GET",
             url_template=self._server.default("/v3/nba/odds/{format}/TeamTrends/{team}"),
-            path_params=[param[FormatOrStr]("format", format), param[str]("team", team)],
+            path_params=[param[FormatOrStr]("format", format_), param[str]("team", team)],
             auth_scheme=AnySchemes(self._auth.api_key_header, self._auth.api_key_query),
             decoder=json_decoder[TeamTrends1],
             error_mapper=nba_v3_odds_betting_trends_by_team_error_mapper,
@@ -2820,23 +3006,24 @@ class NbaV3OddsWithRawResponse(SecuredRawResponse[RawClient, Server, AuthSchemes
         )
 
     def nba_v3_odds_in_game_odds_by_date(
-        self, format: FormatOrStr, date: str, *, request_options: RequestOptionsOrDict | None = None
+        self, date: str, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None
     ) -> ApiResult[list[GameInfo1], NbaV3OddsInGameOddsByDateErrorBody]:
         """Returns in-play game odds (spread, moneyline, total) for games on a given date. Only returns the most
         recently seen odds, not inclusive of line movement. As this is in-game, it will only return results while the
         game is in progress.
 
         Args:
-            format: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
             date: The date of the game(s). <br>Examples: <code>2018-06-20</code>, <code>2018-06-23</code>.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            format_: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
         return self._client.execute(
             http_method="GET",
             url_template=self._server.default("/v3/nba/odds/{format}/LiveGameOddsByDate/{date}"),
-            path_params=[param[FormatOrStr]("format", format), param[str]("date", date)],
+            path_params=[param[FormatOrStr]("format", format_), param[str]("date", date)],
             auth_scheme=AnySchemes(self._auth.api_key_header, self._auth.api_key_query),
             decoder=json_decoder[list[GameInfo1]],
             error_mapper=nba_v3_odds_in_game_odds_by_date_error_mapper,
@@ -2845,10 +3032,10 @@ class NbaV3OddsWithRawResponse(SecuredRawResponse[RawClient, Server, AuthSchemes
 
     def nba_v3_odds_in_game_odds_by_date_sportsbook_group(
         self,
-        format: FormatOrStr,
         date: str,
         sportsbookgroup: str,
         *,
+        format_: FormatOrStr = Format.JSON,
         request_options: RequestOptionsOrDict | None = None,
     ) -> ApiResult[list[GameInfo1], NbaV3OddsInGameOddsByDateSportsbookGroupErrorBody]:
         """Returns in-play game odds (spread, moneyline, total) for games on a given date. Only returns the most
@@ -2856,10 +3043,11 @@ class NbaV3OddsWithRawResponse(SecuredRawResponse[RawClient, Server, AuthSchemes
         game is in progress. A Sportsbook Group must be specified as a URL parameter.
 
         Args:
-            format: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
             date: The date of the game(s). <br>Examples: <code>2018-06-20</code>, <code>2018-06-23</code>.
             sportsbookgroup: The name of the Sportsbook grouping. <br>Examples: <code>G1100</code>
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            format_: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
@@ -2867,7 +3055,7 @@ class NbaV3OddsWithRawResponse(SecuredRawResponse[RawClient, Server, AuthSchemes
             http_method="GET",
             url_template=self._server.default("/v3/nba/odds/{format}/InGameOddsByDate/{date}/{sportsbookgroup}"),
             path_params=[
-                param[FormatOrStr]("format", format),
+                param[FormatOrStr]("format", format_),
                 param[str]("date", date),
                 param[str]("sportsbookgroup", sportsbookgroup),
             ],
@@ -2878,24 +3066,25 @@ class NbaV3OddsWithRawResponse(SecuredRawResponse[RawClient, Server, AuthSchemes
         )
 
     def nba_v3_odds_in_game_odds_line_movement(
-        self, format: FormatOrStr, gameid: str, *, request_options: RequestOptionsOrDict | None = None
+        self, gameid: str, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None
     ) -> ApiResult[list[GameInfo1], NbaV3OddsInGameOddsLineMovementErrorBody]:
         """Returns in-play game odds (spread, moneyline, total) for games on a given date. Returns the full line
         movement for the given game. This endpoint has a longer cache as it is meant for historical data/line movement
         rather than the most up to the second line.
 
         Args:
-            format: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
             gameid: The GameID of an NBA game. GameIDs can be found in the Games API. Valid entries are
                 <code>12780</code> or <code>12781</code>
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            format_: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
         return self._client.execute(
             http_method="GET",
             url_template=self._server.default("/v3/nba/odds/{format}/LiveGameOddsLineMovement/{gameid}"),
-            path_params=[param[FormatOrStr]("format", format), param[str]("gameid", gameid)],
+            path_params=[param[FormatOrStr]("format", format_), param[str]("gameid", gameid)],
             auth_scheme=AnySchemes(self._auth.api_key_header, self._auth.api_key_query),
             decoder=json_decoder[list[GameInfo1]],
             error_mapper=nba_v3_odds_in_game_odds_line_movement_error_mapper,
@@ -2904,10 +3093,10 @@ class NbaV3OddsWithRawResponse(SecuredRawResponse[RawClient, Server, AuthSchemes
 
     def nba_v3_odds_in_game_odds_line_movement_sportsbook_group(
         self,
-        format: FormatOrStr,
         gameid: str,
         sportsbookgroup: str,
         *,
+        format_: FormatOrStr = Format.JSON,
         request_options: RequestOptionsOrDict | None = None,
     ) -> ApiResult[list[GameInfo1], NbaV3OddsInGameOddsLineMovementSportsbookGroupErrorBody]:
         """Returns in-play game odds (spread, moneyline, total) for games on a given date. Returns the full line
@@ -2915,11 +3104,12 @@ class NbaV3OddsWithRawResponse(SecuredRawResponse[RawClient, Server, AuthSchemes
         rather than the most up to the second line. A Sportsbook Group must be specified as a URL parameter.
 
         Args:
-            format: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
             gameid: The GameID of an NBA game. GameIDs can be found in the Games API. Valid entries are
                 <code>12780</code> or <code>12781</code>
             sportsbookgroup: The name of the Sportsbook grouping. <br>Examples: <code>G1100</code>
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            format_: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
@@ -2927,7 +3117,7 @@ class NbaV3OddsWithRawResponse(SecuredRawResponse[RawClient, Server, AuthSchemes
             http_method="GET",
             url_template=self._server.default("/v3/nba/odds/{format}/InGameLineMovement/{gameid}/{sportsbookgroup}"),
             path_params=[
-                param[FormatOrStr]("format", format),
+                param[FormatOrStr]("format", format_),
                 param[str]("gameid", gameid),
                 param[str]("sportsbookgroup", sportsbookgroup),
             ],
@@ -2939,10 +3129,10 @@ class NbaV3OddsWithRawResponse(SecuredRawResponse[RawClient, Server, AuthSchemes
 
     def nba_v3_odds_in_game_odds_line_movement_with_resulting_sportsbook_group(
         self,
-        format: FormatOrStr,
         gameid: str,
         sportsbookgroup: str,
         *,
+        format_: FormatOrStr = Format.JSON,
         request_options: RequestOptionsOrDict | None = None,
     ) -> ApiResult[list[GameInfoResult1], NbaV3OddsInGameOddsLineMovementWithResultingSportsbookGroupErrorBody]:
         """Returns in-play game odds (spread, moneyline, total) for games on a given date. This also includes Resulting:
@@ -2952,11 +3142,12 @@ class NbaV3OddsWithRawResponse(SecuredRawResponse[RawClient, Server, AuthSchemes
         as a URL parameter.
 
         Args:
-            format: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
             gameid: The GameID of an NBA game. GameIDs can be found in the Games API. Valid entries are
                 <code>12780</code> or <code>12781</code>
             sportsbookgroup: The name of the Sportsbook grouping. <br>Examples: <code>G1100</code>
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            format_: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
@@ -2966,7 +3157,7 @@ class NbaV3OddsWithRawResponse(SecuredRawResponse[RawClient, Server, AuthSchemes
                 "/v3/nba/odds/{format}/InGameLineMovementWithResulting/{gameid}/{sportsbookgroup}"
             ),
             path_params=[
-                param[FormatOrStr]("format", format),
+                param[FormatOrStr]("format", format_),
                 param[str]("gameid", gameid),
                 param[str]("sportsbookgroup", sportsbookgroup),
             ],
@@ -2977,23 +3168,24 @@ class NbaV3OddsWithRawResponse(SecuredRawResponse[RawClient, Server, AuthSchemes
         )
 
     def nba_v3_odds_period_game_odds_by_date(
-        self, format: FormatOrStr, date: str, *, request_options: RequestOptionsOrDict | None = None
+        self, date: str, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None
     ) -> ApiResult[list[GameInfo1], NbaV3OddsPeriodGameOddsByDateErrorBody]:
         """Returns the non-full-game odds (spread, moneyline, total) for games on a given date. Non-full-game means
         1st-half or 1st-quarter, for example, rather than full game. Only returns the most recently seen odds, not
         inclusive of line movement.
 
         Args:
-            format: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
             date: The date of the game(s). <br>Examples: <code>2018-06-20</code>, <code>2018-06-23</code>.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            format_: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
         return self._client.execute(
             http_method="GET",
             url_template=self._server.default("/v3/nba/odds/{format}/AlternateMarketGameOddsByDate/{date}"),
-            path_params=[param[FormatOrStr]("format", format), param[str]("date", date)],
+            path_params=[param[FormatOrStr]("format", format_), param[str]("date", date)],
             auth_scheme=AnySchemes(self._auth.api_key_header, self._auth.api_key_query),
             decoder=json_decoder[list[GameInfo1]],
             error_mapper=nba_v3_odds_period_game_odds_by_date_error_mapper,
@@ -3001,7 +3193,7 @@ class NbaV3OddsWithRawResponse(SecuredRawResponse[RawClient, Server, AuthSchemes
         )
 
     def nba_v3_odds_period_game_odds_line_movement(
-        self, format: FormatOrStr, gameid: str, *, request_options: RequestOptionsOrDict | None = None
+        self, gameid: str, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None
     ) -> ApiResult[list[GameInfo1], NbaV3OddsPeriodGameOddsLineMovementErrorBody]:
         """Returns the non-full-game odds (spread, moneyline, total) for games on a given date. Non-full-game means
         1st-half or 1st-quarter, for example, rather than full game. Returns the full line movement for the given game.
@@ -3009,17 +3201,18 @@ class NbaV3OddsWithRawResponse(SecuredRawResponse[RawClient, Server, AuthSchemes
         second line.
 
         Args:
-            format: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
             gameid: The GameID of an NBA game. GameIDs can be found in the Games API. Valid entries are
                 <code>12780</code> or <code>12781</code>
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            format_: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
         return self._client.execute(
             http_method="GET",
             url_template=self._server.default("/v3/nba/odds/{format}/AlternateMarketGameOddsLineMovement/{gameid}"),
-            path_params=[param[FormatOrStr]("format", format), param[str]("gameid", gameid)],
+            path_params=[param[FormatOrStr]("format", format_), param[str]("gameid", gameid)],
             auth_scheme=AnySchemes(self._auth.api_key_header, self._auth.api_key_query),
             decoder=json_decoder[list[GameInfo1]],
             error_mapper=nba_v3_odds_period_game_odds_line_movement_error_mapper,
@@ -3028,10 +3221,10 @@ class NbaV3OddsWithRawResponse(SecuredRawResponse[RawClient, Server, AuthSchemes
 
     def nba_v3_odds_pre_game_and_period_game_odds_by_date_sportsbook_group(
         self,
-        format: FormatOrStr,
         date: str,
         sportsbookgroup: str,
         *,
+        format_: FormatOrStr = Format.JSON,
         request_options: RequestOptionsOrDict | None = None,
     ) -> ApiResult[list[GameInfo1], NbaV3OddsPreGameAndPeriodGameOddsByDateSportsbookGroupErrorBody]:
         """Returns the full-game and non-full-game odds (spread, moneyline, total) for games in a given week and season.
@@ -3039,10 +3232,11 @@ class NbaV3OddsWithRawResponse(SecuredRawResponse[RawClient, Server, AuthSchemes
         as a URL parameter.
 
         Args:
-            format: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
             date: The date of the game(s). <br>Examples: <code>2018-06-20</code>, <code>2018-06-23</code>.
             sportsbookgroup: The name of the Sportsbook grouping. <br>Examples: <code>G1100</code>
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            format_: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
@@ -3050,7 +3244,7 @@ class NbaV3OddsWithRawResponse(SecuredRawResponse[RawClient, Server, AuthSchemes
             http_method="GET",
             url_template=self._server.default("/v3/nba/odds/{format}/PreGameOddsByDate/{date}/{sportsbookgroup}"),
             path_params=[
-                param[FormatOrStr]("format", format),
+                param[FormatOrStr]("format", format_),
                 param[str]("date", date),
                 param[str]("sportsbookgroup", sportsbookgroup),
             ],
@@ -3062,10 +3256,10 @@ class NbaV3OddsWithRawResponse(SecuredRawResponse[RawClient, Server, AuthSchemes
 
     def nba_v3_odds_pre_game_and_period_game_odds_line_movement_sportsbook_group(
         self,
-        format: FormatOrStr,
         gameid: str,
         sportsbookgroup: str,
         *,
+        format_: FormatOrStr = Format.JSON,
         request_options: RequestOptionsOrDict | None = None,
     ) -> ApiResult[list[GameInfo1], NbaV3OddsPreGameAndPeriodGameOddsLineMovementSportsbookGroupErrorBody]:
         """Returns the game odds ( for games on a given date. In this endpoint both full-game and partial-game odds are
@@ -3074,11 +3268,12 @@ class NbaV3OddsWithRawResponse(SecuredRawResponse[RawClient, Server, AuthSchemes
         as a URL parameter.
 
         Args:
-            format: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
             gameid: The GameID of an NBA game. GameIDs can be found in the Games API. Valid entries are
                 <code>12780</code> or <code>12781</code>
             sportsbookgroup: The name of the Sportsbook grouping. <br>Examples: <code>G1100</code>
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            format_: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
@@ -3088,7 +3283,7 @@ class NbaV3OddsWithRawResponse(SecuredRawResponse[RawClient, Server, AuthSchemes
                 "/v3/nba/odds/{format}/PreGameOddsLineMovement/{gameid}/{sportsbookgroup}"
             ),
             path_params=[
-                param[FormatOrStr]("format", format),
+                param[FormatOrStr]("format", format_),
                 param[str]("gameid", gameid),
                 param[str]("sportsbookgroup", sportsbookgroup),
             ],
@@ -3100,10 +3295,10 @@ class NbaV3OddsWithRawResponse(SecuredRawResponse[RawClient, Server, AuthSchemes
 
     def nba_v3_odds_pre_game_and_period_game_odds_line_movement_with_resulting_sportsbook_group(
         self,
-        format: FormatOrStr,
         gameid: str,
         sportsbookgroup: str,
         *,
+        format_: FormatOrStr = Format.JSON,
         request_options: RequestOptionsOrDict | None = None,
     ) -> ApiResult[
         list[GameInfoResult1], NbaV3OddsPreGameAndPeriodGameOddsLineMovementWithResultingSportsbookGroupErrorBody
@@ -3115,11 +3310,12 @@ class NbaV3OddsWithRawResponse(SecuredRawResponse[RawClient, Server, AuthSchemes
         second line. A Sportsbook Group must be specified as a URL parameter.
 
         Args:
-            format: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
             gameid: The GameID of an NBA game. GameIDs can be found in the Games API. Valid entries are
                 <code>12780</code> or <code>12781</code>
             sportsbookgroup: The name of the Sportsbook grouping. <br>Examples: <code>G1100</code>
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            format_: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
@@ -3129,7 +3325,7 @@ class NbaV3OddsWithRawResponse(SecuredRawResponse[RawClient, Server, AuthSchemes
                 "/v3/nba/odds/{format}/PreGameOddsLineMovementWithResulting/{gameid}/{sportsbookgroup}"
             ),
             path_params=[
-                param[FormatOrStr]("format", format),
+                param[FormatOrStr]("format", format_),
                 param[str]("gameid", gameid),
                 param[str]("sportsbookgroup", sportsbookgroup),
             ],
@@ -3140,22 +3336,23 @@ class NbaV3OddsWithRawResponse(SecuredRawResponse[RawClient, Server, AuthSchemes
         )
 
     def nba_v3_odds_pre_game_odds_by_date(
-        self, format: FormatOrStr, date: str, *, request_options: RequestOptionsOrDict | None = None
+        self, date: str, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None
     ) -> ApiResult[list[GameInfo1], NbaV3OddsPreGameOddsByDateErrorBody]:
         """Returns full game odds (spread, moneyline, total) for games on a given date. Only returns the most recently
         seen odds, not inclusive of line movement.
 
         Args:
-            format: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
             date: The date of the game(s). <br>Examples: <code>2018-06-20</code>, <code>2018-06-23</code>.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            format_: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
         return self._client.execute(
             http_method="GET",
             url_template=self._server.default("/v3/nba/odds/{format}/GameOddsByDate/{date}"),
-            path_params=[param[FormatOrStr]("format", format), param[str]("date", date)],
+            path_params=[param[FormatOrStr]("format", format_), param[str]("date", date)],
             auth_scheme=AnySchemes(self._auth.api_key_header, self._auth.api_key_query),
             decoder=json_decoder[list[GameInfo1]],
             error_mapper=nba_v3_odds_pre_game_odds_by_date_error_mapper,
@@ -3163,7 +3360,7 @@ class NbaV3OddsWithRawResponse(SecuredRawResponse[RawClient, Server, AuthSchemes
         )
 
     def nba_v3_odds_pre_game_odds_line_movement(
-        self, format: FormatOrStr, gameid: str, *, request_options: RequestOptionsOrDict | None = None
+        self, gameid: str, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None
     ) -> ApiResult[list[GameInfo1], NbaV3OddsPreGameOddsLineMovementErrorBody]:
         """Returns the non-full-game odds (spread, moneyline, total) for games on a given date. Non-full-game means
         1st-half or 1st-quarter, for example, rather than full game. Returns the full line movement for the given game.
@@ -3171,17 +3368,18 @@ class NbaV3OddsWithRawResponse(SecuredRawResponse[RawClient, Server, AuthSchemes
         second line.
 
         Args:
-            format: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
             gameid: The GameID of an NBA game. GameIDs can be found in the Games API. Valid entries are
                 <code>12780</code> or <code>12781</code>
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            format_: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
         return self._client.execute(
             http_method="GET",
             url_template=self._server.default("/v3/nba/odds/{format}/GameOddsLineMovement/{gameid}"),
-            path_params=[param[FormatOrStr]("format", format), param[str]("gameid", gameid)],
+            path_params=[param[FormatOrStr]("format", format_), param[str]("gameid", gameid)],
             auth_scheme=AnySchemes(self._auth.api_key_header, self._auth.api_key_query),
             decoder=json_decoder[list[GameInfo1]],
             error_mapper=nba_v3_odds_pre_game_odds_line_movement_error_mapper,
@@ -3189,20 +3387,21 @@ class NbaV3OddsWithRawResponse(SecuredRawResponse[RawClient, Server, AuthSchemes
         )
 
     def nba_v3_odds_sportsbooks_by_active(
-        self, format: FormatOrStr, *, request_options: RequestOptionsOrDict | None = None
+        self, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None
     ) -> ApiResult[list[Sportsbook], NbaV3OddsSportsbooksByActiveErrorBody]:
         """A list of all available sportsbooks with their associated unique IDs.
 
         Args:
-            format: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            format_: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
         return self._client.execute(
             http_method="GET",
             url_template=self._server.default("/v3/nba/odds/{format}/ActiveSportsbooks"),
-            path_params=[param[FormatOrStr]("format", format)],
+            path_params=[param[FormatOrStr]("format", format_)],
             auth_scheme=AnySchemes(self._auth.api_key_header, self._auth.api_key_query),
             decoder=json_decoder[list[Sportsbook]],
             error_mapper=nba_v3_odds_sportsbooks_by_active_error_mapper,
@@ -3212,7 +3411,7 @@ class NbaV3OddsWithRawResponse(SecuredRawResponse[RawClient, Server, AuthSchemes
 
 class AsyncNbaV3OddsWithRawResponse(SecuredRawResponse[AsyncRawClient, Server, AsyncAuthSchemes]):
     async def nba_v3_odds_betting_events_by_date(
-        self, format: FormatOrStr, date: str, *, request_options: RequestOptionsOrDict | None = None
+        self, date: str, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None
     ) -> ApiResult[list[BettingEvent1], NbaV3OddsBettingEventsByDateErrorBody]:
         """The list of current BettingEvents for the given date. Events in this include market information but no
         outcomes will be included here. Intended to allow both visibility to Events in order to match up Events -> Games
@@ -3220,84 +3419,88 @@ class AsyncNbaV3OddsWithRawResponse(SecuredRawResponse[AsyncRawClient, Server, A
         given event.
 
         Args:
-            format: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
             date: The date of the game(s). <br>Examples: <code>2020-02-15</code>, <code>2020-02-23</code>.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            format_: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
         return await self._client.execute(
             http_method="GET",
             url_template=self._server.default("/v3/nba/odds/{format}/BettingEventsByDate/{date}"),
-            path_params=[param[FormatOrStr]("format", format), param[str]("date", date)],
+            path_params=[param[FormatOrStr]("format", format_), param[str]("date", date)],
             auth_scheme=AsyncAnySchemes(self._auth.api_key_header, self._auth.api_key_query),
-            decoder=json_decoder[list[BettingEvent1]],
+            decoder=async_json_decoder[list[BettingEvent1]],
             error_mapper=nba_v3_odds_betting_events_by_date_error_mapper,
             request_options=request_options,
         )
 
     async def nba_v3_odds_betting_events_by_season(
-        self, format: FormatOrStr, season: str, *, request_options: RequestOptionsOrDict | None = None
+        self, season: str, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None
     ) -> ApiResult[list[BettingEvent1], NbaV3OddsBettingEventsBySeasonErrorBody]:
         """Returns the full list of BetttingEvents for the given season. Intended for those who need to tie
         BettingEventIDs to GameIDs.
 
         Args:
-            format: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
             season: Year of the season (with optional season type).<br>Examples: <code>2020</code>,
                 <code>2020PRE</code>, <code>2020POST</code>, <code>2020STAR</code>, <code>2021</code>, etc.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            format_: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
         return await self._client.execute(
             http_method="GET",
             url_template=self._server.default("/v3/nba/odds/{format}/BettingEvents/{season}"),
-            path_params=[param[FormatOrStr]("format", format), param[str]("season", season)],
+            path_params=[param[FormatOrStr]("format", format_), param[str]("season", season)],
             auth_scheme=AsyncAnySchemes(self._auth.api_key_header, self._auth.api_key_query),
-            decoder=json_decoder[list[BettingEvent1]],
+            decoder=async_json_decoder[list[BettingEvent1]],
             error_mapper=nba_v3_odds_betting_events_by_season_error_mapper,
             request_options=request_options,
         )
 
     async def nba_v3_odds_betting_futures_by_season(
-        self, format: FormatOrStr, season: str, *, request_options: RequestOptionsOrDict | None = None
+        self, season: str, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None
     ) -> ApiResult[list[BettingEvent1], NbaV3OddsBettingFuturesBySeasonErrorBody]:
         """Returns available Futures outcomes for the given season. Does not include line movement.
 
         Args:
-            format: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
             season: Year of the season <br>Examples: <code>2020</code>, <code>2021</code>, etc
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            format_: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
         return await self._client.execute(
             http_method="GET",
             url_template=self._server.default("/v3/nba/odds/{format}/BettingFuturesBySeason/{season}"),
-            path_params=[param[FormatOrStr]("format", format), param[str]("season", season)],
+            path_params=[param[FormatOrStr]("format", format_), param[str]("season", season)],
             auth_scheme=AsyncAnySchemes(self._auth.api_key_header, self._auth.api_key_query),
-            decoder=json_decoder[list[BettingEvent1]],
+            decoder=async_json_decoder[list[BettingEvent1]],
             error_mapper=nba_v3_odds_betting_futures_by_season_error_mapper,
             request_options=request_options,
         )
 
     async def nba_v3_odds_betting_futures_by_season_sportsbook_group(
         self,
-        format: FormatOrStr,
         season: str,
         sportsbookgroup: str,
         *,
+        format_: FormatOrStr = Format.JSON,
         request_options: RequestOptionsOrDict | None = None,
     ) -> ApiResult[list[BettingEvent1], NbaV3OddsBettingFuturesBySeasonSportsbookGroupErrorBody]:
         """Returns available Futures markets for the given season. Does not include line movement. A Sportsbook Group
         must be specified as a URL parameter.
 
         Args:
-            format: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
             season: Year of the season <br>Examples: <code>2020</code>, <code>2021</code>, etc
             sportsbookgroup: The name of the Sportsbook grouping. <br>Examples: <code>G1100</code>
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            format_: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
@@ -3307,46 +3510,47 @@ class AsyncNbaV3OddsWithRawResponse(SecuredRawResponse[AsyncRawClient, Server, A
                 "/v3/nba/odds/{format}/BettingFuturesBySeason/{season}/{sportsbookgroup}"
             ),
             path_params=[
-                param[FormatOrStr]("format", format),
+                param[FormatOrStr]("format", format_),
                 param[str]("season", season),
                 param[str]("sportsbookgroup", sportsbookgroup),
             ],
             auth_scheme=AsyncAnySchemes(self._auth.api_key_header, self._auth.api_key_query),
-            decoder=json_decoder[list[BettingEvent1]],
+            decoder=async_json_decoder[list[BettingEvent1]],
             error_mapper=nba_v3_odds_betting_futures_by_season_sportsbook_group_error_mapper,
             request_options=request_options,
         )
 
     async def nba_v3_odds_betting_market(
-        self, format: FormatOrStr, market_id: str, *, request_options: RequestOptionsOrDict | None = None
+        self, market_id: str, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None
     ) -> ApiResult[BettingMarket, NbaV3OddsBettingMarketErrorBody]:
         """Returns full line movement for a given BettingMarket. Due to the sheer size of the output and the level of
         detail, it is intended for historical data purposes and not for the most up-to-the-second lines.
 
         Args:
-            format: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
             market_id: The MarketId of the desired market for which to pull all outcomes/bets. Valid entries include:
                 <code>421</code>, <code>1041</code>, etc.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            format_: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
         return await self._client.execute(
             http_method="GET",
             url_template=self._server.default("/v3/nba/odds/{format}/BettingMarket/{marketId}"),
-            path_params=[param[FormatOrStr]("format", format), param[str]("marketId", market_id)],
+            path_params=[param[FormatOrStr]("format", format_), param[str]("marketId", market_id)],
             auth_scheme=AsyncAnySchemes(self._auth.api_key_header, self._auth.api_key_query),
-            decoder=json_decoder[BettingMarket],
+            decoder=async_json_decoder[BettingMarket],
             error_mapper=nba_v3_odds_betting_market_error_mapper,
             request_options=request_options,
         )
 
     async def nba_v3_odds_betting_market_sportsbook_group(
         self,
-        format: FormatOrStr,
         market_id: str,
         sportsbookgroup: str,
         *,
+        format_: FormatOrStr = Format.JSON,
         request_options: RequestOptionsOrDict | None = None,
     ) -> ApiResult[BettingMarket, NbaV3OddsBettingMarketSportsbookGroupErrorBody]:
         """Returns full line movement for a given BettingMarket. Due to the sheer size of the output and the level of
@@ -3354,11 +3558,12 @@ class AsyncNbaV3OddsWithRawResponse(SecuredRawResponse[AsyncRawClient, Server, A
         Group must be specified as a URL parameter.
 
         Args:
-            format: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
             market_id: The MarketId of the desired market for which to pull all outcomes/bets. Valid entries include:
                 <code>421</code>, <code>1041</code>, etc.
             sportsbookgroup: The name of the Sportsbook grouping. <br>Examples: <code>G1100</code>
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            format_: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
@@ -3366,31 +3571,31 @@ class AsyncNbaV3OddsWithRawResponse(SecuredRawResponse[AsyncRawClient, Server, A
             http_method="GET",
             url_template=self._server.default("/v3/nba/odds/{format}/BettingMarket/{marketId}/{sportsbookgroup}"),
             path_params=[
-                param[FormatOrStr]("format", format),
+                param[FormatOrStr]("format", format_),
                 param[str]("marketId", market_id),
                 param[str]("sportsbookgroup", sportsbookgroup),
             ],
             auth_scheme=AsyncAnySchemes(self._auth.api_key_header, self._auth.api_key_query),
-            decoder=json_decoder[BettingMarket],
+            decoder=async_json_decoder[BettingMarket],
             error_mapper=nba_v3_odds_betting_market_sportsbook_group_error_mapper,
             request_options=request_options,
         )
 
     async def nba_v3_odds_betting_markets_by_event(
         self,
-        format: FormatOrStr,
         event_id: str,
         *,
-        include: IncludeOrStr | None = None,
+        format_: FormatOrStr = Format.JSON,
+        include: IncludeOrStr | None = Include.AVAILABLE,
         request_options: RequestOptionsOrDict | None = None,
     ) -> ApiResult[list[BettingMarket], NbaV3OddsBettingMarketsByEventErrorBody]:
         """Returns the markets of all available types (e.g. Player Props, Team Props) and available outcomes for a given
         BettingEventID.
 
         Args:
-            format: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
             event_id: The EventId of the desired event/game for which to pull all betting markets (includes
                 outcomes/bets). Valid entries include: <code>134</code>, <code>155</code>, etc.
+            format_: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
             include: This parameter indicates which <code>BettingOutcome</code> records to return in the payload. By
                 default, this endpoint only returns available outcomes, excluding the unlisted bets.
                 <br><br><b>Important Note:</b> the default parameter of <code>available</code> is much faster and
@@ -3402,37 +3607,38 @@ class AsyncNbaV3OddsWithRawResponse(SecuredRawResponse[AsyncRawClient, Server, A
                 recently available betting outcome per sportsbook, for each listed market, even those outcomes are
                 expired/unlisted or otherwise unavailable from the respective sportsbook. This is a far heavier payload,
                 and it's cached for much longer than available. <br><br>
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
         return await self._client.execute(
             http_method="GET",
             url_template=self._server.default("/v3/nba/odds/{format}/BettingMarkets/{eventId}"),
-            path_params=[param[FormatOrStr]("format", format), param[str]("eventId", event_id)],
+            path_params=[param[FormatOrStr]("format", format_), param[str]("eventId", event_id)],
             query_params=[param[IncludeOrStr | None]("include", include)],
             auth_scheme=AsyncAnySchemes(self._auth.api_key_header, self._auth.api_key_query),
-            decoder=json_decoder[list[BettingMarket]],
+            decoder=async_json_decoder[list[BettingMarket]],
             error_mapper=nba_v3_odds_betting_markets_by_event_error_mapper,
             request_options=request_options,
         )
 
     async def nba_v3_odds_betting_markets_by_event_sportsbook_group(
         self,
-        format: FormatOrStr,
         event_id: str,
         sportsbookgroup: str,
         *,
-        include: IncludeOrStr | None = None,
+        format_: FormatOrStr = Format.JSON,
+        include: IncludeOrStr | None = Include.AVAILABLE,
         request_options: RequestOptionsOrDict | None = None,
     ) -> ApiResult[list[BettingMarket], NbaV3OddsBettingMarketsByEventSportsbookGroupErrorBody]:
         """Returns the markets and available outcomes for a given BettingEventID.
 
         Args:
-            format: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
             event_id: The EventId of the desired event/game for which to pull all betting markets (includes
                 outcomes/bets). Valid entries include: <code>134</code>, <code>155</code>, etc.
             sportsbookgroup: The name of the Sportsbook grouping. <br>Examples: <code>G1100</code>
+            format_: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
             include: This parameter indicates which <code>BettingOutcome</code> records to return in the payload. By
                 default, this endpoint only returns available outcomes, excluding the unlisted bets.
                 <br><br><b>Important Note:</b> the default parameter of <code>available</code> is much faster and
@@ -3444,7 +3650,8 @@ class AsyncNbaV3OddsWithRawResponse(SecuredRawResponse[AsyncRawClient, Server, A
                 recently available betting outcome per sportsbook, for each listed market, even those outcomes are
                 expired/unlisted or otherwise unavailable from the respective sportsbook. This is a far heavier payload,
                 and it's cached for much longer than available. <br><br>
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
@@ -3454,32 +3661,32 @@ class AsyncNbaV3OddsWithRawResponse(SecuredRawResponse[AsyncRawClient, Server, A
                 "/v3/nba/odds/{format}/BettingMarketsByEvent/{eventId}/{sportsbookgroup}"
             ),
             path_params=[
-                param[FormatOrStr]("format", format),
+                param[FormatOrStr]("format", format_),
                 param[str]("eventId", event_id),
                 param[str]("sportsbookgroup", sportsbookgroup),
             ],
             query_params=[param[IncludeOrStr | None]("include", include)],
             auth_scheme=AsyncAnySchemes(self._auth.api_key_header, self._auth.api_key_query),
-            decoder=json_decoder[list[BettingMarket]],
+            decoder=async_json_decoder[list[BettingMarket]],
             error_mapper=nba_v3_odds_betting_markets_by_event_sportsbook_group_error_mapper,
             request_options=request_options,
         )
 
     async def nba_v3_odds_betting_markets_by_game(
         self,
-        format: FormatOrStr,
         game_id: str,
         *,
-        include: IncludeOrStr | None = None,
+        format_: FormatOrStr = Format.JSON,
+        include: IncludeOrStr | None = Include.AVAILABLE,
         request_options: RequestOptionsOrDict | None = None,
     ) -> ApiResult[list[BettingMarket], NbaV3OddsBettingMarketsByGameErrorBody]:
         """Returns the markets of all available types (e.g. Player Props, Team Props) and available outcomes for a given
         GameID.
 
         Args:
-            format: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
             game_id: The GameID of the desired game for which to pull all betting markets (includes outcomes/bets).
                 Valid entries include: <code>14814</code>
+            format_: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
             include: This parameter indicates which <code>BettingOutcome</code> records to return in the payload. By
                 default, this endpoint only returns available outcomes, excluding the unlisted bets.
                 <br><br><b>Important Note:</b> the default parameter of <code>available</code> is much faster and
@@ -3491,38 +3698,39 @@ class AsyncNbaV3OddsWithRawResponse(SecuredRawResponse[AsyncRawClient, Server, A
                 recently available betting outcome per sportsbook, for each listed market, even those outcomes are
                 expired/unlisted or otherwise unavailable from the respective sportsbook. This is a far heavier payload,
                 and it's cached for much longer than available. <br><br>
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
         return await self._client.execute(
             http_method="GET",
             url_template=self._server.default("/v3/nba/odds/{format}/BettingMarketsByGameID/{gameID}"),
-            path_params=[param[FormatOrStr]("format", format), param[str]("gameID", game_id)],
+            path_params=[param[FormatOrStr]("format", format_), param[str]("gameID", game_id)],
             query_params=[param[IncludeOrStr | None]("include", include)],
             auth_scheme=AsyncAnySchemes(self._auth.api_key_header, self._auth.api_key_query),
-            decoder=json_decoder[list[BettingMarket]],
+            decoder=async_json_decoder[list[BettingMarket]],
             error_mapper=nba_v3_odds_betting_markets_by_game_error_mapper,
             request_options=request_options,
         )
 
     async def nba_v3_odds_betting_markets_by_game_sportsbook_group(
         self,
-        format: FormatOrStr,
         game_id: str,
         sportsbookgroup: str,
         *,
-        include: IncludeOrStr | None = None,
+        format_: FormatOrStr = Format.JSON,
+        include: IncludeOrStr | None = Include.AVAILABLE,
         request_options: RequestOptionsOrDict | None = None,
     ) -> ApiResult[list[BettingMarket], NbaV3OddsBettingMarketsByGameSportsbookGroupErrorBody]:
         """Returns the markets of all available types (e.g. Player Props, Team Props) and available outcomes for a given
         GameID. A Sportsbook Group must be specified as a URL parameter.
 
         Args:
-            format: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
             game_id: The GameID of the desired game for which to pull all betting markets (includes outcomes/bets).
                 Valid entries include: <code>14814</code>
             sportsbookgroup: The name of the Sportsbook grouping. <br>Examples: <code>G1100</code>
+            format_: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
             include: This parameter indicates which <code>BettingOutcome</code> records to return in the payload. By
                 default, this endpoint only returns available outcomes, excluding the unlisted bets.
                 <br><br><b>Important Note:</b> the default parameter of <code>available</code> is much faster and
@@ -3534,7 +3742,8 @@ class AsyncNbaV3OddsWithRawResponse(SecuredRawResponse[AsyncRawClient, Server, A
                 recently available betting outcome per sportsbook, for each listed market, even those outcomes are
                 expired/unlisted or otherwise unavailable from the respective sportsbook. This is a far heavier payload,
                 and it's cached for much longer than available. <br><br>
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
@@ -3544,24 +3753,24 @@ class AsyncNbaV3OddsWithRawResponse(SecuredRawResponse[AsyncRawClient, Server, A
                 "/v3/nba/odds/{format}/BettingMarketsByGameID/{gameID}/{sportsbookgroup}"
             ),
             path_params=[
-                param[FormatOrStr]("format", format),
+                param[FormatOrStr]("format", format_),
                 param[str]("gameID", game_id),
                 param[str]("sportsbookgroup", sportsbookgroup),
             ],
             query_params=[param[IncludeOrStr | None]("include", include)],
             auth_scheme=AsyncAnySchemes(self._auth.api_key_header, self._auth.api_key_query),
-            decoder=json_decoder[list[BettingMarket]],
+            decoder=async_json_decoder[list[BettingMarket]],
             error_mapper=nba_v3_odds_betting_markets_by_game_sportsbook_group_error_mapper,
             request_options=request_options,
         )
 
     async def nba_v3_odds_betting_markets_by_market_type(
         self,
-        format: FormatOrStr,
         event_id: str,
         market_type_id: str,
         *,
-        include: IncludeOrStr | None = None,
+        format_: FormatOrStr = Format.JSON,
+        include: IncludeOrStr | None = Include.AVAILABLE,
         request_options: RequestOptionsOrDict | None = None,
     ) -> ApiResult[list[BettingMarket], NbaV3OddsBettingMarketsByMarketTypeErrorBody]:
         """Returns Markets and available outcomes for a given event and market type requested. A lighter call than by
@@ -3569,12 +3778,12 @@ class AsyncNbaV3OddsWithRawResponse(SecuredRawResponse[AsyncRawClient, Server, A
         available for each sport in its Betting Metadata endpoint.
 
         Args:
-            format: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
             event_id: The EventId of the desired event/game for which to pull all betting markets (includes
                 outcomes/bets). Valid entries include: <code>134</code>, <code>155</code>, etc.
             market_type_id: The Market Type ID of the desired MarketTypes to pull. Some common types include:
                 <code>1</code> for ``Game Lines`` <code>2</code> for ``Player Props`` <code>3</code> for ``Team Props``
                 <code>6</code> for ``Game Props``
+            format_: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
             include: This parameter indicates which <code>BettingOutcome</code> records to return in the payload. By
                 default, this endpoint only returns available outcomes, excluding the unlisted bets.
                 <br><br><b>Important Note:</b> the default parameter of <code>available</code> is much faster and
@@ -3586,7 +3795,8 @@ class AsyncNbaV3OddsWithRawResponse(SecuredRawResponse[AsyncRawClient, Server, A
                 recently available betting outcome per sportsbook, for each listed market, even those outcomes are
                 expired/unlisted or otherwise unavailable from the respective sportsbook. This is a far heavier payload,
                 and it's cached for much longer than available. <br><br>
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
@@ -3596,25 +3806,25 @@ class AsyncNbaV3OddsWithRawResponse(SecuredRawResponse[AsyncRawClient, Server, A
                 "/v3/nba/odds/{format}/BettingMarketsByMarketType/{eventId}/{marketTypeID}"
             ),
             path_params=[
-                param[FormatOrStr]("format", format),
+                param[FormatOrStr]("format", format_),
                 param[str]("eventId", event_id),
                 param[str]("marketTypeID", market_type_id),
             ],
             query_params=[param[IncludeOrStr | None]("include", include)],
             auth_scheme=AsyncAnySchemes(self._auth.api_key_header, self._auth.api_key_query),
-            decoder=json_decoder[list[BettingMarket]],
+            decoder=async_json_decoder[list[BettingMarket]],
             error_mapper=nba_v3_odds_betting_markets_by_market_type_error_mapper,
             request_options=request_options,
         )
 
     async def nba_v3_odds_betting_markets_by_market_type_sportsbook_group(
         self,
-        format: FormatOrStr,
         event_id: str,
         market_type_id: str,
         sportsbookgroup: str,
         *,
-        include: IncludeOrStr | None = None,
+        format_: FormatOrStr = Format.JSON,
+        include: IncludeOrStr | None = Include.AVAILABLE,
         request_options: RequestOptionsOrDict | None = None,
     ) -> ApiResult[list[BettingMarket], NbaV3OddsBettingMarketsByMarketTypeSportsbookGroupErrorBody]:
         """Returns Markets and available outcomes for a given event and market type requested. A lighter call than by
@@ -3623,13 +3833,13 @@ class AsyncNbaV3OddsWithRawResponse(SecuredRawResponse[AsyncRawClient, Server, A
         parameter.
 
         Args:
-            format: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
             event_id: The EventId of the desired event/game for which to pull all betting markets (includes
                 outcomes/bets). Valid entries include: <code>134</code>, <code>155</code>, etc.
             market_type_id: The Market Type ID of the desired MarketTypes to pull. Some common types include:
                 <code>1</code> for ``Game Lines`` <code>2</code> for ``Player Props`` <code>3</code> for ``Team Props``
                 <code>6</code> for ``Game Props``
             sportsbookgroup: The name of the Sportsbook grouping. <br>Examples: <code>G1100</code>
+            format_: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
             include: This parameter indicates which <code>BettingOutcome</code> records to return in the payload. By
                 default, this endpoint only returns available outcomes, excluding the unlisted bets.
                 <br><br><b>Important Note:</b> the default parameter of <code>available</code> is much faster and
@@ -3641,7 +3851,8 @@ class AsyncNbaV3OddsWithRawResponse(SecuredRawResponse[AsyncRawClient, Server, A
                 recently available betting outcome per sportsbook, for each listed market, even those outcomes are
                 expired/unlisted or otherwise unavailable from the respective sportsbook. This is a far heavier payload,
                 and it's cached for much longer than available. <br><br>
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
@@ -3651,47 +3862,48 @@ class AsyncNbaV3OddsWithRawResponse(SecuredRawResponse[AsyncRawClient, Server, A
                 "/v3/nba/odds/{format}/BettingMarketsByMarketType/{eventId}/{marketTypeID}/{sportsbookgroup}"
             ),
             path_params=[
-                param[FormatOrStr]("format", format),
+                param[FormatOrStr]("format", format_),
                 param[str]("eventId", event_id),
                 param[str]("marketTypeID", market_type_id),
                 param[str]("sportsbookgroup", sportsbookgroup),
             ],
             query_params=[param[IncludeOrStr | None]("include", include)],
             auth_scheme=AsyncAnySchemes(self._auth.api_key_header, self._auth.api_key_query),
-            decoder=json_decoder[list[BettingMarket]],
+            decoder=async_json_decoder[list[BettingMarket]],
             error_mapper=nba_v3_odds_betting_markets_by_market_type_sportsbook_group_error_mapper,
             request_options=request_options,
         )
 
     async def nba_v3_odds_betting_metadata(
-        self, format: FormatOrStr, *, request_options: RequestOptionsOrDict | None = None
+        self, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None
     ) -> ApiResult[BettingEntityMetadataCollection, NbaV3OddsBettingMetadataErrorBody]:
         """Returns the list of MarketTypes, BetTypes, PeriodTypes, OutcomeTypes, and ResultTypes to map the IDs to
         descriptive names. Also includes a list of the MarketType, BetType & PeriodType combinations which we will have
         resulting for.
 
         Args:
-            format: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            format_: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
         return await self._client.execute(
             http_method="GET",
             url_template=self._server.default("/v3/nba/odds/{format}/BettingMetadata"),
-            path_params=[param[FormatOrStr]("format", format)],
+            path_params=[param[FormatOrStr]("format", format_)],
             auth_scheme=AsyncAnySchemes(self._auth.api_key_header, self._auth.api_key_query),
-            decoder=json_decoder[BettingEntityMetadataCollection],
+            decoder=async_json_decoder[BettingEntityMetadataCollection],
             error_mapper=nba_v3_odds_betting_metadata_error_mapper,
             request_options=request_options,
         )
 
     async def nba_v3_odds_betting_player_props_by_game(
         self,
-        format: FormatOrStr,
         game_id: str,
         *,
-        include: IncludeOrStr | None = None,
+        format_: FormatOrStr = Format.JSON,
+        include: IncludeOrStr | None = Include.AVAILABLE,
         request_options: RequestOptionsOrDict | None = None,
     ) -> ApiResult[list[BettingMarket], NbaV3OddsBettingPlayerPropsByGameErrorBody]:
         """This works in the same way as Betting Markets by Market Type but is prefiltered to the Player Props type
@@ -3699,8 +3911,8 @@ class AsyncNbaV3OddsWithRawResponse(SecuredRawResponse[AsyncRawClient, Server, A
         recommended to use the by Market Type endpoint.
 
         Args:
-            format: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
             game_id: The unique GameID of the game in question.
+            format_: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
             include: This parameter indicates which <code>BettingOutcome</code> records to return in the payload. By
                 default, this endpoint only returns available outcomes, excluding the unlisted bets.
                 <br><br><b>Important Note:</b> the default parameter of <code>available</code> is much faster and
@@ -3712,28 +3924,29 @@ class AsyncNbaV3OddsWithRawResponse(SecuredRawResponse[AsyncRawClient, Server, A
                 recently available betting outcome per sportsbook, for each listed market, even those outcomes are
                 expired/unlisted or otherwise unavailable from the respective sportsbook. This is a far heavier payload,
                 and it's cached for much longer than available. <br><br>
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
         return await self._client.execute(
             http_method="GET",
             url_template=self._server.default("/v3/nba/odds/{format}/BettingPlayerPropsByGameID/{gameId}"),
-            path_params=[param[FormatOrStr]("format", format), param[str]("gameId", game_id)],
+            path_params=[param[FormatOrStr]("format", format_), param[str]("gameId", game_id)],
             query_params=[param[IncludeOrStr | None]("include", include)],
             auth_scheme=AsyncAnySchemes(self._auth.api_key_header, self._auth.api_key_query),
-            decoder=json_decoder[list[BettingMarket]],
+            decoder=async_json_decoder[list[BettingMarket]],
             error_mapper=nba_v3_odds_betting_player_props_by_game_error_mapper,
             request_options=request_options,
         )
 
     async def nba_v3_odds_betting_player_props_by_game_sportsbook_group(
         self,
-        format: FormatOrStr,
         game_id: str,
         sportsbookgroup: str,
         *,
-        include: IncludeOrStr | None = None,
+        format_: FormatOrStr = Format.JSON,
+        include: IncludeOrStr | None = Include.AVAILABLE,
         request_options: RequestOptionsOrDict | None = None,
     ) -> ApiResult[list[BettingMarket], NbaV3OddsBettingPlayerPropsByGameSportsbookGroupErrorBody]:
         """This works in the same way as Betting Markets by Market Type but is prefiltered to the Player Props type
@@ -3741,9 +3954,9 @@ class AsyncNbaV3OddsWithRawResponse(SecuredRawResponse[AsyncRawClient, Server, A
         recommended to use the by Market Type endpoint. A Sportsbook Group must be specified as a URL parameter.
 
         Args:
-            format: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
             game_id: The unique GameID of the game in question.
             sportsbookgroup: The name of the Sportsbook grouping. <br>Examples: <code>G1100</code>
+            format_: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
             include: This parameter indicates which <code>BettingOutcome</code> records to return in the payload. By
                 default, this endpoint only returns available outcomes, excluding the unlisted bets.
                 <br><br><b>Important Note:</b> the default parameter of <code>available</code> is much faster and
@@ -3755,7 +3968,8 @@ class AsyncNbaV3OddsWithRawResponse(SecuredRawResponse[AsyncRawClient, Server, A
                 recently available betting outcome per sportsbook, for each listed market, even those outcomes are
                 expired/unlisted or otherwise unavailable from the respective sportsbook. This is a far heavier payload,
                 and it's cached for much longer than available. <br><br>
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
@@ -3765,48 +3979,49 @@ class AsyncNbaV3OddsWithRawResponse(SecuredRawResponse[AsyncRawClient, Server, A
                 "/v3/nba/odds/{format}/BettingPlayerPropsByGameID/{gameId}/{sportsbookgroup}"
             ),
             path_params=[
-                param[FormatOrStr]("format", format),
+                param[FormatOrStr]("format", format_),
                 param[str]("gameId", game_id),
                 param[str]("sportsbookgroup", sportsbookgroup),
             ],
             query_params=[param[IncludeOrStr | None]("include", include)],
             auth_scheme=AsyncAnySchemes(self._auth.api_key_header, self._auth.api_key_query),
-            decoder=json_decoder[list[BettingMarket]],
+            decoder=async_json_decoder[list[BettingMarket]],
             error_mapper=nba_v3_odds_betting_player_props_by_game_sportsbook_group_error_mapper,
             request_options=request_options,
         )
 
     async def nba_v3_odds_betting_results_by_market(
-        self, format: FormatOrStr, market_id: str, *, request_options: RequestOptionsOrDict | None = None
+        self, market_id: str, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None
     ) -> ApiResult[BettingMarketResult, NbaV3OddsBettingResultsByMarketErrorBody]:
         """Provide a market ID that supports resulting (i.e. has a ResultType) and this endpoint will return a result:
         for markets with a ResultType, each line will be graded and it will be determined whether the bet would have won
         or lost.
 
         Args:
-            format: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
             market_id: The MarketId of the desired market for which to pull all outcomes/bets. Valid entries include:
                 <code>406451</code>, <code>404168</code>, etc.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            format_: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
         return await self._client.execute(
             http_method="GET",
             url_template=self._server.default("/v3/nba/odds/{format}/BettingMarketResults/{marketId}"),
-            path_params=[param[FormatOrStr]("format", format), param[str]("marketId", market_id)],
+            path_params=[param[FormatOrStr]("format", format_), param[str]("marketId", market_id)],
             auth_scheme=AsyncAnySchemes(self._auth.api_key_header, self._auth.api_key_query),
-            decoder=json_decoder[BettingMarketResult],
+            decoder=async_json_decoder[BettingMarketResult],
             error_mapper=nba_v3_odds_betting_results_by_market_error_mapper,
             request_options=request_options,
         )
 
     async def nba_v3_odds_betting_results_by_market_sportsbook_group(
         self,
-        format: FormatOrStr,
         market_id: str,
         sportsbookgroup: str,
         *,
+        format_: FormatOrStr = Format.JSON,
         request_options: RequestOptionsOrDict | None = None,
     ) -> ApiResult[BettingMarketResult, NbaV3OddsBettingResultsByMarketSportsbookGroupErrorBody]:
         """Provide a market ID that supports resulting (i.e. has a ResultType) and this endpoint will return a result:
@@ -3814,11 +4029,12 @@ class AsyncNbaV3OddsWithRawResponse(SecuredRawResponse[AsyncRawClient, Server, A
         or lost. A Sportsbook Group must be specified as a URL parameter.
 
         Args:
-            format: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
             market_id: The MarketId of the desired market for which to pull all outcomes/bets. Valid entries include:
                 <code>406451</code>, <code>404168</code>, etc.
             sportsbookgroup: The name of the Sportsbook grouping. <br>Examples: <code>G1100</code>
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            format_: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
@@ -3828,77 +4044,85 @@ class AsyncNbaV3OddsWithRawResponse(SecuredRawResponse[AsyncRawClient, Server, A
                 "/v3/nba/odds/{format}/BettingResultsByMarket/{marketId}/{sportsbookgroup}"
             ),
             path_params=[
-                param[FormatOrStr]("format", format),
+                param[FormatOrStr]("format", format_),
                 param[str]("marketId", market_id),
                 param[str]("sportsbookgroup", sportsbookgroup),
             ],
             auth_scheme=AsyncAnySchemes(self._auth.api_key_header, self._auth.api_key_query),
-            decoder=json_decoder[BettingMarketResult],
+            decoder=async_json_decoder[BettingMarketResult],
             error_mapper=nba_v3_odds_betting_results_by_market_sportsbook_group_error_mapper,
             request_options=request_options,
         )
 
     async def nba_v3_odds_betting_splits_by_betting_market(
-        self, format: FormatOrStr, market_id: str, *, request_options: RequestOptionsOrDict | None = None
+        self, market_id: str, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None
     ) -> ApiResult[BettingMarketSplit, NbaV3OddsBettingSplitsByBettingMarketErrorBody]:
         """List of Money and Bet Percentage splits for each outcome type available in this market. This specific
         endpoint will return the movement from this market as well as the most recent.
 
         Args:
-            format: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
             market_id: The MarketId of the desired market for which to pull splits. MarketIds are pulled from the
                 Betting Markets endpoints.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            format_: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
         return await self._client.execute(
             http_method="GET",
             url_template=self._server.default("/v3/nba/odds/{format}/BettingSplitsByMarketId/{marketId}"),
-            path_params=[param[FormatOrStr]("format", format), param[str]("marketId", market_id)],
+            path_params=[param[FormatOrStr]("format", format_), param[str]("marketId", market_id)],
             auth_scheme=AsyncAnySchemes(self._auth.api_key_header, self._auth.api_key_query),
-            decoder=json_decoder[BettingMarketSplit],
+            decoder=async_json_decoder[BettingMarketSplit],
             error_mapper=nba_v3_odds_betting_splits_by_betting_market_error_mapper,
             request_options=request_options,
         )
 
     async def nba_v3_odds_betting_splits_by_game(
-        self, format: FormatOrStr, game_id: str, *, request_options: RequestOptionsOrDict | None = None
+        self, game_id: str, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None
     ) -> ApiResult[GameBettingSplit1, NbaV3OddsBettingSplitsByGameErrorBody]:
         """List of Money and Bet Percentage splits for each market and their respective outcome types available in this
         game. This specific endpoint will return current splits for each available market and no line movement.
 
         Args:
-            format: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
             game_id: The ID of the game for which you want to receive splits for. GameIds are pulled from the Schedules
                 and Games by Date endpoints.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            format_: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
         return await self._client.execute(
             http_method="GET",
             url_template=self._server.default("/v3/nba/odds/{format}/BettingSplitsByGameId/{gameId}"),
-            path_params=[param[FormatOrStr]("format", format), param[str]("gameId", game_id)],
+            path_params=[param[FormatOrStr]("format", format_), param[str]("gameId", game_id)],
             auth_scheme=AsyncAnySchemes(self._auth.api_key_header, self._auth.api_key_query),
-            decoder=json_decoder[GameBettingSplit1],
+            decoder=async_json_decoder[GameBettingSplit1],
             error_mapper=nba_v3_odds_betting_splits_by_game_error_mapper,
             request_options=request_options,
         )
 
     async def nba_v3_odds_betting_trends_by_matchup(
-        self, format: FormatOrStr, team: str, opponent: str, *, request_options: RequestOptionsOrDict | None = None
+        self,
+        team: str,
+        opponent: str,
+        *,
+        format_: FormatOrStr = Format.JSON,
+        request_options: RequestOptionsOrDict | None = None,
     ) -> ApiResult[MatchupTrends1, NbaV3OddsBettingTrendsByMatchupErrorBody]:
         """Returns trends data for a given pairing of teams. Will return data even if the teams are not set to play this
         season. Intended for use on a specific game, though it will work for other comparisons if applicable.
 
         Args:
-            format: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
             team: The abbreviation of the requested team. <br> Examples: <code>PHI</code>, <code>MIN</code>,
                 <code>DET</code>, etc.
             opponent: The abbreviation of the requested opponent. <br> Examples: <code>PHI</code>, <code>MIN</code>,
                 <code>DET</code>, etc.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            format_: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
@@ -3906,67 +4130,69 @@ class AsyncNbaV3OddsWithRawResponse(SecuredRawResponse[AsyncRawClient, Server, A
             http_method="GET",
             url_template=self._server.default("/v3/nba/odds/{format}/MatchupTrends/{team}/{opponent}"),
             path_params=[
-                param[FormatOrStr]("format", format), param[str]("team", team), param[str]("opponent", opponent)
+                param[FormatOrStr]("format", format_), param[str]("team", team), param[str]("opponent", opponent)
             ],
             auth_scheme=AsyncAnySchemes(self._auth.api_key_header, self._auth.api_key_query),
-            decoder=json_decoder[MatchupTrends1],
+            decoder=async_json_decoder[MatchupTrends1],
             error_mapper=nba_v3_odds_betting_trends_by_matchup_error_mapper,
             request_options=request_options,
         )
 
     async def nba_v3_odds_betting_trends_by_team(
-        self, format: FormatOrStr, team: str, *, request_options: RequestOptionsOrDict | None = None
+        self, team: str, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None
     ) -> ApiResult[TeamTrends1, NbaV3OddsBettingTrendsByTeamErrorBody]:
         """Describes recent team trends and performance against betting data in recent sets of games.
 
         Args:
-            format: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
             team: The abbreviation of the requested team. <br> Examples: <code>PHI</code>, <code>MIN</code>,
                 <code>DET</code>, etc.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            format_: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
         return await self._client.execute(
             http_method="GET",
             url_template=self._server.default("/v3/nba/odds/{format}/TeamTrends/{team}"),
-            path_params=[param[FormatOrStr]("format", format), param[str]("team", team)],
+            path_params=[param[FormatOrStr]("format", format_), param[str]("team", team)],
             auth_scheme=AsyncAnySchemes(self._auth.api_key_header, self._auth.api_key_query),
-            decoder=json_decoder[TeamTrends1],
+            decoder=async_json_decoder[TeamTrends1],
             error_mapper=nba_v3_odds_betting_trends_by_team_error_mapper,
             request_options=request_options,
         )
 
     async def nba_v3_odds_in_game_odds_by_date(
-        self, format: FormatOrStr, date: str, *, request_options: RequestOptionsOrDict | None = None
+        self, date: str, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None
     ) -> ApiResult[list[GameInfo1], NbaV3OddsInGameOddsByDateErrorBody]:
         """Returns in-play game odds (spread, moneyline, total) for games on a given date. Only returns the most
         recently seen odds, not inclusive of line movement. As this is in-game, it will only return results while the
         game is in progress.
 
         Args:
-            format: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
             date: The date of the game(s). <br>Examples: <code>2018-06-20</code>, <code>2018-06-23</code>.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            format_: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
         return await self._client.execute(
             http_method="GET",
             url_template=self._server.default("/v3/nba/odds/{format}/LiveGameOddsByDate/{date}"),
-            path_params=[param[FormatOrStr]("format", format), param[str]("date", date)],
+            path_params=[param[FormatOrStr]("format", format_), param[str]("date", date)],
             auth_scheme=AsyncAnySchemes(self._auth.api_key_header, self._auth.api_key_query),
-            decoder=json_decoder[list[GameInfo1]],
+            decoder=async_json_decoder[list[GameInfo1]],
             error_mapper=nba_v3_odds_in_game_odds_by_date_error_mapper,
             request_options=request_options,
         )
 
     async def nba_v3_odds_in_game_odds_by_date_sportsbook_group(
         self,
-        format: FormatOrStr,
         date: str,
         sportsbookgroup: str,
         *,
+        format_: FormatOrStr = Format.JSON,
         request_options: RequestOptionsOrDict | None = None,
     ) -> ApiResult[list[GameInfo1], NbaV3OddsInGameOddsByDateSportsbookGroupErrorBody]:
         """Returns in-play game odds (spread, moneyline, total) for games on a given date. Only returns the most
@@ -3974,10 +4200,11 @@ class AsyncNbaV3OddsWithRawResponse(SecuredRawResponse[AsyncRawClient, Server, A
         game is in progress. A Sportsbook Group must be specified as a URL parameter.
 
         Args:
-            format: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
             date: The date of the game(s). <br>Examples: <code>2018-06-20</code>, <code>2018-06-23</code>.
             sportsbookgroup: The name of the Sportsbook grouping. <br>Examples: <code>G1100</code>
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            format_: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
@@ -3985,47 +4212,48 @@ class AsyncNbaV3OddsWithRawResponse(SecuredRawResponse[AsyncRawClient, Server, A
             http_method="GET",
             url_template=self._server.default("/v3/nba/odds/{format}/InGameOddsByDate/{date}/{sportsbookgroup}"),
             path_params=[
-                param[FormatOrStr]("format", format),
+                param[FormatOrStr]("format", format_),
                 param[str]("date", date),
                 param[str]("sportsbookgroup", sportsbookgroup),
             ],
             auth_scheme=AsyncAnySchemes(self._auth.api_key_header, self._auth.api_key_query),
-            decoder=json_decoder[list[GameInfo1]],
+            decoder=async_json_decoder[list[GameInfo1]],
             error_mapper=nba_v3_odds_in_game_odds_by_date_sportsbook_group_error_mapper,
             request_options=request_options,
         )
 
     async def nba_v3_odds_in_game_odds_line_movement(
-        self, format: FormatOrStr, gameid: str, *, request_options: RequestOptionsOrDict | None = None
+        self, gameid: str, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None
     ) -> ApiResult[list[GameInfo1], NbaV3OddsInGameOddsLineMovementErrorBody]:
         """Returns in-play game odds (spread, moneyline, total) for games on a given date. Returns the full line
         movement for the given game. This endpoint has a longer cache as it is meant for historical data/line movement
         rather than the most up to the second line.
 
         Args:
-            format: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
             gameid: The GameID of an NBA game. GameIDs can be found in the Games API. Valid entries are
                 <code>12780</code> or <code>12781</code>
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            format_: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
         return await self._client.execute(
             http_method="GET",
             url_template=self._server.default("/v3/nba/odds/{format}/LiveGameOddsLineMovement/{gameid}"),
-            path_params=[param[FormatOrStr]("format", format), param[str]("gameid", gameid)],
+            path_params=[param[FormatOrStr]("format", format_), param[str]("gameid", gameid)],
             auth_scheme=AsyncAnySchemes(self._auth.api_key_header, self._auth.api_key_query),
-            decoder=json_decoder[list[GameInfo1]],
+            decoder=async_json_decoder[list[GameInfo1]],
             error_mapper=nba_v3_odds_in_game_odds_line_movement_error_mapper,
             request_options=request_options,
         )
 
     async def nba_v3_odds_in_game_odds_line_movement_sportsbook_group(
         self,
-        format: FormatOrStr,
         gameid: str,
         sportsbookgroup: str,
         *,
+        format_: FormatOrStr = Format.JSON,
         request_options: RequestOptionsOrDict | None = None,
     ) -> ApiResult[list[GameInfo1], NbaV3OddsInGameOddsLineMovementSportsbookGroupErrorBody]:
         """Returns in-play game odds (spread, moneyline, total) for games on a given date. Returns the full line
@@ -4033,11 +4261,12 @@ class AsyncNbaV3OddsWithRawResponse(SecuredRawResponse[AsyncRawClient, Server, A
         rather than the most up to the second line. A Sportsbook Group must be specified as a URL parameter.
 
         Args:
-            format: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
             gameid: The GameID of an NBA game. GameIDs can be found in the Games API. Valid entries are
                 <code>12780</code> or <code>12781</code>
             sportsbookgroup: The name of the Sportsbook grouping. <br>Examples: <code>G1100</code>
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            format_: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
@@ -4045,22 +4274,22 @@ class AsyncNbaV3OddsWithRawResponse(SecuredRawResponse[AsyncRawClient, Server, A
             http_method="GET",
             url_template=self._server.default("/v3/nba/odds/{format}/InGameLineMovement/{gameid}/{sportsbookgroup}"),
             path_params=[
-                param[FormatOrStr]("format", format),
+                param[FormatOrStr]("format", format_),
                 param[str]("gameid", gameid),
                 param[str]("sportsbookgroup", sportsbookgroup),
             ],
             auth_scheme=AsyncAnySchemes(self._auth.api_key_header, self._auth.api_key_query),
-            decoder=json_decoder[list[GameInfo1]],
+            decoder=async_json_decoder[list[GameInfo1]],
             error_mapper=nba_v3_odds_in_game_odds_line_movement_sportsbook_group_error_mapper,
             request_options=request_options,
         )
 
     async def nba_v3_odds_in_game_odds_line_movement_with_resulting_sportsbook_group(
         self,
-        format: FormatOrStr,
         gameid: str,
         sportsbookgroup: str,
         *,
+        format_: FormatOrStr = Format.JSON,
         request_options: RequestOptionsOrDict | None = None,
     ) -> ApiResult[list[GameInfoResult1], NbaV3OddsInGameOddsLineMovementWithResultingSportsbookGroupErrorBody]:
         """Returns in-play game odds (spread, moneyline, total) for games on a given date. This also includes Resulting:
@@ -4070,11 +4299,12 @@ class AsyncNbaV3OddsWithRawResponse(SecuredRawResponse[AsyncRawClient, Server, A
         as a URL parameter.
 
         Args:
-            format: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
             gameid: The GameID of an NBA game. GameIDs can be found in the Games API. Valid entries are
                 <code>12780</code> or <code>12781</code>
             sportsbookgroup: The name of the Sportsbook grouping. <br>Examples: <code>G1100</code>
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            format_: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
@@ -4084,42 +4314,43 @@ class AsyncNbaV3OddsWithRawResponse(SecuredRawResponse[AsyncRawClient, Server, A
                 "/v3/nba/odds/{format}/InGameLineMovementWithResulting/{gameid}/{sportsbookgroup}"
             ),
             path_params=[
-                param[FormatOrStr]("format", format),
+                param[FormatOrStr]("format", format_),
                 param[str]("gameid", gameid),
                 param[str]("sportsbookgroup", sportsbookgroup),
             ],
             auth_scheme=AsyncAnySchemes(self._auth.api_key_header, self._auth.api_key_query),
-            decoder=json_decoder[list[GameInfoResult1]],
+            decoder=async_json_decoder[list[GameInfoResult1]],
             error_mapper=nba_v3_odds_in_game_odds_line_movement_with_resulting_sportsbook_group_error_mapper,
             request_options=request_options,
         )
 
     async def nba_v3_odds_period_game_odds_by_date(
-        self, format: FormatOrStr, date: str, *, request_options: RequestOptionsOrDict | None = None
+        self, date: str, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None
     ) -> ApiResult[list[GameInfo1], NbaV3OddsPeriodGameOddsByDateErrorBody]:
         """Returns the non-full-game odds (spread, moneyline, total) for games on a given date. Non-full-game means
         1st-half or 1st-quarter, for example, rather than full game. Only returns the most recently seen odds, not
         inclusive of line movement.
 
         Args:
-            format: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
             date: The date of the game(s). <br>Examples: <code>2018-06-20</code>, <code>2018-06-23</code>.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            format_: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
         return await self._client.execute(
             http_method="GET",
             url_template=self._server.default("/v3/nba/odds/{format}/AlternateMarketGameOddsByDate/{date}"),
-            path_params=[param[FormatOrStr]("format", format), param[str]("date", date)],
+            path_params=[param[FormatOrStr]("format", format_), param[str]("date", date)],
             auth_scheme=AsyncAnySchemes(self._auth.api_key_header, self._auth.api_key_query),
-            decoder=json_decoder[list[GameInfo1]],
+            decoder=async_json_decoder[list[GameInfo1]],
             error_mapper=nba_v3_odds_period_game_odds_by_date_error_mapper,
             request_options=request_options,
         )
 
     async def nba_v3_odds_period_game_odds_line_movement(
-        self, format: FormatOrStr, gameid: str, *, request_options: RequestOptionsOrDict | None = None
+        self, gameid: str, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None
     ) -> ApiResult[list[GameInfo1], NbaV3OddsPeriodGameOddsLineMovementErrorBody]:
         """Returns the non-full-game odds (spread, moneyline, total) for games on a given date. Non-full-game means
         1st-half or 1st-quarter, for example, rather than full game. Returns the full line movement for the given game.
@@ -4127,29 +4358,30 @@ class AsyncNbaV3OddsWithRawResponse(SecuredRawResponse[AsyncRawClient, Server, A
         second line.
 
         Args:
-            format: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
             gameid: The GameID of an NBA game. GameIDs can be found in the Games API. Valid entries are
                 <code>12780</code> or <code>12781</code>
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            format_: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
         return await self._client.execute(
             http_method="GET",
             url_template=self._server.default("/v3/nba/odds/{format}/AlternateMarketGameOddsLineMovement/{gameid}"),
-            path_params=[param[FormatOrStr]("format", format), param[str]("gameid", gameid)],
+            path_params=[param[FormatOrStr]("format", format_), param[str]("gameid", gameid)],
             auth_scheme=AsyncAnySchemes(self._auth.api_key_header, self._auth.api_key_query),
-            decoder=json_decoder[list[GameInfo1]],
+            decoder=async_json_decoder[list[GameInfo1]],
             error_mapper=nba_v3_odds_period_game_odds_line_movement_error_mapper,
             request_options=request_options,
         )
 
     async def nba_v3_odds_pre_game_and_period_game_odds_by_date_sportsbook_group(
         self,
-        format: FormatOrStr,
         date: str,
         sportsbookgroup: str,
         *,
+        format_: FormatOrStr = Format.JSON,
         request_options: RequestOptionsOrDict | None = None,
     ) -> ApiResult[list[GameInfo1], NbaV3OddsPreGameAndPeriodGameOddsByDateSportsbookGroupErrorBody]:
         """Returns the full-game and non-full-game odds (spread, moneyline, total) for games in a given week and season.
@@ -4157,10 +4389,11 @@ class AsyncNbaV3OddsWithRawResponse(SecuredRawResponse[AsyncRawClient, Server, A
         as a URL parameter.
 
         Args:
-            format: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
             date: The date of the game(s). <br>Examples: <code>2018-06-20</code>, <code>2018-06-23</code>.
             sportsbookgroup: The name of the Sportsbook grouping. <br>Examples: <code>G1100</code>
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            format_: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
@@ -4168,22 +4401,22 @@ class AsyncNbaV3OddsWithRawResponse(SecuredRawResponse[AsyncRawClient, Server, A
             http_method="GET",
             url_template=self._server.default("/v3/nba/odds/{format}/PreGameOddsByDate/{date}/{sportsbookgroup}"),
             path_params=[
-                param[FormatOrStr]("format", format),
+                param[FormatOrStr]("format", format_),
                 param[str]("date", date),
                 param[str]("sportsbookgroup", sportsbookgroup),
             ],
             auth_scheme=AsyncAnySchemes(self._auth.api_key_header, self._auth.api_key_query),
-            decoder=json_decoder[list[GameInfo1]],
+            decoder=async_json_decoder[list[GameInfo1]],
             error_mapper=nba_v3_odds_pre_game_and_period_game_odds_by_date_sportsbook_group_error_mapper,
             request_options=request_options,
         )
 
     async def nba_v3_odds_pre_game_and_period_game_odds_line_movement_sportsbook_group(
         self,
-        format: FormatOrStr,
         gameid: str,
         sportsbookgroup: str,
         *,
+        format_: FormatOrStr = Format.JSON,
         request_options: RequestOptionsOrDict | None = None,
     ) -> ApiResult[list[GameInfo1], NbaV3OddsPreGameAndPeriodGameOddsLineMovementSportsbookGroupErrorBody]:
         """Returns the game odds ( for games on a given date. In this endpoint both full-game and partial-game odds are
@@ -4192,11 +4425,12 @@ class AsyncNbaV3OddsWithRawResponse(SecuredRawResponse[AsyncRawClient, Server, A
         as a URL parameter.
 
         Args:
-            format: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
             gameid: The GameID of an NBA game. GameIDs can be found in the Games API. Valid entries are
                 <code>12780</code> or <code>12781</code>
             sportsbookgroup: The name of the Sportsbook grouping. <br>Examples: <code>G1100</code>
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            format_: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
@@ -4206,22 +4440,22 @@ class AsyncNbaV3OddsWithRawResponse(SecuredRawResponse[AsyncRawClient, Server, A
                 "/v3/nba/odds/{format}/PreGameOddsLineMovement/{gameid}/{sportsbookgroup}"
             ),
             path_params=[
-                param[FormatOrStr]("format", format),
+                param[FormatOrStr]("format", format_),
                 param[str]("gameid", gameid),
                 param[str]("sportsbookgroup", sportsbookgroup),
             ],
             auth_scheme=AsyncAnySchemes(self._auth.api_key_header, self._auth.api_key_query),
-            decoder=json_decoder[list[GameInfo1]],
+            decoder=async_json_decoder[list[GameInfo1]],
             error_mapper=nba_v3_odds_pre_game_and_period_game_odds_line_movement_sportsbook_group_error_mapper,
             request_options=request_options,
         )
 
     async def nba_v3_odds_pre_game_and_period_game_odds_line_movement_with_resulting_sportsbook_group(
         self,
-        format: FormatOrStr,
         gameid: str,
         sportsbookgroup: str,
         *,
+        format_: FormatOrStr = Format.JSON,
         request_options: RequestOptionsOrDict | None = None,
     ) -> ApiResult[
         list[GameInfoResult1], NbaV3OddsPreGameAndPeriodGameOddsLineMovementWithResultingSportsbookGroupErrorBody
@@ -4233,11 +4467,12 @@ class AsyncNbaV3OddsWithRawResponse(SecuredRawResponse[AsyncRawClient, Server, A
         second line. A Sportsbook Group must be specified as a URL parameter.
 
         Args:
-            format: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
             gameid: The GameID of an NBA game. GameIDs can be found in the Games API. Valid entries are
                 <code>12780</code> or <code>12781</code>
             sportsbookgroup: The name of the Sportsbook grouping. <br>Examples: <code>G1100</code>
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            format_: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
@@ -4247,41 +4482,42 @@ class AsyncNbaV3OddsWithRawResponse(SecuredRawResponse[AsyncRawClient, Server, A
                 "/v3/nba/odds/{format}/PreGameOddsLineMovementWithResulting/{gameid}/{sportsbookgroup}"
             ),
             path_params=[
-                param[FormatOrStr]("format", format),
+                param[FormatOrStr]("format", format_),
                 param[str]("gameid", gameid),
                 param[str]("sportsbookgroup", sportsbookgroup),
             ],
             auth_scheme=AsyncAnySchemes(self._auth.api_key_header, self._auth.api_key_query),
-            decoder=json_decoder[list[GameInfoResult1]],
+            decoder=async_json_decoder[list[GameInfoResult1]],
             error_mapper=nba_v3_odds_pre_game_and_period_game_odds_line_movement_with_resulting_sportsbook_group_error_mapper,
             request_options=request_options,
         )
 
     async def nba_v3_odds_pre_game_odds_by_date(
-        self, format: FormatOrStr, date: str, *, request_options: RequestOptionsOrDict | None = None
+        self, date: str, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None
     ) -> ApiResult[list[GameInfo1], NbaV3OddsPreGameOddsByDateErrorBody]:
         """Returns full game odds (spread, moneyline, total) for games on a given date. Only returns the most recently
         seen odds, not inclusive of line movement.
 
         Args:
-            format: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
             date: The date of the game(s). <br>Examples: <code>2018-06-20</code>, <code>2018-06-23</code>.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            format_: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
         return await self._client.execute(
             http_method="GET",
             url_template=self._server.default("/v3/nba/odds/{format}/GameOddsByDate/{date}"),
-            path_params=[param[FormatOrStr]("format", format), param[str]("date", date)],
+            path_params=[param[FormatOrStr]("format", format_), param[str]("date", date)],
             auth_scheme=AsyncAnySchemes(self._auth.api_key_header, self._auth.api_key_query),
-            decoder=json_decoder[list[GameInfo1]],
+            decoder=async_json_decoder[list[GameInfo1]],
             error_mapper=nba_v3_odds_pre_game_odds_by_date_error_mapper,
             request_options=request_options,
         )
 
     async def nba_v3_odds_pre_game_odds_line_movement(
-        self, format: FormatOrStr, gameid: str, *, request_options: RequestOptionsOrDict | None = None
+        self, gameid: str, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None
     ) -> ApiResult[list[GameInfo1], NbaV3OddsPreGameOddsLineMovementErrorBody]:
         """Returns the non-full-game odds (spread, moneyline, total) for games on a given date. Non-full-game means
         1st-half or 1st-quarter, for example, rather than full game. Returns the full line movement for the given game.
@@ -4289,40 +4525,42 @@ class AsyncNbaV3OddsWithRawResponse(SecuredRawResponse[AsyncRawClient, Server, A
         second line.
 
         Args:
-            format: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
             gameid: The GameID of an NBA game. GameIDs can be found in the Games API. Valid entries are
                 <code>12780</code> or <code>12781</code>
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            format_: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
         return await self._client.execute(
             http_method="GET",
             url_template=self._server.default("/v3/nba/odds/{format}/GameOddsLineMovement/{gameid}"),
-            path_params=[param[FormatOrStr]("format", format), param[str]("gameid", gameid)],
+            path_params=[param[FormatOrStr]("format", format_), param[str]("gameid", gameid)],
             auth_scheme=AsyncAnySchemes(self._auth.api_key_header, self._auth.api_key_query),
-            decoder=json_decoder[list[GameInfo1]],
+            decoder=async_json_decoder[list[GameInfo1]],
             error_mapper=nba_v3_odds_pre_game_odds_line_movement_error_mapper,
             request_options=request_options,
         )
 
     async def nba_v3_odds_sportsbooks_by_active(
-        self, format: FormatOrStr, *, request_options: RequestOptionsOrDict | None = None
+        self, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None
     ) -> ApiResult[list[Sportsbook], NbaV3OddsSportsbooksByActiveErrorBody]:
         """A list of all available sportsbooks with their associated unique IDs.
 
         Args:
-            format: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            format_: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
         return await self._client.execute(
             http_method="GET",
             url_template=self._server.default("/v3/nba/odds/{format}/ActiveSportsbooks"),
-            path_params=[param[FormatOrStr]("format", format)],
+            path_params=[param[FormatOrStr]("format", format_)],
             auth_scheme=AsyncAnySchemes(self._auth.api_key_header, self._auth.api_key_query),
-            decoder=json_decoder[list[Sportsbook]],
+            decoder=async_json_decoder[list[Sportsbook]],
             error_mapper=nba_v3_odds_sportsbooks_by_active_error_mapper,
             request_options=request_options,
         )

@@ -9,8 +9,10 @@ from ..core import (
     RawClient,
     RequestOptionsOrDict,
     SecuredRawResponse,
+    async_json_decoder,
     json_decoder,
     param,
+    unwrap,
 )
 from ..errors.nba_v3_stats_all_stars_error import NbaV3StatsAllStarsErrorBody, nba_v3_stats_all_stars_error_mapper
 from ..errors.nba_v3_stats_box_score_final_error import (
@@ -66,7 +68,7 @@ from ..errors.nba_v3_stats_team_stats_allowed_by_position_error import (
     nba_v3_stats_team_stats_allowed_by_position_error_mapper,
 )
 from ..models.box_score import BoxScore
-from ..models.enums.format import FormatOrStr
+from ..models.enums.format import Format, FormatOrStr
 from ..models.fantasy_game1 import FantasyGame1
 from ..models.player_game1 import PlayerGame1
 from ..models.player_info import PlayerInfo
@@ -81,293 +83,345 @@ class NbaV3Stats:
         self._with_raw_response = NbaV3StatsWithRawResponse(client, server, auth)
 
     def nba_v3_stats_all_stars(
-        self, format: FormatOrStr, season: str, *, request_options: RequestOptionsOrDict | None = None
+        self, season: str, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None
     ) -> list[PlayerInfo]:
         """A list of players selected for the All-Star Game for a given season.
 
         Args:
-            format: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
             season: Year of the season. <br>Examples: <code>2015</code>, <code>2016</code>.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            format_: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             Success
 
         Raises:
             ApiError: Unauthorized ``error`` is ``Unauthorized | RawError``."""
-        return self._with_raw_response.nba_v3_stats_all_stars(format, season, request_options=request_options).unwrap()
+        return unwrap(
+            self._with_raw_response.nba_v3_stats_all_stars(season, format_=format_, request_options=request_options)
+        )
 
     def nba_v3_stats_box_score_final(
-        self, format: FormatOrStr, gameid: str, *, request_options: RequestOptionsOrDict | None = None
+        self, gameid: str, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None
     ) -> BoxScore:
         """Full statistical information for a specified game, down to the team and player stat level, delivered after
         the game is complete.
 
         Args:
-            format: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
             gameid: The GameID of an NBA game. GameIDs can be found in the Games API. Valid entries are
                 <code>14620</code>, <code>16905</code>, etc.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            format_: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             Success
 
         Raises:
             ApiError: Unauthorized ``error`` is ``Unauthorized | RawError``."""
-        return self._with_raw_response.nba_v3_stats_box_score_final(
-            format, gameid, request_options=request_options
-        ).unwrap()
+        return unwrap(
+            self._with_raw_response.nba_v3_stats_box_score_final(
+                gameid, format_=format_, request_options=request_options
+            ),
+        )
 
     def nba_v3_stats_box_score_live_final(
-        self, format: FormatOrStr, gameid: str, *, request_options: RequestOptionsOrDict | None = None
+        self, gameid: str, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None
     ) -> BoxScore:
         """Full statistical information for a specified game, down to the team and player stat level, delivered live
         during the game, called per individual game.
 
         Args:
-            format: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
             gameid: The GameID of an NBA game. GameIDs can be found in the Games API. Valid entries are
                 <code>14620</code>, <code>16905</code>, etc.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            format_: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             Success
 
         Raises:
             ApiError: Unauthorized ``error`` is ``Unauthorized | RawError``."""
-        return self._with_raw_response.nba_v3_stats_box_score_live_final(
-            format, gameid, request_options=request_options
-        ).unwrap()
+        return unwrap(
+            self._with_raw_response.nba_v3_stats_box_score_live_final(
+                gameid, format_=format_, request_options=request_options
+            ),
+        )
 
     def nba_v3_stats_box_scores_by_date_final(
-        self, format: FormatOrStr, date: str, *, request_options: RequestOptionsOrDict | None = None
+        self, date: str, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None
     ) -> list[BoxScore]:
         """Full statistical information for a specified date for each game that took place, down to the team and player
         stat level, delivered after the game is complete.
 
         Args:
-            format: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
             date: The date of the game(s). <br>Examples: <code>2015-JUL-31</code>, <code>2015-SEP-01</code>.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            format_: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             Success
 
         Raises:
             ApiError: Unauthorized ``error`` is ``Unauthorized | RawError``."""
-        return self._with_raw_response.nba_v3_stats_box_scores_by_date_final(
-            format, date, request_options=request_options
-        ).unwrap()
+        return unwrap(
+            self._with_raw_response.nba_v3_stats_box_scores_by_date_final(
+                date, format_=format_, request_options=request_options
+            ),
+        )
 
     def nba_v3_stats_box_scores_by_date_live_final(
-        self, format: FormatOrStr, date: str, *, request_options: RequestOptionsOrDict | None = None
+        self, date: str, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None
     ) -> list[BoxScore]:
         """Full statistical information for a specified game, down to the team and player stat level, delivered live
         during the games, called for all games on a given date.
 
         Args:
-            format: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
             date: The date of the game(s). <br>Examples: <code>2015-JUL-31</code>, <code>2015-SEP-01</code>.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            format_: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             Success
 
         Raises:
             ApiError: Unauthorized ``error`` is ``Unauthorized | RawError``."""
-        return self._with_raw_response.nba_v3_stats_box_scores_by_date_live_final(
-            format, date, request_options=request_options
-        ).unwrap()
+        return unwrap(
+            self._with_raw_response.nba_v3_stats_box_scores_by_date_live_final(
+                date, format_=format_, request_options=request_options
+            ),
+        )
 
     def nba_v3_stats_box_scores_delta_by_date(
-        self, format: FormatOrStr, date: str, minutes: str, *, request_options: RequestOptionsOrDict | None = None
+        self,
+        date: str,
+        minutes: str,
+        *,
+        format_: FormatOrStr = Format.JSON,
+        request_options: RequestOptionsOrDict | None = None,
     ) -> list[BoxScore]:
         """This method returns all box scores for a given date, but only returns player stats that have changed in the
         last X minutes as specified in your API call. By definition this is a live endpoint, not final.
 
         Args:
-            format: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
             date: The date of the game(s). <br>Examples: <code>2015-JUL-31</code>, <code>2015-SEP-01</code>.
             minutes: Only returns player statistics that have changed in the last X minutes. You specify how many
                 minutes in time to go back. Valid entries are: <code>1</code> or <code>2</code>.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            format_: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             Success
 
         Raises:
             ApiError: Unauthorized ``error`` is ``Unauthorized | RawError``."""
-        return self._with_raw_response.nba_v3_stats_box_scores_delta_by_date(
-            format, date, minutes, request_options=request_options
-        ).unwrap()
+        return unwrap(
+            self._with_raw_response.nba_v3_stats_box_scores_delta_by_date(
+                date, minutes, format_=format_, request_options=request_options
+            ),
+        )
 
     def nba_v3_stats_fantasy_points_by_date(
-        self, format: FormatOrStr, date: str, *, request_options: RequestOptionsOrDict | None = None
+        self, date: str, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None
     ) -> list[FantasyGame1]:
         """A simple list of fantasy points scored for all players who took part in games on a given date.
 
         Args:
-            format: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
             date: The date of the game(s). <br>Examples: <code>2015-JUL-31</code>, <code>2015-SEP-01</code>.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            format_: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             Success
 
         Raises:
             ApiError: Unauthorized ``error`` is ``Unauthorized | RawError``."""
-        return self._with_raw_response.nba_v3_stats_fantasy_points_by_date(
-            format, date, request_options=request_options
-        ).unwrap()
+        return unwrap(
+            self._with_raw_response.nba_v3_stats_fantasy_points_by_date(
+                date, format_=format_, request_options=request_options
+            ),
+        )
 
     def nba_v3_stats_player_game_logs_by_season(
         self,
-        format: FormatOrStr,
         season: str,
         playerid: str,
         numberofgames: str,
         *,
+        format_: FormatOrStr = Format.JSON,
         request_options: RequestOptionsOrDict | None = None,
     ) -> list[PlayerGame1]:
         """Specify a season, a player, and number of games (either an integer or <code>all</code>) to see all of their
         box score logs. Refreshed after their most recent game is complete.
 
         Args:
-            format: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
             season: Season to get games from. Example <code>2019POST</code>, <code>2020</code>
             playerid: Unique SportsDataIO Player ID. Example:<code>20000571</code>.
             numberofgames: How many games to return. Example <code>all</code>, <code>10</code>, <code>25</code>
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            format_: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             Success
 
         Raises:
             ApiError: Unauthorized ``error`` is ``Unauthorized | RawError``."""
-        return self._with_raw_response.nba_v3_stats_player_game_logs_by_season(
-            format, season, playerid, numberofgames, request_options=request_options
-        ).unwrap()
+        return unwrap(
+            self._with_raw_response.nba_v3_stats_player_game_logs_by_season(
+                season, playerid, numberofgames, format_=format_, request_options=request_options
+            ),
+        )
 
     def nba_v3_stats_player_game_stats_by_date_final(
-        self, format: FormatOrStr, date: str, *, request_options: RequestOptionsOrDict | None = None
+        self, date: str, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None
     ) -> list[PlayerGame1]:
         """Returns the box score statistical record for all involved players across all teams' games on a given date
         after each game has concluded.
 
         Args:
-            format: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
             date: The date of the game(s). <br>Examples: <code>2015-JUL-31</code>, <code>2015-SEP-01</code>.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            format_: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             Success
 
         Raises:
             ApiError: Unauthorized ``error`` is ``Unauthorized | RawError``."""
-        return self._with_raw_response.nba_v3_stats_player_game_stats_by_date_final(
-            format, date, request_options=request_options
-        ).unwrap()
+        return unwrap(
+            self._with_raw_response.nba_v3_stats_player_game_stats_by_date_final(
+                date, format_=format_, request_options=request_options
+            ),
+        )
 
     def nba_v3_stats_player_game_stats_by_date_live_final(
-        self, format: FormatOrStr, date: str, *, request_options: RequestOptionsOrDict | None = None
+        self, date: str, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None
     ) -> list[PlayerGame1]:
         """Returns the box score statistical record for all involved players across a given date, updated live as the
         game takes place.
 
         Args:
-            format: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
             date: The date of the game(s). <br>Examples: <code>2015-JUL-31</code>, <code>2015-SEP-01</code>.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            format_: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             Success
 
         Raises:
             ApiError: Unauthorized ``error`` is ``Unauthorized | RawError``."""
-        return self._with_raw_response.nba_v3_stats_player_game_stats_by_date_live_final(
-            format, date, request_options=request_options
-        ).unwrap()
+        return unwrap(
+            self._with_raw_response.nba_v3_stats_player_game_stats_by_date_live_final(
+                date, format_=format_, request_options=request_options
+            ),
+        )
 
     def nba_v3_stats_player_season_stats(
-        self, format: FormatOrStr, season: str, *, request_options: RequestOptionsOrDict | None = None
+        self, season: str, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None
     ) -> list[PlayerSeason1]:
         """Returns all season-long stats (i.e. the season total, not each individual game record) for all players for a
         given season.
 
         Args:
-            format: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
             season: Year of the season. <br>Examples: <code>2015</code>, <code>2016</code>.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            format_: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             Success
 
         Raises:
             ApiError: Unauthorized ``error`` is ``Unauthorized | RawError``."""
-        return self._with_raw_response.nba_v3_stats_player_season_stats(
-            format, season, request_options=request_options
-        ).unwrap()
+        return unwrap(
+            self._with_raw_response.nba_v3_stats_player_season_stats(
+                season, format_=format_, request_options=request_options
+            ),
+        )
 
     def nba_v3_stats_player_season_stats_by_team(
-        self, format: FormatOrStr, season: str, team: str, *, request_options: RequestOptionsOrDict | None = None
+        self,
+        season: str,
+        team: str,
+        *,
+        format_: FormatOrStr = Format.JSON,
+        request_options: RequestOptionsOrDict | None = None,
     ) -> list[PlayerSeason1]:
         """Returns all season-long stats (i.e. the season total, not each individual game record) for a given team's
         players in a given season.
 
         Args:
-            format: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
             season: Year of the season. <br>Examples: <code>2015</code>, <code>2016</code>.
             team: The abbreviation of the requested team. <br>Examples: <code>MIA</code>, <code>PHI</code>.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            format_: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             Success
 
         Raises:
             ApiError: Unauthorized ``error`` is ``Unauthorized | RawError``."""
-        return self._with_raw_response.nba_v3_stats_player_season_stats_by_team(
-            format, season, team, request_options=request_options
-        ).unwrap()
+        return unwrap(
+            self._with_raw_response.nba_v3_stats_player_season_stats_by_team(
+                season, team, format_=format_, request_options=request_options
+            ),
+        )
 
     def nba_v3_stats_team_game_stats_by_date_final(
-        self, format: FormatOrStr, date: str, *, request_options: RequestOptionsOrDict | None = None
+        self, date: str, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None
     ) -> list[TeamGame1]:
         """Returns the box score statistical record team-wide (aggregated from all players) for a games on a given date,
         delivered as each game concludes.
 
         Args:
-            format: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
             date: The date of the game(s). <br>Examples: <code>2015-JUL-31</code>, <code>2015-SEP-01</code>.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            format_: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             Success
 
         Raises:
             ApiError: Unauthorized ``error`` is ``Unauthorized | RawError``."""
-        return self._with_raw_response.nba_v3_stats_team_game_stats_by_date_final(
-            format, date, request_options=request_options
-        ).unwrap()
+        return unwrap(
+            self._with_raw_response.nba_v3_stats_team_game_stats_by_date_final(
+                date, format_=format_, request_options=request_options
+            ),
+        )
 
     def nba_v3_stats_team_stats_allowed_by_position(
-        self, format: FormatOrStr, season: str, *, request_options: RequestOptionsOrDict | None = None
+        self, season: str, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None
     ) -> list[TeamSeason1]:
         """For each team, deliveres a season total of statistical records for their opponents' positions (e.g. all field
         goals made against this team by Centers.)
 
         Args:
-            format: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
             season: Year of the season. <br>Examples: <code>2015</code>, <code>2016</code>.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            format_: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             Success
 
         Raises:
             ApiError: Unauthorized ``error`` is ``Unauthorized | RawError``."""
-        return self._with_raw_response.nba_v3_stats_team_stats_allowed_by_position(
-            format, season, request_options=request_options
-        ).unwrap()
+        return unwrap(
+            self._with_raw_response.nba_v3_stats_team_stats_allowed_by_position(
+                season, format_=format_, request_options=request_options
+            ),
+        )
 
     @property
     def with_raw_response(self) -> NbaV3StatsWithRawResponse:
@@ -379,319 +433,347 @@ class AsyncNbaV3Stats:
         self._with_raw_response = AsyncNbaV3StatsWithRawResponse(client, server, auth)
 
     async def nba_v3_stats_all_stars(
-        self, format: FormatOrStr, season: str, *, request_options: RequestOptionsOrDict | None = None
+        self, season: str, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None
     ) -> list[PlayerInfo]:
         """A list of players selected for the All-Star Game for a given season.
 
         Args:
-            format: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
             season: Year of the season. <br>Examples: <code>2015</code>, <code>2016</code>.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            format_: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             Success
 
         Raises:
             ApiError: Unauthorized ``error`` is ``Unauthorized | RawError``."""
-        return (
-            await self._with_raw_response.nba_v3_stats_all_stars(format, season, request_options=request_options)
-        ).unwrap()
+        return unwrap(
+            await self._with_raw_response.nba_v3_stats_all_stars(
+                season, format_=format_, request_options=request_options
+            ),
+        )
 
     async def nba_v3_stats_box_score_final(
-        self, format: FormatOrStr, gameid: str, *, request_options: RequestOptionsOrDict | None = None
+        self, gameid: str, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None
     ) -> BoxScore:
         """Full statistical information for a specified game, down to the team and player stat level, delivered after
         the game is complete.
 
         Args:
-            format: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
             gameid: The GameID of an NBA game. GameIDs can be found in the Games API. Valid entries are
                 <code>14620</code>, <code>16905</code>, etc.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            format_: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             Success
 
         Raises:
             ApiError: Unauthorized ``error`` is ``Unauthorized | RawError``."""
-        return (
-            await self._with_raw_response.nba_v3_stats_box_score_final(format, gameid, request_options=request_options)
-        ).unwrap()
+        return unwrap(
+            await self._with_raw_response.nba_v3_stats_box_score_final(
+                gameid, format_=format_, request_options=request_options
+            ),
+        )
 
     async def nba_v3_stats_box_score_live_final(
-        self, format: FormatOrStr, gameid: str, *, request_options: RequestOptionsOrDict | None = None
+        self, gameid: str, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None
     ) -> BoxScore:
         """Full statistical information for a specified game, down to the team and player stat level, delivered live
         during the game, called per individual game.
 
         Args:
-            format: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
             gameid: The GameID of an NBA game. GameIDs can be found in the Games API. Valid entries are
                 <code>14620</code>, <code>16905</code>, etc.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            format_: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             Success
 
         Raises:
             ApiError: Unauthorized ``error`` is ``Unauthorized | RawError``."""
-        return (
+        return unwrap(
             await self._with_raw_response.nba_v3_stats_box_score_live_final(
-                format, gameid, request_options=request_options
-            )
-        ).unwrap()
+                gameid, format_=format_, request_options=request_options
+            ),
+        )
 
     async def nba_v3_stats_box_scores_by_date_final(
-        self, format: FormatOrStr, date: str, *, request_options: RequestOptionsOrDict | None = None
+        self, date: str, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None
     ) -> list[BoxScore]:
         """Full statistical information for a specified date for each game that took place, down to the team and player
         stat level, delivered after the game is complete.
 
         Args:
-            format: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
             date: The date of the game(s). <br>Examples: <code>2015-JUL-31</code>, <code>2015-SEP-01</code>.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            format_: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             Success
 
         Raises:
             ApiError: Unauthorized ``error`` is ``Unauthorized | RawError``."""
-        return (
+        return unwrap(
             await self._with_raw_response.nba_v3_stats_box_scores_by_date_final(
-                format, date, request_options=request_options
-            )
-        ).unwrap()
+                date, format_=format_, request_options=request_options
+            ),
+        )
 
     async def nba_v3_stats_box_scores_by_date_live_final(
-        self, format: FormatOrStr, date: str, *, request_options: RequestOptionsOrDict | None = None
+        self, date: str, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None
     ) -> list[BoxScore]:
         """Full statistical information for a specified game, down to the team and player stat level, delivered live
         during the games, called for all games on a given date.
 
         Args:
-            format: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
             date: The date of the game(s). <br>Examples: <code>2015-JUL-31</code>, <code>2015-SEP-01</code>.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            format_: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             Success
 
         Raises:
             ApiError: Unauthorized ``error`` is ``Unauthorized | RawError``."""
-        return (
+        return unwrap(
             await self._with_raw_response.nba_v3_stats_box_scores_by_date_live_final(
-                format, date, request_options=request_options
-            )
-        ).unwrap()
+                date, format_=format_, request_options=request_options
+            ),
+        )
 
     async def nba_v3_stats_box_scores_delta_by_date(
-        self, format: FormatOrStr, date: str, minutes: str, *, request_options: RequestOptionsOrDict | None = None
+        self,
+        date: str,
+        minutes: str,
+        *,
+        format_: FormatOrStr = Format.JSON,
+        request_options: RequestOptionsOrDict | None = None,
     ) -> list[BoxScore]:
         """This method returns all box scores for a given date, but only returns player stats that have changed in the
         last X minutes as specified in your API call. By definition this is a live endpoint, not final.
 
         Args:
-            format: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
             date: The date of the game(s). <br>Examples: <code>2015-JUL-31</code>, <code>2015-SEP-01</code>.
             minutes: Only returns player statistics that have changed in the last X minutes. You specify how many
                 minutes in time to go back. Valid entries are: <code>1</code> or <code>2</code>.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            format_: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             Success
 
         Raises:
             ApiError: Unauthorized ``error`` is ``Unauthorized | RawError``."""
-        return (
+        return unwrap(
             await self._with_raw_response.nba_v3_stats_box_scores_delta_by_date(
-                format, date, minutes, request_options=request_options
-            )
-        ).unwrap()
+                date, minutes, format_=format_, request_options=request_options
+            ),
+        )
 
     async def nba_v3_stats_fantasy_points_by_date(
-        self, format: FormatOrStr, date: str, *, request_options: RequestOptionsOrDict | None = None
+        self, date: str, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None
     ) -> list[FantasyGame1]:
         """A simple list of fantasy points scored for all players who took part in games on a given date.
 
         Args:
-            format: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
             date: The date of the game(s). <br>Examples: <code>2015-JUL-31</code>, <code>2015-SEP-01</code>.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            format_: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             Success
 
         Raises:
             ApiError: Unauthorized ``error`` is ``Unauthorized | RawError``."""
-        return (
+        return unwrap(
             await self._with_raw_response.nba_v3_stats_fantasy_points_by_date(
-                format, date, request_options=request_options
-            )
-        ).unwrap()
+                date, format_=format_, request_options=request_options
+            ),
+        )
 
     async def nba_v3_stats_player_game_logs_by_season(
         self,
-        format: FormatOrStr,
         season: str,
         playerid: str,
         numberofgames: str,
         *,
+        format_: FormatOrStr = Format.JSON,
         request_options: RequestOptionsOrDict | None = None,
     ) -> list[PlayerGame1]:
         """Specify a season, a player, and number of games (either an integer or <code>all</code>) to see all of their
         box score logs. Refreshed after their most recent game is complete.
 
         Args:
-            format: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
             season: Season to get games from. Example <code>2019POST</code>, <code>2020</code>
             playerid: Unique SportsDataIO Player ID. Example:<code>20000571</code>.
             numberofgames: How many games to return. Example <code>all</code>, <code>10</code>, <code>25</code>
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            format_: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             Success
 
         Raises:
             ApiError: Unauthorized ``error`` is ``Unauthorized | RawError``."""
-        return (
+        return unwrap(
             await self._with_raw_response.nba_v3_stats_player_game_logs_by_season(
-                format, season, playerid, numberofgames, request_options=request_options
-            )
-        ).unwrap()
+                season, playerid, numberofgames, format_=format_, request_options=request_options
+            ),
+        )
 
     async def nba_v3_stats_player_game_stats_by_date_final(
-        self, format: FormatOrStr, date: str, *, request_options: RequestOptionsOrDict | None = None
+        self, date: str, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None
     ) -> list[PlayerGame1]:
         """Returns the box score statistical record for all involved players across all teams' games on a given date
         after each game has concluded.
 
         Args:
-            format: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
             date: The date of the game(s). <br>Examples: <code>2015-JUL-31</code>, <code>2015-SEP-01</code>.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            format_: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             Success
 
         Raises:
             ApiError: Unauthorized ``error`` is ``Unauthorized | RawError``."""
-        return (
+        return unwrap(
             await self._with_raw_response.nba_v3_stats_player_game_stats_by_date_final(
-                format, date, request_options=request_options
-            )
-        ).unwrap()
+                date, format_=format_, request_options=request_options
+            ),
+        )
 
     async def nba_v3_stats_player_game_stats_by_date_live_final(
-        self, format: FormatOrStr, date: str, *, request_options: RequestOptionsOrDict | None = None
+        self, date: str, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None
     ) -> list[PlayerGame1]:
         """Returns the box score statistical record for all involved players across a given date, updated live as the
         game takes place.
 
         Args:
-            format: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
             date: The date of the game(s). <br>Examples: <code>2015-JUL-31</code>, <code>2015-SEP-01</code>.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            format_: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             Success
 
         Raises:
             ApiError: Unauthorized ``error`` is ``Unauthorized | RawError``."""
-        return (
+        return unwrap(
             await self._with_raw_response.nba_v3_stats_player_game_stats_by_date_live_final(
-                format, date, request_options=request_options
-            )
-        ).unwrap()
+                date, format_=format_, request_options=request_options
+            ),
+        )
 
     async def nba_v3_stats_player_season_stats(
-        self, format: FormatOrStr, season: str, *, request_options: RequestOptionsOrDict | None = None
+        self, season: str, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None
     ) -> list[PlayerSeason1]:
         """Returns all season-long stats (i.e. the season total, not each individual game record) for all players for a
         given season.
 
         Args:
-            format: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
             season: Year of the season. <br>Examples: <code>2015</code>, <code>2016</code>.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            format_: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             Success
 
         Raises:
             ApiError: Unauthorized ``error`` is ``Unauthorized | RawError``."""
-        return (
+        return unwrap(
             await self._with_raw_response.nba_v3_stats_player_season_stats(
-                format, season, request_options=request_options
-            )
-        ).unwrap()
+                season, format_=format_, request_options=request_options
+            ),
+        )
 
     async def nba_v3_stats_player_season_stats_by_team(
-        self, format: FormatOrStr, season: str, team: str, *, request_options: RequestOptionsOrDict | None = None
+        self,
+        season: str,
+        team: str,
+        *,
+        format_: FormatOrStr = Format.JSON,
+        request_options: RequestOptionsOrDict | None = None,
     ) -> list[PlayerSeason1]:
         """Returns all season-long stats (i.e. the season total, not each individual game record) for a given team's
         players in a given season.
 
         Args:
-            format: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
             season: Year of the season. <br>Examples: <code>2015</code>, <code>2016</code>.
             team: The abbreviation of the requested team. <br>Examples: <code>MIA</code>, <code>PHI</code>.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            format_: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             Success
 
         Raises:
             ApiError: Unauthorized ``error`` is ``Unauthorized | RawError``."""
-        return (
+        return unwrap(
             await self._with_raw_response.nba_v3_stats_player_season_stats_by_team(
-                format, season, team, request_options=request_options
-            )
-        ).unwrap()
+                season, team, format_=format_, request_options=request_options
+            ),
+        )
 
     async def nba_v3_stats_team_game_stats_by_date_final(
-        self, format: FormatOrStr, date: str, *, request_options: RequestOptionsOrDict | None = None
+        self, date: str, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None
     ) -> list[TeamGame1]:
         """Returns the box score statistical record team-wide (aggregated from all players) for a games on a given date,
         delivered as each game concludes.
 
         Args:
-            format: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
             date: The date of the game(s). <br>Examples: <code>2015-JUL-31</code>, <code>2015-SEP-01</code>.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            format_: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             Success
 
         Raises:
             ApiError: Unauthorized ``error`` is ``Unauthorized | RawError``."""
-        return (
+        return unwrap(
             await self._with_raw_response.nba_v3_stats_team_game_stats_by_date_final(
-                format, date, request_options=request_options
-            )
-        ).unwrap()
+                date, format_=format_, request_options=request_options
+            ),
+        )
 
     async def nba_v3_stats_team_stats_allowed_by_position(
-        self, format: FormatOrStr, season: str, *, request_options: RequestOptionsOrDict | None = None
+        self, season: str, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None
     ) -> list[TeamSeason1]:
         """For each team, deliveres a season total of statistical records for their opponents' positions (e.g. all field
         goals made against this team by Centers.)
 
         Args:
-            format: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
             season: Year of the season. <br>Examples: <code>2015</code>, <code>2016</code>.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            format_: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             Success
 
         Raises:
             ApiError: Unauthorized ``error`` is ``Unauthorized | RawError``."""
-        return (
+        return unwrap(
             await self._with_raw_response.nba_v3_stats_team_stats_allowed_by_position(
-                format, season, request_options=request_options
-            )
-        ).unwrap()
+                season, format_=format_, request_options=request_options
+            ),
+        )
 
     @property
     def with_raw_response(self) -> AsyncNbaV3StatsWithRawResponse:
@@ -700,21 +782,22 @@ class AsyncNbaV3Stats:
 
 class NbaV3StatsWithRawResponse(SecuredRawResponse[RawClient, Server, AuthSchemes]):
     def nba_v3_stats_all_stars(
-        self, format: FormatOrStr, season: str, *, request_options: RequestOptionsOrDict | None = None
+        self, season: str, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None
     ) -> ApiResult[list[PlayerInfo], NbaV3StatsAllStarsErrorBody]:
         """A list of players selected for the All-Star Game for a given season.
 
         Args:
-            format: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
             season: Year of the season. <br>Examples: <code>2015</code>, <code>2016</code>.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            format_: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
         return self._client.execute(
             http_method="GET",
             url_template=self._server.default("/v3/nba/stats/{format}/AllStars/{season}"),
-            path_params=[param[FormatOrStr]("format", format), param[str]("season", season)],
+            path_params=[param[FormatOrStr]("format", format_), param[str]("season", season)],
             auth_scheme=AnySchemes(self._auth.api_key_header, self._auth.api_key_query),
             decoder=json_decoder[list[PlayerInfo]],
             error_mapper=nba_v3_stats_all_stars_error_mapper,
@@ -722,23 +805,24 @@ class NbaV3StatsWithRawResponse(SecuredRawResponse[RawClient, Server, AuthScheme
         )
 
     def nba_v3_stats_box_score_final(
-        self, format: FormatOrStr, gameid: str, *, request_options: RequestOptionsOrDict | None = None
+        self, gameid: str, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None
     ) -> ApiResult[BoxScore, NbaV3StatsBoxScoreFinalErrorBody]:
         """Full statistical information for a specified game, down to the team and player stat level, delivered after
         the game is complete.
 
         Args:
-            format: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
             gameid: The GameID of an NBA game. GameIDs can be found in the Games API. Valid entries are
                 <code>14620</code>, <code>16905</code>, etc.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            format_: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
         return self._client.execute(
             http_method="GET",
             url_template=self._server.default("/v3/nba/stats/{format}/BoxScoreFinal/{gameid}"),
-            path_params=[param[FormatOrStr]("format", format), param[str]("gameid", gameid)],
+            path_params=[param[FormatOrStr]("format", format_), param[str]("gameid", gameid)],
             auth_scheme=AnySchemes(self._auth.api_key_header, self._auth.api_key_query),
             decoder=json_decoder[BoxScore],
             error_mapper=nba_v3_stats_box_score_final_error_mapper,
@@ -746,23 +830,24 @@ class NbaV3StatsWithRawResponse(SecuredRawResponse[RawClient, Server, AuthScheme
         )
 
     def nba_v3_stats_box_score_live_final(
-        self, format: FormatOrStr, gameid: str, *, request_options: RequestOptionsOrDict | None = None
+        self, gameid: str, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None
     ) -> ApiResult[BoxScore, NbaV3StatsBoxScoreLiveFinalErrorBody]:
         """Full statistical information for a specified game, down to the team and player stat level, delivered live
         during the game, called per individual game.
 
         Args:
-            format: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
             gameid: The GameID of an NBA game. GameIDs can be found in the Games API. Valid entries are
                 <code>14620</code>, <code>16905</code>, etc.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            format_: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
         return self._client.execute(
             http_method="GET",
             url_template=self._server.default("/v3/nba/stats/{format}/BoxScore/{gameid}"),
-            path_params=[param[FormatOrStr]("format", format), param[str]("gameid", gameid)],
+            path_params=[param[FormatOrStr]("format", format_), param[str]("gameid", gameid)],
             auth_scheme=AnySchemes(self._auth.api_key_header, self._auth.api_key_query),
             decoder=json_decoder[BoxScore],
             error_mapper=nba_v3_stats_box_score_live_final_error_mapper,
@@ -770,22 +855,23 @@ class NbaV3StatsWithRawResponse(SecuredRawResponse[RawClient, Server, AuthScheme
         )
 
     def nba_v3_stats_box_scores_by_date_final(
-        self, format: FormatOrStr, date: str, *, request_options: RequestOptionsOrDict | None = None
+        self, date: str, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None
     ) -> ApiResult[list[BoxScore], NbaV3StatsBoxScoresByDateFinalErrorBody]:
         """Full statistical information for a specified date for each game that took place, down to the team and player
         stat level, delivered after the game is complete.
 
         Args:
-            format: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
             date: The date of the game(s). <br>Examples: <code>2015-JUL-31</code>, <code>2015-SEP-01</code>.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            format_: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
         return self._client.execute(
             http_method="GET",
             url_template=self._server.default("/v3/nba/stats/{format}/BoxScoresFinal/{date}"),
-            path_params=[param[FormatOrStr]("format", format), param[str]("date", date)],
+            path_params=[param[FormatOrStr]("format", format_), param[str]("date", date)],
             auth_scheme=AnySchemes(self._auth.api_key_header, self._auth.api_key_query),
             decoder=json_decoder[list[BoxScore]],
             error_mapper=nba_v3_stats_box_scores_by_date_final_error_mapper,
@@ -793,22 +879,23 @@ class NbaV3StatsWithRawResponse(SecuredRawResponse[RawClient, Server, AuthScheme
         )
 
     def nba_v3_stats_box_scores_by_date_live_final(
-        self, format: FormatOrStr, date: str, *, request_options: RequestOptionsOrDict | None = None
+        self, date: str, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None
     ) -> ApiResult[list[BoxScore], NbaV3StatsBoxScoresByDateLiveFinalErrorBody]:
         """Full statistical information for a specified game, down to the team and player stat level, delivered live
         during the games, called for all games on a given date.
 
         Args:
-            format: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
             date: The date of the game(s). <br>Examples: <code>2015-JUL-31</code>, <code>2015-SEP-01</code>.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            format_: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
         return self._client.execute(
             http_method="GET",
             url_template=self._server.default("/v3/nba/stats/{format}/BoxScores/{date}"),
-            path_params=[param[FormatOrStr]("format", format), param[str]("date", date)],
+            path_params=[param[FormatOrStr]("format", format_), param[str]("date", date)],
             auth_scheme=AnySchemes(self._auth.api_key_header, self._auth.api_key_query),
             decoder=json_decoder[list[BoxScore]],
             error_mapper=nba_v3_stats_box_scores_by_date_live_final_error_mapper,
@@ -816,17 +903,23 @@ class NbaV3StatsWithRawResponse(SecuredRawResponse[RawClient, Server, AuthScheme
         )
 
     def nba_v3_stats_box_scores_delta_by_date(
-        self, format: FormatOrStr, date: str, minutes: str, *, request_options: RequestOptionsOrDict | None = None
+        self,
+        date: str,
+        minutes: str,
+        *,
+        format_: FormatOrStr = Format.JSON,
+        request_options: RequestOptionsOrDict | None = None,
     ) -> ApiResult[list[BoxScore], NbaV3StatsBoxScoresDeltaByDateErrorBody]:
         """This method returns all box scores for a given date, but only returns player stats that have changed in the
         last X minutes as specified in your API call. By definition this is a live endpoint, not final.
 
         Args:
-            format: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
             date: The date of the game(s). <br>Examples: <code>2015-JUL-31</code>, <code>2015-SEP-01</code>.
             minutes: Only returns player statistics that have changed in the last X minutes. You specify how many
                 minutes in time to go back. Valid entries are: <code>1</code> or <code>2</code>.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            format_: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
@@ -834,7 +927,7 @@ class NbaV3StatsWithRawResponse(SecuredRawResponse[RawClient, Server, AuthScheme
             http_method="GET",
             url_template=self._server.default("/v3/nba/stats/{format}/BoxScoresDelta/{date}/{minutes}"),
             path_params=[
-                param[FormatOrStr]("format", format), param[str]("date", date), param[str]("minutes", minutes)
+                param[FormatOrStr]("format", format_), param[str]("date", date), param[str]("minutes", minutes)
             ],
             auth_scheme=AnySchemes(self._auth.api_key_header, self._auth.api_key_query),
             decoder=json_decoder[list[BoxScore]],
@@ -843,21 +936,22 @@ class NbaV3StatsWithRawResponse(SecuredRawResponse[RawClient, Server, AuthScheme
         )
 
     def nba_v3_stats_fantasy_points_by_date(
-        self, format: FormatOrStr, date: str, *, request_options: RequestOptionsOrDict | None = None
+        self, date: str, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None
     ) -> ApiResult[list[FantasyGame1], NbaV3StatsFantasyPointsByDateErrorBody]:
         """A simple list of fantasy points scored for all players who took part in games on a given date.
 
         Args:
-            format: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
             date: The date of the game(s). <br>Examples: <code>2015-JUL-31</code>, <code>2015-SEP-01</code>.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            format_: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
         return self._client.execute(
             http_method="GET",
             url_template=self._server.default("/v3/nba/stats/{format}/FantasyGameStatsByDate/{date}"),
-            path_params=[param[FormatOrStr]("format", format), param[str]("date", date)],
+            path_params=[param[FormatOrStr]("format", format_), param[str]("date", date)],
             auth_scheme=AnySchemes(self._auth.api_key_header, self._auth.api_key_query),
             decoder=json_decoder[list[FantasyGame1]],
             error_mapper=nba_v3_stats_fantasy_points_by_date_error_mapper,
@@ -866,22 +960,23 @@ class NbaV3StatsWithRawResponse(SecuredRawResponse[RawClient, Server, AuthScheme
 
     def nba_v3_stats_player_game_logs_by_season(
         self,
-        format: FormatOrStr,
         season: str,
         playerid: str,
         numberofgames: str,
         *,
+        format_: FormatOrStr = Format.JSON,
         request_options: RequestOptionsOrDict | None = None,
     ) -> ApiResult[list[PlayerGame1], NbaV3StatsPlayerGameLogsBySeasonErrorBody]:
         """Specify a season, a player, and number of games (either an integer or <code>all</code>) to see all of their
         box score logs. Refreshed after their most recent game is complete.
 
         Args:
-            format: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
             season: Season to get games from. Example <code>2019POST</code>, <code>2020</code>
             playerid: Unique SportsDataIO Player ID. Example:<code>20000571</code>.
             numberofgames: How many games to return. Example <code>all</code>, <code>10</code>, <code>25</code>
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            format_: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
@@ -891,7 +986,7 @@ class NbaV3StatsWithRawResponse(SecuredRawResponse[RawClient, Server, AuthScheme
                 "/v3/nba/stats/{format}/PlayerGameStatsBySeason/{season}/{playerid}/{numberofgames}"
             ),
             path_params=[
-                param[FormatOrStr]("format", format),
+                param[FormatOrStr]("format", format_),
                 param[str]("season", season),
                 param[str]("playerid", playerid),
                 param[str]("numberofgames", numberofgames),
@@ -903,22 +998,23 @@ class NbaV3StatsWithRawResponse(SecuredRawResponse[RawClient, Server, AuthScheme
         )
 
     def nba_v3_stats_player_game_stats_by_date_final(
-        self, format: FormatOrStr, date: str, *, request_options: RequestOptionsOrDict | None = None
+        self, date: str, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None
     ) -> ApiResult[list[PlayerGame1], NbaV3StatsPlayerGameStatsByDateFinalErrorBody]:
         """Returns the box score statistical record for all involved players across all teams' games on a given date
         after each game has concluded.
 
         Args:
-            format: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
             date: The date of the game(s). <br>Examples: <code>2015-JUL-31</code>, <code>2015-SEP-01</code>.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            format_: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
         return self._client.execute(
             http_method="GET",
             url_template=self._server.default("/v3/nba/stats/{format}/PlayerGameStatsByDateFinal/{date}"),
-            path_params=[param[FormatOrStr]("format", format), param[str]("date", date)],
+            path_params=[param[FormatOrStr]("format", format_), param[str]("date", date)],
             auth_scheme=AnySchemes(self._auth.api_key_header, self._auth.api_key_query),
             decoder=json_decoder[list[PlayerGame1]],
             error_mapper=nba_v3_stats_player_game_stats_by_date_final_error_mapper,
@@ -926,22 +1022,23 @@ class NbaV3StatsWithRawResponse(SecuredRawResponse[RawClient, Server, AuthScheme
         )
 
     def nba_v3_stats_player_game_stats_by_date_live_final(
-        self, format: FormatOrStr, date: str, *, request_options: RequestOptionsOrDict | None = None
+        self, date: str, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None
     ) -> ApiResult[list[PlayerGame1], NbaV3StatsPlayerGameStatsByDateLiveFinalErrorBody]:
         """Returns the box score statistical record for all involved players across a given date, updated live as the
         game takes place.
 
         Args:
-            format: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
             date: The date of the game(s). <br>Examples: <code>2015-JUL-31</code>, <code>2015-SEP-01</code>.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            format_: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
         return self._client.execute(
             http_method="GET",
             url_template=self._server.default("/v3/nba/stats/{format}/PlayerGameStatsByDate/{date}"),
-            path_params=[param[FormatOrStr]("format", format), param[str]("date", date)],
+            path_params=[param[FormatOrStr]("format", format_), param[str]("date", date)],
             auth_scheme=AnySchemes(self._auth.api_key_header, self._auth.api_key_query),
             decoder=json_decoder[list[PlayerGame1]],
             error_mapper=nba_v3_stats_player_game_stats_by_date_live_final_error_mapper,
@@ -949,22 +1046,23 @@ class NbaV3StatsWithRawResponse(SecuredRawResponse[RawClient, Server, AuthScheme
         )
 
     def nba_v3_stats_player_season_stats(
-        self, format: FormatOrStr, season: str, *, request_options: RequestOptionsOrDict | None = None
+        self, season: str, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None
     ) -> ApiResult[list[PlayerSeason1], NbaV3StatsPlayerSeasonStatsErrorBody]:
         """Returns all season-long stats (i.e. the season total, not each individual game record) for all players for a
         given season.
 
         Args:
-            format: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
             season: Year of the season. <br>Examples: <code>2015</code>, <code>2016</code>.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            format_: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
         return self._client.execute(
             http_method="GET",
             url_template=self._server.default("/v3/nba/stats/{format}/PlayerSeasonStats/{season}"),
-            path_params=[param[FormatOrStr]("format", format), param[str]("season", season)],
+            path_params=[param[FormatOrStr]("format", format_), param[str]("season", season)],
             auth_scheme=AnySchemes(self._auth.api_key_header, self._auth.api_key_query),
             decoder=json_decoder[list[PlayerSeason1]],
             error_mapper=nba_v3_stats_player_season_stats_error_mapper,
@@ -972,23 +1070,29 @@ class NbaV3StatsWithRawResponse(SecuredRawResponse[RawClient, Server, AuthScheme
         )
 
     def nba_v3_stats_player_season_stats_by_team(
-        self, format: FormatOrStr, season: str, team: str, *, request_options: RequestOptionsOrDict | None = None
+        self,
+        season: str,
+        team: str,
+        *,
+        format_: FormatOrStr = Format.JSON,
+        request_options: RequestOptionsOrDict | None = None,
     ) -> ApiResult[list[PlayerSeason1], NbaV3StatsPlayerSeasonStatsByTeamErrorBody]:
         """Returns all season-long stats (i.e. the season total, not each individual game record) for a given team's
         players in a given season.
 
         Args:
-            format: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
             season: Year of the season. <br>Examples: <code>2015</code>, <code>2016</code>.
             team: The abbreviation of the requested team. <br>Examples: <code>MIA</code>, <code>PHI</code>.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            format_: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
         return self._client.execute(
             http_method="GET",
             url_template=self._server.default("/v3/nba/stats/{format}/PlayerSeasonStatsByTeam/{season}/{team}"),
-            path_params=[param[FormatOrStr]("format", format), param[str]("season", season), param[str]("team", team)],
+            path_params=[param[FormatOrStr]("format", format_), param[str]("season", season), param[str]("team", team)],
             auth_scheme=AnySchemes(self._auth.api_key_header, self._auth.api_key_query),
             decoder=json_decoder[list[PlayerSeason1]],
             error_mapper=nba_v3_stats_player_season_stats_by_team_error_mapper,
@@ -996,22 +1100,23 @@ class NbaV3StatsWithRawResponse(SecuredRawResponse[RawClient, Server, AuthScheme
         )
 
     def nba_v3_stats_team_game_stats_by_date_final(
-        self, format: FormatOrStr, date: str, *, request_options: RequestOptionsOrDict | None = None
+        self, date: str, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None
     ) -> ApiResult[list[TeamGame1], NbaV3StatsTeamGameStatsByDateFinalErrorBody]:
         """Returns the box score statistical record team-wide (aggregated from all players) for a games on a given date,
         delivered as each game concludes.
 
         Args:
-            format: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
             date: The date of the game(s). <br>Examples: <code>2015-JUL-31</code>, <code>2015-SEP-01</code>.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            format_: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
         return self._client.execute(
             http_method="GET",
             url_template=self._server.default("/v3/nba/stats/{format}/TeamGameStatsByDateFinal/{date}"),
-            path_params=[param[FormatOrStr]("format", format), param[str]("date", date)],
+            path_params=[param[FormatOrStr]("format", format_), param[str]("date", date)],
             auth_scheme=AnySchemes(self._auth.api_key_header, self._auth.api_key_query),
             decoder=json_decoder[list[TeamGame1]],
             error_mapper=nba_v3_stats_team_game_stats_by_date_final_error_mapper,
@@ -1019,22 +1124,23 @@ class NbaV3StatsWithRawResponse(SecuredRawResponse[RawClient, Server, AuthScheme
         )
 
     def nba_v3_stats_team_stats_allowed_by_position(
-        self, format: FormatOrStr, season: str, *, request_options: RequestOptionsOrDict | None = None
+        self, season: str, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None
     ) -> ApiResult[list[TeamSeason1], NbaV3StatsTeamStatsAllowedByPositionErrorBody]:
         """For each team, deliveres a season total of statistical records for their opponents' positions (e.g. all field
         goals made against this team by Centers.)
 
         Args:
-            format: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
             season: Year of the season. <br>Examples: <code>2015</code>, <code>2016</code>.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            format_: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
         return self._client.execute(
             http_method="GET",
             url_template=self._server.default("/v3/nba/stats/{format}/TeamStatsAllowedByPosition/{season}"),
-            path_params=[param[FormatOrStr]("format", format), param[str]("season", season)],
+            path_params=[param[FormatOrStr]("format", format_), param[str]("season", season)],
             auth_scheme=AnySchemes(self._auth.api_key_header, self._auth.api_key_query),
             decoder=json_decoder[list[TeamSeason1]],
             error_mapper=nba_v3_stats_team_stats_allowed_by_position_error_mapper,
@@ -1044,133 +1150,144 @@ class NbaV3StatsWithRawResponse(SecuredRawResponse[RawClient, Server, AuthScheme
 
 class AsyncNbaV3StatsWithRawResponse(SecuredRawResponse[AsyncRawClient, Server, AsyncAuthSchemes]):
     async def nba_v3_stats_all_stars(
-        self, format: FormatOrStr, season: str, *, request_options: RequestOptionsOrDict | None = None
+        self, season: str, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None
     ) -> ApiResult[list[PlayerInfo], NbaV3StatsAllStarsErrorBody]:
         """A list of players selected for the All-Star Game for a given season.
 
         Args:
-            format: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
             season: Year of the season. <br>Examples: <code>2015</code>, <code>2016</code>.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            format_: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
         return await self._client.execute(
             http_method="GET",
             url_template=self._server.default("/v3/nba/stats/{format}/AllStars/{season}"),
-            path_params=[param[FormatOrStr]("format", format), param[str]("season", season)],
+            path_params=[param[FormatOrStr]("format", format_), param[str]("season", season)],
             auth_scheme=AsyncAnySchemes(self._auth.api_key_header, self._auth.api_key_query),
-            decoder=json_decoder[list[PlayerInfo]],
+            decoder=async_json_decoder[list[PlayerInfo]],
             error_mapper=nba_v3_stats_all_stars_error_mapper,
             request_options=request_options,
         )
 
     async def nba_v3_stats_box_score_final(
-        self, format: FormatOrStr, gameid: str, *, request_options: RequestOptionsOrDict | None = None
+        self, gameid: str, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None
     ) -> ApiResult[BoxScore, NbaV3StatsBoxScoreFinalErrorBody]:
         """Full statistical information for a specified game, down to the team and player stat level, delivered after
         the game is complete.
 
         Args:
-            format: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
             gameid: The GameID of an NBA game. GameIDs can be found in the Games API. Valid entries are
                 <code>14620</code>, <code>16905</code>, etc.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            format_: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
         return await self._client.execute(
             http_method="GET",
             url_template=self._server.default("/v3/nba/stats/{format}/BoxScoreFinal/{gameid}"),
-            path_params=[param[FormatOrStr]("format", format), param[str]("gameid", gameid)],
+            path_params=[param[FormatOrStr]("format", format_), param[str]("gameid", gameid)],
             auth_scheme=AsyncAnySchemes(self._auth.api_key_header, self._auth.api_key_query),
-            decoder=json_decoder[BoxScore],
+            decoder=async_json_decoder[BoxScore],
             error_mapper=nba_v3_stats_box_score_final_error_mapper,
             request_options=request_options,
         )
 
     async def nba_v3_stats_box_score_live_final(
-        self, format: FormatOrStr, gameid: str, *, request_options: RequestOptionsOrDict | None = None
+        self, gameid: str, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None
     ) -> ApiResult[BoxScore, NbaV3StatsBoxScoreLiveFinalErrorBody]:
         """Full statistical information for a specified game, down to the team and player stat level, delivered live
         during the game, called per individual game.
 
         Args:
-            format: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
             gameid: The GameID of an NBA game. GameIDs can be found in the Games API. Valid entries are
                 <code>14620</code>, <code>16905</code>, etc.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            format_: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
         return await self._client.execute(
             http_method="GET",
             url_template=self._server.default("/v3/nba/stats/{format}/BoxScore/{gameid}"),
-            path_params=[param[FormatOrStr]("format", format), param[str]("gameid", gameid)],
+            path_params=[param[FormatOrStr]("format", format_), param[str]("gameid", gameid)],
             auth_scheme=AsyncAnySchemes(self._auth.api_key_header, self._auth.api_key_query),
-            decoder=json_decoder[BoxScore],
+            decoder=async_json_decoder[BoxScore],
             error_mapper=nba_v3_stats_box_score_live_final_error_mapper,
             request_options=request_options,
         )
 
     async def nba_v3_stats_box_scores_by_date_final(
-        self, format: FormatOrStr, date: str, *, request_options: RequestOptionsOrDict | None = None
+        self, date: str, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None
     ) -> ApiResult[list[BoxScore], NbaV3StatsBoxScoresByDateFinalErrorBody]:
         """Full statistical information for a specified date for each game that took place, down to the team and player
         stat level, delivered after the game is complete.
 
         Args:
-            format: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
             date: The date of the game(s). <br>Examples: <code>2015-JUL-31</code>, <code>2015-SEP-01</code>.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            format_: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
         return await self._client.execute(
             http_method="GET",
             url_template=self._server.default("/v3/nba/stats/{format}/BoxScoresFinal/{date}"),
-            path_params=[param[FormatOrStr]("format", format), param[str]("date", date)],
+            path_params=[param[FormatOrStr]("format", format_), param[str]("date", date)],
             auth_scheme=AsyncAnySchemes(self._auth.api_key_header, self._auth.api_key_query),
-            decoder=json_decoder[list[BoxScore]],
+            decoder=async_json_decoder[list[BoxScore]],
             error_mapper=nba_v3_stats_box_scores_by_date_final_error_mapper,
             request_options=request_options,
         )
 
     async def nba_v3_stats_box_scores_by_date_live_final(
-        self, format: FormatOrStr, date: str, *, request_options: RequestOptionsOrDict | None = None
+        self, date: str, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None
     ) -> ApiResult[list[BoxScore], NbaV3StatsBoxScoresByDateLiveFinalErrorBody]:
         """Full statistical information for a specified game, down to the team and player stat level, delivered live
         during the games, called for all games on a given date.
 
         Args:
-            format: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
             date: The date of the game(s). <br>Examples: <code>2015-JUL-31</code>, <code>2015-SEP-01</code>.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            format_: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
         return await self._client.execute(
             http_method="GET",
             url_template=self._server.default("/v3/nba/stats/{format}/BoxScores/{date}"),
-            path_params=[param[FormatOrStr]("format", format), param[str]("date", date)],
+            path_params=[param[FormatOrStr]("format", format_), param[str]("date", date)],
             auth_scheme=AsyncAnySchemes(self._auth.api_key_header, self._auth.api_key_query),
-            decoder=json_decoder[list[BoxScore]],
+            decoder=async_json_decoder[list[BoxScore]],
             error_mapper=nba_v3_stats_box_scores_by_date_live_final_error_mapper,
             request_options=request_options,
         )
 
     async def nba_v3_stats_box_scores_delta_by_date(
-        self, format: FormatOrStr, date: str, minutes: str, *, request_options: RequestOptionsOrDict | None = None
+        self,
+        date: str,
+        minutes: str,
+        *,
+        format_: FormatOrStr = Format.JSON,
+        request_options: RequestOptionsOrDict | None = None,
     ) -> ApiResult[list[BoxScore], NbaV3StatsBoxScoresDeltaByDateErrorBody]:
         """This method returns all box scores for a given date, but only returns player stats that have changed in the
         last X minutes as specified in your API call. By definition this is a live endpoint, not final.
 
         Args:
-            format: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
             date: The date of the game(s). <br>Examples: <code>2015-JUL-31</code>, <code>2015-SEP-01</code>.
             minutes: Only returns player statistics that have changed in the last X minutes. You specify how many
                 minutes in time to go back. Valid entries are: <code>1</code> or <code>2</code>.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            format_: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
@@ -1178,54 +1295,56 @@ class AsyncNbaV3StatsWithRawResponse(SecuredRawResponse[AsyncRawClient, Server, 
             http_method="GET",
             url_template=self._server.default("/v3/nba/stats/{format}/BoxScoresDelta/{date}/{minutes}"),
             path_params=[
-                param[FormatOrStr]("format", format), param[str]("date", date), param[str]("minutes", minutes)
+                param[FormatOrStr]("format", format_), param[str]("date", date), param[str]("minutes", minutes)
             ],
             auth_scheme=AsyncAnySchemes(self._auth.api_key_header, self._auth.api_key_query),
-            decoder=json_decoder[list[BoxScore]],
+            decoder=async_json_decoder[list[BoxScore]],
             error_mapper=nba_v3_stats_box_scores_delta_by_date_error_mapper,
             request_options=request_options,
         )
 
     async def nba_v3_stats_fantasy_points_by_date(
-        self, format: FormatOrStr, date: str, *, request_options: RequestOptionsOrDict | None = None
+        self, date: str, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None
     ) -> ApiResult[list[FantasyGame1], NbaV3StatsFantasyPointsByDateErrorBody]:
         """A simple list of fantasy points scored for all players who took part in games on a given date.
 
         Args:
-            format: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
             date: The date of the game(s). <br>Examples: <code>2015-JUL-31</code>, <code>2015-SEP-01</code>.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            format_: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
         return await self._client.execute(
             http_method="GET",
             url_template=self._server.default("/v3/nba/stats/{format}/FantasyGameStatsByDate/{date}"),
-            path_params=[param[FormatOrStr]("format", format), param[str]("date", date)],
+            path_params=[param[FormatOrStr]("format", format_), param[str]("date", date)],
             auth_scheme=AsyncAnySchemes(self._auth.api_key_header, self._auth.api_key_query),
-            decoder=json_decoder[list[FantasyGame1]],
+            decoder=async_json_decoder[list[FantasyGame1]],
             error_mapper=nba_v3_stats_fantasy_points_by_date_error_mapper,
             request_options=request_options,
         )
 
     async def nba_v3_stats_player_game_logs_by_season(
         self,
-        format: FormatOrStr,
         season: str,
         playerid: str,
         numberofgames: str,
         *,
+        format_: FormatOrStr = Format.JSON,
         request_options: RequestOptionsOrDict | None = None,
     ) -> ApiResult[list[PlayerGame1], NbaV3StatsPlayerGameLogsBySeasonErrorBody]:
         """Specify a season, a player, and number of games (either an integer or <code>all</code>) to see all of their
         box score logs. Refreshed after their most recent game is complete.
 
         Args:
-            format: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
             season: Season to get games from. Example <code>2019POST</code>, <code>2020</code>
             playerid: Unique SportsDataIO Player ID. Example:<code>20000571</code>.
             numberofgames: How many games to return. Example <code>all</code>, <code>10</code>, <code>25</code>
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            format_: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
@@ -1235,152 +1354,163 @@ class AsyncNbaV3StatsWithRawResponse(SecuredRawResponse[AsyncRawClient, Server, 
                 "/v3/nba/stats/{format}/PlayerGameStatsBySeason/{season}/{playerid}/{numberofgames}"
             ),
             path_params=[
-                param[FormatOrStr]("format", format),
+                param[FormatOrStr]("format", format_),
                 param[str]("season", season),
                 param[str]("playerid", playerid),
                 param[str]("numberofgames", numberofgames),
             ],
             auth_scheme=AsyncAnySchemes(self._auth.api_key_header, self._auth.api_key_query),
-            decoder=json_decoder[list[PlayerGame1]],
+            decoder=async_json_decoder[list[PlayerGame1]],
             error_mapper=nba_v3_stats_player_game_logs_by_season_error_mapper,
             request_options=request_options,
         )
 
     async def nba_v3_stats_player_game_stats_by_date_final(
-        self, format: FormatOrStr, date: str, *, request_options: RequestOptionsOrDict | None = None
+        self, date: str, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None
     ) -> ApiResult[list[PlayerGame1], NbaV3StatsPlayerGameStatsByDateFinalErrorBody]:
         """Returns the box score statistical record for all involved players across all teams' games on a given date
         after each game has concluded.
 
         Args:
-            format: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
             date: The date of the game(s). <br>Examples: <code>2015-JUL-31</code>, <code>2015-SEP-01</code>.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            format_: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
         return await self._client.execute(
             http_method="GET",
             url_template=self._server.default("/v3/nba/stats/{format}/PlayerGameStatsByDateFinal/{date}"),
-            path_params=[param[FormatOrStr]("format", format), param[str]("date", date)],
+            path_params=[param[FormatOrStr]("format", format_), param[str]("date", date)],
             auth_scheme=AsyncAnySchemes(self._auth.api_key_header, self._auth.api_key_query),
-            decoder=json_decoder[list[PlayerGame1]],
+            decoder=async_json_decoder[list[PlayerGame1]],
             error_mapper=nba_v3_stats_player_game_stats_by_date_final_error_mapper,
             request_options=request_options,
         )
 
     async def nba_v3_stats_player_game_stats_by_date_live_final(
-        self, format: FormatOrStr, date: str, *, request_options: RequestOptionsOrDict | None = None
+        self, date: str, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None
     ) -> ApiResult[list[PlayerGame1], NbaV3StatsPlayerGameStatsByDateLiveFinalErrorBody]:
         """Returns the box score statistical record for all involved players across a given date, updated live as the
         game takes place.
 
         Args:
-            format: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
             date: The date of the game(s). <br>Examples: <code>2015-JUL-31</code>, <code>2015-SEP-01</code>.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            format_: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
         return await self._client.execute(
             http_method="GET",
             url_template=self._server.default("/v3/nba/stats/{format}/PlayerGameStatsByDate/{date}"),
-            path_params=[param[FormatOrStr]("format", format), param[str]("date", date)],
+            path_params=[param[FormatOrStr]("format", format_), param[str]("date", date)],
             auth_scheme=AsyncAnySchemes(self._auth.api_key_header, self._auth.api_key_query),
-            decoder=json_decoder[list[PlayerGame1]],
+            decoder=async_json_decoder[list[PlayerGame1]],
             error_mapper=nba_v3_stats_player_game_stats_by_date_live_final_error_mapper,
             request_options=request_options,
         )
 
     async def nba_v3_stats_player_season_stats(
-        self, format: FormatOrStr, season: str, *, request_options: RequestOptionsOrDict | None = None
+        self, season: str, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None
     ) -> ApiResult[list[PlayerSeason1], NbaV3StatsPlayerSeasonStatsErrorBody]:
         """Returns all season-long stats (i.e. the season total, not each individual game record) for all players for a
         given season.
 
         Args:
-            format: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
             season: Year of the season. <br>Examples: <code>2015</code>, <code>2016</code>.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            format_: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
         return await self._client.execute(
             http_method="GET",
             url_template=self._server.default("/v3/nba/stats/{format}/PlayerSeasonStats/{season}"),
-            path_params=[param[FormatOrStr]("format", format), param[str]("season", season)],
+            path_params=[param[FormatOrStr]("format", format_), param[str]("season", season)],
             auth_scheme=AsyncAnySchemes(self._auth.api_key_header, self._auth.api_key_query),
-            decoder=json_decoder[list[PlayerSeason1]],
+            decoder=async_json_decoder[list[PlayerSeason1]],
             error_mapper=nba_v3_stats_player_season_stats_error_mapper,
             request_options=request_options,
         )
 
     async def nba_v3_stats_player_season_stats_by_team(
-        self, format: FormatOrStr, season: str, team: str, *, request_options: RequestOptionsOrDict | None = None
+        self,
+        season: str,
+        team: str,
+        *,
+        format_: FormatOrStr = Format.JSON,
+        request_options: RequestOptionsOrDict | None = None,
     ) -> ApiResult[list[PlayerSeason1], NbaV3StatsPlayerSeasonStatsByTeamErrorBody]:
         """Returns all season-long stats (i.e. the season total, not each individual game record) for a given team's
         players in a given season.
 
         Args:
-            format: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
             season: Year of the season. <br>Examples: <code>2015</code>, <code>2016</code>.
             team: The abbreviation of the requested team. <br>Examples: <code>MIA</code>, <code>PHI</code>.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            format_: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
         return await self._client.execute(
             http_method="GET",
             url_template=self._server.default("/v3/nba/stats/{format}/PlayerSeasonStatsByTeam/{season}/{team}"),
-            path_params=[param[FormatOrStr]("format", format), param[str]("season", season), param[str]("team", team)],
+            path_params=[param[FormatOrStr]("format", format_), param[str]("season", season), param[str]("team", team)],
             auth_scheme=AsyncAnySchemes(self._auth.api_key_header, self._auth.api_key_query),
-            decoder=json_decoder[list[PlayerSeason1]],
+            decoder=async_json_decoder[list[PlayerSeason1]],
             error_mapper=nba_v3_stats_player_season_stats_by_team_error_mapper,
             request_options=request_options,
         )
 
     async def nba_v3_stats_team_game_stats_by_date_final(
-        self, format: FormatOrStr, date: str, *, request_options: RequestOptionsOrDict | None = None
+        self, date: str, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None
     ) -> ApiResult[list[TeamGame1], NbaV3StatsTeamGameStatsByDateFinalErrorBody]:
         """Returns the box score statistical record team-wide (aggregated from all players) for a games on a given date,
         delivered as each game concludes.
 
         Args:
-            format: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
             date: The date of the game(s). <br>Examples: <code>2015-JUL-31</code>, <code>2015-SEP-01</code>.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            format_: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
         return await self._client.execute(
             http_method="GET",
             url_template=self._server.default("/v3/nba/stats/{format}/TeamGameStatsByDateFinal/{date}"),
-            path_params=[param[FormatOrStr]("format", format), param[str]("date", date)],
+            path_params=[param[FormatOrStr]("format", format_), param[str]("date", date)],
             auth_scheme=AsyncAnySchemes(self._auth.api_key_header, self._auth.api_key_query),
-            decoder=json_decoder[list[TeamGame1]],
+            decoder=async_json_decoder[list[TeamGame1]],
             error_mapper=nba_v3_stats_team_game_stats_by_date_final_error_mapper,
             request_options=request_options,
         )
 
     async def nba_v3_stats_team_stats_allowed_by_position(
-        self, format: FormatOrStr, season: str, *, request_options: RequestOptionsOrDict | None = None
+        self, season: str, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None
     ) -> ApiResult[list[TeamSeason1], NbaV3StatsTeamStatsAllowedByPositionErrorBody]:
         """For each team, deliveres a season total of statistical records for their opponents' positions (e.g. all field
         goals made against this team by Centers.)
 
         Args:
-            format: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
             season: Year of the season. <br>Examples: <code>2015</code>, <code>2016</code>.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            format_: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
         return await self._client.execute(
             http_method="GET",
             url_template=self._server.default("/v3/nba/stats/{format}/TeamStatsAllowedByPosition/{season}"),
-            path_params=[param[FormatOrStr]("format", format), param[str]("season", season)],
+            path_params=[param[FormatOrStr]("format", format_), param[str]("season", season)],
             auth_scheme=AsyncAnySchemes(self._auth.api_key_header, self._auth.api_key_query),
-            decoder=json_decoder[list[TeamSeason1]],
+            decoder=async_json_decoder[list[TeamSeason1]],
             error_mapper=nba_v3_stats_team_stats_allowed_by_position_error_mapper,
             request_options=request_options,
         )

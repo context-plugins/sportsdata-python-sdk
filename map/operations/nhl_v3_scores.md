@@ -10,9 +10,8 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /v3/nhl/scores/{format}/AreAnyGamesInProgress`
 - **Auth**: `api_key_header` OR `api_key_query`
-- **Signature**: `def nhl_v3_scores_are_games_in_progress(format: FormatOrStr, *, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `format`
-- **Params**: `format` — path
+- **Signature**: `def nhl_v3_scores_are_games_in_progress(*, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None)`
+- **Params**: `format_` — path `format`
 - **Returns (parsed)**: `bool`
 - **Returns (raw)**: `ApiResult[bool, NhlV3ScoresAreGamesInProgressErrorBody]`
 - **Error**: `NhlV3ScoresAreGamesInProgressErrorBody` — **Case A (typed)**
@@ -28,9 +27,8 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /v3/nhl/scores/{format}/GoalieDepthCharts`
 - **Auth**: `api_key_header` OR `api_key_query`
-- **Signature**: `def nhl_v3_scores_depth_charts_goalies(format: FormatOrStr, *, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `format`
-- **Params**: `format` — path
+- **Signature**: `def nhl_v3_scores_depth_charts_goalies(*, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None)`
+- **Params**: `format_` — path `format`
 - **Returns (parsed)**: `list[TeamGoalieDepthChart]`
 - **Returns (raw)**: `ApiResult[list[TeamGoalieDepthChart], NhlV3ScoresDepthChartsGoaliesErrorBody]`
 - **Error**: `NhlV3ScoresDepthChartsGoaliesErrorBody` — **Case A (typed)**
@@ -47,9 +45,9 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /v3/nhl/scores/{format}/GamesByDateFinal/{date}`
 - **Auth**: `api_key_header` OR `api_key_query`
-- **Signature**: `def nhl_v3_scores_games_by_date_final(format: FormatOrStr, date: str, *, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `format`, `date`
-- **Params**: `format` — path · `date` — path
+- **Signature**: `def nhl_v3_scores_games_by_date_final(date: str, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None)`
+  - required, positional: `date`
+- **Params**: `format_` — path `format` · `date` — path
 - **Returns (parsed)**: `list[Game7]`
 - **Returns (raw)**: `ApiResult[list[Game7], NhlV3ScoresGamesByDateFinalErrorBody]`
 - **Error**: `NhlV3ScoresGamesByDateFinalErrorBody` — **Case A (typed)**
@@ -66,9 +64,9 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /v3/nhl/scores/{format}/GamesByDate/{date}`
 - **Auth**: `api_key_header` OR `api_key_query`
-- **Signature**: `def nhl_v3_scores_games_by_date_live_final(format: FormatOrStr, date: str, *, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `format`, `date`
-- **Params**: `format` — path · `date` — path
+- **Signature**: `def nhl_v3_scores_games_by_date_live_final(date: str, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None)`
+  - required, positional: `date`
+- **Params**: `format_` — path `format` · `date` — path
 - **Returns (parsed)**: `list[Game7]`
 - **Returns (raw)**: `ApiResult[list[Game7], NhlV3ScoresGamesByDateLiveFinalErrorBody]`
 - **Error**: `NhlV3ScoresGamesByDateLiveFinalErrorBody` — **Case A (typed)**
@@ -85,9 +83,9 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /v3/nhl/scores/{format}/ScoresBasicFinal/{date}`
 - **Auth**: `api_key_header` OR `api_key_query`
-- **Signature**: `def nhl_v3_scores_games_basic_by_date_final(format: FormatOrStr, date: str, *, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `format`, `date`
-- **Params**: `format` — path · `date` — path
+- **Signature**: `def nhl_v3_scores_games_basic_by_date_final(date: str, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None)`
+  - required, positional: `date`
+- **Params**: `format_` — path `format` · `date` — path
 - **Returns (parsed)**: `list[ScoreBasic3]`
 - **Returns (raw)**: `ApiResult[list[ScoreBasic3], NhlV3ScoresGamesBasicByDateFinalErrorBody]`
 - **Error**: `NhlV3ScoresGamesBasicByDateFinalErrorBody` — **Case A (typed)**
@@ -104,9 +102,9 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /v3/nhl/scores/{format}/ScoresBasic/{date}`
 - **Auth**: `api_key_header` OR `api_key_query`
-- **Signature**: `def nhl_v3_scores_games_basic_by_date_live_final(format: FormatOrStr, date: str, *, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `format`, `date`
-- **Params**: `format` — path · `date` — path
+- **Signature**: `def nhl_v3_scores_games_basic_by_date_live_final(date: str, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None)`
+  - required, positional: `date`
+- **Params**: `format_` — path `format` · `date` — path
 - **Returns (parsed)**: `list[ScoreBasic3]`
 - **Returns (raw)**: `ApiResult[list[ScoreBasic3], NhlV3ScoresGamesBasicByDateLiveFinalErrorBody]`
 - **Error**: `NhlV3ScoresGamesBasicByDateLiveFinalErrorBody` — **Case A (typed)**
@@ -123,9 +121,8 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /v3/nhl/scores/{format}/News`
 - **Auth**: `api_key_header` OR `api_key_query`
-- **Signature**: `def nhl_v3_scores_news(format: FormatOrStr, *, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `format`
-- **Params**: `format` — path
+- **Signature**: `def nhl_v3_scores_news(*, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None)`
+- **Params**: `format_` — path `format`
 - **Returns (parsed)**: `list[News1]`
 - **Returns (raw)**: `ApiResult[list[News1], NhlV3ScoresNewsErrorBody]`
 - **Error**: `NhlV3ScoresNewsErrorBody` — **Case A (typed)**
@@ -142,9 +139,9 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /v3/nhl/scores/{format}/NewsByDate/{date}`
 - **Auth**: `api_key_header` OR `api_key_query`
-- **Signature**: `def nhl_v3_scores_news_by_date(format: FormatOrStr, date: str, *, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `format`, `date`
-- **Params**: `format` — path · `date` — path
+- **Signature**: `def nhl_v3_scores_news_by_date(date: str, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None)`
+  - required, positional: `date`
+- **Params**: `format_` — path `format` · `date` — path
 - **Returns (parsed)**: `list[News1]`
 - **Returns (raw)**: `ApiResult[list[News1], NhlV3ScoresNewsByDateErrorBody]`
 - **Error**: `NhlV3ScoresNewsByDateErrorBody` — **Case A (typed)**
@@ -161,9 +158,8 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /v3/nhl/scores/{format}/Players`
 - **Auth**: `api_key_header` OR `api_key_query`
-- **Signature**: `def nhl_v3_scores_player_details_by_active(format: FormatOrStr, *, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `format`
-- **Params**: `format` — path
+- **Signature**: `def nhl_v3_scores_player_details_by_active(*, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None)`
+- **Params**: `format_` — path `format`
 - **Returns (parsed)**: `list[Player3]`
 - **Returns (raw)**: `ApiResult[list[Player3], NhlV3ScoresPlayerDetailsByActiveErrorBody]`
 - **Error**: `NhlV3ScoresPlayerDetailsByActiveErrorBody` — **Case A (typed)**
@@ -180,9 +176,8 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /v3/nhl/scores/{format}/PlayersByActive`
 - **Auth**: `api_key_header` OR `api_key_query`
-- **Signature**: `def nhl_v3_scores_player_details_by_active2(format: FormatOrStr, *, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `format`
-- **Params**: `format` — path
+- **Signature**: `def nhl_v3_scores_player_details_by_active2(*, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None)`
+- **Params**: `format_` — path `format`
 - **Returns (parsed)**: `list[PlayerBasic3]`
 - **Returns (raw)**: `ApiResult[list[PlayerBasic3], NhlV3ScoresPlayerDetailsByActive2ErrorBody]`
 - **Error**: `NhlV3ScoresPlayerDetailsByActive2ErrorBody` — **Case A (typed)**
@@ -199,9 +194,8 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /v3/nhl/scores/{format}/FreeAgents`
 - **Auth**: `api_key_header` OR `api_key_query`
-- **Signature**: `def nhl_v3_scores_player_details_by_free_agents(format: FormatOrStr, *, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `format`
-- **Params**: `format` — path
+- **Signature**: `def nhl_v3_scores_player_details_by_free_agents(*, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None)`
+- **Params**: `format_` — path `format`
 - **Returns (parsed)**: `list[Player3]`
 - **Returns (raw)**: `ApiResult[list[Player3], NhlV3ScoresPlayerDetailsByFreeAgentsErrorBody]`
 - **Error**: `NhlV3ScoresPlayerDetailsByFreeAgentsErrorBody` — **Case A (typed)**
@@ -218,9 +212,8 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /v3/nhl/scores/{format}/PlayersByFreeAgents`
 - **Auth**: `api_key_header` OR `api_key_query`
-- **Signature**: `def nhl_v3_scores_player_details_by_free_agents2(format: FormatOrStr, *, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `format`
-- **Params**: `format` — path
+- **Signature**: `def nhl_v3_scores_player_details_by_free_agents2(*, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None)`
+- **Params**: `format_` — path `format`
 - **Returns (parsed)**: `list[PlayerBasic3]`
 - **Returns (raw)**: `ApiResult[list[PlayerBasic3], NhlV3ScoresPlayerDetailsByFreeAgents2ErrorBody]`
 - **Error**: `NhlV3ScoresPlayerDetailsByFreeAgents2ErrorBody` — **Case A (typed)**
@@ -237,9 +230,9 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /v3/nhl/scores/{format}/Players/{team}`
 - **Auth**: `api_key_header` OR `api_key_query`
-- **Signature**: `def nhl_v3_scores_players_details_by_team(format: FormatOrStr, team: str, *, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `format`, `team`
-- **Params**: `format` — path · `team` — path
+- **Signature**: `def nhl_v3_scores_players_details_by_team(team: str, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None)`
+  - required, positional: `team`
+- **Params**: `format_` — path `format` · `team` — path
 - **Returns (parsed)**: `list[Player3]`
 - **Returns (raw)**: `ApiResult[list[Player3], NhlV3ScoresPlayersDetailsByTeamErrorBody]`
 - **Error**: `NhlV3ScoresPlayersDetailsByTeamErrorBody` — **Case A (typed)**
@@ -256,9 +249,9 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /v3/nhl/scores/{format}/PlayersBasic/{team}`
 - **Auth**: `api_key_header` OR `api_key_query`
-- **Signature**: `def nhl_v3_scores_players_profiles_by_team(format: FormatOrStr, team: str, *, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `format`, `team`
-- **Params**: `format` — path · `team` — path
+- **Signature**: `def nhl_v3_scores_players_profiles_by_team(team: str, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None)`
+  - required, positional: `team`
+- **Params**: `format_` — path `format` · `team` — path
 - **Returns (parsed)**: `list[PlayerBasic3]`
 - **Returns (raw)**: `ApiResult[list[PlayerBasic3], NhlV3ScoresPlayersProfilesByTeamErrorBody]`
 - **Error**: `NhlV3ScoresPlayersProfilesByTeamErrorBody` — **Case A (typed)**
@@ -275,9 +268,8 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /v3/nhl/scores/{format}/Referees`
 - **Auth**: `api_key_header` OR `api_key_query`
-- **Signature**: `def nhl_v3_scores_referees(format: FormatOrStr, *, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `format`
-- **Params**: `format` — path
+- **Signature**: `def nhl_v3_scores_referees(*, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None)`
+- **Params**: `format_` — path `format`
 - **Returns (parsed)**: `list[Referee1]`
 - **Returns (raw)**: `ApiResult[list[Referee1], NhlV3ScoresRefereesErrorBody]`
 - **Error**: `NhlV3ScoresRefereesErrorBody` — **Case A (typed)**
@@ -294,9 +286,9 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /v3/nhl/scores/{format}/Games/{season}`
 - **Auth**: `api_key_header` OR `api_key_query`
-- **Signature**: `def nhl_v3_scores_schedules(format: FormatOrStr, season: str, *, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `format`, `season`
-- **Params**: `format` — path · `season` — path
+- **Signature**: `def nhl_v3_scores_schedules(season: str, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None)`
+  - required, positional: `season`
+- **Params**: `format_` — path `format` · `season` — path
 - **Returns (parsed)**: `list[Game7]`
 - **Returns (raw)**: `ApiResult[list[Game7], NhlV3ScoresSchedulesErrorBody]`
 - **Error**: `NhlV3ScoresSchedulesErrorBody` — **Case A (typed)**
@@ -313,9 +305,9 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /v3/nhl/scores/{format}/SchedulesBasic/{season}`
 - **Auth**: `api_key_header` OR `api_key_query`
-- **Signature**: `def nhl_v3_scores_schedules_basic(format: FormatOrStr, season: str, *, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `format`, `season`
-- **Params**: `format` — path · `season` — path
+- **Signature**: `def nhl_v3_scores_schedules_basic(season: str, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None)`
+  - required, positional: `season`
+- **Params**: `format_` — path `format` · `season` — path
 - **Returns (parsed)**: `list[ScheduleBasic3]`
 - **Returns (raw)**: `ApiResult[list[ScheduleBasic3], NhlV3ScoresSchedulesBasicErrorBody]`
 - **Error**: `NhlV3ScoresSchedulesBasicErrorBody` — **Case A (typed)**
@@ -332,9 +324,8 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /v3/nhl/scores/{format}/CurrentSeason`
 - **Auth**: `api_key_header` OR `api_key_query`
-- **Signature**: `def nhl_v3_scores_season_current(format: FormatOrStr, *, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `format`
-- **Params**: `format` — path
+- **Signature**: `def nhl_v3_scores_season_current(*, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None)`
+- **Params**: `format_` — path `format`
 - **Returns (parsed)**: `Season`
 - **Returns (raw)**: `ApiResult[Season, NhlV3ScoresSeasonCurrentErrorBody]`
 - **Error**: `NhlV3ScoresSeasonCurrentErrorBody` — **Case A (typed)**
@@ -351,9 +342,8 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /v3/nhl/scores/{format}/Stadiums`
 - **Auth**: `api_key_header` OR `api_key_query`
-- **Signature**: `def nhl_v3_scores_stadiums(format: FormatOrStr, *, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `format`
-- **Params**: `format` — path
+- **Signature**: `def nhl_v3_scores_stadiums(*, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None)`
+- **Params**: `format_` — path `format`
 - **Returns (parsed)**: `list[Stadium1]`
 - **Returns (raw)**: `ApiResult[list[Stadium1], NhlV3ScoresStadiumsErrorBody]`
 - **Error**: `NhlV3ScoresStadiumsErrorBody` — **Case A (typed)**
@@ -370,9 +360,9 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /v3/nhl/scores/{format}/Standings/{season}`
 - **Auth**: `api_key_header` OR `api_key_query`
-- **Signature**: `def nhl_v3_scores_standings(format: FormatOrStr, season: str, *, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `format`, `season`
-- **Params**: `format` — path · `season` — path
+- **Signature**: `def nhl_v3_scores_standings(season: str, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None)`
+  - required, positional: `season`
+- **Params**: `format_` — path `format` · `season` — path
 - **Returns (parsed)**: `list[Standing3]`
 - **Returns (raw)**: `ApiResult[list[Standing3], NhlV3ScoresStandingsErrorBody]`
 - **Error**: `NhlV3ScoresStandingsErrorBody` — **Case A (typed)**
@@ -389,9 +379,9 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /v3/nhl/scores/{format}/TeamGameStatsBySeason/{season}/{teamid}/{numberofgames}`
 - **Auth**: `api_key_header` OR `api_key_query`
-- **Signature**: `def nhl_v3_scores_team_game_logs_by_season(format: FormatOrStr, season: str, teamid: str, numberofgames: str, *, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `format`, `season`, `teamid`, `numberofgames`
-- **Params**: `format` — path · `season` — path · `teamid` — path · `numberofgames` — path
+- **Signature**: `def nhl_v3_scores_team_game_logs_by_season(season: str, teamid: str, numberofgames: str, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None)`
+  - required, positional: `season`, `teamid`, `numberofgames`
+- **Params**: `format_` — path `format` · `season` — path · `teamid` — path · `numberofgames` — path
 - **Returns (parsed)**: `list[TeamGame3]`
 - **Returns (raw)**: `ApiResult[list[TeamGame3], NhlV3ScoresTeamGameLogsBySeasonErrorBody]`
 - **Error**: `NhlV3ScoresTeamGameLogsBySeasonErrorBody` — **Case A (typed)**
@@ -408,9 +398,9 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /v3/nhl/scores/{format}/TeamGameStatsByDate/{date}`
 - **Auth**: `api_key_header` OR `api_key_query`
-- **Signature**: `def nhl_v3_scores_team_game_stats_by_date_live_final(format: FormatOrStr, date: str, *, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `format`, `date`
-- **Params**: `format` — path · `date` — path
+- **Signature**: `def nhl_v3_scores_team_game_stats_by_date_live_final(date: str, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None)`
+  - required, positional: `date`
+- **Params**: `format_` — path `format` · `date` — path
 - **Returns (parsed)**: `list[TeamGame3]`
 - **Returns (raw)**: `ApiResult[list[TeamGame3], NhlV3ScoresTeamGameStatsByDateLiveFinalErrorBody]`
 - **Error**: `NhlV3ScoresTeamGameStatsByDateLiveFinalErrorBody` — **Case A (typed)**
@@ -427,9 +417,8 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /v3/nhl/scores/{format}/AllTeams`
 - **Auth**: `api_key_header` OR `api_key_query`
-- **Signature**: `def nhl_v3_scores_team_profiles_all(format: FormatOrStr, *, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `format`
-- **Params**: `format` — path
+- **Signature**: `def nhl_v3_scores_team_profiles_all(*, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None)`
+- **Params**: `format_` — path `format`
 - **Returns (parsed)**: `list[Team3]`
 - **Returns (raw)**: `ApiResult[list[Team3], NhlV3ScoresTeamProfilesAllErrorBody]`
 - **Error**: `NhlV3ScoresTeamProfilesAllErrorBody` — **Case A (typed)**
@@ -446,9 +435,8 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /v3/nhl/scores/{format}/teams`
 - **Auth**: `api_key_header` OR `api_key_query`
-- **Signature**: `def nhl_v3_scores_team_profiles_by_active(format: FormatOrStr, *, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `format`
-- **Params**: `format` — path
+- **Signature**: `def nhl_v3_scores_team_profiles_by_active(*, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None)`
+- **Params**: `format_` — path `format`
 - **Returns (parsed)**: `list[Team3]`
 - **Returns (raw)**: `ApiResult[list[Team3], NhlV3ScoresTeamProfilesByActiveErrorBody]`
 - **Error**: `NhlV3ScoresTeamProfilesByActiveErrorBody` — **Case A (typed)**
@@ -465,9 +453,9 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /v3/nhl/scores/{format}/teams/{season}`
 - **Auth**: `api_key_header` OR `api_key_query`
-- **Signature**: `def nhl_v3_scores_team_profiles_by_season(format: FormatOrStr, season: str, *, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `format`, `season`
-- **Params**: `format` — path · `season` — path
+- **Signature**: `def nhl_v3_scores_team_profiles_by_season(season: str, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None)`
+  - required, positional: `season`
+- **Params**: `format_` — path `format` · `season` — path
 - **Returns (parsed)**: `list[Team3]`
 - **Returns (raw)**: `ApiResult[list[Team3], NhlV3ScoresTeamProfilesBySeasonErrorBody]`
 - **Error**: `NhlV3ScoresTeamProfilesBySeasonErrorBody` — **Case A (typed)**
@@ -484,9 +472,9 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /v3/nhl/scores/{format}/TeamSeasonStats/{season}`
 - **Auth**: `api_key_header` OR `api_key_query`
-- **Signature**: `def nhl_v3_scores_team_season_stats(format: FormatOrStr, season: str, *, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `format`, `season`
-- **Params**: `format` — path · `season` — path
+- **Signature**: `def nhl_v3_scores_team_season_stats(season: str, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None)`
+  - required, positional: `season`
+- **Params**: `format_` — path `format` · `season` — path
 - **Returns (parsed)**: `list[TeamSeason3]`
 - **Returns (raw)**: `ApiResult[list[TeamSeason3], NhlV3ScoresTeamSeasonStatsErrorBody]`
 - **Error**: `NhlV3ScoresTeamSeasonStatsErrorBody` — **Case A (typed)**
@@ -503,9 +491,9 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /v3/nhl/scores/{format}/TransactionsByDate/{date}`
 - **Auth**: `api_key_header` OR `api_key_query`
-- **Signature**: `def nhl_v3_scores_transactions(format: FormatOrStr, date: str, *, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `format`, `date`
-- **Params**: `format` — path · `date` — path
+- **Signature**: `def nhl_v3_scores_transactions(date: str, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None)`
+  - required, positional: `date`
+- **Params**: `format_` — path `format` · `date` — path
 - **Returns (parsed)**: `list[Transaction]`
 - **Returns (raw)**: `ApiResult[list[Transaction], NhlV3ScoresTransactionsErrorBody]`
 - **Error**: `NhlV3ScoresTransactionsErrorBody` — **Case A (typed)**

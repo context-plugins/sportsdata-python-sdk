@@ -23,6 +23,6 @@ class TeamDepthChart(SdkBaseModel):
 
 class TeamDepthChartDict(TypedDict):
     team_id: NotRequired[int]
-    offense: NotRequired[list[DepthChart | DepthChartDict]]
-    defense: NotRequired[list[DepthChart | DepthChartDict]]
-    special_teams: NotRequired[list[DepthChart | DepthChartDict]]
+    offense: NotRequired[list[DepthChartDict]]
+    defense: NotRequired[list[DepthChartDict]]
+    special_teams: NotRequired[list[DepthChartDict]]

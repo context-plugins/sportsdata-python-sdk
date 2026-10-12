@@ -3,7 +3,7 @@ from __future__ import annotations
 from dataclasses import dataclass
 from typing import Final, TypeAlias
 
-from ..core import ErrorMapper, HttpResponse, RawError, decode_json
+from ..core import ErrorMapper, RawError, decode_json
 from ..models.unauthorized import Unauthorized
 
 GolfV2UpcomingdfsslateownershipprojectionsDfsSlateOwnershipProjectionsUpcomingErrorBody: TypeAlias = (
@@ -14,13 +14,13 @@ GolfV2UpcomingdfsslateownershipprojectionsDfsSlateOwnershipProjectionsUpcomingEr
 @dataclass(frozen=True, slots=True)
 class _GolfV2UpcomingdfsslateownershipprojectionsDfsSlateOwnershipProjectionsUpcomingError:
     def map(
-        self, response: HttpResponse
+        self, status_code: int, content: bytes
     ) -> GolfV2UpcomingdfsslateownershipprojectionsDfsSlateOwnershipProjectionsUpcomingErrorBody:
-        match response.status_code:
+        match status_code:
             case 401:
-                return decode_json[Unauthorized](response)
+                return decode_json[Unauthorized](content)
             case _:
-                return RawError(response)
+                return RawError(status_code, content)
 
 
 golf_v2_upcomingdfsslateownershipprojections_dfs_slate_ownership_projections_upcoming_error_mapper: Final[

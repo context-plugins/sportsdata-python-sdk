@@ -25,7 +25,7 @@ class BoxScore5(SdkBaseModel):
 
 
 class BoxScore5Dict(TypedDict):
-    game: NotRequired[Game15 | Game15Dict]
-    quarters: NotRequired[list[Quarter1 | Quarter1Dict]]
-    team_games: NotRequired[list[TeamGame6 | TeamGame6Dict]]
-    player_games: NotRequired[list[PlayerGame6 | PlayerGame6Dict]]
+    game: NotRequired[Game15Dict]
+    quarters: NotRequired[list[Quarter1Dict]]
+    team_games: NotRequired[list[TeamGame6Dict]]
+    player_games: NotRequired[list[PlayerGame6Dict]]

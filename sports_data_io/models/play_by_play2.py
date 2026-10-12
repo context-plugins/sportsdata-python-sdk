@@ -17,5 +17,5 @@ class PlayByPlay2(SdkBaseModel):
 
 
 class PlayByPlay2Dict(TypedDict):
-    game: NotRequired[Game51 | Game51Dict]
-    plays: NotRequired[list[Play2 | Play2Dict]]
+    game: NotRequired[Game51Dict]
+    plays: NotRequired[list[Play2Dict]]

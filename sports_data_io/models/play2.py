@@ -160,7 +160,7 @@ class Play2Dict(TypedDict):
     error: NotRequired[bool | None]
     updated: NotRequired[str | None]
     description: NotRequired[str | None]
-    pitches: NotRequired[list[Pitch | PitchDict]]
+    pitches: NotRequired[list[PitchDict]]
     runner1_id: NotRequired[int | None]
     runner2_id: NotRequired[int | None]
     runner3_id: NotRequired[int | None]

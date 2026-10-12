@@ -23,6 +23,6 @@ class TeamDepthChartWeekly(SdkBaseModel):
 
 class TeamDepthChartWeeklyDict(TypedDict):
     team_id: NotRequired[int]
-    offense: NotRequired[list[DepthChartWeekly | DepthChartWeeklyDict]]
-    defense: NotRequired[list[DepthChartWeekly | DepthChartWeeklyDict]]
-    special_teams: NotRequired[list[DepthChartWeekly | DepthChartWeeklyDict]]
+    offense: NotRequired[list[DepthChartWeeklyDict]]
+    defense: NotRequired[list[DepthChartWeeklyDict]]
+    special_teams: NotRequired[list[DepthChartWeeklyDict]]

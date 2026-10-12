@@ -175,7 +175,7 @@ class TeamSeason3Dict(TypedDict):
     overtime_losses: NotRequired[int | None]
     opponent_position: NotRequired[str | None]
     global_team_id: NotRequired[int | None]
-    opponent_stat: NotRequired[OpponentSeason21 | OpponentSeason21Dict]
+    opponent_stat: NotRequired[OpponentSeason21Dict]
     updated: NotRequired[str | None]
     games: NotRequired[int | None]
     fantasy_points: NotRequired[float | None]

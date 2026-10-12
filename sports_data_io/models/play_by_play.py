@@ -21,6 +21,6 @@ class PlayByPlay(SdkBaseModel):
 
 
 class PlayByPlayDict(TypedDict):
-    score: NotRequired[Score4 | Score4Dict]
-    quarters: NotRequired[list[Quarter | QuarterDict]]
-    plays: NotRequired[list[Play | PlayDict]]
+    score: NotRequired[Score4Dict]
+    quarters: NotRequired[list[QuarterDict]]
+    plays: NotRequired[list[PlayDict]]

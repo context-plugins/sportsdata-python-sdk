@@ -32,6 +32,6 @@ class DfsSlateTournamentDict(TypedDict):
     slate_tournament_id: NotRequired[int]
     slate_id: NotRequired[int]
     tournament_id: NotRequired[int | None]
-    tournament: NotRequired[Tournament2 | Tournament2Dict]
+    tournament: NotRequired[Tournament2Dict]
     operator_tournament_id: NotRequired[int | None]
     removed_by_operator: NotRequired[bool | None]

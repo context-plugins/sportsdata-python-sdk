@@ -187,6 +187,6 @@ class TeamDict(TypedDict):
     fantasy_draft_player_id: NotRequired[int | None]
     yahoo_name: NotRequired[str | None]
     yahoo_player_id: NotRequired[int | None]
-    stadium_details: NotRequired[Stadium4 | Stadium4Dict]
+    stadium_details: NotRequired[Stadium4Dict]
     average_draft_position2_qb: NotRequired[float | None]
     average_draft_position_dynasty: NotRequired[float | None]

@@ -49,4 +49,4 @@ class BettingEvent4Dict(TypedDict):
     created: NotRequired[str | None]
     updated: NotRequired[str | None]
     tournament_id: NotRequired[int | None]
-    betting_markets: NotRequired[list[BettingMarket2 | BettingMarket2Dict]]
+    betting_markets: NotRequired[list[BettingMarket2Dict]]

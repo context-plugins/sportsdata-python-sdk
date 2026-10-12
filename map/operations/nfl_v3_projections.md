@@ -10,9 +10,9 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /v3/nfl/projections/{format}/DfsSlateOwnershipProjectionsBySlateID/{slateId}`
 - **Auth**: `api_key_header` OR `api_key_query`
-- **Signature**: `def nfl_v3_projections_dfs_slate_ownership_projections_by_slate(format: FormatOrStr, slate_id: str, *, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `format`, `slate_id`
-- **Params**: `format` — path · `slate_id` — path `slateId`
+- **Signature**: `def nfl_v3_projections_dfs_slate_ownership_projections_by_slate(slate_id: str, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None)`
+  - required, positional: `slate_id`
+- **Params**: `format_` — path `format` · `slate_id` — path `slateId`
 - **Returns (parsed)**: `DfsSlateWithOwnershipProjection`
 - **Returns (raw)**: `ApiResult[DfsSlateWithOwnershipProjection, NflV3ProjectionsDfsSlateOwnershipProjectionsBySlateErrorBody]`
 - **Error**: `NflV3ProjectionsDfsSlateOwnershipProjectionsBySlateErrorBody` — **Case A (typed)**
@@ -29,9 +29,8 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /v3/nfl/projections/{format}/UpcomingDfsSlateOwnershipProjections`
 - **Auth**: `api_key_header` OR `api_key_query`
-- **Signature**: `def nfl_v3_projections_dfs_slate_ownership_projections_upcoming(format: FormatOrStr, *, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `format`
-- **Params**: `format` — path
+- **Signature**: `def nfl_v3_projections_dfs_slate_ownership_projections_upcoming(*, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None)`
+- **Params**: `format_` — path `format`
 - **Returns (parsed)**: `list[DfsSlateWithOwnershipProjection]`
 - **Returns (raw)**: `ApiResult[list[DfsSlateWithOwnershipProjection], NflV3ProjectionsDfsSlateOwnershipProjectionsUpcomingErrorBody]`
 - **Error**: `NflV3ProjectionsDfsSlateOwnershipProjectionsUpcomingErrorBody` — **Case A (typed)**
@@ -48,9 +47,9 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /v3/nfl/projections/{format}/DfsSlatesByDate/{date}`
 - **Auth**: `api_key_header` OR `api_key_query`
-- **Signature**: `def nfl_v3_projections_dfs_slates_by_date(format: FormatOrStr, date: str, *, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `format`, `date`
-- **Params**: `format` — path · `date` — path
+- **Signature**: `def nfl_v3_projections_dfs_slates_by_date(date: str, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None)`
+  - required, positional: `date`
+- **Params**: `format_` — path `format` · `date` — path
 - **Returns (parsed)**: `list[DfsSlate]`
 - **Returns (raw)**: `ApiResult[list[DfsSlate], NflV3ProjectionsDfsSlatesByDateErrorBody]`
 - **Error**: `NflV3ProjectionsDfsSlatesByDateErrorBody` — **Case A (typed)**
@@ -67,9 +66,9 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /v3/nfl/projections/{format}/DfsSlatesByWeek/{season}/{week}`
 - **Auth**: `api_key_header` OR `api_key_query`
-- **Signature**: `def nfl_v3_projections_dfs_slates_by_week(format: FormatOrStr, season: str, week: str, *, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `format`, `season`, `week`
-- **Params**: `format` — path · `season` — path · `week` — path
+- **Signature**: `def nfl_v3_projections_dfs_slates_by_week(season: str, week: str, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None)`
+  - required, positional: `season`, `week`
+- **Params**: `format_` — path `format` · `season` — path · `week` — path
 - **Returns (parsed)**: `list[DfsSlate]`
 - **Returns (raw)**: `ApiResult[list[DfsSlate], NflV3ProjectionsDfsSlatesByWeekErrorBody]`
 - **Error**: `NflV3ProjectionsDfsSlatesByWeekErrorBody` — **Case A (typed)**
@@ -86,9 +85,9 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /v3/nfl/projections/{format}/IdpPlayerGameProjectionStatsByTeam/{season}/{week}/{team}`
 - **Auth**: `api_key_header` OR `api_key_query`
-- **Signature**: `def nfl_v3_projections_idp_projected_player_game_stats_by_team(format: FormatOrStr, season: str, week: str, team: str, *, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `format`, `season`, `week`, `team`
-- **Params**: `format` — path · `season` — path · `week` — path · `team` — path
+- **Signature**: `def nfl_v3_projections_idp_projected_player_game_stats_by_team(season: str, week: str, team: str, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None)`
+  - required, positional: `season`, `week`, `team`
+- **Params**: `format_` — path `format` · `season` — path · `week` — path · `team` — path
 - **Returns (parsed)**: `list[PlayerGameProjection]`
 - **Returns (raw)**: `ApiResult[list[PlayerGameProjection], NflV3ProjectionsIdpProjectedPlayerGameStatsByTeamErrorBody]`
 - **Error**: `NflV3ProjectionsIdpProjectedPlayerGameStatsByTeamErrorBody` — **Case A (typed)**
@@ -105,9 +104,9 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /v3/nfl/projections/{format}/IdpPlayerGameProjectionStatsByWeek/{season}/{week}`
 - **Auth**: `api_key_header` OR `api_key_query`
-- **Signature**: `def nfl_v3_projections_idp_projected_player_game_stats_by_week(format: FormatOrStr, season: str, week: str, *, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `format`, `season`, `week`
-- **Params**: `format` — path · `season` — path · `week` — path
+- **Signature**: `def nfl_v3_projections_idp_projected_player_game_stats_by_week(season: str, week: str, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None)`
+  - required, positional: `season`, `week`
+- **Params**: `format_` — path `format` · `season` — path · `week` — path
 - **Returns (parsed)**: `list[PlayerGameProjection]`
 - **Returns (raw)**: `ApiResult[list[PlayerGameProjection], NflV3ProjectionsIdpProjectedPlayerGameStatsByWeekErrorBody]`
 - **Error**: `NflV3ProjectionsIdpProjectedPlayerGameStatsByWeekErrorBody` — **Case A (typed)**
@@ -124,9 +123,8 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /v3/nfl/projections/{format}/InjuredPlayers`
 - **Auth**: `api_key_header` OR `api_key_query`
-- **Signature**: `def nfl_v3_projections_player_details_by_injured(format: FormatOrStr, *, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `format`
-- **Params**: `format` — path
+- **Signature**: `def nfl_v3_projections_player_details_by_injured(*, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None)`
+- **Params**: `format_` — path `format`
 - **Returns (parsed)**: `list[Player]`
 - **Returns (raw)**: `ApiResult[list[Player], NflV3ProjectionsPlayerDetailsByInjuredErrorBody]`
 - **Error**: `NflV3ProjectionsPlayerDetailsByInjuredErrorBody` — **Case A (typed)**
@@ -143,9 +141,9 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /v3/nfl/projections/{format}/FantasyDefenseProjectionsByGame/{season}/{week}`
 - **Auth**: `api_key_header` OR `api_key_query`
-- **Signature**: `def nfl_v3_projections_projected_fantasy_defense_game_stats_with_dfs_salaries(format: FormatOrStr, season: str, week: str, *, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `format`, `season`, `week`
-- **Params**: `format` — path · `season` — path · `week` — path
+- **Signature**: `def nfl_v3_projections_projected_fantasy_defense_game_stats_with_dfs_salaries(season: str, week: str, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None)`
+  - required, positional: `season`, `week`
+- **Params**: `format_` — path `format` · `season` — path · `week` — path
 - **Returns (parsed)**: `list[FantasyDefenseGameProjection]`
 - **Returns (raw)**: `ApiResult[list[FantasyDefenseGameProjection], NflV3ProjectionsProjectedFantasyDefenseGameStatsWithDfsSalariesErrorBody]`
 - **Error**: `NflV3ProjectionsProjectedFantasyDefenseGameStatsWithDfsSalariesErrorBody` — **Case A (typed)**
@@ -162,9 +160,9 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /v3/nfl/projections/{format}/FantasyDefenseProjectionsBySeason/{season}`
 - **Auth**: `api_key_header` OR `api_key_query`
-- **Signature**: `def nfl_v3_projections_projected_fantasy_defense_season_stats_with_adp(format: FormatOrStr, season: str, *, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `format`, `season`
-- **Params**: `format` — path · `season` — path
+- **Signature**: `def nfl_v3_projections_projected_fantasy_defense_season_stats_with_adp(season: str, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None)`
+  - required, positional: `season`
+- **Params**: `format_` — path `format` · `season` — path
 - **Returns (parsed)**: `list[FantasyDefenseSeasonProjection]`
 - **Returns (raw)**: `ApiResult[list[FantasyDefenseSeasonProjection], NflV3ProjectionsProjectedFantasyDefenseSeasonStatsWithAdpErrorBody]`
 - **Error**: `NflV3ProjectionsProjectedFantasyDefenseSeasonStatsWithAdpErrorBody` — **Case A (typed)**
@@ -181,9 +179,9 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /v3/nfl/projections/{format}/PlayerGameProjectionStatsByTeam/{season}/{week}/{team}`
 - **Auth**: `api_key_header` OR `api_key_query`
-- **Signature**: `def nfl_v3_projections_projected_player_game_stats_by_team(format: FormatOrStr, season: str, week: str, team: str, *, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `format`, `season`, `week`, `team`
-- **Params**: `format` — path · `season` — path · `week` — path · `team` — path
+- **Signature**: `def nfl_v3_projections_projected_player_game_stats_by_team(season: str, week: str, team: str, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None)`
+  - required, positional: `season`, `week`, `team`
+- **Params**: `format_` — path `format` · `season` — path · `week` — path · `team` — path
 - **Returns (parsed)**: `list[PlayerGameProjection]`
 - **Returns (raw)**: `ApiResult[list[PlayerGameProjection], NflV3ProjectionsProjectedPlayerGameStatsByTeamErrorBody]`
 - **Error**: `NflV3ProjectionsProjectedPlayerGameStatsByTeamErrorBody` — **Case A (typed)**
@@ -200,9 +198,9 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /v3/nfl/projections/{format}/PlayerGameProjectionStatsByWeek/{season}/{week}`
 - **Auth**: `api_key_header` OR `api_key_query`
-- **Signature**: `def nfl_v3_projections_projected_player_game_stats_by_week(format: FormatOrStr, season: str, week: str, *, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `format`, `season`, `week`
-- **Params**: `format` — path · `season` — path · `week` — path
+- **Signature**: `def nfl_v3_projections_projected_player_game_stats_by_week(season: str, week: str, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None)`
+  - required, positional: `season`, `week`
+- **Params**: `format_` — path `format` · `season` — path · `week` — path
 - **Returns (parsed)**: `list[PlayerGameProjection]`
 - **Returns (raw)**: `ApiResult[list[PlayerGameProjection], NflV3ProjectionsProjectedPlayerGameStatsByWeekErrorBody]`
 - **Error**: `NflV3ProjectionsProjectedPlayerGameStatsByWeekErrorBody` — **Case A (typed)**
@@ -219,9 +217,9 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /v3/nfl/projections/{format}/PlayerSeasonProjectionStats/{season}`
 - **Auth**: `api_key_header` OR `api_key_query`
-- **Signature**: `def nfl_v3_projections_projected_player_season_stats_with_adp(format: FormatOrStr, season: str, *, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `format`, `season`
-- **Params**: `format` — path · `season` — path
+- **Signature**: `def nfl_v3_projections_projected_player_season_stats_with_adp(season: str, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None)`
+  - required, positional: `season`
+- **Params**: `format_` — path `format` · `season` — path
 - **Returns (parsed)**: `list[PlayerSeasonProjection]`
 - **Returns (raw)**: `ApiResult[list[PlayerSeasonProjection], NflV3ProjectionsProjectedPlayerSeasonStatsWithAdpErrorBody]`
 - **Error**: `NflV3ProjectionsProjectedPlayerSeasonStatsWithAdpErrorBody` — **Case A (typed)**
@@ -238,9 +236,9 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /v3/nfl/projections/{format}/PlayerSeasonProjectionStatsByTeam/{season}/{team}`
 - **Auth**: `api_key_header` OR `api_key_query`
-- **Signature**: `def nfl_v3_projections_projected_player_season_stats_with_adp_by_team(format: FormatOrStr, season: str, team: str, *, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `format`, `season`, `team`
-- **Params**: `format` — path · `season` — path · `team` — path
+- **Signature**: `def nfl_v3_projections_projected_player_season_stats_with_adp_by_team(season: str, team: str, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None)`
+  - required, positional: `season`, `team`
+- **Params**: `format_` — path `format` · `season` — path · `team` — path
 - **Returns (parsed)**: `list[PlayerSeasonProjection]`
 - **Returns (raw)**: `ApiResult[list[PlayerSeasonProjection], NflV3ProjectionsProjectedPlayerSeasonStatsWithAdpByTeamErrorBody]`
 - **Error**: `NflV3ProjectionsProjectedPlayerSeasonStatsWithAdpByTeamErrorBody` — **Case A (typed)**

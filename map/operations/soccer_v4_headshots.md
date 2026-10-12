@@ -10,9 +10,8 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /v4/soccer/headshots/{format}/Headshots`
 - **Auth**: `api_key_header` OR `api_key_query`
-- **Signature**: `def soccer_v4_headshots_headshots(format: FormatOrStr, *, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `format`
-- **Params**: `format` — path
+- **Signature**: `def soccer_v4_headshots_headshots(*, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None)`
+- **Params**: `format_` — path `format`
 - **Returns (parsed)**: `list[Headshot]`
 - **Returns (raw)**: `ApiResult[list[Headshot], SoccerV4HeadshotsHeadshotsErrorBody]`
 - **Error**: `SoccerV4HeadshotsHeadshotsErrorBody` — **Case A (typed)**

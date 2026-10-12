@@ -3,7 +3,7 @@ from __future__ import annotations
 from dataclasses import dataclass
 from typing import Final, TypeAlias
 
-from ..core import ErrorMapper, HttpResponse, RawError, decode_json
+from ..core import ErrorMapper, RawError, decode_json
 from ..models.unauthorized import Unauthorized
 
 NflV3ScoresSchedulesBasicErrorBody: TypeAlias = Unauthorized | RawError
@@ -11,12 +11,12 @@ NflV3ScoresSchedulesBasicErrorBody: TypeAlias = Unauthorized | RawError
 
 @dataclass(frozen=True, slots=True)
 class _NflV3ScoresSchedulesBasicError:
-    def map(self, response: HttpResponse) -> NflV3ScoresSchedulesBasicErrorBody:
-        match response.status_code:
+    def map(self, status_code: int, content: bytes) -> NflV3ScoresSchedulesBasicErrorBody:
+        match status_code:
             case 401:
-                return decode_json[Unauthorized](response)
+                return decode_json[Unauthorized](content)
             case _:
-                return RawError(response)
+                return RawError(status_code, content)
 
 
 nfl_v3_scores_schedules_basic_error_mapper: Final[

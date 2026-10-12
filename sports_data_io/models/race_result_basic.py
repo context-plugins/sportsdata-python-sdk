@@ -18,5 +18,5 @@ class RaceResultBasic(SdkBaseModel):
 
 
 class RaceResultBasicDict(TypedDict):
-    race: NotRequired[RaceBasic2 | RaceBasic2Dict]
-    driver_races: NotRequired[list[DriverRaceBasic | DriverRaceBasicDict]]
+    race: NotRequired[RaceBasic2Dict]
+    driver_races: NotRequired[list[DriverRaceBasicDict]]

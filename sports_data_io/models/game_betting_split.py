@@ -48,4 +48,4 @@ class GameBettingSplitDict(TypedDict):
     date: NotRequired[str | None]
     away_team: NotRequired[str | None]
     home_team: NotRequired[str | None]
-    betting_market_splits: NotRequired[list[BettingMarketSplit | BettingMarketSplitDict]]
+    betting_market_splits: NotRequired[list[BettingMarketSplitDict]]

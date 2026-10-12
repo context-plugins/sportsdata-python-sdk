@@ -59,5 +59,5 @@ class StartingGoaltendersDict(TypedDict):
     home_team: NotRequired[str | None]
     away_team_id: NotRequired[int | None]
     away_team: NotRequired[str | None]
-    home_goaltender: NotRequired[Goaltender3 | Goaltender3Dict]
-    away_goaltender: NotRequired[Goaltender1 | Goaltender1Dict]
+    home_goaltender: NotRequired[Goaltender3Dict]
+    away_goaltender: NotRequired[Goaltender1Dict]

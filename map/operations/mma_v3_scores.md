@@ -10,9 +10,9 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /v3/mma/scores/{format}/Event/{eventid}`
 - **Auth**: `api_key_header` OR `api_key_query`
-- **Signature**: `def mma_v3_scores_event(format: FormatOrStr, eventid: str, *, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `format`, `eventid`
-- **Params**: `format` — path · `eventid` — path
+- **Signature**: `def mma_v3_scores_event(eventid: str, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None)`
+  - required, positional: `eventid`
+- **Params**: `format_` — path `format` · `eventid` — path
 - **Returns (parsed)**: `EventDetail`
 - **Returns (raw)**: `ApiResult[EventDetail, MmaV3ScoresEventErrorBody]`
 - **Error**: `MmaV3ScoresEventErrorBody` — **Case A (typed)**
@@ -29,9 +29,9 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /v3/mma/scores/{format}/Fighter/{fighterid}`
 - **Auth**: `api_key_header` OR `api_key_query`
-- **Signature**: `def mma_v3_scores_fighter_profile_by_fighter(format: FormatOrStr, fighterid: str, *, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `format`, `fighterid`
-- **Params**: `format` — path · `fighterid` — path
+- **Signature**: `def mma_v3_scores_fighter_profile_by_fighter(fighterid: str, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None)`
+  - required, positional: `fighterid`
+- **Params**: `format_` — path `format` · `fighterid` — path
 - **Returns (parsed)**: `Fighter`
 - **Returns (raw)**: `ApiResult[Fighter, MmaV3ScoresFighterProfileByFighterErrorBody]`
 - **Error**: `MmaV3ScoresFighterProfileByFighterErrorBody` — **Case A (typed)**
@@ -48,9 +48,8 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /v3/mma/scores/{format}/Fighters`
 - **Auth**: `api_key_header` OR `api_key_query`
-- **Signature**: `def mma_v3_scores_fighter_profiles_all(format: FormatOrStr, *, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `format`
-- **Params**: `format` — path
+- **Signature**: `def mma_v3_scores_fighter_profiles_all(*, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None)`
+- **Params**: `format_` — path `format`
 - **Returns (parsed)**: `list[Fighter]`
 - **Returns (raw)**: `ApiResult[list[Fighter], MmaV3ScoresFighterProfilesAllErrorBody]`
 - **Error**: `MmaV3ScoresFighterProfilesAllErrorBody` — **Case A (typed)**
@@ -67,9 +66,8 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /v3/mma/scores/{format}/FightersBasic`
 - **Auth**: `api_key_header` OR `api_key_query`
-- **Signature**: `def mma_v3_scores_fighter_profiles_basic_all(format: FormatOrStr, *, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `format`
-- **Params**: `format` — path
+- **Signature**: `def mma_v3_scores_fighter_profiles_basic_all(*, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None)`
+- **Params**: `format_` — path `format`
 - **Returns (parsed)**: `list[FighterBasic]`
 - **Returns (raw)**: `ApiResult[list[FighterBasic], MmaV3ScoresFighterProfilesBasicAllErrorBody]`
 - **Error**: `MmaV3ScoresFighterProfilesBasicAllErrorBody` — **Case A (typed)**
@@ -86,9 +84,8 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /v3/mma/scores/{format}/Leagues`
 - **Auth**: `api_key_header` OR `api_key_query`
-- **Signature**: `def mma_v3_scores_leagues(format: FormatOrStr, *, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `format`
-- **Params**: `format` — path
+- **Signature**: `def mma_v3_scores_leagues(*, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None)`
+- **Params**: `format_` — path `format`
 - **Returns (parsed)**: `list[League]`
 - **Returns (raw)**: `ApiResult[list[League], MmaV3ScoresLeaguesErrorBody]`
 - **Error**: `MmaV3ScoresLeaguesErrorBody` — **Case A (typed)**
@@ -105,9 +102,9 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /v3/mma/scores/{format}/Schedule/{league}/{season}`
 - **Auth**: `api_key_header` OR `api_key_query`
-- **Signature**: `def mma_v3_scores_schedules(format: FormatOrStr, league: str, season: str, *, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `format`, `league`, `season`
-- **Params**: `format` — path · `league` — path · `season` — path
+- **Signature**: `def mma_v3_scores_schedules(league: str, season: str, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None)`
+  - required, positional: `league`, `season`
+- **Params**: `format_` — path `format` · `league` — path · `season` — path
 - **Returns (parsed)**: `list[Event]`
 - **Returns (raw)**: `ApiResult[list[Event], MmaV3ScoresSchedulesErrorBody]`
 - **Error**: `MmaV3ScoresSchedulesErrorBody` — **Case A (typed)**

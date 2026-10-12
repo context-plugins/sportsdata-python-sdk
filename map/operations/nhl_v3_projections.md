@@ -10,9 +10,9 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /v3/nhl/projections/{format}/DfsSlatesByDate/{date}`
 - **Auth**: `api_key_header` OR `api_key_query`
-- **Signature**: `def nhl_v3_projections_dfs_slates_by_date(format: FormatOrStr, date: str, *, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `format`, `date`
-- **Params**: `format` — path · `date` — path
+- **Signature**: `def nhl_v3_projections_dfs_slates_by_date(date: str, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None)`
+  - required, positional: `date`
+- **Params**: `format_` — path `format` · `date` — path
 - **Returns (parsed)**: `list[DfsSlate]`
 - **Returns (raw)**: `ApiResult[list[DfsSlate], NhlV3ProjectionsDfsSlatesByDateErrorBody]`
 - **Error**: `NhlV3ProjectionsDfsSlatesByDateErrorBody` — **Case A (typed)**
@@ -29,9 +29,8 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /v3/nhl/projections/{format}/InjuredPlayers`
 - **Auth**: `api_key_header` OR `api_key_query`
-- **Signature**: `def nhl_v3_projections_player_details_by_injured(format: FormatOrStr, *, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `format`
-- **Params**: `format` — path
+- **Signature**: `def nhl_v3_projections_player_details_by_injured(*, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None)`
+- **Params**: `format_` — path `format`
 - **Returns (parsed)**: `list[Player3]`
 - **Returns (raw)**: `ApiResult[list[Player3], NhlV3ProjectionsPlayerDetailsByInjuredErrorBody]`
 - **Error**: `NhlV3ProjectionsPlayerDetailsByInjuredErrorBody` — **Case A (typed)**
@@ -48,9 +47,9 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /v3/nhl/projections/{format}/PlayerGameProjectionStatsByDate/{date}`
 - **Auth**: `api_key_header` OR `api_key_query`
-- **Signature**: `def nhl_v3_projections_projected_player_game_stats_by_date(format: FormatOrStr, date: str, *, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `format`, `date`
-- **Params**: `format` — path · `date` — path
+- **Signature**: `def nhl_v3_projections_projected_player_game_stats_by_date(date: str, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None)`
+  - required, positional: `date`
+- **Params**: `format_` — path `format` · `date` — path
 - **Returns (parsed)**: `list[PlayerGameProjection3]`
 - **Returns (raw)**: `ApiResult[list[PlayerGameProjection3], NhlV3ProjectionsProjectedPlayerGameStatsByDateErrorBody]`
 - **Error**: `NhlV3ProjectionsProjectedPlayerGameStatsByDateErrorBody` — **Case A (typed)**
@@ -67,9 +66,9 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /v3/nhl/projections/{format}/StartingGoaltendersByDate/{date}`
 - **Auth**: `api_key_header` OR `api_key_query`
-- **Signature**: `def nhl_v3_projections_starting_goaltenders_by_date(format: FormatOrStr, date: str, *, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `format`, `date`
-- **Params**: `format` — path · `date` — path
+- **Signature**: `def nhl_v3_projections_starting_goaltenders_by_date(date: str, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None)`
+  - required, positional: `date`
+- **Params**: `format_` — path `format` · `date` — path
 - **Returns (parsed)**: `list[StartingGoaltenders]`
 - **Returns (raw)**: `ApiResult[list[StartingGoaltenders], NhlV3ProjectionsStartingGoaltendersByDateErrorBody]`
 - **Error**: `NhlV3ProjectionsStartingGoaltendersByDateErrorBody` — **Case A (typed)**

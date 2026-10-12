@@ -10,9 +10,9 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /v3/golf/odds/{format}/BettingEventsByDate/{date}`
 - **Auth**: `api_key_header` OR `api_key_query`
-- **Signature**: `def golf_v3_odds_betting_events_by_date(format: FormatOrStr, date: str, *, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `format`, `date`
-- **Params**: `format` — path · `date` — path
+- **Signature**: `def golf_v3_odds_betting_events_by_date(date: str, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None)`
+  - required, positional: `date`
+- **Params**: `format_` — path `format` · `date` — path
 - **Returns (parsed)**: `list[BettingEvent4]`
 - **Returns (raw)**: `ApiResult[list[BettingEvent4], GolfV3OddsBettingEventsByDateErrorBody]`
 - **Error**: `GolfV3OddsBettingEventsByDateErrorBody` — **Case A (typed)**
@@ -29,9 +29,9 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /v3/golf/odds/{format}/BettingEvents/{season}`
 - **Auth**: `api_key_header` OR `api_key_query`
-- **Signature**: `def golf_v3_odds_betting_events_by_season(format: FormatOrStr, season: str, *, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `format`, `season`
-- **Params**: `format` — path · `season` — path
+- **Signature**: `def golf_v3_odds_betting_events_by_season(season: str, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None)`
+  - required, positional: `season`
+- **Params**: `format_` — path `format` · `season` — path
 - **Returns (parsed)**: `list[BettingEvent4]`
 - **Returns (raw)**: `ApiResult[list[BettingEvent4], GolfV3OddsBettingEventsBySeasonErrorBody]`
 - **Error**: `GolfV3OddsBettingEventsBySeasonErrorBody` — **Case A (typed)**
@@ -48,9 +48,9 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /v3/golf/odds/{format}/BettingMarket/{marketId}`
 - **Auth**: `api_key_header` OR `api_key_query`
-- **Signature**: `def golf_v3_odds_betting_market(format: FormatOrStr, market_id: str, *, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `format`, `market_id`
-- **Params**: `format` — path · `market_id` — path `marketId`
+- **Signature**: `def golf_v3_odds_betting_market(market_id: str, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None)`
+  - required, positional: `market_id`
+- **Params**: `format_` — path `format` · `market_id` — path `marketId`
 - **Returns (parsed)**: `BettingMarket2`
 - **Returns (raw)**: `ApiResult[BettingMarket2, GolfV3OddsBettingMarketErrorBody]`
 - **Error**: `GolfV3OddsBettingMarketErrorBody` — **Case A (typed)**
@@ -67,9 +67,9 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /v3/golf/odds/{format}/BettingMarket/{marketId}/{sportsbookgroup}`
 - **Auth**: `api_key_header` OR `api_key_query`
-- **Signature**: `def golf_v3_odds_betting_market_sportsbook_group(format: FormatOrStr, market_id: str, sportsbookgroup: str, *, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `format`, `market_id`, `sportsbookgroup`
-- **Params**: `format` — path · `market_id` — path `marketId` · `sportsbookgroup` — path
+- **Signature**: `def golf_v3_odds_betting_market_sportsbook_group(market_id: str, sportsbookgroup: str, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None)`
+  - required, positional: `market_id`, `sportsbookgroup`
+- **Params**: `format_` — path `format` · `market_id` — path `marketId` · `sportsbookgroup` — path
 - **Returns (parsed)**: `BettingMarket2`
 - **Returns (raw)**: `ApiResult[BettingMarket2, GolfV3OddsBettingMarketSportsbookGroupErrorBody]`
 - **Error**: `GolfV3OddsBettingMarketSportsbookGroupErrorBody` — **Case A (typed)**
@@ -86,9 +86,9 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /v3/golf/odds/{format}/BettingMarkets/{eventId}`
 - **Auth**: `api_key_header` OR `api_key_query`
-- **Signature**: `def golf_v3_odds_betting_markets_by_event(format: FormatOrStr, event_id: str, *, include: IncludeOrStr | None = None, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `format`, `event_id`
-- **Params**: `format` — path · `event_id` — path `eventId` · `include` — query
+- **Signature**: `def golf_v3_odds_betting_markets_by_event(event_id: str, *, format_: FormatOrStr = Format.JSON, include: IncludeOrStr | None = Include.AVAILABLE, request_options: RequestOptionsOrDict | None = None)`
+  - required, positional: `event_id`
+- **Params**: `format_` — path `format` · `event_id` — path `eventId` · `include` — query
 - **Returns (parsed)**: `list[BettingMarket2]`
 - **Returns (raw)**: `ApiResult[list[BettingMarket2], GolfV3OddsBettingMarketsByEventErrorBody]`
 - **Error**: `GolfV3OddsBettingMarketsByEventErrorBody` — **Case A (typed)**
@@ -106,9 +106,9 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /v3/golf/odds/{format}/BettingMarketsByEvent/{eventId}/{sportsbookgroup}`
 - **Auth**: `api_key_header` OR `api_key_query`
-- **Signature**: `def golf_v3_odds_betting_markets_by_event_sportsbook_group(format: FormatOrStr, event_id: str, sportsbookgroup: str, *, include: IncludeOrStr | None = None, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `format`, `event_id`, `sportsbookgroup`
-- **Params**: `format` — path · `event_id` — path `eventId` · `sportsbookgroup` — path · `include` — query
+- **Signature**: `def golf_v3_odds_betting_markets_by_event_sportsbook_group(event_id: str, sportsbookgroup: str, *, format_: FormatOrStr = Format.JSON, include: IncludeOrStr | None = Include.AVAILABLE, request_options: RequestOptionsOrDict | None = None)`
+  - required, positional: `event_id`, `sportsbookgroup`
+- **Params**: `format_` — path `format` · `event_id` — path `eventId` · `sportsbookgroup` — path · `include` — query
 - **Returns (parsed)**: `list[BettingMarket2]`
 - **Returns (raw)**: `ApiResult[list[BettingMarket2], GolfV3OddsBettingMarketsByEventSportsbookGroupErrorBody]`
 - **Error**: `GolfV3OddsBettingMarketsByEventSportsbookGroupErrorBody` — **Case A (typed)**
@@ -126,9 +126,9 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /v3/golf/odds/{format}/BettingMarketsByMarketType/{eventId}/{marketTypeID}`
 - **Auth**: `api_key_header` OR `api_key_query`
-- **Signature**: `def golf_v3_odds_betting_markets_by_market_type(format: FormatOrStr, event_id: str, market_type_id: str, *, include: IncludeOrStr | None = None, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `format`, `event_id`, `market_type_id`
-- **Params**: `format` — path · `event_id` — path `eventId` · `market_type_id` — path `marketTypeID` · `include` — query
+- **Signature**: `def golf_v3_odds_betting_markets_by_market_type(event_id: str, market_type_id: str, *, format_: FormatOrStr = Format.JSON, include: IncludeOrStr | None = Include.AVAILABLE, request_options: RequestOptionsOrDict | None = None)`
+  - required, positional: `event_id`, `market_type_id`
+- **Params**: `format_` — path `format` · `event_id` — path `eventId` · `market_type_id` — path `marketTypeID` · `include` — query
 - **Returns (parsed)**: `list[BettingMarket2]`
 - **Returns (raw)**: `ApiResult[list[BettingMarket2], GolfV3OddsBettingMarketsByMarketTypeErrorBody]`
 - **Error**: `GolfV3OddsBettingMarketsByMarketTypeErrorBody` — **Case A (typed)**
@@ -146,9 +146,9 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /v3/golf/odds/{format}/BettingMarketsByMarketType/{eventId}/{marketTypeID}/{sportsbookgroup}`
 - **Auth**: `api_key_header` OR `api_key_query`
-- **Signature**: `def golf_v3_odds_betting_markets_by_market_type_sportsbook_group(format: FormatOrStr, event_id: str, market_type_id: str, sportsbookgroup: str, *, include: IncludeOrStr | None = None, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `format`, `event_id`, `market_type_id`, `sportsbookgroup`
-- **Params**: `format` — path · `event_id` — path `eventId` · `market_type_id` — path `marketTypeID` · `sportsbookgroup` — path · `include` — query
+- **Signature**: `def golf_v3_odds_betting_markets_by_market_type_sportsbook_group(event_id: str, market_type_id: str, sportsbookgroup: str, *, format_: FormatOrStr = Format.JSON, include: IncludeOrStr | None = Include.AVAILABLE, request_options: RequestOptionsOrDict | None = None)`
+  - required, positional: `event_id`, `market_type_id`, `sportsbookgroup`
+- **Params**: `format_` — path `format` · `event_id` — path `eventId` · `market_type_id` — path `marketTypeID` · `sportsbookgroup` — path · `include` — query
 - **Returns (parsed)**: `list[BettingMarket2]`
 - **Returns (raw)**: `ApiResult[list[BettingMarket2], GolfV3OddsBettingMarketsByMarketTypeSportsbookGroupErrorBody]`
 - **Error**: `GolfV3OddsBettingMarketsByMarketTypeSportsbookGroupErrorBody` — **Case A (typed)**
@@ -166,9 +166,9 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /v3/golf/odds/{format}/BettingMarketsByTournamentID/{tournamentid}`
 - **Auth**: `api_key_header` OR `api_key_query`
-- **Signature**: `def golf_v3_odds_betting_markets_by_tournament(format: FormatOrStr, tournamentid: str, *, include: IncludeOrStr | None = None, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `format`, `tournamentid`
-- **Params**: `format` — path · `tournamentid` — path · `include` — query
+- **Signature**: `def golf_v3_odds_betting_markets_by_tournament(tournamentid: str, *, format_: FormatOrStr = Format.JSON, include: IncludeOrStr | None = Include.AVAILABLE, request_options: RequestOptionsOrDict | None = None)`
+  - required, positional: `tournamentid`
+- **Params**: `format_` — path `format` · `tournamentid` — path · `include` — query
 - **Returns (parsed)**: `list[BettingMarket2]`
 - **Returns (raw)**: `ApiResult[list[BettingMarket2], GolfV3OddsBettingMarketsByTournamentErrorBody]`
 - **Error**: `GolfV3OddsBettingMarketsByTournamentErrorBody` — **Case A (typed)**
@@ -186,9 +186,9 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /v3/golf/odds/{format}/BettingMarketsByTournamentID/{tournamentid}/{sportsbookgroup}`
 - **Auth**: `api_key_header` OR `api_key_query`
-- **Signature**: `def golf_v3_odds_betting_markets_by_tournament_sportsbook_group(format: FormatOrStr, tournamentid: str, sportsbookgroup: str, *, include: IncludeOrStr | None = None, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `format`, `tournamentid`, `sportsbookgroup`
-- **Params**: `format` — path · `tournamentid` — path · `sportsbookgroup` — path · `include` — query
+- **Signature**: `def golf_v3_odds_betting_markets_by_tournament_sportsbook_group(tournamentid: str, sportsbookgroup: str, *, format_: FormatOrStr = Format.JSON, include: IncludeOrStr | None = Include.AVAILABLE, request_options: RequestOptionsOrDict | None = None)`
+  - required, positional: `tournamentid`, `sportsbookgroup`
+- **Params**: `format_` — path `format` · `tournamentid` — path · `sportsbookgroup` — path · `include` — query
 - **Returns (parsed)**: `list[BettingMarket2]`
 - **Returns (raw)**: `ApiResult[list[BettingMarket2], GolfV3OddsBettingMarketsByTournamentSportsbookGroupErrorBody]`
 - **Error**: `GolfV3OddsBettingMarketsByTournamentSportsbookGroupErrorBody` — **Case A (typed)**
@@ -206,9 +206,8 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /v3/golf/odds/{format}/BettingMetadata`
 - **Auth**: `api_key_header` OR `api_key_query`
-- **Signature**: `def golf_v3_odds_betting_metadata(format: FormatOrStr, *, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `format`
-- **Params**: `format` — path
+- **Signature**: `def golf_v3_odds_betting_metadata(*, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None)`
+- **Params**: `format_` — path `format`
 - **Returns (parsed)**: `BettingEntityMetadataCollection2`
 - **Returns (raw)**: `ApiResult[BettingEntityMetadataCollection2, GolfV3OddsBettingMetadataErrorBody]`
 - **Error**: `GolfV3OddsBettingMetadataErrorBody` — **Case A (typed)**
@@ -225,9 +224,9 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /v3/golf/odds/{format}/BettingPlayerPropsByTournamentID/{tournamentid}/{sportsbookgroup}`
 - **Auth**: `api_key_header` OR `api_key_query`
-- **Signature**: `def golf_v3_odds_betting_player_props_by_tournament_sportsbook_group(format: FormatOrStr, tournamentid: str, sportsbookgroup: str, *, include: IncludeOrStr | None = None, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `format`, `tournamentid`, `sportsbookgroup`
-- **Params**: `format` — path · `tournamentid` — path · `sportsbookgroup` — path · `include` — query
+- **Signature**: `def golf_v3_odds_betting_player_props_by_tournament_sportsbook_group(tournamentid: str, sportsbookgroup: str, *, format_: FormatOrStr = Format.JSON, include: IncludeOrStr | None = Include.AVAILABLE, request_options: RequestOptionsOrDict | None = None)`
+  - required, positional: `tournamentid`, `sportsbookgroup`
+- **Params**: `format_` — path `format` · `tournamentid` — path · `sportsbookgroup` — path · `include` — query
 - **Returns (parsed)**: `list[BettingMarket2]`
 - **Returns (raw)**: `ApiResult[list[BettingMarket2], GolfV3OddsBettingPlayerPropsByTournamentSportsbookGroupErrorBody]`
 - **Error**: `GolfV3OddsBettingPlayerPropsByTournamentSportsbookGroupErrorBody` — **Case A (typed)**
@@ -245,9 +244,9 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /v3/golf/odds/{format}/InPlayTournamentOdds/{tournamentid}`
 - **Auth**: `api_key_header` OR `api_key_query`
-- **Signature**: `def golf_v3_odds_in_play_tournament_odds(format: FormatOrStr, tournamentid: str, *, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `format`, `tournamentid`
-- **Params**: `format` — path · `tournamentid` — path
+- **Signature**: `def golf_v3_odds_in_play_tournament_odds(tournamentid: str, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None)`
+  - required, positional: `tournamentid`
+- **Params**: `format_` — path `format` · `tournamentid` — path
 - **Returns (parsed)**: `TournamentOdds`
 - **Returns (raw)**: `ApiResult[TournamentOdds, GolfV3OddsInPlayTournamentOddsErrorBody]`
 - **Error**: `GolfV3OddsInPlayTournamentOddsErrorBody` — **Case A (typed)**
@@ -264,9 +263,9 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /v3/golf/odds/{format}/InPlayTournamentOdds/{tournamentid}/{sportsbookgroup}`
 - **Auth**: `api_key_header` OR `api_key_query`
-- **Signature**: `def golf_v3_odds_in_play_tournament_odds_sportsbook_group(format: FormatOrStr, tournamentid: str, sportsbookgroup: str, *, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `format`, `tournamentid`, `sportsbookgroup`
-- **Params**: `format` — path · `tournamentid` — path · `sportsbookgroup` — path
+- **Signature**: `def golf_v3_odds_in_play_tournament_odds_sportsbook_group(tournamentid: str, sportsbookgroup: str, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None)`
+  - required, positional: `tournamentid`, `sportsbookgroup`
+- **Params**: `format_` — path `format` · `tournamentid` — path · `sportsbookgroup` — path
 - **Returns (parsed)**: `TournamentOdds`
 - **Returns (raw)**: `ApiResult[TournamentOdds, GolfV3OddsInPlayTournamentOddsSportsbookGroupErrorBody]`
 - **Error**: `GolfV3OddsInPlayTournamentOddsSportsbookGroupErrorBody` — **Case A (typed)**
@@ -283,9 +282,9 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /v3/golf/odds/{format}/InPlayTournamentOddsLineMovement/{tournamentid}`
 - **Auth**: `api_key_header` OR `api_key_query`
-- **Signature**: `def golf_v3_odds_in_play_tournament_odds_line_movement(format: FormatOrStr, tournamentid: str, *, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `format`, `tournamentid`
-- **Params**: `format` — path · `tournamentid` — path
+- **Signature**: `def golf_v3_odds_in_play_tournament_odds_line_movement(tournamentid: str, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None)`
+  - required, positional: `tournamentid`
+- **Params**: `format_` — path `format` · `tournamentid` — path
 - **Returns (parsed)**: `TournamentOdds`
 - **Returns (raw)**: `ApiResult[TournamentOdds, GolfV3OddsInPlayTournamentOddsLineMovementErrorBody]`
 - **Error**: `GolfV3OddsInPlayTournamentOddsLineMovementErrorBody` — **Case A (typed)**
@@ -302,9 +301,9 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /v3/golf/odds/{format}/InPlayTournamentOddsLineMovement/{tournamentid}/{sportsbookgroup}`
 - **Auth**: `api_key_header` OR `api_key_query`
-- **Signature**: `def golf_v3_odds_in_play_tournament_odds_line_movement_sportsbook_group(format: FormatOrStr, tournamentid: str, sportsbookgroup: str, *, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `format`, `tournamentid`, `sportsbookgroup`
-- **Params**: `format` — path · `tournamentid` — path · `sportsbookgroup` — path
+- **Signature**: `def golf_v3_odds_in_play_tournament_odds_line_movement_sportsbook_group(tournamentid: str, sportsbookgroup: str, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None)`
+  - required, positional: `tournamentid`, `sportsbookgroup`
+- **Params**: `format_` — path `format` · `tournamentid` — path · `sportsbookgroup` — path
 - **Returns (parsed)**: `TournamentOdds`
 - **Returns (raw)**: `ApiResult[TournamentOdds, GolfV3OddsInPlayTournamentOddsLineMovementSportsbookGroupErrorBody]`
 - **Error**: `GolfV3OddsInPlayTournamentOddsLineMovementSportsbookGroupErrorBody` — **Case A (typed)**
@@ -321,9 +320,8 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /v3/golf/odds/{format}/ActiveSportsbooks`
 - **Auth**: `api_key_header` OR `api_key_query`
-- **Signature**: `def golf_v3_odds_sportsbooks_by_active(format: FormatOrStr, *, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `format`
-- **Params**: `format` — path
+- **Signature**: `def golf_v3_odds_sportsbooks_by_active(*, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None)`
+- **Params**: `format_` — path `format`
 - **Returns (parsed)**: `list[Sportsbook]`
 - **Returns (raw)**: `ApiResult[list[Sportsbook], GolfV3OddsSportsbooksByActiveErrorBody]`
 - **Error**: `GolfV3OddsSportsbooksByActiveErrorBody` — **Case A (typed)**
@@ -340,9 +338,9 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /v3/golf/odds/{format}/TournamentOdds/{tournamentid}`
 - **Auth**: `api_key_header` OR `api_key_query`
-- **Signature**: `def golf_v3_odds_tournament_odds(format: FormatOrStr, tournamentid: str, *, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `format`, `tournamentid`
-- **Params**: `format` — path · `tournamentid` — path
+- **Signature**: `def golf_v3_odds_tournament_odds(tournamentid: str, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None)`
+  - required, positional: `tournamentid`
+- **Params**: `format_` — path `format` · `tournamentid` — path
 - **Returns (parsed)**: `TournamentOdds`
 - **Returns (raw)**: `ApiResult[TournamentOdds, GolfV3OddsTournamentOddsErrorBody]`
 - **Error**: `GolfV3OddsTournamentOddsErrorBody` — **Case A (typed)**
@@ -359,9 +357,9 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /v3/golf/odds/{format}/TournamentOdds/{tournamentid}/{sportsbookgroup}`
 - **Auth**: `api_key_header` OR `api_key_query`
-- **Signature**: `def golf_v3_odds_tournament_odds_sportsbook_group(format: FormatOrStr, tournamentid: str, sportsbookgroup: str, *, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `format`, `tournamentid`, `sportsbookgroup`
-- **Params**: `format` — path · `tournamentid` — path · `sportsbookgroup` — path
+- **Signature**: `def golf_v3_odds_tournament_odds_sportsbook_group(tournamentid: str, sportsbookgroup: str, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None)`
+  - required, positional: `tournamentid`, `sportsbookgroup`
+- **Params**: `format_` — path `format` · `tournamentid` — path · `sportsbookgroup` — path
 - **Returns (parsed)**: `TournamentOdds`
 - **Returns (raw)**: `ApiResult[TournamentOdds, GolfV3OddsTournamentOddsSportsbookGroupErrorBody]`
 - **Error**: `GolfV3OddsTournamentOddsSportsbookGroupErrorBody` — **Case A (typed)**
@@ -378,9 +376,9 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /v3/golf/odds/{format}/TournamentOddsLineMovement/{tournamentid}`
 - **Auth**: `api_key_header` OR `api_key_query`
-- **Signature**: `def golf_v3_odds_tournament_odds_line_movement(format: FormatOrStr, tournamentid: str, *, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `format`, `tournamentid`
-- **Params**: `format` — path · `tournamentid` — path
+- **Signature**: `def golf_v3_odds_tournament_odds_line_movement(tournamentid: str, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None)`
+  - required, positional: `tournamentid`
+- **Params**: `format_` — path `format` · `tournamentid` — path
 - **Returns (parsed)**: `TournamentOdds`
 - **Returns (raw)**: `ApiResult[TournamentOdds, GolfV3OddsTournamentOddsLineMovementErrorBody]`
 - **Error**: `GolfV3OddsTournamentOddsLineMovementErrorBody` — **Case A (typed)**
@@ -397,9 +395,9 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /v3/golf/odds/{format}/TournamentOddsLineMovement/{tournamentid}/{sportsbookgroup}`
 - **Auth**: `api_key_header` OR `api_key_query`
-- **Signature**: `def golf_v3_odds_tournament_odds_line_movement_sportsbook_group(format: FormatOrStr, tournamentid: str, sportsbookgroup: str, *, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `format`, `tournamentid`, `sportsbookgroup`
-- **Params**: `format` — path · `tournamentid` — path · `sportsbookgroup` — path
+- **Signature**: `def golf_v3_odds_tournament_odds_line_movement_sportsbook_group(tournamentid: str, sportsbookgroup: str, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None)`
+  - required, positional: `tournamentid`, `sportsbookgroup`
+- **Params**: `format_` — path `format` · `tournamentid` — path · `sportsbookgroup` — path
 - **Returns (parsed)**: `TournamentOdds`
 - **Returns (raw)**: `ApiResult[TournamentOdds, GolfV3OddsTournamentOddsLineMovementSportsbookGroupErrorBody]`
 - **Error**: `GolfV3OddsTournamentOddsLineMovementSportsbookGroupErrorBody` — **Case A (typed)**

@@ -106,7 +106,7 @@ class ScheduleBasic3Dict(TypedDict):
     game_end_date_time: NotRequired[str | None]
     neutral_venue: NotRequired[bool | None]
     date_time_utc: NotRequired[str | None]
-    series_info: NotRequired[Series | SeriesDict]
+    series_info: NotRequired[SeriesDict]
     away_team_id: NotRequired[int]
     home_team_id: NotRequired[int]
     rescheduled_from_game_id: NotRequired[int | None]

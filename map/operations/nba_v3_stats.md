@@ -10,9 +10,9 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /v3/nba/stats/{format}/AllStars/{season}`
 - **Auth**: `api_key_header` OR `api_key_query`
-- **Signature**: `def nba_v3_stats_all_stars(format: FormatOrStr, season: str, *, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `format`, `season`
-- **Params**: `format` — path · `season` — path
+- **Signature**: `def nba_v3_stats_all_stars(season: str, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None)`
+  - required, positional: `season`
+- **Params**: `format_` — path `format` · `season` — path
 - **Returns (parsed)**: `list[PlayerInfo]`
 - **Returns (raw)**: `ApiResult[list[PlayerInfo], NbaV3StatsAllStarsErrorBody]`
 - **Error**: `NbaV3StatsAllStarsErrorBody` — **Case A (typed)**
@@ -29,9 +29,9 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /v3/nba/stats/{format}/BoxScoreFinal/{gameid}`
 - **Auth**: `api_key_header` OR `api_key_query`
-- **Signature**: `def nba_v3_stats_box_score_final(format: FormatOrStr, gameid: str, *, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `format`, `gameid`
-- **Params**: `format` — path · `gameid` — path
+- **Signature**: `def nba_v3_stats_box_score_final(gameid: str, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None)`
+  - required, positional: `gameid`
+- **Params**: `format_` — path `format` · `gameid` — path
 - **Returns (parsed)**: `BoxScore`
 - **Returns (raw)**: `ApiResult[BoxScore, NbaV3StatsBoxScoreFinalErrorBody]`
 - **Error**: `NbaV3StatsBoxScoreFinalErrorBody` — **Case A (typed)**
@@ -48,9 +48,9 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /v3/nba/stats/{format}/BoxScore/{gameid}`
 - **Auth**: `api_key_header` OR `api_key_query`
-- **Signature**: `def nba_v3_stats_box_score_live_final(format: FormatOrStr, gameid: str, *, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `format`, `gameid`
-- **Params**: `format` — path · `gameid` — path
+- **Signature**: `def nba_v3_stats_box_score_live_final(gameid: str, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None)`
+  - required, positional: `gameid`
+- **Params**: `format_` — path `format` · `gameid` — path
 - **Returns (parsed)**: `BoxScore`
 - **Returns (raw)**: `ApiResult[BoxScore, NbaV3StatsBoxScoreLiveFinalErrorBody]`
 - **Error**: `NbaV3StatsBoxScoreLiveFinalErrorBody` — **Case A (typed)**
@@ -67,9 +67,9 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /v3/nba/stats/{format}/BoxScoresFinal/{date}`
 - **Auth**: `api_key_header` OR `api_key_query`
-- **Signature**: `def nba_v3_stats_box_scores_by_date_final(format: FormatOrStr, date: str, *, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `format`, `date`
-- **Params**: `format` — path · `date` — path
+- **Signature**: `def nba_v3_stats_box_scores_by_date_final(date: str, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None)`
+  - required, positional: `date`
+- **Params**: `format_` — path `format` · `date` — path
 - **Returns (parsed)**: `list[BoxScore]`
 - **Returns (raw)**: `ApiResult[list[BoxScore], NbaV3StatsBoxScoresByDateFinalErrorBody]`
 - **Error**: `NbaV3StatsBoxScoresByDateFinalErrorBody` — **Case A (typed)**
@@ -86,9 +86,9 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /v3/nba/stats/{format}/BoxScores/{date}`
 - **Auth**: `api_key_header` OR `api_key_query`
-- **Signature**: `def nba_v3_stats_box_scores_by_date_live_final(format: FormatOrStr, date: str, *, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `format`, `date`
-- **Params**: `format` — path · `date` — path
+- **Signature**: `def nba_v3_stats_box_scores_by_date_live_final(date: str, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None)`
+  - required, positional: `date`
+- **Params**: `format_` — path `format` · `date` — path
 - **Returns (parsed)**: `list[BoxScore]`
 - **Returns (raw)**: `ApiResult[list[BoxScore], NbaV3StatsBoxScoresByDateLiveFinalErrorBody]`
 - **Error**: `NbaV3StatsBoxScoresByDateLiveFinalErrorBody` — **Case A (typed)**
@@ -105,9 +105,9 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /v3/nba/stats/{format}/BoxScoresDelta/{date}/{minutes}`
 - **Auth**: `api_key_header` OR `api_key_query`
-- **Signature**: `def nba_v3_stats_box_scores_delta_by_date(format: FormatOrStr, date: str, minutes: str, *, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `format`, `date`, `minutes`
-- **Params**: `format` — path · `date` — path · `minutes` — path
+- **Signature**: `def nba_v3_stats_box_scores_delta_by_date(date: str, minutes: str, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None)`
+  - required, positional: `date`, `minutes`
+- **Params**: `format_` — path `format` · `date` — path · `minutes` — path
 - **Returns (parsed)**: `list[BoxScore]`
 - **Returns (raw)**: `ApiResult[list[BoxScore], NbaV3StatsBoxScoresDeltaByDateErrorBody]`
 - **Error**: `NbaV3StatsBoxScoresDeltaByDateErrorBody` — **Case A (typed)**
@@ -124,9 +124,9 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /v3/nba/stats/{format}/FantasyGameStatsByDate/{date}`
 - **Auth**: `api_key_header` OR `api_key_query`
-- **Signature**: `def nba_v3_stats_fantasy_points_by_date(format: FormatOrStr, date: str, *, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `format`, `date`
-- **Params**: `format` — path · `date` — path
+- **Signature**: `def nba_v3_stats_fantasy_points_by_date(date: str, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None)`
+  - required, positional: `date`
+- **Params**: `format_` — path `format` · `date` — path
 - **Returns (parsed)**: `list[FantasyGame1]`
 - **Returns (raw)**: `ApiResult[list[FantasyGame1], NbaV3StatsFantasyPointsByDateErrorBody]`
 - **Error**: `NbaV3StatsFantasyPointsByDateErrorBody` — **Case A (typed)**
@@ -143,9 +143,9 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /v3/nba/stats/{format}/PlayerGameStatsBySeason/{season}/{playerid}/{numberofgames}`
 - **Auth**: `api_key_header` OR `api_key_query`
-- **Signature**: `def nba_v3_stats_player_game_logs_by_season(format: FormatOrStr, season: str, playerid: str, numberofgames: str, *, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `format`, `season`, `playerid`, `numberofgames`
-- **Params**: `format` — path · `season` — path · `playerid` — path · `numberofgames` — path
+- **Signature**: `def nba_v3_stats_player_game_logs_by_season(season: str, playerid: str, numberofgames: str, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None)`
+  - required, positional: `season`, `playerid`, `numberofgames`
+- **Params**: `format_` — path `format` · `season` — path · `playerid` — path · `numberofgames` — path
 - **Returns (parsed)**: `list[PlayerGame1]`
 - **Returns (raw)**: `ApiResult[list[PlayerGame1], NbaV3StatsPlayerGameLogsBySeasonErrorBody]`
 - **Error**: `NbaV3StatsPlayerGameLogsBySeasonErrorBody` — **Case A (typed)**
@@ -162,9 +162,9 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /v3/nba/stats/{format}/PlayerGameStatsByDateFinal/{date}`
 - **Auth**: `api_key_header` OR `api_key_query`
-- **Signature**: `def nba_v3_stats_player_game_stats_by_date_final(format: FormatOrStr, date: str, *, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `format`, `date`
-- **Params**: `format` — path · `date` — path
+- **Signature**: `def nba_v3_stats_player_game_stats_by_date_final(date: str, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None)`
+  - required, positional: `date`
+- **Params**: `format_` — path `format` · `date` — path
 - **Returns (parsed)**: `list[PlayerGame1]`
 - **Returns (raw)**: `ApiResult[list[PlayerGame1], NbaV3StatsPlayerGameStatsByDateFinalErrorBody]`
 - **Error**: `NbaV3StatsPlayerGameStatsByDateFinalErrorBody` — **Case A (typed)**
@@ -181,9 +181,9 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /v3/nba/stats/{format}/PlayerGameStatsByDate/{date}`
 - **Auth**: `api_key_header` OR `api_key_query`
-- **Signature**: `def nba_v3_stats_player_game_stats_by_date_live_final(format: FormatOrStr, date: str, *, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `format`, `date`
-- **Params**: `format` — path · `date` — path
+- **Signature**: `def nba_v3_stats_player_game_stats_by_date_live_final(date: str, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None)`
+  - required, positional: `date`
+- **Params**: `format_` — path `format` · `date` — path
 - **Returns (parsed)**: `list[PlayerGame1]`
 - **Returns (raw)**: `ApiResult[list[PlayerGame1], NbaV3StatsPlayerGameStatsByDateLiveFinalErrorBody]`
 - **Error**: `NbaV3StatsPlayerGameStatsByDateLiveFinalErrorBody` — **Case A (typed)**
@@ -200,9 +200,9 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /v3/nba/stats/{format}/PlayerSeasonStats/{season}`
 - **Auth**: `api_key_header` OR `api_key_query`
-- **Signature**: `def nba_v3_stats_player_season_stats(format: FormatOrStr, season: str, *, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `format`, `season`
-- **Params**: `format` — path · `season` — path
+- **Signature**: `def nba_v3_stats_player_season_stats(season: str, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None)`
+  - required, positional: `season`
+- **Params**: `format_` — path `format` · `season` — path
 - **Returns (parsed)**: `list[PlayerSeason1]`
 - **Returns (raw)**: `ApiResult[list[PlayerSeason1], NbaV3StatsPlayerSeasonStatsErrorBody]`
 - **Error**: `NbaV3StatsPlayerSeasonStatsErrorBody` — **Case A (typed)**
@@ -219,9 +219,9 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /v3/nba/stats/{format}/PlayerSeasonStatsByTeam/{season}/{team}`
 - **Auth**: `api_key_header` OR `api_key_query`
-- **Signature**: `def nba_v3_stats_player_season_stats_by_team(format: FormatOrStr, season: str, team: str, *, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `format`, `season`, `team`
-- **Params**: `format` — path · `season` — path · `team` — path
+- **Signature**: `def nba_v3_stats_player_season_stats_by_team(season: str, team: str, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None)`
+  - required, positional: `season`, `team`
+- **Params**: `format_` — path `format` · `season` — path · `team` — path
 - **Returns (parsed)**: `list[PlayerSeason1]`
 - **Returns (raw)**: `ApiResult[list[PlayerSeason1], NbaV3StatsPlayerSeasonStatsByTeamErrorBody]`
 - **Error**: `NbaV3StatsPlayerSeasonStatsByTeamErrorBody` — **Case A (typed)**
@@ -238,9 +238,9 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /v3/nba/stats/{format}/TeamGameStatsByDateFinal/{date}`
 - **Auth**: `api_key_header` OR `api_key_query`
-- **Signature**: `def nba_v3_stats_team_game_stats_by_date_final(format: FormatOrStr, date: str, *, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `format`, `date`
-- **Params**: `format` — path · `date` — path
+- **Signature**: `def nba_v3_stats_team_game_stats_by_date_final(date: str, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None)`
+  - required, positional: `date`
+- **Params**: `format_` — path `format` · `date` — path
 - **Returns (parsed)**: `list[TeamGame1]`
 - **Returns (raw)**: `ApiResult[list[TeamGame1], NbaV3StatsTeamGameStatsByDateFinalErrorBody]`
 - **Error**: `NbaV3StatsTeamGameStatsByDateFinalErrorBody` — **Case A (typed)**
@@ -257,9 +257,9 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /v3/nba/stats/{format}/TeamStatsAllowedByPosition/{season}`
 - **Auth**: `api_key_header` OR `api_key_query`
-- **Signature**: `def nba_v3_stats_team_stats_allowed_by_position(format: FormatOrStr, season: str, *, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `format`, `season`
-- **Params**: `format` — path · `season` — path
+- **Signature**: `def nba_v3_stats_team_stats_allowed_by_position(season: str, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None)`
+  - required, positional: `season`
+- **Params**: `format_` — path `format` · `season` — path
 - **Returns (parsed)**: `list[TeamSeason1]`
 - **Returns (raw)**: `ApiResult[list[TeamSeason1], NbaV3StatsTeamStatsAllowedByPositionErrorBody]`
 - **Error**: `NbaV3StatsTeamStatsAllowedByPositionErrorBody` — **Case A (typed)**

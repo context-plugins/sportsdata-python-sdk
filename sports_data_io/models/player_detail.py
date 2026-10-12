@@ -265,8 +265,8 @@ class PlayerDetail(SdkBaseModel):
 
 
 class PlayerDetailDict(TypedDict):
-    player_season: NotRequired[PlayerSeason2 | PlayerSeason2Dict]
-    latest_news: NotRequired[list[News | NewsDict]]
+    player_season: NotRequired[PlayerSeason2Dict]
+    latest_news: NotRequired[list[NewsDict]]
     player_id: NotRequired[int]
     team: NotRequired[str | None]
     number: NotRequired[int | None]

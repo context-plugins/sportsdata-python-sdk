@@ -17,5 +17,5 @@ class LeaderboardBasic(SdkBaseModel):
 
 
 class LeaderboardBasicDict(TypedDict):
-    tournament: NotRequired[TournamentBasic2 | TournamentBasic2Dict]
-    players: NotRequired[list[PlayerTournamentBasic | PlayerTournamentBasicDict]]
+    tournament: NotRequired[TournamentBasic2Dict]
+    players: NotRequired[list[PlayerTournamentBasicDict]]

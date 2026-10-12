@@ -516,4 +516,4 @@ class FantasyDefenseGameProjectionDict(TypedDict):
     fantasy_draft_wide_receiver_fantasy_points_allowed: NotRequired[float | None]
     fantasy_draft_tight_end_fantasy_points_allowed: NotRequired[float | None]
     fantasy_draft_kicker_fantasy_points_allowed: NotRequired[float | None]
-    scoring_details: NotRequired[list[ScoringDetail | ScoringDetailDict]]
+    scoring_details: NotRequired[list[ScoringDetailDict]]

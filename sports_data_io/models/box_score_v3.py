@@ -37,10 +37,10 @@ class BoxScoreV3(SdkBaseModel):
 
 
 class BoxScoreV3Dict(TypedDict):
-    score: NotRequired[Score3 | Score3Dict]
-    quarters: NotRequired[list[Quarter | QuarterDict]]
-    team_games: NotRequired[list[TeamGame | TeamGameDict]]
-    player_games: NotRequired[list[PlayerGame | PlayerGameDict]]
-    fantasy_defense_games: NotRequired[list[FantasyDefenseGame | FantasyDefenseGameDict]]
-    scoring_plays: NotRequired[list[ScoringPlay | ScoringPlayDict]]
-    scoring_details: NotRequired[list[ScoringDetail | ScoringDetailDict]]
+    score: NotRequired[Score3Dict]
+    quarters: NotRequired[list[QuarterDict]]
+    team_games: NotRequired[list[TeamGameDict]]
+    player_games: NotRequired[list[PlayerGameDict]]
+    fantasy_defense_games: NotRequired[list[FantasyDefenseGameDict]]
+    scoring_plays: NotRequired[list[ScoringPlayDict]]
+    scoring_details: NotRequired[list[ScoringDetailDict]]

@@ -136,7 +136,7 @@ class Game15Dict(TypedDict):
     global_game_id: NotRequired[int]
     global_away_team_id: NotRequired[int]
     global_home_team_id: NotRequired[int]
-    quarters: NotRequired[list[Quarter1 | Quarter1Dict]]
+    quarters: NotRequired[list[Quarter1Dict]]
     home_team_money_line: NotRequired[int | None]
     away_team_money_line: NotRequired[int | None]
     point_spread: NotRequired[float | None]

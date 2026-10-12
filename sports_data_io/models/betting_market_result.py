@@ -65,5 +65,5 @@ class BettingMarketResultDict(TypedDict):
     team_key: NotRequired[str | None]
     player_id: NotRequired[int | None]
     player_name: NotRequired[str | None]
-    betting_outcome_results: NotRequired[list[BettingOutcomeResult | BettingOutcomeResultDict]]
+    betting_outcome_results: NotRequired[list[BettingOutcomeResultDict]]
     is_market_resulting_supported: NotRequired[bool]

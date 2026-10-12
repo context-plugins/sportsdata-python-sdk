@@ -102,7 +102,7 @@ class Game16Dict(TypedDict):
     global_game_id: NotRequired[int]
     global_away_team_id: NotRequired[int | None]
     global_home_team_id: NotRequired[int | None]
-    periods: NotRequired[list[Period2 | Period2Dict]]
+    periods: NotRequired[list[Period2Dict]]
     date_time_utc: NotRequired[str | None]
     rescheduled_from_game_id: NotRequired[int | None]
     rescheduled_game_id: NotRequired[int | None]

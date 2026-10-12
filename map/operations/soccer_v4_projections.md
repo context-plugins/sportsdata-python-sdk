@@ -10,9 +10,9 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /v4/soccer/projections/{format}/DfsSlatesByDate/{competition}/{date}`
 - **Auth**: `api_key_header` OR `api_key_query`
-- **Signature**: `def soccer_v4_projections_dfs_slates_by_date(format: FormatOrStr, competition: str, date: str, *, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `format`, `competition`, `date`
-- **Params**: `format` — path · `competition` — path · `date` — path
+- **Signature**: `def soccer_v4_projections_dfs_slates_by_date(competition: str, date: str, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None)`
+  - required, positional: `competition`, `date`
+- **Params**: `format_` — path `format` · `competition` — path · `date` — path
 - **Returns (parsed)**: `list[DfsSlate1]`
 - **Returns (raw)**: `ApiResult[list[DfsSlate1], SoccerV4ProjectionsDfsSlatesByDateErrorBody]`
 - **Error**: `SoccerV4ProjectionsDfsSlatesByDateErrorBody` — **Case A (typed)**
@@ -29,9 +29,9 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /v4/soccer/projections/{format}/InjuredPlayers/{competition}`
 - **Auth**: `api_key_header` OR `api_key_query`
-- **Signature**: `def soccer_v4_projections_player_details_by_injured(format: FormatOrStr, competition: str, *, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `format`, `competition`
-- **Params**: `format` — path · `competition` — path
+- **Signature**: `def soccer_v4_projections_player_details_by_injured(competition: str, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None)`
+  - required, positional: `competition`
+- **Params**: `format_` — path `format` · `competition` — path
 - **Returns (parsed)**: `list[Player7]`
 - **Returns (raw)**: `ApiResult[list[Player7], SoccerV4ProjectionsPlayerDetailsByInjuredErrorBody]`
 - **Error**: `SoccerV4ProjectionsPlayerDetailsByInjuredErrorBody` — **Case A (typed)**
@@ -48,9 +48,9 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /v4/soccer/projections/{format}/PlayerGameProjectionStatsByDate/{competition}/{date}`
 - **Auth**: `api_key_header` OR `api_key_query`
-- **Signature**: `def soccer_v4_projections_projected_player_game_stats_by_date(format: FormatOrStr, competition: str, date: str, *, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `format`, `competition`, `date`
-- **Params**: `format` — path · `competition` — path · `date` — path
+- **Signature**: `def soccer_v4_projections_projected_player_game_stats_by_date(competition: str, date: str, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None)`
+  - required, positional: `competition`, `date`
+- **Params**: `format_` — path `format` · `competition` — path · `date` — path
 - **Returns (parsed)**: `list[PlayerGameProjection4]`
 - **Returns (raw)**: `ApiResult[list[PlayerGameProjection4], SoccerV4ProjectionsProjectedPlayerGameStatsByDateErrorBody]`
 - **Error**: `SoccerV4ProjectionsProjectedPlayerGameStatsByDateErrorBody` — **Case A (typed)**
@@ -67,9 +67,9 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /v4/soccer/projections/{format}/UpcomingDfsSlatesByCompetition/{competition}`
 - **Auth**: `api_key_header` OR `api_key_query`
-- **Signature**: `def soccer_v4_projections_upcoming_dfs_slates_by_competition(format: FormatOrStr, competition: str, *, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `format`, `competition`
-- **Params**: `format` — path · `competition` — path
+- **Signature**: `def soccer_v4_projections_upcoming_dfs_slates_by_competition(competition: str, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None)`
+  - required, positional: `competition`
+- **Params**: `format_` — path `format` · `competition` — path
 - **Returns (parsed)**: `list[DfsSlate1]`
 - **Returns (raw)**: `ApiResult[list[DfsSlate1], SoccerV4ProjectionsUpcomingDfsSlatesByCompetitionErrorBody]`
 - **Error**: `SoccerV4ProjectionsUpcomingDfsSlatesByCompetitionErrorBody` — **Case A (typed)**

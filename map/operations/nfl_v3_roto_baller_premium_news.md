@@ -10,9 +10,8 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /v3/nfl/news-rotoballer/{format}/RotoBallerPremiumNews`
 - **Auth**: `api_key_header` OR `api_key_query`
-- **Signature**: `def nfl_v3_news_rotoballer_premium_news(format: FormatOrStr, *, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `format`
-- **Params**: `format` — path
+- **Signature**: `def nfl_v3_news_rotoballer_premium_news(*, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None)`
+- **Params**: `format_` — path `format`
 - **Returns (parsed)**: `list[News]`
 - **Returns (raw)**: `ApiResult[list[News], NflV3NewsRotoballerPremiumNewsErrorBody]`
 - **Error**: `NflV3NewsRotoballerPremiumNewsErrorBody` — **Case A (typed)**
@@ -29,9 +28,9 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /v3/nfl/news-rotoballer/{format}/RotoBallerPremiumNewsByDate/{date}`
 - **Auth**: `api_key_header` OR `api_key_query`
-- **Signature**: `def nfl_v3_news_rotoballer_premium_news_by_date(format: FormatOrStr, date: str, *, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `format`, `date`
-- **Params**: `format` — path · `date` — path
+- **Signature**: `def nfl_v3_news_rotoballer_premium_news_by_date(date: str, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None)`
+  - required, positional: `date`
+- **Params**: `format_` — path `format` · `date` — path
 - **Returns (parsed)**: `list[News]`
 - **Returns (raw)**: `ApiResult[list[News], NflV3NewsRotoballerPremiumNewsByDateErrorBody]`
 - **Error**: `NflV3NewsRotoballerPremiumNewsByDateErrorBody` — **Case A (typed)**
@@ -48,9 +47,9 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /v3/nfl/news-rotoballer/{format}/RotoBallerPremiumNewsByTeam/{team}`
 - **Auth**: `api_key_header` OR `api_key_query`
-- **Signature**: `def nfl_v3_news_rotoballer_premium_news_by_team(format: FormatOrStr, team: str, *, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `format`, `team`
-- **Params**: `format` — path · `team` — path
+- **Signature**: `def nfl_v3_news_rotoballer_premium_news_by_team(team: str, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None)`
+  - required, positional: `team`
+- **Params**: `format_` — path `format` · `team` — path
 - **Returns (parsed)**: `list[News]`
 - **Returns (raw)**: `ApiResult[list[News], NflV3NewsRotoballerPremiumNewsByTeamErrorBody]`
 - **Error**: `NflV3NewsRotoballerPremiumNewsByTeamErrorBody` — **Case A (typed)**

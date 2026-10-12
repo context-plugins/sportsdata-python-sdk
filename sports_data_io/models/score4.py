@@ -327,7 +327,7 @@ class Score4Dict(TypedDict):
     point_spread_away_team_money_line: NotRequired[int | None]
     point_spread_home_team_money_line: NotRequired[int | None]
     score_id: NotRequired[int]
-    stadium_details: NotRequired[Stadium2 | Stadium2Dict]
+    stadium_details: NotRequired[Stadium2Dict]
     status: NotRequired[str | None]
     game_end_date_time: NotRequired[str | None]
     home_rotation_number: NotRequired[int | None]

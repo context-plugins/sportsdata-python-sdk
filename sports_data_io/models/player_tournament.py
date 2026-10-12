@@ -206,7 +206,7 @@ class PlayerTournamentDict(TypedDict):
     fan_duel_salary: NotRequired[int | None]
     fantasy_draft_salary: NotRequired[int | None]
     made_cut_did_not_finish: NotRequired[bool | None]
-    rounds: NotRequired[list[PlayerRound | PlayerRoundDict]]
+    rounds: NotRequired[list[PlayerRoundDict]]
     odds_to_win: NotRequired[float | None]
     odds_to_win_description: NotRequired[str | None]
     fantasy_points_fan_duel: NotRequired[float | None]

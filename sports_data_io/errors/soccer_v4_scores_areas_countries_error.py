@@ -3,7 +3,7 @@ from __future__ import annotations
 from dataclasses import dataclass
 from typing import Final, TypeAlias
 
-from ..core import ErrorMapper, HttpResponse, RawError, decode_json
+from ..core import ErrorMapper, RawError, decode_json
 from ..models.unauthorized import Unauthorized
 
 SoccerV4ScoresAreasCountriesErrorBody: TypeAlias = Unauthorized | RawError
@@ -11,12 +11,12 @@ SoccerV4ScoresAreasCountriesErrorBody: TypeAlias = Unauthorized | RawError
 
 @dataclass(frozen=True, slots=True)
 class _SoccerV4ScoresAreasCountriesError:
-    def map(self, response: HttpResponse) -> SoccerV4ScoresAreasCountriesErrorBody:
-        match response.status_code:
+    def map(self, status_code: int, content: bytes) -> SoccerV4ScoresAreasCountriesErrorBody:
+        match status_code:
             case 401:
-                return decode_json[Unauthorized](response)
+                return decode_json[Unauthorized](content)
             case _:
-                return RawError(response)
+                return RawError(status_code, content)
 
 
 soccer_v4_scores_areas_countries_error_mapper: Final[

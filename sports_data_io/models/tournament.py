@@ -43,7 +43,7 @@ class TournamentDict(TypedDict):
     season: NotRequired[int]
     name: NotRequired[str | None]
     location: NotRequired[str | None]
-    games: NotRequired[list[Game9 | Game9Dict]]
+    games: NotRequired[list[Game9Dict]]
     left_top_bracket_conference: NotRequired[str | None]
     left_bottom_bracket_conference: NotRequired[str | None]
     right_top_bracket_conference: NotRequired[str | None]

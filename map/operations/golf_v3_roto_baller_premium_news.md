@@ -10,9 +10,8 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /v3/golf/news-rotoballer/{format}/RotoBallerPremiumNews`
 - **Auth**: `api_key_header` OR `api_key_query`
-- **Signature**: `def golf_v3_news_rotoballer_premium_news(format: FormatOrStr, *, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `format`
-- **Params**: `format` — path
+- **Signature**: `def golf_v3_news_rotoballer_premium_news(*, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None)`
+- **Params**: `format_` — path `format`
 - **Returns (parsed)**: `list[News2]`
 - **Returns (raw)**: `ApiResult[list[News2], GolfV3NewsRotoballerPremiumNewsErrorBody]`
 - **Error**: `GolfV3NewsRotoballerPremiumNewsErrorBody` — **Case A (typed)**
@@ -29,9 +28,9 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /v3/golf/news-rotoballer/{format}/RotoBallerPremiumNewsByDate/{date}`
 - **Auth**: `api_key_header` OR `api_key_query`
-- **Signature**: `def golf_v3_news_rotoballer_premium_news_by_date(format: FormatOrStr, date: str, *, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `format`, `date`
-- **Params**: `format` — path · `date` — path
+- **Signature**: `def golf_v3_news_rotoballer_premium_news_by_date(date: str, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None)`
+  - required, positional: `date`
+- **Params**: `format_` — path `format` · `date` — path
 - **Returns (parsed)**: `list[News2]`
 - **Returns (raw)**: `ApiResult[list[News2], GolfV3NewsRotoballerPremiumNewsByDateErrorBody]`
 - **Error**: `GolfV3NewsRotoballerPremiumNewsByDateErrorBody` — **Case A (typed)**

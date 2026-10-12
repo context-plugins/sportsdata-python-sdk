@@ -124,7 +124,7 @@ class PlayerRoundDict(TypedDict):
     hole_in_ones: NotRequired[int | None]
     triple_bogeys: NotRequired[int | None]
     worse_than_triple_bogey: NotRequired[int | None]
-    holes: NotRequired[list[PlayerHole | PlayerHoleDict]]
+    holes: NotRequired[list[PlayerHoleDict]]
     longest_birdie_or_better_streak: NotRequired[float | None]
     consecutive_birdie_or_better_count: NotRequired[float | None]
     bounce_back_count: NotRequired[float | None]

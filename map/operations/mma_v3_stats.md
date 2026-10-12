@@ -10,9 +10,9 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /v3/mma/stats/{format}/FightBasicFinal/{fightid}`
 - **Auth**: `api_key_header` OR `api_key_query`
-- **Signature**: `def mma_v3_stats_fight_basic_final(format: FormatOrStr, fightid: str, *, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `format`, `fightid`
-- **Params**: `format` — path · `fightid` — path
+- **Signature**: `def mma_v3_stats_fight_basic_final(fightid: str, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None)`
+  - required, positional: `fightid`
+- **Params**: `format_` — path `format` · `fightid` — path
 - **Returns (parsed)**: `FightBasic`
 - **Returns (raw)**: `ApiResult[FightBasic, MmaV3StatsFightBasicFinalErrorBody]`
 - **Error**: `MmaV3StatsFightBasicFinalErrorBody` — **Case A (typed)**
@@ -29,9 +29,9 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /v3/mma/stats/{format}/FightBasic/{fightid}`
 - **Auth**: `api_key_header` OR `api_key_query`
-- **Signature**: `def mma_v3_stats_fight_basic_live_final(format: FormatOrStr, fightid: str, *, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `format`, `fightid`
-- **Params**: `format` — path · `fightid` — path
+- **Signature**: `def mma_v3_stats_fight_basic_live_final(fightid: str, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None)`
+  - required, positional: `fightid`
+- **Params**: `format_` — path `format` · `fightid` — path
 - **Returns (parsed)**: `FightBasic`
 - **Returns (raw)**: `ApiResult[FightBasic, MmaV3StatsFightBasicLiveFinalErrorBody]`
 - **Error**: `MmaV3StatsFightBasicLiveFinalErrorBody` — **Case A (typed)**
@@ -48,9 +48,9 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /v3/mma/stats/{format}/FightFinal/{fightid}`
 - **Auth**: `api_key_header` OR `api_key_query`
-- **Signature**: `def mma_v3_stats_fight_final(format: FormatOrStr, fightid: str, *, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `format`, `fightid`
-- **Params**: `format` — path · `fightid` — path
+- **Signature**: `def mma_v3_stats_fight_final(fightid: str, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None)`
+  - required, positional: `fightid`
+- **Params**: `format_` — path `format` · `fightid` — path
 - **Returns (parsed)**: `FightDetail`
 - **Returns (raw)**: `ApiResult[FightDetail, MmaV3StatsFightFinalErrorBody]`
 - **Error**: `MmaV3StatsFightFinalErrorBody` — **Case A (typed)**
@@ -67,9 +67,9 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /v3/mma/stats/{format}/Fight/{fightid}`
 - **Auth**: `api_key_header` OR `api_key_query`
-- **Signature**: `def mma_v3_stats_fight_live_final(format: FormatOrStr, fightid: str, *, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `format`, `fightid`
-- **Params**: `format` — path · `fightid` — path
+- **Signature**: `def mma_v3_stats_fight_live_final(fightid: str, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None)`
+  - required, positional: `fightid`
+- **Params**: `format_` — path `format` · `fightid` — path
 - **Returns (parsed)**: `FightDetail`
 - **Returns (raw)**: `ApiResult[FightDetail, MmaV3StatsFightLiveFinalErrorBody]`
 - **Error**: `MmaV3StatsFightLiveFinalErrorBody` — **Case A (typed)**

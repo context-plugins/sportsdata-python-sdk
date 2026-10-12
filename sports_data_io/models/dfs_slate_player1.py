@@ -39,7 +39,7 @@ class DfsSlatePlayer1(SdkBaseModel):
     operator_salary: OptionalNullable[int] = Field(default=UNSET, alias="OperatorSalary")
     """The player's salary for the contest (assigned by the operator)."""
 
-    operator_roster_slots: OptionalNullable[list[str]] = Field(default=UNSET, alias="OperatorRosterSlots")
+    operator_roster_slots: Optional[list[str | None]] = Field(default=UNSET, alias="OperatorRosterSlots")
     """The player's eligible positions to be played in the contest (assigned by the operator). This would include UTIL,
     etc plays for those that are eligible."""
 
@@ -64,7 +64,7 @@ class DfsSlatePlayer1Dict(TypedDict):
     operator_player_name: NotRequired[str | None]
     operator_position: NotRequired[str | None]
     operator_salary: NotRequired[int | None]
-    operator_roster_slots: NotRequired[list[str] | None]
+    operator_roster_slots: NotRequired[list[str | None]]
     removed_by_operator: NotRequired[bool | None]
     team: NotRequired[str | None]
     team_id: NotRequired[int | None]

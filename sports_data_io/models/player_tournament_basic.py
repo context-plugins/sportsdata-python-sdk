@@ -168,4 +168,4 @@ class PlayerTournamentBasicDict(TypedDict):
     rounds_with_five_or_more_birdies_or_better: NotRequired[float | None]
     is_withdrawn: NotRequired[bool]
     streaks_of_six_birdies_or_better: NotRequired[float | None]
-    rounds: NotRequired[list[PlayerRound | PlayerRoundDict]]
+    rounds: NotRequired[list[PlayerRoundDict]]

@@ -62,4 +62,4 @@ class BettingMarketSplitDict(TypedDict):
     team_key: NotRequired[str | None]
     player_id: NotRequired[int | None]
     player_name: NotRequired[str | None]
-    betting_splits: NotRequired[list[BettingSplit | BettingSplitDict]]
+    betting_splits: NotRequired[list[BettingSplitDict]]

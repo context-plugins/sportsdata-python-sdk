@@ -18,5 +18,5 @@ class EventOdds(SdkBaseModel):
 
 
 class EventOddsDict(TypedDict):
-    event: NotRequired[Event1 | Event1Dict]
-    fight_odds: NotRequired[list[FightOdds | FightOddsDict]]
+    event: NotRequired[Event1Dict]
+    fight_odds: NotRequired[list[FightOddsDict]]

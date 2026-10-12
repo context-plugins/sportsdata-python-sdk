@@ -9,8 +9,10 @@ from ..core import (
     RawClient,
     RequestOptionsOrDict,
     SecuredRawResponse,
+    async_json_decoder,
     json_decoder,
     param,
+    unwrap,
 )
 from ..errors.mma_v3_odds_betting_events_by_event_error import (
     MmaV3OddsBettingEventsByEventErrorBody,
@@ -55,8 +57,8 @@ from ..errors.mma_v3_odds_sportsbooks_by_active_error import (
 from ..models.betting_entity_metadata_collection4 import BettingEntityMetadataCollection4
 from ..models.betting_event6 import BettingEvent6
 from ..models.betting_market4 import BettingMarket4
-from ..models.enums.format import FormatOrStr
-from ..models.enums.include import IncludeOrStr
+from ..models.enums.format import Format, FormatOrStr
+from ..models.enums.include import Include, IncludeOrStr
 from ..models.event_odds import EventOdds
 from ..models.sportsbook import Sportsbook
 from ..server.server import Server
@@ -67,50 +69,56 @@ class MmaV3Odds:
         self._with_raw_response = MmaV3OddsWithRawResponse(client, server, auth)
 
     def mma_v3_odds_betting_events_by_event(
-        self, format: FormatOrStr, event_id: str, *, request_options: RequestOptionsOrDict | None = None
+        self, event_id: str, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None
     ) -> list[BettingEvent6]:
         """The list of current BettingEvents for the given fight event (i.e. card of fights), from which Betting Market
         data can be gathered via the Betting Markets by Event endpoint, for all available Betting Market types (e.g.
         Player Props, Team Props.)
 
         Args:
-            format: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
             event_id: The top level EventId for the event (i.e. UFC 250). Distinct from the BettingEventId.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            format_: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             Success
 
         Raises:
             ApiError: Unauthorized ``error`` is ``Unauthorized | RawError``."""
-        return self._with_raw_response.mma_v3_odds_betting_events_by_event(
-            format, event_id, request_options=request_options
-        ).unwrap()
+        return unwrap(
+            self._with_raw_response.mma_v3_odds_betting_events_by_event(
+                event_id, format_=format_, request_options=request_options
+            ),
+        )
 
     def mma_v3_odds_betting_events_upcoming(
-        self, format: FormatOrStr, *, request_options: RequestOptionsOrDict | None = None
+        self, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None
     ) -> list[BettingEvent6]:
         """A list of all BettingEvents that are currently scheduled and that have associated FightIds.
 
         Args:
-            format: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            format_: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             Success
 
         Raises:
             ApiError: Unauthorized ``error`` is ``Unauthorized | RawError``."""
-        return self._with_raw_response.mma_v3_odds_betting_events_upcoming(
-            format, request_options=request_options
-        ).unwrap()
+        return unwrap(
+            self._with_raw_response.mma_v3_odds_betting_events_upcoming(
+                format_=format_, request_options=request_options
+            ),
+        )
 
     def mma_v3_odds_betting_fighter_props_by_event(
         self,
-        format: FormatOrStr,
         event_id: str,
         *,
-        include: IncludeOrStr | None = None,
+        format_: FormatOrStr = Format.JSON,
+        include: IncludeOrStr | None = Include.AVAILABLE,
         request_options: RequestOptionsOrDict | None = None,
     ) -> list[BettingMarket4]:
         """This works in the same way as Betting Markets by Market Type but is prefiltered to the Player (Fighter) Props
@@ -118,8 +126,8 @@ class MmaV3Odds:
         it is recommended to use the by Market Type endpoint.
 
         Args:
-            format: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
             event_id: The top level EventId for the event (i.e. UFC 250). Distinct from the BettingEventId.
+            format_: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
             include: This parameter indicates which <code>BettingOutcome</code> records to return in the payload. By
                 default, this endpoint only returns available outcomes, excluding the unlisted bets. <br><br>
                 <b>Important Note:</b> the default parameter of available is much faster and provides the best
@@ -131,51 +139,57 @@ class MmaV3Odds:
                 outcome per sportsbook, for each listed market, even those outcomes are expired/unlisted or otherwise
                 unavailable from the respective sportsbook. This is a far heavier payload, and it's cached for much
                 longer than available. <br><br>
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             Success
 
         Raises:
             ApiError: Unauthorized ``error`` is ``Unauthorized | RawError``."""
-        return self._with_raw_response.mma_v3_odds_betting_fighter_props_by_event(
-            format, event_id, include=include, request_options=request_options
-        ).unwrap()
+        return unwrap(
+            self._with_raw_response.mma_v3_odds_betting_fighter_props_by_event(
+                event_id, format_=format_, include=include, request_options=request_options
+            ),
+        )
 
     def mma_v3_odds_betting_market(
-        self, format: FormatOrStr, market_id: str, *, request_options: RequestOptionsOrDict | None = None
+        self, market_id: str, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None
     ) -> BettingMarket4:
         """Returns full line movement for a given BettingMarket. Due to the sheer size of the output and the level of
         detail, it is intended for historical data purposes and not for the most up-to-the-second lines.
 
         Args:
-            format: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
             market_id: The BettingMarketId of the desired market for which to pull all outcomes/bets.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            format_: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             Success
 
         Raises:
             ApiError: Unauthorized ``error`` is ``Unauthorized | RawError``."""
-        return self._with_raw_response.mma_v3_odds_betting_market(
-            format, market_id, request_options=request_options
-        ).unwrap()
+        return unwrap(
+            self._with_raw_response.mma_v3_odds_betting_market(
+                market_id, format_=format_, request_options=request_options
+            ),
+        )
 
     def mma_v3_odds_betting_markets_by_event(
         self,
-        format: FormatOrStr,
         betting_event_id: str,
         *,
-        include: IncludeOrStr | None = None,
+        format_: FormatOrStr = Format.JSON,
+        include: IncludeOrStr | None = Include.AVAILABLE,
         request_options: RequestOptionsOrDict | None = None,
     ) -> list[BettingMarket4]:
         """Returns the markets of all available types (e.g. Player Props, Fight Props) and available outcomes for a
         given BettingEventID.
 
         Args:
-            format: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
             betting_event_id: The BettingEventId for which to pull all betting markets (includes outcomes/bets).
+            format_: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
             include: This parameter indicates which <code>BettingOutcome</code> records to return in the payload. By
                 default, this endpoint only returns available outcomes, excluding the unlisted bets.
                 <br><br><b>Important Note:</b> the default parameter of <code>available</code> is much faster and
@@ -187,24 +201,27 @@ class MmaV3Odds:
                 recently available betting outcome per sportsbook, for each listed market, even those outcomes are
                 expired/unlisted or otherwise unavailable from the respective sportsbook. This is a far heavier payload,
                 and it's cached for much longer than available. <br><br>
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             Success
 
         Raises:
             ApiError: Unauthorized ``error`` is ``Unauthorized | RawError``."""
-        return self._with_raw_response.mma_v3_odds_betting_markets_by_event(
-            format, betting_event_id, include=include, request_options=request_options
-        ).unwrap()
+        return unwrap(
+            self._with_raw_response.mma_v3_odds_betting_markets_by_event(
+                betting_event_id, format_=format_, include=include, request_options=request_options
+            ),
+        )
 
     def mma_v3_odds_betting_markets_by_market_type(
         self,
-        format: FormatOrStr,
         event_id: str,
         market_type_id: str,
         *,
-        include: IncludeOrStr | None = None,
+        format_: FormatOrStr = Format.JSON,
+        include: IncludeOrStr | None = Include.AVAILABLE,
         request_options: RequestOptionsOrDict | None = None,
     ) -> list[BettingMarket4]:
         """Returns Markets and available outcomes for a given event and market type requested. A lighter call than by
@@ -212,10 +229,10 @@ class MmaV3Odds:
         available for each sport in its Betting Metadata endpoint.
 
         Args:
-            format: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
             event_id: The top level EventId for the event (i.e. UFC 250). Distinct from the BettingEventId.
             market_type_id: The BettingMarketTypeId of the desired market types to pull. See BettingMetaData endpoint
                 for all of the types.
+            format_: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
             include: This parameter indicates which <code>BettingOutcome</code> records to return in the payload. By
                 default, this endpoint only returns available outcomes, excluding the unlisted bets.
                 <br><br><b>Important Note:</b> the default parameter of <code>available</code> is much faster and
@@ -227,93 +244,106 @@ class MmaV3Odds:
                 recently available betting outcome per sportsbook, for each listed market, even those outcomes are
                 expired/unlisted or otherwise unavailable from the respective sportsbook. This is a far heavier payload,
                 and it's cached for much longer than available. <br><br>
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             Success
 
         Raises:
             ApiError: Unauthorized ``error`` is ``Unauthorized | RawError``."""
-        return self._with_raw_response.mma_v3_odds_betting_markets_by_market_type(
-            format, event_id, market_type_id, include=include, request_options=request_options
-        ).unwrap()
+        return unwrap(
+            self._with_raw_response.mma_v3_odds_betting_markets_by_market_type(
+                event_id, market_type_id, format_=format_, include=include, request_options=request_options
+            ),
+        )
 
     def mma_v3_odds_betting_metadata(
-        self, format: FormatOrStr, *, request_options: RequestOptionsOrDict | None = None
+        self, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None
     ) -> BettingEntityMetadataCollection4:
         """Returns the list of MarketTypes, BetTypes, PeriodTypes, OutcomeTypes, and ResultTypes to map the IDs to
         descriptive names. Also includes a list of the MarketType, BetType & PeriodType combinations which we will have
         resulting for.
 
         Args:
-            format: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            format_: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             Success
 
         Raises:
             ApiError: Unauthorized ``error`` is ``Unauthorized | RawError``."""
-        return self._with_raw_response.mma_v3_odds_betting_metadata(format, request_options=request_options).unwrap()
+        return unwrap(
+            self._with_raw_response.mma_v3_odds_betting_metadata(format_=format_, request_options=request_options)
+        )
 
     def mma_v3_odds_event_fight_odds(
-        self, format: FormatOrStr, eventid: str, *, request_options: RequestOptionsOrDict | None = None
+        self, eventid: str, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None
     ) -> EventOdds:
         """Returns basic fight odds (e.g. moneyline) for all fights in a given event. Only returns the most recently
         seen odds, not inclusive of line movement.
 
         Args:
-            format: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
             eventid: The unique ID of this event. <br> Examples: <code>51</code>, <code>52</code>, etc.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            format_: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             Success
 
         Raises:
             ApiError: Unauthorized ``error`` is ``Unauthorized | RawError``."""
-        return self._with_raw_response.mma_v3_odds_event_fight_odds(
-            format, eventid, request_options=request_options
-        ).unwrap()
+        return unwrap(
+            self._with_raw_response.mma_v3_odds_event_fight_odds(
+                eventid, format_=format_, request_options=request_options
+            ),
+        )
 
     def mma_v3_odds_event_fight_odds_line_movement(
-        self, format: FormatOrStr, eventid: str, *, request_options: RequestOptionsOrDict | None = None
+        self, eventid: str, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None
     ) -> EventOdds:
         """Returns basic fight odds (e.g. moneyline) for all fights in a given event. Returns the full line movement for
         the fights. This endpoint has a longer cache as it is meant for historical data/line movement rather than the
         most up to the second line.
 
         Args:
-            format: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
             eventid: The unique ID of this event. <br> Examples: <code>51</code>, <code>52</code>, etc.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            format_: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             Success
 
         Raises:
             ApiError: Unauthorized ``error`` is ``Unauthorized | RawError``."""
-        return self._with_raw_response.mma_v3_odds_event_fight_odds_line_movement(
-            format, eventid, request_options=request_options
-        ).unwrap()
+        return unwrap(
+            self._with_raw_response.mma_v3_odds_event_fight_odds_line_movement(
+                eventid, format_=format_, request_options=request_options
+            ),
+        )
 
     def mma_v3_odds_sportsbooks_by_active(
-        self, format: FormatOrStr, *, request_options: RequestOptionsOrDict | None = None
+        self, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None
     ) -> list[Sportsbook]:
         """A list of all available sportsbooks with their associated unique IDs.
 
         Args:
-            format: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            format_: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             Success
 
         Raises:
             ApiError: Unauthorized ``error`` is ``Unauthorized | RawError``."""
-        return self._with_raw_response.mma_v3_odds_sportsbooks_by_active(
-            format, request_options=request_options
-        ).unwrap()
+        return unwrap(
+            self._with_raw_response.mma_v3_odds_sportsbooks_by_active(format_=format_, request_options=request_options)
+        )
 
     @property
     def with_raw_response(self) -> MmaV3OddsWithRawResponse:
@@ -325,52 +355,56 @@ class AsyncMmaV3Odds:
         self._with_raw_response = AsyncMmaV3OddsWithRawResponse(client, server, auth)
 
     async def mma_v3_odds_betting_events_by_event(
-        self, format: FormatOrStr, event_id: str, *, request_options: RequestOptionsOrDict | None = None
+        self, event_id: str, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None
     ) -> list[BettingEvent6]:
         """The list of current BettingEvents for the given fight event (i.e. card of fights), from which Betting Market
         data can be gathered via the Betting Markets by Event endpoint, for all available Betting Market types (e.g.
         Player Props, Team Props.)
 
         Args:
-            format: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
             event_id: The top level EventId for the event (i.e. UFC 250). Distinct from the BettingEventId.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            format_: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             Success
 
         Raises:
             ApiError: Unauthorized ``error`` is ``Unauthorized | RawError``."""
-        return (
+        return unwrap(
             await self._with_raw_response.mma_v3_odds_betting_events_by_event(
-                format, event_id, request_options=request_options
-            )
-        ).unwrap()
+                event_id, format_=format_, request_options=request_options
+            ),
+        )
 
     async def mma_v3_odds_betting_events_upcoming(
-        self, format: FormatOrStr, *, request_options: RequestOptionsOrDict | None = None
+        self, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None
     ) -> list[BettingEvent6]:
         """A list of all BettingEvents that are currently scheduled and that have associated FightIds.
 
         Args:
-            format: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            format_: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             Success
 
         Raises:
             ApiError: Unauthorized ``error`` is ``Unauthorized | RawError``."""
-        return (
-            await self._with_raw_response.mma_v3_odds_betting_events_upcoming(format, request_options=request_options)
-        ).unwrap()
+        return unwrap(
+            await self._with_raw_response.mma_v3_odds_betting_events_upcoming(
+                format_=format_, request_options=request_options
+            ),
+        )
 
     async def mma_v3_odds_betting_fighter_props_by_event(
         self,
-        format: FormatOrStr,
         event_id: str,
         *,
-        include: IncludeOrStr | None = None,
+        format_: FormatOrStr = Format.JSON,
+        include: IncludeOrStr | None = Include.AVAILABLE,
         request_options: RequestOptionsOrDict | None = None,
     ) -> list[BettingMarket4]:
         """This works in the same way as Betting Markets by Market Type but is prefiltered to the Player (Fighter) Props
@@ -378,8 +412,8 @@ class AsyncMmaV3Odds:
         it is recommended to use the by Market Type endpoint.
 
         Args:
-            format: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
             event_id: The top level EventId for the event (i.e. UFC 250). Distinct from the BettingEventId.
+            format_: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
             include: This parameter indicates which <code>BettingOutcome</code> records to return in the payload. By
                 default, this endpoint only returns available outcomes, excluding the unlisted bets. <br><br>
                 <b>Important Note:</b> the default parameter of available is much faster and provides the best
@@ -391,53 +425,57 @@ class AsyncMmaV3Odds:
                 outcome per sportsbook, for each listed market, even those outcomes are expired/unlisted or otherwise
                 unavailable from the respective sportsbook. This is a far heavier payload, and it's cached for much
                 longer than available. <br><br>
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             Success
 
         Raises:
             ApiError: Unauthorized ``error`` is ``Unauthorized | RawError``."""
-        return (
+        return unwrap(
             await self._with_raw_response.mma_v3_odds_betting_fighter_props_by_event(
-                format, event_id, include=include, request_options=request_options
-            )
-        ).unwrap()
+                event_id, format_=format_, include=include, request_options=request_options
+            ),
+        )
 
     async def mma_v3_odds_betting_market(
-        self, format: FormatOrStr, market_id: str, *, request_options: RequestOptionsOrDict | None = None
+        self, market_id: str, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None
     ) -> BettingMarket4:
         """Returns full line movement for a given BettingMarket. Due to the sheer size of the output and the level of
         detail, it is intended for historical data purposes and not for the most up-to-the-second lines.
 
         Args:
-            format: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
             market_id: The BettingMarketId of the desired market for which to pull all outcomes/bets.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            format_: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             Success
 
         Raises:
             ApiError: Unauthorized ``error`` is ``Unauthorized | RawError``."""
-        return (
-            await self._with_raw_response.mma_v3_odds_betting_market(format, market_id, request_options=request_options)
-        ).unwrap()
+        return unwrap(
+            await self._with_raw_response.mma_v3_odds_betting_market(
+                market_id, format_=format_, request_options=request_options
+            ),
+        )
 
     async def mma_v3_odds_betting_markets_by_event(
         self,
-        format: FormatOrStr,
         betting_event_id: str,
         *,
-        include: IncludeOrStr | None = None,
+        format_: FormatOrStr = Format.JSON,
+        include: IncludeOrStr | None = Include.AVAILABLE,
         request_options: RequestOptionsOrDict | None = None,
     ) -> list[BettingMarket4]:
         """Returns the markets of all available types (e.g. Player Props, Fight Props) and available outcomes for a
         given BettingEventID.
 
         Args:
-            format: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
             betting_event_id: The BettingEventId for which to pull all betting markets (includes outcomes/bets).
+            format_: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
             include: This parameter indicates which <code>BettingOutcome</code> records to return in the payload. By
                 default, this endpoint only returns available outcomes, excluding the unlisted bets.
                 <br><br><b>Important Note:</b> the default parameter of <code>available</code> is much faster and
@@ -449,26 +487,27 @@ class AsyncMmaV3Odds:
                 recently available betting outcome per sportsbook, for each listed market, even those outcomes are
                 expired/unlisted or otherwise unavailable from the respective sportsbook. This is a far heavier payload,
                 and it's cached for much longer than available. <br><br>
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             Success
 
         Raises:
             ApiError: Unauthorized ``error`` is ``Unauthorized | RawError``."""
-        return (
+        return unwrap(
             await self._with_raw_response.mma_v3_odds_betting_markets_by_event(
-                format, betting_event_id, include=include, request_options=request_options
-            )
-        ).unwrap()
+                betting_event_id, format_=format_, include=include, request_options=request_options
+            ),
+        )
 
     async def mma_v3_odds_betting_markets_by_market_type(
         self,
-        format: FormatOrStr,
         event_id: str,
         market_type_id: str,
         *,
-        include: IncludeOrStr | None = None,
+        format_: FormatOrStr = Format.JSON,
+        include: IncludeOrStr | None = Include.AVAILABLE,
         request_options: RequestOptionsOrDict | None = None,
     ) -> list[BettingMarket4]:
         """Returns Markets and available outcomes for a given event and market type requested. A lighter call than by
@@ -476,10 +515,10 @@ class AsyncMmaV3Odds:
         available for each sport in its Betting Metadata endpoint.
 
         Args:
-            format: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
             event_id: The top level EventId for the event (i.e. UFC 250). Distinct from the BettingEventId.
             market_type_id: The BettingMarketTypeId of the desired market types to pull. See BettingMetaData endpoint
                 for all of the types.
+            format_: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
             include: This parameter indicates which <code>BettingOutcome</code> records to return in the payload. By
                 default, this endpoint only returns available outcomes, excluding the unlisted bets.
                 <br><br><b>Important Note:</b> the default parameter of <code>available</code> is much faster and
@@ -491,99 +530,108 @@ class AsyncMmaV3Odds:
                 recently available betting outcome per sportsbook, for each listed market, even those outcomes are
                 expired/unlisted or otherwise unavailable from the respective sportsbook. This is a far heavier payload,
                 and it's cached for much longer than available. <br><br>
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             Success
 
         Raises:
             ApiError: Unauthorized ``error`` is ``Unauthorized | RawError``."""
-        return (
+        return unwrap(
             await self._with_raw_response.mma_v3_odds_betting_markets_by_market_type(
-                format, event_id, market_type_id, include=include, request_options=request_options
-            )
-        ).unwrap()
+                event_id, market_type_id, format_=format_, include=include, request_options=request_options
+            ),
+        )
 
     async def mma_v3_odds_betting_metadata(
-        self, format: FormatOrStr, *, request_options: RequestOptionsOrDict | None = None
+        self, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None
     ) -> BettingEntityMetadataCollection4:
         """Returns the list of MarketTypes, BetTypes, PeriodTypes, OutcomeTypes, and ResultTypes to map the IDs to
         descriptive names. Also includes a list of the MarketType, BetType & PeriodType combinations which we will have
         resulting for.
 
         Args:
-            format: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            format_: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             Success
 
         Raises:
             ApiError: Unauthorized ``error`` is ``Unauthorized | RawError``."""
-        return (
-            await self._with_raw_response.mma_v3_odds_betting_metadata(format, request_options=request_options)
-        ).unwrap()
+        return unwrap(
+            await self._with_raw_response.mma_v3_odds_betting_metadata(format_=format_, request_options=request_options)
+        )
 
     async def mma_v3_odds_event_fight_odds(
-        self, format: FormatOrStr, eventid: str, *, request_options: RequestOptionsOrDict | None = None
+        self, eventid: str, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None
     ) -> EventOdds:
         """Returns basic fight odds (e.g. moneyline) for all fights in a given event. Only returns the most recently
         seen odds, not inclusive of line movement.
 
         Args:
-            format: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
             eventid: The unique ID of this event. <br> Examples: <code>51</code>, <code>52</code>, etc.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            format_: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             Success
 
         Raises:
             ApiError: Unauthorized ``error`` is ``Unauthorized | RawError``."""
-        return (
-            await self._with_raw_response.mma_v3_odds_event_fight_odds(format, eventid, request_options=request_options)
-        ).unwrap()
+        return unwrap(
+            await self._with_raw_response.mma_v3_odds_event_fight_odds(
+                eventid, format_=format_, request_options=request_options
+            ),
+        )
 
     async def mma_v3_odds_event_fight_odds_line_movement(
-        self, format: FormatOrStr, eventid: str, *, request_options: RequestOptionsOrDict | None = None
+        self, eventid: str, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None
     ) -> EventOdds:
         """Returns basic fight odds (e.g. moneyline) for all fights in a given event. Returns the full line movement for
         the fights. This endpoint has a longer cache as it is meant for historical data/line movement rather than the
         most up to the second line.
 
         Args:
-            format: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
             eventid: The unique ID of this event. <br> Examples: <code>51</code>, <code>52</code>, etc.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            format_: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             Success
 
         Raises:
             ApiError: Unauthorized ``error`` is ``Unauthorized | RawError``."""
-        return (
+        return unwrap(
             await self._with_raw_response.mma_v3_odds_event_fight_odds_line_movement(
-                format, eventid, request_options=request_options
-            )
-        ).unwrap()
+                eventid, format_=format_, request_options=request_options
+            ),
+        )
 
     async def mma_v3_odds_sportsbooks_by_active(
-        self, format: FormatOrStr, *, request_options: RequestOptionsOrDict | None = None
+        self, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None
     ) -> list[Sportsbook]:
         """A list of all available sportsbooks with their associated unique IDs.
 
         Args:
-            format: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            format_: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             Success
 
         Raises:
             ApiError: Unauthorized ``error`` is ``Unauthorized | RawError``."""
-        return (
-            await self._with_raw_response.mma_v3_odds_sportsbooks_by_active(format, request_options=request_options)
-        ).unwrap()
+        return unwrap(
+            await self._with_raw_response.mma_v3_odds_sportsbooks_by_active(
+                format_=format_, request_options=request_options
+            ),
+        )
 
     @property
     def with_raw_response(self) -> AsyncMmaV3OddsWithRawResponse:
@@ -592,23 +640,24 @@ class AsyncMmaV3Odds:
 
 class MmaV3OddsWithRawResponse(SecuredRawResponse[RawClient, Server, AuthSchemes]):
     def mma_v3_odds_betting_events_by_event(
-        self, format: FormatOrStr, event_id: str, *, request_options: RequestOptionsOrDict | None = None
+        self, event_id: str, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None
     ) -> ApiResult[list[BettingEvent6], MmaV3OddsBettingEventsByEventErrorBody]:
         """The list of current BettingEvents for the given fight event (i.e. card of fights), from which Betting Market
         data can be gathered via the Betting Markets by Event endpoint, for all available Betting Market types (e.g.
         Player Props, Team Props.)
 
         Args:
-            format: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
             event_id: The top level EventId for the event (i.e. UFC 250). Distinct from the BettingEventId.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            format_: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
         return self._client.execute(
             http_method="GET",
             url_template=self._server.default("/v3/mma/odds/{format}/BettingEventsByEvent/{eventId}"),
-            path_params=[param[FormatOrStr]("format", format), param[str]("eventId", event_id)],
+            path_params=[param[FormatOrStr]("format", format_), param[str]("eventId", event_id)],
             auth_scheme=AnySchemes(self._auth.api_key_header, self._auth.api_key_query),
             decoder=json_decoder[list[BettingEvent6]],
             error_mapper=mma_v3_odds_betting_events_by_event_error_mapper,
@@ -616,20 +665,21 @@ class MmaV3OddsWithRawResponse(SecuredRawResponse[RawClient, Server, AuthSchemes
         )
 
     def mma_v3_odds_betting_events_upcoming(
-        self, format: FormatOrStr, *, request_options: RequestOptionsOrDict | None = None
+        self, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None
     ) -> ApiResult[list[BettingEvent6], MmaV3OddsBettingEventsUpcomingErrorBody]:
         """A list of all BettingEvents that are currently scheduled and that have associated FightIds.
 
         Args:
-            format: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            format_: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
         return self._client.execute(
             http_method="GET",
             url_template=self._server.default("/v3/mma/odds/{format}/UpcomingBettingEvents"),
-            path_params=[param[FormatOrStr]("format", format)],
+            path_params=[param[FormatOrStr]("format", format_)],
             auth_scheme=AnySchemes(self._auth.api_key_header, self._auth.api_key_query),
             decoder=json_decoder[list[BettingEvent6]],
             error_mapper=mma_v3_odds_betting_events_upcoming_error_mapper,
@@ -638,10 +688,10 @@ class MmaV3OddsWithRawResponse(SecuredRawResponse[RawClient, Server, AuthSchemes
 
     def mma_v3_odds_betting_fighter_props_by_event(
         self,
-        format: FormatOrStr,
         event_id: str,
         *,
-        include: IncludeOrStr | None = None,
+        format_: FormatOrStr = Format.JSON,
+        include: IncludeOrStr | None = Include.AVAILABLE,
         request_options: RequestOptionsOrDict | None = None,
     ) -> ApiResult[list[BettingMarket4], MmaV3OddsBettingFighterPropsByEventErrorBody]:
         """This works in the same way as Betting Markets by Market Type but is prefiltered to the Player (Fighter) Props
@@ -649,8 +699,8 @@ class MmaV3OddsWithRawResponse(SecuredRawResponse[RawClient, Server, AuthSchemes
         it is recommended to use the by Market Type endpoint.
 
         Args:
-            format: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
             event_id: The top level EventId for the event (i.e. UFC 250). Distinct from the BettingEventId.
+            format_: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
             include: This parameter indicates which <code>BettingOutcome</code> records to return in the payload. By
                 default, this endpoint only returns available outcomes, excluding the unlisted bets. <br><br>
                 <b>Important Note:</b> the default parameter of available is much faster and provides the best
@@ -662,14 +712,15 @@ class MmaV3OddsWithRawResponse(SecuredRawResponse[RawClient, Server, AuthSchemes
                 outcome per sportsbook, for each listed market, even those outcomes are expired/unlisted or otherwise
                 unavailable from the respective sportsbook. This is a far heavier payload, and it's cached for much
                 longer than available. <br><br>
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
         return self._client.execute(
             http_method="GET",
             url_template=self._server.default("/v3/mma/odds/{format}/BettingFighterPropsByEvent/{eventId}"),
-            path_params=[param[FormatOrStr]("format", format), param[str]("eventId", event_id)],
+            path_params=[param[FormatOrStr]("format", format_), param[str]("eventId", event_id)],
             query_params=[param[IncludeOrStr | None]("include", include)],
             auth_scheme=AnySchemes(self._auth.api_key_header, self._auth.api_key_query),
             decoder=json_decoder[list[BettingMarket4]],
@@ -678,22 +729,23 @@ class MmaV3OddsWithRawResponse(SecuredRawResponse[RawClient, Server, AuthSchemes
         )
 
     def mma_v3_odds_betting_market(
-        self, format: FormatOrStr, market_id: str, *, request_options: RequestOptionsOrDict | None = None
+        self, market_id: str, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None
     ) -> ApiResult[BettingMarket4, MmaV3OddsBettingMarketErrorBody]:
         """Returns full line movement for a given BettingMarket. Due to the sheer size of the output and the level of
         detail, it is intended for historical data purposes and not for the most up-to-the-second lines.
 
         Args:
-            format: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
             market_id: The BettingMarketId of the desired market for which to pull all outcomes/bets.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            format_: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
         return self._client.execute(
             http_method="GET",
             url_template=self._server.default("/v3/mma/odds/{format}/BettingMarket/{marketId}"),
-            path_params=[param[FormatOrStr]("format", format), param[str]("marketId", market_id)],
+            path_params=[param[FormatOrStr]("format", format_), param[str]("marketId", market_id)],
             auth_scheme=AnySchemes(self._auth.api_key_header, self._auth.api_key_query),
             decoder=json_decoder[BettingMarket4],
             error_mapper=mma_v3_odds_betting_market_error_mapper,
@@ -702,18 +754,18 @@ class MmaV3OddsWithRawResponse(SecuredRawResponse[RawClient, Server, AuthSchemes
 
     def mma_v3_odds_betting_markets_by_event(
         self,
-        format: FormatOrStr,
         betting_event_id: str,
         *,
-        include: IncludeOrStr | None = None,
+        format_: FormatOrStr = Format.JSON,
+        include: IncludeOrStr | None = Include.AVAILABLE,
         request_options: RequestOptionsOrDict | None = None,
     ) -> ApiResult[list[BettingMarket4], MmaV3OddsBettingMarketsByEventErrorBody]:
         """Returns the markets of all available types (e.g. Player Props, Fight Props) and available outcomes for a
         given BettingEventID.
 
         Args:
-            format: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
             betting_event_id: The BettingEventId for which to pull all betting markets (includes outcomes/bets).
+            format_: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
             include: This parameter indicates which <code>BettingOutcome</code> records to return in the payload. By
                 default, this endpoint only returns available outcomes, excluding the unlisted bets.
                 <br><br><b>Important Note:</b> the default parameter of <code>available</code> is much faster and
@@ -725,14 +777,15 @@ class MmaV3OddsWithRawResponse(SecuredRawResponse[RawClient, Server, AuthSchemes
                 recently available betting outcome per sportsbook, for each listed market, even those outcomes are
                 expired/unlisted or otherwise unavailable from the respective sportsbook. This is a far heavier payload,
                 and it's cached for much longer than available. <br><br>
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
         return self._client.execute(
             http_method="GET",
             url_template=self._server.default("/v3/mma/odds/{format}/BettingMarketsByBettingEvent/{bettingEventId}"),
-            path_params=[param[FormatOrStr]("format", format), param[str]("bettingEventId", betting_event_id)],
+            path_params=[param[FormatOrStr]("format", format_), param[str]("bettingEventId", betting_event_id)],
             query_params=[param[IncludeOrStr | None]("include", include)],
             auth_scheme=AnySchemes(self._auth.api_key_header, self._auth.api_key_query),
             decoder=json_decoder[list[BettingMarket4]],
@@ -742,11 +795,11 @@ class MmaV3OddsWithRawResponse(SecuredRawResponse[RawClient, Server, AuthSchemes
 
     def mma_v3_odds_betting_markets_by_market_type(
         self,
-        format: FormatOrStr,
         event_id: str,
         market_type_id: str,
         *,
-        include: IncludeOrStr | None = None,
+        format_: FormatOrStr = Format.JSON,
+        include: IncludeOrStr | None = Include.AVAILABLE,
         request_options: RequestOptionsOrDict | None = None,
     ) -> ApiResult[list[BettingMarket4], MmaV3OddsBettingMarketsByMarketTypeErrorBody]:
         """Returns Markets and available outcomes for a given event and market type requested. A lighter call than by
@@ -754,10 +807,10 @@ class MmaV3OddsWithRawResponse(SecuredRawResponse[RawClient, Server, AuthSchemes
         available for each sport in its Betting Metadata endpoint.
 
         Args:
-            format: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
             event_id: The top level EventId for the event (i.e. UFC 250). Distinct from the BettingEventId.
             market_type_id: The BettingMarketTypeId of the desired market types to pull. See BettingMetaData endpoint
                 for all of the types.
+            format_: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
             include: This parameter indicates which <code>BettingOutcome</code> records to return in the payload. By
                 default, this endpoint only returns available outcomes, excluding the unlisted bets.
                 <br><br><b>Important Note:</b> the default parameter of <code>available</code> is much faster and
@@ -769,7 +822,8 @@ class MmaV3OddsWithRawResponse(SecuredRawResponse[RawClient, Server, AuthSchemes
                 recently available betting outcome per sportsbook, for each listed market, even those outcomes are
                 expired/unlisted or otherwise unavailable from the respective sportsbook. This is a far heavier payload,
                 and it's cached for much longer than available. <br><br>
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
@@ -779,7 +833,7 @@ class MmaV3OddsWithRawResponse(SecuredRawResponse[RawClient, Server, AuthSchemes
                 "/v3/mma/odds/{format}/BettingMarketsByMarketType/{eventId}/{marketTypeId}"
             ),
             path_params=[
-                param[FormatOrStr]("format", format),
+                param[FormatOrStr]("format", format_),
                 param[str]("eventId", event_id),
                 param[str]("marketTypeId", market_type_id),
             ],
@@ -791,22 +845,23 @@ class MmaV3OddsWithRawResponse(SecuredRawResponse[RawClient, Server, AuthSchemes
         )
 
     def mma_v3_odds_betting_metadata(
-        self, format: FormatOrStr, *, request_options: RequestOptionsOrDict | None = None
+        self, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None
     ) -> ApiResult[BettingEntityMetadataCollection4, MmaV3OddsBettingMetadataErrorBody]:
         """Returns the list of MarketTypes, BetTypes, PeriodTypes, OutcomeTypes, and ResultTypes to map the IDs to
         descriptive names. Also includes a list of the MarketType, BetType & PeriodType combinations which we will have
         resulting for.
 
         Args:
-            format: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            format_: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
         return self._client.execute(
             http_method="GET",
             url_template=self._server.default("/v3/mma/odds/{format}/BettingMetadata"),
-            path_params=[param[FormatOrStr]("format", format)],
+            path_params=[param[FormatOrStr]("format", format_)],
             auth_scheme=AnySchemes(self._auth.api_key_header, self._auth.api_key_query),
             decoder=json_decoder[BettingEntityMetadataCollection4],
             error_mapper=mma_v3_odds_betting_metadata_error_mapper,
@@ -814,22 +869,23 @@ class MmaV3OddsWithRawResponse(SecuredRawResponse[RawClient, Server, AuthSchemes
         )
 
     def mma_v3_odds_event_fight_odds(
-        self, format: FormatOrStr, eventid: str, *, request_options: RequestOptionsOrDict | None = None
+        self, eventid: str, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None
     ) -> ApiResult[EventOdds, MmaV3OddsEventFightOddsErrorBody]:
         """Returns basic fight odds (e.g. moneyline) for all fights in a given event. Only returns the most recently
         seen odds, not inclusive of line movement.
 
         Args:
-            format: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
             eventid: The unique ID of this event. <br> Examples: <code>51</code>, <code>52</code>, etc.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            format_: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
         return self._client.execute(
             http_method="GET",
             url_template=self._server.default("/v3/mma/odds/{format}/EventOdds/{eventid}"),
-            path_params=[param[FormatOrStr]("format", format), param[str]("eventid", eventid)],
+            path_params=[param[FormatOrStr]("format", format_), param[str]("eventid", eventid)],
             auth_scheme=AnySchemes(self._auth.api_key_header, self._auth.api_key_query),
             decoder=json_decoder[EventOdds],
             error_mapper=mma_v3_odds_event_fight_odds_error_mapper,
@@ -837,23 +893,24 @@ class MmaV3OddsWithRawResponse(SecuredRawResponse[RawClient, Server, AuthSchemes
         )
 
     def mma_v3_odds_event_fight_odds_line_movement(
-        self, format: FormatOrStr, eventid: str, *, request_options: RequestOptionsOrDict | None = None
+        self, eventid: str, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None
     ) -> ApiResult[EventOdds, MmaV3OddsEventFightOddsLineMovementErrorBody]:
         """Returns basic fight odds (e.g. moneyline) for all fights in a given event. Returns the full line movement for
         the fights. This endpoint has a longer cache as it is meant for historical data/line movement rather than the
         most up to the second line.
 
         Args:
-            format: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
             eventid: The unique ID of this event. <br> Examples: <code>51</code>, <code>52</code>, etc.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            format_: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
         return self._client.execute(
             http_method="GET",
             url_template=self._server.default("/v3/mma/odds/{format}/EventOddsLineMovement/{eventid}"),
-            path_params=[param[FormatOrStr]("format", format), param[str]("eventid", eventid)],
+            path_params=[param[FormatOrStr]("format", format_), param[str]("eventid", eventid)],
             auth_scheme=AnySchemes(self._auth.api_key_header, self._auth.api_key_query),
             decoder=json_decoder[EventOdds],
             error_mapper=mma_v3_odds_event_fight_odds_line_movement_error_mapper,
@@ -861,20 +918,21 @@ class MmaV3OddsWithRawResponse(SecuredRawResponse[RawClient, Server, AuthSchemes
         )
 
     def mma_v3_odds_sportsbooks_by_active(
-        self, format: FormatOrStr, *, request_options: RequestOptionsOrDict | None = None
+        self, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None
     ) -> ApiResult[list[Sportsbook], MmaV3OddsSportsbooksByActiveErrorBody]:
         """A list of all available sportsbooks with their associated unique IDs.
 
         Args:
-            format: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            format_: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
         return self._client.execute(
             http_method="GET",
             url_template=self._server.default("/v3/mma/odds/{format}/ActiveSportsbooks"),
-            path_params=[param[FormatOrStr]("format", format)],
+            path_params=[param[FormatOrStr]("format", format_)],
             auth_scheme=AnySchemes(self._auth.api_key_header, self._auth.api_key_query),
             decoder=json_decoder[list[Sportsbook]],
             error_mapper=mma_v3_odds_sportsbooks_by_active_error_mapper,
@@ -884,56 +942,58 @@ class MmaV3OddsWithRawResponse(SecuredRawResponse[RawClient, Server, AuthSchemes
 
 class AsyncMmaV3OddsWithRawResponse(SecuredRawResponse[AsyncRawClient, Server, AsyncAuthSchemes]):
     async def mma_v3_odds_betting_events_by_event(
-        self, format: FormatOrStr, event_id: str, *, request_options: RequestOptionsOrDict | None = None
+        self, event_id: str, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None
     ) -> ApiResult[list[BettingEvent6], MmaV3OddsBettingEventsByEventErrorBody]:
         """The list of current BettingEvents for the given fight event (i.e. card of fights), from which Betting Market
         data can be gathered via the Betting Markets by Event endpoint, for all available Betting Market types (e.g.
         Player Props, Team Props.)
 
         Args:
-            format: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
             event_id: The top level EventId for the event (i.e. UFC 250). Distinct from the BettingEventId.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            format_: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
         return await self._client.execute(
             http_method="GET",
             url_template=self._server.default("/v3/mma/odds/{format}/BettingEventsByEvent/{eventId}"),
-            path_params=[param[FormatOrStr]("format", format), param[str]("eventId", event_id)],
+            path_params=[param[FormatOrStr]("format", format_), param[str]("eventId", event_id)],
             auth_scheme=AsyncAnySchemes(self._auth.api_key_header, self._auth.api_key_query),
-            decoder=json_decoder[list[BettingEvent6]],
+            decoder=async_json_decoder[list[BettingEvent6]],
             error_mapper=mma_v3_odds_betting_events_by_event_error_mapper,
             request_options=request_options,
         )
 
     async def mma_v3_odds_betting_events_upcoming(
-        self, format: FormatOrStr, *, request_options: RequestOptionsOrDict | None = None
+        self, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None
     ) -> ApiResult[list[BettingEvent6], MmaV3OddsBettingEventsUpcomingErrorBody]:
         """A list of all BettingEvents that are currently scheduled and that have associated FightIds.
 
         Args:
-            format: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            format_: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
         return await self._client.execute(
             http_method="GET",
             url_template=self._server.default("/v3/mma/odds/{format}/UpcomingBettingEvents"),
-            path_params=[param[FormatOrStr]("format", format)],
+            path_params=[param[FormatOrStr]("format", format_)],
             auth_scheme=AsyncAnySchemes(self._auth.api_key_header, self._auth.api_key_query),
-            decoder=json_decoder[list[BettingEvent6]],
+            decoder=async_json_decoder[list[BettingEvent6]],
             error_mapper=mma_v3_odds_betting_events_upcoming_error_mapper,
             request_options=request_options,
         )
 
     async def mma_v3_odds_betting_fighter_props_by_event(
         self,
-        format: FormatOrStr,
         event_id: str,
         *,
-        include: IncludeOrStr | None = None,
+        format_: FormatOrStr = Format.JSON,
+        include: IncludeOrStr | None = Include.AVAILABLE,
         request_options: RequestOptionsOrDict | None = None,
     ) -> ApiResult[list[BettingMarket4], MmaV3OddsBettingFighterPropsByEventErrorBody]:
         """This works in the same way as Betting Markets by Market Type but is prefiltered to the Player (Fighter) Props
@@ -941,8 +1001,8 @@ class AsyncMmaV3OddsWithRawResponse(SecuredRawResponse[AsyncRawClient, Server, A
         it is recommended to use the by Market Type endpoint.
 
         Args:
-            format: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
             event_id: The top level EventId for the event (i.e. UFC 250). Distinct from the BettingEventId.
+            format_: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
             include: This parameter indicates which <code>BettingOutcome</code> records to return in the payload. By
                 default, this endpoint only returns available outcomes, excluding the unlisted bets. <br><br>
                 <b>Important Note:</b> the default parameter of available is much faster and provides the best
@@ -954,58 +1014,60 @@ class AsyncMmaV3OddsWithRawResponse(SecuredRawResponse[AsyncRawClient, Server, A
                 outcome per sportsbook, for each listed market, even those outcomes are expired/unlisted or otherwise
                 unavailable from the respective sportsbook. This is a far heavier payload, and it's cached for much
                 longer than available. <br><br>
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
         return await self._client.execute(
             http_method="GET",
             url_template=self._server.default("/v3/mma/odds/{format}/BettingFighterPropsByEvent/{eventId}"),
-            path_params=[param[FormatOrStr]("format", format), param[str]("eventId", event_id)],
+            path_params=[param[FormatOrStr]("format", format_), param[str]("eventId", event_id)],
             query_params=[param[IncludeOrStr | None]("include", include)],
             auth_scheme=AsyncAnySchemes(self._auth.api_key_header, self._auth.api_key_query),
-            decoder=json_decoder[list[BettingMarket4]],
+            decoder=async_json_decoder[list[BettingMarket4]],
             error_mapper=mma_v3_odds_betting_fighter_props_by_event_error_mapper,
             request_options=request_options,
         )
 
     async def mma_v3_odds_betting_market(
-        self, format: FormatOrStr, market_id: str, *, request_options: RequestOptionsOrDict | None = None
+        self, market_id: str, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None
     ) -> ApiResult[BettingMarket4, MmaV3OddsBettingMarketErrorBody]:
         """Returns full line movement for a given BettingMarket. Due to the sheer size of the output and the level of
         detail, it is intended for historical data purposes and not for the most up-to-the-second lines.
 
         Args:
-            format: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
             market_id: The BettingMarketId of the desired market for which to pull all outcomes/bets.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            format_: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
         return await self._client.execute(
             http_method="GET",
             url_template=self._server.default("/v3/mma/odds/{format}/BettingMarket/{marketId}"),
-            path_params=[param[FormatOrStr]("format", format), param[str]("marketId", market_id)],
+            path_params=[param[FormatOrStr]("format", format_), param[str]("marketId", market_id)],
             auth_scheme=AsyncAnySchemes(self._auth.api_key_header, self._auth.api_key_query),
-            decoder=json_decoder[BettingMarket4],
+            decoder=async_json_decoder[BettingMarket4],
             error_mapper=mma_v3_odds_betting_market_error_mapper,
             request_options=request_options,
         )
 
     async def mma_v3_odds_betting_markets_by_event(
         self,
-        format: FormatOrStr,
         betting_event_id: str,
         *,
-        include: IncludeOrStr | None = None,
+        format_: FormatOrStr = Format.JSON,
+        include: IncludeOrStr | None = Include.AVAILABLE,
         request_options: RequestOptionsOrDict | None = None,
     ) -> ApiResult[list[BettingMarket4], MmaV3OddsBettingMarketsByEventErrorBody]:
         """Returns the markets of all available types (e.g. Player Props, Fight Props) and available outcomes for a
         given BettingEventID.
 
         Args:
-            format: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
             betting_event_id: The BettingEventId for which to pull all betting markets (includes outcomes/bets).
+            format_: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
             include: This parameter indicates which <code>BettingOutcome</code> records to return in the payload. By
                 default, this endpoint only returns available outcomes, excluding the unlisted bets.
                 <br><br><b>Important Note:</b> the default parameter of <code>available</code> is much faster and
@@ -1017,28 +1079,29 @@ class AsyncMmaV3OddsWithRawResponse(SecuredRawResponse[AsyncRawClient, Server, A
                 recently available betting outcome per sportsbook, for each listed market, even those outcomes are
                 expired/unlisted or otherwise unavailable from the respective sportsbook. This is a far heavier payload,
                 and it's cached for much longer than available. <br><br>
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
         return await self._client.execute(
             http_method="GET",
             url_template=self._server.default("/v3/mma/odds/{format}/BettingMarketsByBettingEvent/{bettingEventId}"),
-            path_params=[param[FormatOrStr]("format", format), param[str]("bettingEventId", betting_event_id)],
+            path_params=[param[FormatOrStr]("format", format_), param[str]("bettingEventId", betting_event_id)],
             query_params=[param[IncludeOrStr | None]("include", include)],
             auth_scheme=AsyncAnySchemes(self._auth.api_key_header, self._auth.api_key_query),
-            decoder=json_decoder[list[BettingMarket4]],
+            decoder=async_json_decoder[list[BettingMarket4]],
             error_mapper=mma_v3_odds_betting_markets_by_event_error_mapper,
             request_options=request_options,
         )
 
     async def mma_v3_odds_betting_markets_by_market_type(
         self,
-        format: FormatOrStr,
         event_id: str,
         market_type_id: str,
         *,
-        include: IncludeOrStr | None = None,
+        format_: FormatOrStr = Format.JSON,
+        include: IncludeOrStr | None = Include.AVAILABLE,
         request_options: RequestOptionsOrDict | None = None,
     ) -> ApiResult[list[BettingMarket4], MmaV3OddsBettingMarketsByMarketTypeErrorBody]:
         """Returns Markets and available outcomes for a given event and market type requested. A lighter call than by
@@ -1046,10 +1109,10 @@ class AsyncMmaV3OddsWithRawResponse(SecuredRawResponse[AsyncRawClient, Server, A
         available for each sport in its Betting Metadata endpoint.
 
         Args:
-            format: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
             event_id: The top level EventId for the event (i.e. UFC 250). Distinct from the BettingEventId.
             market_type_id: The BettingMarketTypeId of the desired market types to pull. See BettingMetaData endpoint
                 for all of the types.
+            format_: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
             include: This parameter indicates which <code>BettingOutcome</code> records to return in the payload. By
                 default, this endpoint only returns available outcomes, excluding the unlisted bets.
                 <br><br><b>Important Note:</b> the default parameter of <code>available</code> is much faster and
@@ -1061,7 +1124,8 @@ class AsyncMmaV3OddsWithRawResponse(SecuredRawResponse[AsyncRawClient, Server, A
                 recently available betting outcome per sportsbook, for each listed market, even those outcomes are
                 expired/unlisted or otherwise unavailable from the respective sportsbook. This is a far heavier payload,
                 and it's cached for much longer than available. <br><br>
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
@@ -1071,104 +1135,108 @@ class AsyncMmaV3OddsWithRawResponse(SecuredRawResponse[AsyncRawClient, Server, A
                 "/v3/mma/odds/{format}/BettingMarketsByMarketType/{eventId}/{marketTypeId}"
             ),
             path_params=[
-                param[FormatOrStr]("format", format),
+                param[FormatOrStr]("format", format_),
                 param[str]("eventId", event_id),
                 param[str]("marketTypeId", market_type_id),
             ],
             query_params=[param[IncludeOrStr | None]("include", include)],
             auth_scheme=AsyncAnySchemes(self._auth.api_key_header, self._auth.api_key_query),
-            decoder=json_decoder[list[BettingMarket4]],
+            decoder=async_json_decoder[list[BettingMarket4]],
             error_mapper=mma_v3_odds_betting_markets_by_market_type_error_mapper,
             request_options=request_options,
         )
 
     async def mma_v3_odds_betting_metadata(
-        self, format: FormatOrStr, *, request_options: RequestOptionsOrDict | None = None
+        self, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None
     ) -> ApiResult[BettingEntityMetadataCollection4, MmaV3OddsBettingMetadataErrorBody]:
         """Returns the list of MarketTypes, BetTypes, PeriodTypes, OutcomeTypes, and ResultTypes to map the IDs to
         descriptive names. Also includes a list of the MarketType, BetType & PeriodType combinations which we will have
         resulting for.
 
         Args:
-            format: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            format_: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
         return await self._client.execute(
             http_method="GET",
             url_template=self._server.default("/v3/mma/odds/{format}/BettingMetadata"),
-            path_params=[param[FormatOrStr]("format", format)],
+            path_params=[param[FormatOrStr]("format", format_)],
             auth_scheme=AsyncAnySchemes(self._auth.api_key_header, self._auth.api_key_query),
-            decoder=json_decoder[BettingEntityMetadataCollection4],
+            decoder=async_json_decoder[BettingEntityMetadataCollection4],
             error_mapper=mma_v3_odds_betting_metadata_error_mapper,
             request_options=request_options,
         )
 
     async def mma_v3_odds_event_fight_odds(
-        self, format: FormatOrStr, eventid: str, *, request_options: RequestOptionsOrDict | None = None
+        self, eventid: str, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None
     ) -> ApiResult[EventOdds, MmaV3OddsEventFightOddsErrorBody]:
         """Returns basic fight odds (e.g. moneyline) for all fights in a given event. Only returns the most recently
         seen odds, not inclusive of line movement.
 
         Args:
-            format: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
             eventid: The unique ID of this event. <br> Examples: <code>51</code>, <code>52</code>, etc.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            format_: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
         return await self._client.execute(
             http_method="GET",
             url_template=self._server.default("/v3/mma/odds/{format}/EventOdds/{eventid}"),
-            path_params=[param[FormatOrStr]("format", format), param[str]("eventid", eventid)],
+            path_params=[param[FormatOrStr]("format", format_), param[str]("eventid", eventid)],
             auth_scheme=AsyncAnySchemes(self._auth.api_key_header, self._auth.api_key_query),
-            decoder=json_decoder[EventOdds],
+            decoder=async_json_decoder[EventOdds],
             error_mapper=mma_v3_odds_event_fight_odds_error_mapper,
             request_options=request_options,
         )
 
     async def mma_v3_odds_event_fight_odds_line_movement(
-        self, format: FormatOrStr, eventid: str, *, request_options: RequestOptionsOrDict | None = None
+        self, eventid: str, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None
     ) -> ApiResult[EventOdds, MmaV3OddsEventFightOddsLineMovementErrorBody]:
         """Returns basic fight odds (e.g. moneyline) for all fights in a given event. Returns the full line movement for
         the fights. This endpoint has a longer cache as it is meant for historical data/line movement rather than the
         most up to the second line.
 
         Args:
-            format: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
             eventid: The unique ID of this event. <br> Examples: <code>51</code>, <code>52</code>, etc.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            format_: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
         return await self._client.execute(
             http_method="GET",
             url_template=self._server.default("/v3/mma/odds/{format}/EventOddsLineMovement/{eventid}"),
-            path_params=[param[FormatOrStr]("format", format), param[str]("eventid", eventid)],
+            path_params=[param[FormatOrStr]("format", format_), param[str]("eventid", eventid)],
             auth_scheme=AsyncAnySchemes(self._auth.api_key_header, self._auth.api_key_query),
-            decoder=json_decoder[EventOdds],
+            decoder=async_json_decoder[EventOdds],
             error_mapper=mma_v3_odds_event_fight_odds_line_movement_error_mapper,
             request_options=request_options,
         )
 
     async def mma_v3_odds_sportsbooks_by_active(
-        self, format: FormatOrStr, *, request_options: RequestOptionsOrDict | None = None
+        self, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None
     ) -> ApiResult[list[Sportsbook], MmaV3OddsSportsbooksByActiveErrorBody]:
         """A list of all available sportsbooks with their associated unique IDs.
 
         Args:
-            format: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
-            request_options: Per-call overrides for this one request, such as a timeout or extra headers.
+            format_: Desired response format. Valid entries are <code>JSON</code> or <code>XML</code>.
+            request_options: Per-call overrides for this one request, such as a timeout, extra headers, or its retry
+                count and statuses.
 
         Returns:
             An ``ApiResult`` holding the deserialized response or the error body."""
         return await self._client.execute(
             http_method="GET",
             url_template=self._server.default("/v3/mma/odds/{format}/ActiveSportsbooks"),
-            path_params=[param[FormatOrStr]("format", format)],
+            path_params=[param[FormatOrStr]("format", format_)],
             auth_scheme=AsyncAnySchemes(self._auth.api_key_header, self._auth.api_key_query),
-            decoder=json_decoder[list[Sportsbook]],
+            decoder=async_json_decoder[list[Sportsbook]],
             error_mapper=mma_v3_odds_sportsbooks_by_active_error_mapper,
             request_options=request_options,
         )

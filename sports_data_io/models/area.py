@@ -25,4 +25,4 @@ class AreaDict(TypedDict):
     area_id: NotRequired[int]
     country_code: NotRequired[str | None]
     name: NotRequired[str | None]
-    competitions: NotRequired[list[Competition | CompetitionDict]]
+    competitions: NotRequired[list[CompetitionDict]]

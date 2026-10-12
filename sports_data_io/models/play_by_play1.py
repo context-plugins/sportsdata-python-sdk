@@ -21,6 +21,6 @@ class PlayByPlay1(SdkBaseModel):
 
 
 class PlayByPlay1Dict(TypedDict):
-    game: NotRequired[Game5 | Game5Dict]
-    quarters: NotRequired[list[Quarter1 | Quarter1Dict]]
-    plays: NotRequired[list[Play1 | Play1Dict]]
+    game: NotRequired[Game5Dict]
+    quarters: NotRequired[list[Quarter1Dict]]
+    plays: NotRequired[list[Play1Dict]]

@@ -108,5 +108,5 @@ class BettingEvent3Dict(TypedDict):
     total_score: NotRequired[int | None]
     away_rotation_number: NotRequired[int | None]
     home_rotation_number: NotRequired[int | None]
-    betting_markets: NotRequired[list[BettingMarket1 | BettingMarket1Dict]]
+    betting_markets: NotRequired[list[BettingMarket1Dict]]
     competition_id: NotRequired[int | None]

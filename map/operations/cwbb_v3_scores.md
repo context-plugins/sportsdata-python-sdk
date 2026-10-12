@@ -10,9 +10,8 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /v3/cwbb/scores/{format}/AreAnyGamesInProgress`
 - **Auth**: `api_key_header` OR `api_key_query`
-- **Signature**: `def cwbb_v3_scores_are_any_games_in_progress(format: FormatOrStr, *, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `format`
-- **Params**: `format` — path
+- **Signature**: `def cwbb_v3_scores_are_any_games_in_progress(*, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None)`
+- **Params**: `format_` — path `format`
 - **Returns (parsed)**: `bool`
 - **Returns (raw)**: `ApiResult[bool, CwbbV3ScoresAreAnyGamesInProgressErrorBody]`
 - **Error**: `CwbbV3ScoresAreAnyGamesInProgressErrorBody` — **Case A (typed)**
@@ -28,9 +27,9 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /v3/cwbb/scores/{format}/GamesByDateFinal/{date}`
 - **Auth**: `api_key_header` OR `api_key_query`
-- **Signature**: `def cwbb_v3_scores_games_by_date_final(format: FormatOrStr, date: str, *, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `format`, `date`
-- **Params**: `format` — path · `date` — path
+- **Signature**: `def cwbb_v3_scores_games_by_date_final(date: str, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None)`
+  - required, positional: `date`
+- **Params**: `format_` — path `format` · `date` — path
 - **Returns (parsed)**: `list[Game16]`
 - **Returns (raw)**: `ApiResult[list[Game16], CwbbV3ScoresGamesByDateFinalErrorBody]`
 - **Error**: `CwbbV3ScoresGamesByDateFinalErrorBody` — **Case A (typed)**
@@ -47,9 +46,9 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /v3/cwbb/scores/{format}/GamesByDate/{date}`
 - **Auth**: `api_key_header` OR `api_key_query`
-- **Signature**: `def cwbb_v3_scores_games_by_date_live_final(format: FormatOrStr, date: str, *, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `format`, `date`
-- **Params**: `format` — path · `date` — path
+- **Signature**: `def cwbb_v3_scores_games_by_date_live_final(date: str, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None)`
+  - required, positional: `date`
+- **Params**: `format_` — path `format` · `date` — path
 - **Returns (parsed)**: `list[Game16]`
 - **Returns (raw)**: `ApiResult[list[Game16], CwbbV3ScoresGamesByDateLiveFinalErrorBody]`
 - **Error**: `CwbbV3ScoresGamesByDateLiveFinalErrorBody` — **Case A (typed)**
@@ -66,9 +65,8 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /v3/cwbb/scores/{format}/LeagueHierarchy`
 - **Auth**: `api_key_header` OR `api_key_query`
-- **Signature**: `def cwbb_v3_scores_league_hierarchy(format: FormatOrStr, *, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `format`
-- **Params**: `format` — path
+- **Signature**: `def cwbb_v3_scores_league_hierarchy(*, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None)`
+- **Params**: `format_` — path `format`
 - **Returns (parsed)**: `list[Conference2]`
 - **Returns (raw)**: `ApiResult[list[Conference2], CwbbV3ScoresLeagueHierarchyErrorBody]`
 - **Error**: `CwbbV3ScoresLeagueHierarchyErrorBody` — **Case A (typed)**
@@ -85,9 +83,9 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /v3/cwbb/scores/{format}/Games/{season}`
 - **Auth**: `api_key_header` OR `api_key_query`
-- **Signature**: `def cwbb_v3_scores_schedules(format: FormatOrStr, season: str, *, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `format`, `season`
-- **Params**: `format` — path · `season` — path
+- **Signature**: `def cwbb_v3_scores_schedules(season: str, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None)`
+  - required, positional: `season`
+- **Params**: `format_` — path `format` · `season` — path
 - **Returns (parsed)**: `list[Game16]`
 - **Returns (raw)**: `ApiResult[list[Game16], CwbbV3ScoresSchedulesErrorBody]`
 - **Error**: `CwbbV3ScoresSchedulesErrorBody` — **Case A (typed)**
@@ -104,9 +102,9 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /v3/cwbb/scores/{format}/SchedulesBasic/{season}`
 - **Auth**: `api_key_header` OR `api_key_query`
-- **Signature**: `def cwbb_v3_scores_schedules_basic(format: FormatOrStr, season: str, *, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `format`, `season`
-- **Params**: `format` — path · `season` — path
+- **Signature**: `def cwbb_v3_scores_schedules_basic(season: str, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None)`
+  - required, positional: `season`
+- **Params**: `format_` — path `format` · `season` — path
 - **Returns (parsed)**: `list[ScheduleBasic6]`
 - **Returns (raw)**: `ApiResult[list[ScheduleBasic6], CwbbV3ScoresSchedulesBasicErrorBody]`
 - **Error**: `CwbbV3ScoresSchedulesBasicErrorBody` — **Case A (typed)**
@@ -123,9 +121,8 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /v3/cwbb/scores/{format}/CurrentSeason`
 - **Auth**: `api_key_header` OR `api_key_query`
-- **Signature**: `def cwbb_v3_scores_season_current(format: FormatOrStr, *, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `format`
-- **Params**: `format` — path
+- **Signature**: `def cwbb_v3_scores_season_current(*, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None)`
+- **Params**: `format_` — path `format`
 - **Returns (parsed)**: `Season5`
 - **Returns (raw)**: `ApiResult[Season5, CwbbV3ScoresSeasonCurrentErrorBody]`
 - **Error**: `CwbbV3ScoresSeasonCurrentErrorBody` — **Case A (typed)**
@@ -142,9 +139,8 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /v3/cwbb/scores/{format}/Teams`
 - **Auth**: `api_key_header` OR `api_key_query`
-- **Signature**: `def cwbb_v3_scores_team_profiles_all(format: FormatOrStr, *, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `format`
-- **Params**: `format` — path
+- **Signature**: `def cwbb_v3_scores_team_profiles_all(*, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None)`
+- **Params**: `format_` — path `format`
 - **Returns (parsed)**: `list[Team7]`
 - **Returns (raw)**: `ApiResult[list[Team7], CwbbV3ScoresTeamProfilesAllErrorBody]`
 - **Error**: `CwbbV3ScoresTeamProfilesAllErrorBody` — **Case A (typed)**

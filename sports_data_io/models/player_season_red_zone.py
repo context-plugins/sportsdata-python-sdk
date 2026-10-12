@@ -588,7 +588,7 @@ class PlayerSeasonRedZoneDict(TypedDict):
     team_id: NotRequired[int | None]
     global_team_id: NotRequired[int | None]
     fantasy_points_fantasy_draft: NotRequired[float | None]
-    scoring_details: NotRequired[list[ScoringDetail | ScoringDetailDict]]
+    scoring_details: NotRequired[list[ScoringDetailDict]]
     average_draft_position_rookie: NotRequired[float | None]
     average_draft_position_dynasty: NotRequired[float | None]
     average_draft_position2_qb: NotRequired[float | None]

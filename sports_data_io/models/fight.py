@@ -63,5 +63,5 @@ class FightDict(TypedDict):
     result_round: NotRequired[int | None]
     result_type: NotRequired[str | None]
     winner_id: NotRequired[int | None]
-    fighters: NotRequired[list[FighterInfo | FighterInfoDict]]
+    fighters: NotRequired[list[FighterInfoDict]]
     active: NotRequired[bool | None]

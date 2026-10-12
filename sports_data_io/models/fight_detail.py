@@ -56,7 +56,7 @@ class FightDetail(SdkBaseModel):
 
 
 class FightDetailDict(TypedDict):
-    fight_stats: NotRequired[list[FightStat | FightStatDict]]
+    fight_stats: NotRequired[list[FightStatDict]]
     fight_id: NotRequired[int]
     order: NotRequired[int | None]
     status: NotRequired[str | None]
@@ -68,5 +68,5 @@ class FightDetailDict(TypedDict):
     result_round: NotRequired[int | None]
     result_type: NotRequired[str | None]
     winner_id: NotRequired[int | None]
-    fighters: NotRequired[list[FighterInfo | FighterInfoDict]]
+    fighters: NotRequired[list[FighterInfoDict]]
     active: NotRequired[bool | None]

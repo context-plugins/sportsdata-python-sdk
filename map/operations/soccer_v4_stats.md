@@ -10,9 +10,9 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /v4/soccer/stats/{format}/BoxScoreFinal/{competition}/{gameid}`
 - **Auth**: `api_key_header` OR `api_key_query`
-- **Signature**: `def soccer_v4_stats_box_score_final(format: FormatOrStr, competition: str, gameid: str, *, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `format`, `competition`, `gameid`
-- **Params**: `format` — path · `competition` — path · `gameid` — path
+- **Signature**: `def soccer_v4_stats_box_score_final(competition: str, gameid: str, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None)`
+  - required, positional: `competition`, `gameid`
+- **Params**: `format_` — path `format` · `competition` — path · `gameid` — path
 - **Returns (parsed)**: `list[BoxScore6]`
 - **Returns (raw)**: `ApiResult[list[BoxScore6], SoccerV4StatsBoxScoreFinalErrorBody]`
 - **Error**: `SoccerV4StatsBoxScoreFinalErrorBody` — **Case A (typed)**
@@ -29,9 +29,9 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /v4/soccer/stats/{format}/BoxScore/{competition}/{gameid}`
 - **Auth**: `api_key_header` OR `api_key_query`
-- **Signature**: `def soccer_v4_stats_box_score_live_final(format: FormatOrStr, competition: str, gameid: str, *, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `format`, `competition`, `gameid`
-- **Params**: `format` — path · `competition` — path · `gameid` — path
+- **Signature**: `def soccer_v4_stats_box_score_live_final(competition: str, gameid: str, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None)`
+  - required, positional: `competition`, `gameid`
+- **Params**: `format_` — path `format` · `competition` — path · `gameid` — path
 - **Returns (parsed)**: `list[BoxScore6]`
 - **Returns (raw)**: `ApiResult[list[BoxScore6], SoccerV4StatsBoxScoreLiveFinalErrorBody]`
 - **Error**: `SoccerV4StatsBoxScoreLiveFinalErrorBody` — **Case A (typed)**
@@ -48,9 +48,9 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /v4/soccer/stats/{format}/BoxScoresFinal/{competition}/{date}`
 - **Auth**: `api_key_header` OR `api_key_query`
-- **Signature**: `def soccer_v4_stats_box_scores_by_date_final(format: FormatOrStr, competition: str, date: str, *, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `format`, `competition`, `date`
-- **Params**: `format` — path · `competition` — path · `date` — path
+- **Signature**: `def soccer_v4_stats_box_scores_by_date_final(competition: str, date: str, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None)`
+  - required, positional: `competition`, `date`
+- **Params**: `format_` — path `format` · `competition` — path · `date` — path
 - **Returns (parsed)**: `list[BoxScore6]`
 - **Returns (raw)**: `ApiResult[list[BoxScore6], SoccerV4StatsBoxScoresByDateFinalErrorBody]`
 - **Error**: `SoccerV4StatsBoxScoresByDateFinalErrorBody` — **Case A (typed)**
@@ -67,9 +67,9 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /v4/soccer/stats/{format}/BoxScoresByDate/{competition}/{date}`
 - **Auth**: `api_key_header` OR `api_key_query`
-- **Signature**: `def soccer_v4_stats_box_scores_by_date_live_final(format: FormatOrStr, competition: str, date: str, *, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `format`, `competition`, `date`
-- **Params**: `format` — path · `competition` — path · `date` — path
+- **Signature**: `def soccer_v4_stats_box_scores_by_date_live_final(competition: str, date: str, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None)`
+  - required, positional: `competition`, `date`
+- **Params**: `format_` — path `format` · `competition` — path · `date` — path
 - **Returns (parsed)**: `list[BoxScore6]`
 - **Returns (raw)**: `ApiResult[list[BoxScore6], SoccerV4StatsBoxScoresByDateLiveFinalErrorBody]`
 - **Error**: `SoccerV4StatsBoxScoresByDateLiveFinalErrorBody` — **Case A (typed)**
@@ -86,9 +86,9 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /v4/soccer/stats/{format}/BoxScoresDeltaByDate/{competition}/{date}/{minutes}`
 - **Auth**: `api_key_header` OR `api_key_query`
-- **Signature**: `def soccer_v4_stats_box_scores_delta_by_date(format: FormatOrStr, competition: str, date: str, minutes: str, *, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `format`, `competition`, `date`, `minutes`
-- **Params**: `format` — path · `competition` — path · `date` — path · `minutes` — path
+- **Signature**: `def soccer_v4_stats_box_scores_delta_by_date(competition: str, date: str, minutes: str, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None)`
+  - required, positional: `competition`, `date`, `minutes`
+- **Params**: `format_` — path `format` · `competition` — path · `date` — path · `minutes` — path
 - **Returns (parsed)**: `list[BoxScore6]`
 - **Returns (raw)**: `ApiResult[list[BoxScore6], SoccerV4StatsBoxScoresDeltaByDateErrorBody]`
 - **Error**: `SoccerV4StatsBoxScoresDeltaByDateErrorBody` — **Case A (typed)**
@@ -105,9 +105,9 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /v4/soccer/stats/{format}/FantasyGameStatsByDate/{competition}/{date}`
 - **Auth**: `api_key_header` OR `api_key_query`
-- **Signature**: `def soccer_v4_stats_fantasy_points_by_date(format: FormatOrStr, competition: str, date: str, *, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `format`, `competition`, `date`
-- **Params**: `format` — path · `competition` — path · `date` — path
+- **Signature**: `def soccer_v4_stats_fantasy_points_by_date(competition: str, date: str, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None)`
+  - required, positional: `competition`, `date`
+- **Params**: `format_` — path `format` · `competition` — path · `date` — path
 - **Returns (parsed)**: `list[FantasyGame4]`
 - **Returns (raw)**: `ApiResult[list[FantasyGame4], SoccerV4StatsFantasyPointsByDateErrorBody]`
 - **Error**: `SoccerV4StatsFantasyPointsByDateErrorBody` — **Case A (typed)**
@@ -124,9 +124,9 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /v4/soccer/stats/{format}/LineupsByDate/{competition}/{date}`
 - **Auth**: `api_key_header` OR `api_key_query`
-- **Signature**: `def soccer_v4_stats_lineups_by_date(format: FormatOrStr, competition: str, date: str, *, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `format`, `competition`, `date`
-- **Params**: `format` — path · `competition` — path · `date` — path
+- **Signature**: `def soccer_v4_stats_lineups_by_date(competition: str, date: str, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None)`
+  - required, positional: `competition`, `date`
+- **Params**: `format_` — path `format` · `competition` — path · `date` — path
 - **Returns (parsed)**: `list[PlayerGameBasic]`
 - **Returns (raw)**: `ApiResult[list[PlayerGameBasic], SoccerV4StatsLineupsByDateErrorBody]`
 - **Error**: `SoccerV4StatsLineupsByDateErrorBody` — **Case A (typed)**
@@ -143,9 +143,9 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /v4/soccer/stats/{format}/PlayerGameStatsByDateFinal/{competition}/{date}`
 - **Auth**: `api_key_header` OR `api_key_query`
-- **Signature**: `def soccer_v4_stats_player_game_stats_by_date_final(format: FormatOrStr, competition: str, date: str, *, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `format`, `competition`, `date`
-- **Params**: `format` — path · `competition` — path · `date` — path
+- **Signature**: `def soccer_v4_stats_player_game_stats_by_date_final(competition: str, date: str, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None)`
+  - required, positional: `competition`, `date`
+- **Params**: `format_` — path `format` · `competition` — path · `date` — path
 - **Returns (parsed)**: `list[PlayerGame7]`
 - **Returns (raw)**: `ApiResult[list[PlayerGame7], SoccerV4StatsPlayerGameStatsByDateFinalErrorBody]`
 - **Error**: `SoccerV4StatsPlayerGameStatsByDateFinalErrorBody` — **Case A (typed)**
@@ -162,9 +162,9 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /v4/soccer/stats/{format}/PlayerGameStatsByDate/{competition}/{date}`
 - **Auth**: `api_key_header` OR `api_key_query`
-- **Signature**: `def soccer_v4_stats_player_game_stats_by_date_live_final(format: FormatOrStr, competition: str, date: str, *, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `format`, `competition`, `date`
-- **Params**: `format` — path · `competition` — path · `date` — path
+- **Signature**: `def soccer_v4_stats_player_game_stats_by_date_live_final(competition: str, date: str, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None)`
+  - required, positional: `competition`, `date`
+- **Params**: `format_` — path `format` · `competition` — path · `date` — path
 - **Returns (parsed)**: `list[PlayerGame7]`
 - **Returns (raw)**: `ApiResult[list[PlayerGame7], SoccerV4StatsPlayerGameStatsByDateLiveFinalErrorBody]`
 - **Error**: `SoccerV4StatsPlayerGameStatsByDateLiveFinalErrorBody` — **Case A (typed)**
@@ -181,9 +181,9 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /v4/soccer/stats/{format}/PlayerSeasonStats/{competition}/{season}`
 - **Auth**: `api_key_header` OR `api_key_query`
-- **Signature**: `def soccer_v4_stats_player_season_stats(format: FormatOrStr, competition: str, season: str, *, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `format`, `competition`, `season`
-- **Params**: `format` — path · `competition` — path · `season` — path
+- **Signature**: `def soccer_v4_stats_player_season_stats(competition: str, season: str, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None)`
+  - required, positional: `competition`, `season`
+- **Params**: `format_` — path `format` · `competition` — path · `season` — path
 - **Returns (parsed)**: `list[Round]`
 - **Returns (raw)**: `ApiResult[list[Round], SoccerV4StatsPlayerSeasonStatsErrorBody]`
 - **Error**: `SoccerV4StatsPlayerSeasonStatsErrorBody` — **Case A (typed)**
@@ -200,9 +200,9 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /v4/soccer/stats/{format}/TeamGameStatsByDateFinal/{competition}/{date}`
 - **Auth**: `api_key_header` OR `api_key_query`
-- **Signature**: `def soccer_v4_stats_team_game_stats_by_date_final(format: FormatOrStr, competition: str, date: str, *, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `format`, `competition`, `date`
-- **Params**: `format` — path · `competition` — path · `date` — path
+- **Signature**: `def soccer_v4_stats_team_game_stats_by_date_final(competition: str, date: str, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None)`
+  - required, positional: `competition`, `date`
+- **Params**: `format_` — path `format` · `competition` — path · `date` — path
 - **Returns (parsed)**: `list[TeamGame7]`
 - **Returns (raw)**: `ApiResult[list[TeamGame7], SoccerV4StatsTeamGameStatsByDateFinalErrorBody]`
 - **Error**: `SoccerV4StatsTeamGameStatsByDateFinalErrorBody` — **Case A (typed)**

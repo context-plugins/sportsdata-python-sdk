@@ -10,9 +10,8 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /v3/mlb/projections/{format}/DepthCharts`
 - **Auth**: `api_key_header` OR `api_key_query`
-- **Signature**: `def mlb_v3_projections_depth_charts(format: FormatOrStr, *, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `format`
-- **Params**: `format` — path
+- **Signature**: `def mlb_v3_projections_depth_charts(*, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None)`
+- **Params**: `format_` — path `format`
 - **Returns (parsed)**: `list[TeamDepthChart1]`
 - **Returns (raw)**: `ApiResult[list[TeamDepthChart1], MlbV3ProjectionsDepthChartsErrorBody]`
 - **Error**: `MlbV3ProjectionsDepthChartsErrorBody` — **Case A (typed)**
@@ -29,9 +28,9 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /v3/mlb/projections/{format}/DfsSlateOwnershipProjectionsBySlateID/{slateId}`
 - **Auth**: `api_key_header` OR `api_key_query`
-- **Signature**: `def mlb_v3_projections_dfs_slate_ownership_projections_by_slate(format: FormatOrStr, slate_id: int, *, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `format`, `slate_id`
-- **Params**: `format` — path · `slate_id` — path `slateId`
+- **Signature**: `def mlb_v3_projections_dfs_slate_ownership_projections_by_slate(slate_id: int, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None)`
+  - required, positional: `slate_id`
+- **Params**: `format_` — path `format` · `slate_id` — path `slateId`
 - **Returns (parsed)**: `DfsSlateWithOwnershipProjection`
 - **Returns (raw)**: `ApiResult[DfsSlateWithOwnershipProjection, MlbV3ProjectionsDfsSlateOwnershipProjectionsBySlateErrorBody]`
 - **Error**: `MlbV3ProjectionsDfsSlateOwnershipProjectionsBySlateErrorBody` — **Case A (typed)**
@@ -48,9 +47,8 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /v3/mlb/projections/{format}/UpcomingDfsSlateOwnershipProjections`
 - **Auth**: `api_key_header` OR `api_key_query`
-- **Signature**: `def mlb_v3_projections_dfs_slate_ownership_projections_upcoming(format: FormatOrStr, *, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `format`
-- **Params**: `format` — path
+- **Signature**: `def mlb_v3_projections_dfs_slate_ownership_projections_upcoming(*, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None)`
+- **Params**: `format_` — path `format`
 - **Returns (parsed)**: `list[DfsSlateWithOwnershipProjection]`
 - **Returns (raw)**: `ApiResult[list[DfsSlateWithOwnershipProjection], MlbV3ProjectionsDfsSlateOwnershipProjectionsUpcomingErrorBody]`
 - **Error**: `MlbV3ProjectionsDfsSlateOwnershipProjectionsUpcomingErrorBody` — **Case A (typed)**
@@ -67,9 +65,9 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /v3/mlb/projections/{format}/DfsSlatesByDate/{date}`
 - **Auth**: `api_key_header` OR `api_key_query`
-- **Signature**: `def mlb_v3_projections_dfs_slates_by_date(format: FormatOrStr, date: str, *, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `format`, `date`
-- **Params**: `format` — path · `date` — path
+- **Signature**: `def mlb_v3_projections_dfs_slates_by_date(date: str, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None)`
+  - required, positional: `date`
+- **Params**: `format_` — path `format` · `date` — path
 - **Returns (parsed)**: `list[DfsSlate]`
 - **Returns (raw)**: `ApiResult[list[DfsSlate], MlbV3ProjectionsDfsSlatesByDateErrorBody]`
 - **Error**: `MlbV3ProjectionsDfsSlatesByDateErrorBody` — **Case A (typed)**
@@ -86,9 +84,8 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /v3/mlb/projections/{format}/InjuredPlayers`
 - **Auth**: `api_key_header` OR `api_key_query`
-- **Signature**: `def mlb_v3_projections_player_details_by_injured(format: FormatOrStr, *, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `format`
-- **Params**: `format` — path
+- **Signature**: `def mlb_v3_projections_player_details_by_injured(*, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None)`
+- **Params**: `format_` — path `format`
 - **Returns (parsed)**: `list[Player2]`
 - **Returns (raw)**: `ApiResult[list[Player2], MlbV3ProjectionsPlayerDetailsByInjuredErrorBody]`
 - **Error**: `MlbV3ProjectionsPlayerDetailsByInjuredErrorBody` — **Case A (typed)**
@@ -105,9 +102,9 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /v3/mlb/projections/{format}/PlayerGameProjectionStatsByDate/{date}`
 - **Auth**: `api_key_header` OR `api_key_query`
-- **Signature**: `def mlb_v3_projections_projected_player_game_stats_by_date(format: FormatOrStr, date: str, *, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `format`, `date`
-- **Params**: `format` — path · `date` — path
+- **Signature**: `def mlb_v3_projections_projected_player_game_stats_by_date(date: str, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None)`
+  - required, positional: `date`
+- **Params**: `format_` — path `format` · `date` — path
 - **Returns (parsed)**: `list[PlayerGameProjection2]`
 - **Returns (raw)**: `ApiResult[list[PlayerGameProjection2], MlbV3ProjectionsProjectedPlayerGameStatsByDateErrorBody]`
 - **Error**: `MlbV3ProjectionsProjectedPlayerGameStatsByDateErrorBody` — **Case A (typed)**
@@ -124,9 +121,9 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /v3/mlb/projections/{format}/PlayerSeasonProjectionStats/{season}`
 - **Auth**: `api_key_header` OR `api_key_query`
-- **Signature**: `def mlb_v3_projections_projected_player_season_stats_with_adp(format: FormatOrStr, season: str, *, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `format`, `season`
-- **Params**: `format` — path · `season` — path
+- **Signature**: `def mlb_v3_projections_projected_player_season_stats_with_adp(season: str, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None)`
+  - required, positional: `season`
+- **Params**: `format_` — path `format` · `season` — path
 - **Returns (parsed)**: `list[PlayerSeasonProjection2]`
 - **Returns (raw)**: `ApiResult[list[PlayerSeasonProjection2], MlbV3ProjectionsProjectedPlayerSeasonStatsWithAdpErrorBody]`
 - **Error**: `MlbV3ProjectionsProjectedPlayerSeasonStatsWithAdpErrorBody` — **Case A (typed)**
@@ -143,9 +140,9 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /v3/mlb/projections/{format}/StartingLineupsByDate/{date}`
 - **Auth**: `api_key_header` OR `api_key_query`
-- **Signature**: `def mlb_v3_projections_starting_lineups_by_date(format: FormatOrStr, date: str, *, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `format`, `date`
-- **Params**: `format` — path · `date` — path
+- **Signature**: `def mlb_v3_projections_starting_lineups_by_date(date: str, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None)`
+  - required, positional: `date`
+- **Params**: `format_` — path `format` · `date` — path
 - **Returns (parsed)**: `list[StartingLineups1]`
 - **Returns (raw)**: `ApiResult[list[StartingLineups1], MlbV3ProjectionsStartingLineupsByDateErrorBody]`
 - **Error**: `MlbV3ProjectionsStartingLineupsByDateErrorBody` — **Case A (typed)**

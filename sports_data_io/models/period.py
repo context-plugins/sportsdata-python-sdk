@@ -37,5 +37,5 @@ class PeriodDict(TypedDict):
     name: NotRequired[str | None]
     away_score: NotRequired[int | None]
     home_score: NotRequired[int | None]
-    scoring_plays: NotRequired[list[ScoringPlay2 | ScoringPlay2Dict]]
-    penalties: NotRequired[list[Penalty | PenaltyDict]]
+    scoring_plays: NotRequired[list[ScoringPlay2Dict]]
+    penalties: NotRequired[list[PenaltyDict]]

@@ -94,7 +94,7 @@ class ScheduleBasic2Dict(TypedDict):
     updated: NotRequired[str | None]
     game_end_date_time: NotRequired[str | None]
     date_time_utc: NotRequired[str | None]
-    series_info: NotRequired[Series | SeriesDict]
+    series_info: NotRequired[SeriesDict]
     rescheduled_from_game_id: NotRequired[int | None]
     suspension_resume_day: NotRequired[str | None]
     suspension_resume_date_time: NotRequired[str | None]

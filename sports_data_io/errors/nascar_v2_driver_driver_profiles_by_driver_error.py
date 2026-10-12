@@ -3,7 +3,7 @@ from __future__ import annotations
 from dataclasses import dataclass
 from typing import Final, TypeAlias
 
-from ..core import ErrorMapper, HttpResponse, RawError, decode_json
+from ..core import ErrorMapper, RawError, decode_json
 from ..models.unauthorized import Unauthorized
 
 NascarV2DriverDriverProfilesByDriverErrorBody: TypeAlias = Unauthorized | RawError
@@ -11,12 +11,12 @@ NascarV2DriverDriverProfilesByDriverErrorBody: TypeAlias = Unauthorized | RawErr
 
 @dataclass(frozen=True, slots=True)
 class _NascarV2DriverDriverProfilesByDriverError:
-    def map(self, response: HttpResponse) -> NascarV2DriverDriverProfilesByDriverErrorBody:
-        match response.status_code:
+    def map(self, status_code: int, content: bytes) -> NascarV2DriverDriverProfilesByDriverErrorBody:
+        match status_code:
             case 401:
-                return decode_json[Unauthorized](response)
+                return decode_json[Unauthorized](content)
             case _:
-                return RawError(response)
+                return RawError(status_code, content)
 
 
 nascar_v2_driver_driver_profiles_by_driver_error_mapper: Final[

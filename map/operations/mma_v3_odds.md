@@ -10,9 +10,9 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /v3/mma/odds/{format}/BettingEventsByEvent/{eventId}`
 - **Auth**: `api_key_header` OR `api_key_query`
-- **Signature**: `def mma_v3_odds_betting_events_by_event(format: FormatOrStr, event_id: str, *, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `format`, `event_id`
-- **Params**: `format` — path · `event_id` — path `eventId`
+- **Signature**: `def mma_v3_odds_betting_events_by_event(event_id: str, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None)`
+  - required, positional: `event_id`
+- **Params**: `format_` — path `format` · `event_id` — path `eventId`
 - **Returns (parsed)**: `list[BettingEvent6]`
 - **Returns (raw)**: `ApiResult[list[BettingEvent6], MmaV3OddsBettingEventsByEventErrorBody]`
 - **Error**: `MmaV3OddsBettingEventsByEventErrorBody` — **Case A (typed)**
@@ -29,9 +29,8 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /v3/mma/odds/{format}/UpcomingBettingEvents`
 - **Auth**: `api_key_header` OR `api_key_query`
-- **Signature**: `def mma_v3_odds_betting_events_upcoming(format: FormatOrStr, *, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `format`
-- **Params**: `format` — path
+- **Signature**: `def mma_v3_odds_betting_events_upcoming(*, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None)`
+- **Params**: `format_` — path `format`
 - **Returns (parsed)**: `list[BettingEvent6]`
 - **Returns (raw)**: `ApiResult[list[BettingEvent6], MmaV3OddsBettingEventsUpcomingErrorBody]`
 - **Error**: `MmaV3OddsBettingEventsUpcomingErrorBody` — **Case A (typed)**
@@ -48,9 +47,9 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /v3/mma/odds/{format}/BettingFighterPropsByEvent/{eventId}`
 - **Auth**: `api_key_header` OR `api_key_query`
-- **Signature**: `def mma_v3_odds_betting_fighter_props_by_event(format: FormatOrStr, event_id: str, *, include: IncludeOrStr | None = None, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `format`, `event_id`
-- **Params**: `format` — path · `event_id` — path `eventId` · `include` — query
+- **Signature**: `def mma_v3_odds_betting_fighter_props_by_event(event_id: str, *, format_: FormatOrStr = Format.JSON, include: IncludeOrStr | None = Include.AVAILABLE, request_options: RequestOptionsOrDict | None = None)`
+  - required, positional: `event_id`
+- **Params**: `format_` — path `format` · `event_id` — path `eventId` · `include` — query
 - **Returns (parsed)**: `list[BettingMarket4]`
 - **Returns (raw)**: `ApiResult[list[BettingMarket4], MmaV3OddsBettingFighterPropsByEventErrorBody]`
 - **Error**: `MmaV3OddsBettingFighterPropsByEventErrorBody` — **Case A (typed)**
@@ -68,9 +67,9 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /v3/mma/odds/{format}/BettingMarket/{marketId}`
 - **Auth**: `api_key_header` OR `api_key_query`
-- **Signature**: `def mma_v3_odds_betting_market(format: FormatOrStr, market_id: str, *, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `format`, `market_id`
-- **Params**: `format` — path · `market_id` — path `marketId`
+- **Signature**: `def mma_v3_odds_betting_market(market_id: str, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None)`
+  - required, positional: `market_id`
+- **Params**: `format_` — path `format` · `market_id` — path `marketId`
 - **Returns (parsed)**: `BettingMarket4`
 - **Returns (raw)**: `ApiResult[BettingMarket4, MmaV3OddsBettingMarketErrorBody]`
 - **Error**: `MmaV3OddsBettingMarketErrorBody` — **Case A (typed)**
@@ -87,9 +86,9 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /v3/mma/odds/{format}/BettingMarketsByBettingEvent/{bettingEventId}`
 - **Auth**: `api_key_header` OR `api_key_query`
-- **Signature**: `def mma_v3_odds_betting_markets_by_event(format: FormatOrStr, betting_event_id: str, *, include: IncludeOrStr | None = None, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `format`, `betting_event_id`
-- **Params**: `format` — path · `betting_event_id` — path `bettingEventId` · `include` — query
+- **Signature**: `def mma_v3_odds_betting_markets_by_event(betting_event_id: str, *, format_: FormatOrStr = Format.JSON, include: IncludeOrStr | None = Include.AVAILABLE, request_options: RequestOptionsOrDict | None = None)`
+  - required, positional: `betting_event_id`
+- **Params**: `format_` — path `format` · `betting_event_id` — path `bettingEventId` · `include` — query
 - **Returns (parsed)**: `list[BettingMarket4]`
 - **Returns (raw)**: `ApiResult[list[BettingMarket4], MmaV3OddsBettingMarketsByEventErrorBody]`
 - **Error**: `MmaV3OddsBettingMarketsByEventErrorBody` — **Case A (typed)**
@@ -107,9 +106,9 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /v3/mma/odds/{format}/BettingMarketsByMarketType/{eventId}/{marketTypeId}`
 - **Auth**: `api_key_header` OR `api_key_query`
-- **Signature**: `def mma_v3_odds_betting_markets_by_market_type(format: FormatOrStr, event_id: str, market_type_id: str, *, include: IncludeOrStr | None = None, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `format`, `event_id`, `market_type_id`
-- **Params**: `format` — path · `event_id` — path `eventId` · `market_type_id` — path `marketTypeId` · `include` — query
+- **Signature**: `def mma_v3_odds_betting_markets_by_market_type(event_id: str, market_type_id: str, *, format_: FormatOrStr = Format.JSON, include: IncludeOrStr | None = Include.AVAILABLE, request_options: RequestOptionsOrDict | None = None)`
+  - required, positional: `event_id`, `market_type_id`
+- **Params**: `format_` — path `format` · `event_id` — path `eventId` · `market_type_id` — path `marketTypeId` · `include` — query
 - **Returns (parsed)**: `list[BettingMarket4]`
 - **Returns (raw)**: `ApiResult[list[BettingMarket4], MmaV3OddsBettingMarketsByMarketTypeErrorBody]`
 - **Error**: `MmaV3OddsBettingMarketsByMarketTypeErrorBody` — **Case A (typed)**
@@ -127,9 +126,8 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /v3/mma/odds/{format}/BettingMetadata`
 - **Auth**: `api_key_header` OR `api_key_query`
-- **Signature**: `def mma_v3_odds_betting_metadata(format: FormatOrStr, *, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `format`
-- **Params**: `format` — path
+- **Signature**: `def mma_v3_odds_betting_metadata(*, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None)`
+- **Params**: `format_` — path `format`
 - **Returns (parsed)**: `BettingEntityMetadataCollection4`
 - **Returns (raw)**: `ApiResult[BettingEntityMetadataCollection4, MmaV3OddsBettingMetadataErrorBody]`
 - **Error**: `MmaV3OddsBettingMetadataErrorBody` — **Case A (typed)**
@@ -146,9 +144,9 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /v3/mma/odds/{format}/EventOdds/{eventid}`
 - **Auth**: `api_key_header` OR `api_key_query`
-- **Signature**: `def mma_v3_odds_event_fight_odds(format: FormatOrStr, eventid: str, *, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `format`, `eventid`
-- **Params**: `format` — path · `eventid` — path
+- **Signature**: `def mma_v3_odds_event_fight_odds(eventid: str, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None)`
+  - required, positional: `eventid`
+- **Params**: `format_` — path `format` · `eventid` — path
 - **Returns (parsed)**: `EventOdds`
 - **Returns (raw)**: `ApiResult[EventOdds, MmaV3OddsEventFightOddsErrorBody]`
 - **Error**: `MmaV3OddsEventFightOddsErrorBody` — **Case A (typed)**
@@ -165,9 +163,9 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /v3/mma/odds/{format}/EventOddsLineMovement/{eventid}`
 - **Auth**: `api_key_header` OR `api_key_query`
-- **Signature**: `def mma_v3_odds_event_fight_odds_line_movement(format: FormatOrStr, eventid: str, *, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `format`, `eventid`
-- **Params**: `format` — path · `eventid` — path
+- **Signature**: `def mma_v3_odds_event_fight_odds_line_movement(eventid: str, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None)`
+  - required, positional: `eventid`
+- **Params**: `format_` — path `format` · `eventid` — path
 - **Returns (parsed)**: `EventOdds`
 - **Returns (raw)**: `ApiResult[EventOdds, MmaV3OddsEventFightOddsLineMovementErrorBody]`
 - **Error**: `MmaV3OddsEventFightOddsLineMovementErrorBody` — **Case A (typed)**
@@ -184,9 +182,8 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /v3/mma/odds/{format}/ActiveSportsbooks`
 - **Auth**: `api_key_header` OR `api_key_query`
-- **Signature**: `def mma_v3_odds_sportsbooks_by_active(format: FormatOrStr, *, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `format`
-- **Params**: `format` — path
+- **Signature**: `def mma_v3_odds_sportsbooks_by_active(*, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None)`
+- **Params**: `format_` — path `format`
 - **Returns (parsed)**: `list[Sportsbook]`
 - **Returns (raw)**: `ApiResult[list[Sportsbook], MmaV3OddsSportsbooksByActiveErrorBody]`
 - **Error**: `MmaV3OddsSportsbooksByActiveErrorBody` — **Case A (typed)**

@@ -25,5 +25,5 @@ class TeamTrends3(SdkBaseModel):
 class TeamTrends3Dict(TypedDict):
     team: NotRequired[str | None]
     team_id: NotRequired[int | None]
-    upcoming_game: NotRequired[Game14 | Game14Dict]
-    team_game_trends: NotRequired[list[TeamGameTrends | TeamGameTrendsDict]]
+    upcoming_game: NotRequired[Game14Dict]
+    team_game_trends: NotRequired[list[TeamGameTrendsDict]]

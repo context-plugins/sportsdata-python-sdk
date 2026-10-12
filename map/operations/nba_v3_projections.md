@@ -10,9 +10,9 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /v3/nba/projections/{format}/DfsSlatesByDate/{date}`
 - **Auth**: `api_key_header` OR `api_key_query`
-- **Signature**: `def nba_v3_projections_dfs_slates_by_date(format: FormatOrStr, date: str, *, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `format`, `date`
-- **Params**: `format` — path · `date` — path
+- **Signature**: `def nba_v3_projections_dfs_slates_by_date(date: str, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None)`
+  - required, positional: `date`
+- **Params**: `format_` — path `format` · `date` — path
 - **Returns (parsed)**: `list[DfsSlate]`
 - **Returns (raw)**: `ApiResult[list[DfsSlate], NbaV3ProjectionsDfsSlatesByDateErrorBody]`
 - **Error**: `NbaV3ProjectionsDfsSlatesByDateErrorBody` — **Case A (typed)**
@@ -29,9 +29,8 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /v3/nba/projections/{format}/InjuredPlayers`
 - **Auth**: `api_key_header` OR `api_key_query`
-- **Signature**: `def nba_v3_projections_player_details_by_injured(format: FormatOrStr, *, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `format`
-- **Params**: `format` — path
+- **Signature**: `def nba_v3_projections_player_details_by_injured(*, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None)`
+- **Params**: `format_` — path `format`
 - **Returns (parsed)**: `list[Player1]`
 - **Returns (raw)**: `ApiResult[list[Player1], NbaV3ProjectionsPlayerDetailsByInjuredErrorBody]`
 - **Error**: `NbaV3ProjectionsPlayerDetailsByInjuredErrorBody` — **Case A (typed)**
@@ -48,9 +47,9 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /v3/nba/projections/{format}/PlayerGameProjectionStatsByDate/{date}`
 - **Auth**: `api_key_header` OR `api_key_query`
-- **Signature**: `def nba_v3_projections_projected_player_game_stats_by_date(format: FormatOrStr, date: str, *, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `format`, `date`
-- **Params**: `format` — path · `date` — path
+- **Signature**: `def nba_v3_projections_projected_player_game_stats_by_date(date: str, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None)`
+  - required, positional: `date`
+- **Params**: `format_` — path `format` · `date` — path
 - **Returns (parsed)**: `list[PlayerGameProjection1]`
 - **Returns (raw)**: `ApiResult[list[PlayerGameProjection1], NbaV3ProjectionsProjectedPlayerGameStatsByDateErrorBody]`
 - **Error**: `NbaV3ProjectionsProjectedPlayerGameStatsByDateErrorBody` — **Case A (typed)**
@@ -67,9 +66,9 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /v3/nba/projections/{format}/PlayerSeasonProjectionStats/{season}`
 - **Auth**: `api_key_header` OR `api_key_query`
-- **Signature**: `def nba_v3_projections_projected_player_season_stats(format: FormatOrStr, season: str, *, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `format`, `season`
-- **Params**: `format` — path · `season` — path
+- **Signature**: `def nba_v3_projections_projected_player_season_stats(season: str, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None)`
+  - required, positional: `season`
+- **Params**: `format_` — path `format` · `season` — path
 - **Returns (parsed)**: `list[PlayerSeasonProjection1]`
 - **Returns (raw)**: `ApiResult[list[PlayerSeasonProjection1], NbaV3ProjectionsProjectedPlayerSeasonStatsErrorBody]`
 - **Error**: `NbaV3ProjectionsProjectedPlayerSeasonStatsErrorBody` — **Case A (typed)**
@@ -86,9 +85,9 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /v3/nba/projections/{format}/PlayerSeasonProjectionStatsByTeam/{season}/{team}`
 - **Auth**: `api_key_header` OR `api_key_query`
-- **Signature**: `def nba_v3_projections_projected_player_season_stats_by_team(format: FormatOrStr, season: str, team: str, *, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `format`, `season`, `team`
-- **Params**: `format` — path · `season` — path · `team` — path
+- **Signature**: `def nba_v3_projections_projected_player_season_stats_by_team(season: str, team: str, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None)`
+  - required, positional: `season`, `team`
+- **Params**: `format_` — path `format` · `season` — path · `team` — path
 - **Returns (parsed)**: `list[PlayerSeasonProjection1]`
 - **Returns (raw)**: `ApiResult[list[PlayerSeasonProjection1], NbaV3ProjectionsProjectedPlayerSeasonStatsByTeamErrorBody]`
 - **Error**: `NbaV3ProjectionsProjectedPlayerSeasonStatsByTeamErrorBody` — **Case A (typed)**
@@ -105,9 +104,9 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /v3/nba/projections/{format}/StartingLineupsByDate/{date}`
 - **Auth**: `api_key_header` OR `api_key_query`
-- **Signature**: `def nba_v3_projections_starting_lineups_by_date(format: FormatOrStr, date: str, *, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `format`, `date`
-- **Params**: `format` — path · `date` — path
+- **Signature**: `def nba_v3_projections_starting_lineups_by_date(date: str, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None)`
+  - required, positional: `date`
+- **Params**: `format_` — path `format` · `date` — path
 - **Returns (parsed)**: `list[StartingLineups]`
 - **Returns (raw)**: `ApiResult[list[StartingLineups], NbaV3ProjectionsStartingLineupsByDateErrorBody]`
 - **Error**: `NbaV3ProjectionsStartingLineupsByDateErrorBody` — **Case A (typed)**

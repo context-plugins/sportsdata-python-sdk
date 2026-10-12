@@ -10,9 +10,9 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /v4/soccer/odds/{format}/BettingEventsByDate/{competition}/{date}`
 - **Auth**: `api_key_header` OR `api_key_query`
-- **Signature**: `def soccer_v4_odds_betting_events_by_date(format: FormatOrStr, competition: str, date: str, *, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `format`, `competition`, `date`
-- **Params**: `format` — path · `competition` — path · `date` — path
+- **Signature**: `def soccer_v4_odds_betting_events_by_date(competition: str, date: str, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None)`
+  - required, positional: `competition`, `date`
+- **Params**: `format_` — path `format` · `competition` — path · `date` — path
 - **Returns (parsed)**: `list[BettingEvent3]`
 - **Returns (raw)**: `ApiResult[list[BettingEvent3], SoccerV4OddsBettingEventsByDateErrorBody]`
 - **Error**: `SoccerV4OddsBettingEventsByDateErrorBody` — **Case A (typed)**
@@ -29,9 +29,9 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /v4/soccer/odds/{format}/BettingEventsBySeason/{competition}/{season}`
 - **Auth**: `api_key_header` OR `api_key_query`
-- **Signature**: `def soccer_v4_odds_betting_events_by_season(format: FormatOrStr, competition: str, season: str, *, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `format`, `competition`, `season`
-- **Params**: `format` — path · `competition` — path · `season` — path
+- **Signature**: `def soccer_v4_odds_betting_events_by_season(competition: str, season: str, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None)`
+  - required, positional: `competition`, `season`
+- **Params**: `format_` — path `format` · `competition` — path · `season` — path
 - **Returns (parsed)**: `list[BettingEvent3]`
 - **Returns (raw)**: `ApiResult[list[BettingEvent3], SoccerV4OddsBettingEventsBySeasonErrorBody]`
 - **Error**: `SoccerV4OddsBettingEventsBySeasonErrorBody` — **Case A (typed)**
@@ -48,9 +48,9 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /v4/soccer/odds/{format}/BettingFuturesBySeason/{competition}/{season}`
 - **Auth**: `api_key_header` OR `api_key_query`
-- **Signature**: `def soccer_v4_odds_betting_futures_by_season(format: FormatOrStr, competition: str, season: str, *, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `format`, `competition`, `season`
-- **Params**: `format` — path · `competition` — path · `season` — path
+- **Signature**: `def soccer_v4_odds_betting_futures_by_season(competition: str, season: str, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None)`
+  - required, positional: `competition`, `season`
+- **Params**: `format_` — path `format` · `competition` — path · `season` — path
 - **Returns (parsed)**: `list[BettingEvent3]`
 - **Returns (raw)**: `ApiResult[list[BettingEvent3], SoccerV4OddsBettingFuturesBySeasonErrorBody]`
 - **Error**: `SoccerV4OddsBettingFuturesBySeasonErrorBody` — **Case A (typed)**
@@ -67,9 +67,9 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /v4/soccer/odds/{format}/BettingFuturesBySeason/{competition}/{season}/{sportsbookgroup}`
 - **Auth**: `api_key_header` OR `api_key_query`
-- **Signature**: `def soccer_v4_odds_betting_futures_by_season_sportsbook_group(format: FormatOrStr, competition: str, season: str, sportsbookgroup: str, *, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `format`, `competition`, `season`, `sportsbookgroup`
-- **Params**: `format` — path · `competition` — path · `season` — path · `sportsbookgroup` — path
+- **Signature**: `def soccer_v4_odds_betting_futures_by_season_sportsbook_group(competition: str, season: str, sportsbookgroup: str, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None)`
+  - required, positional: `competition`, `season`, `sportsbookgroup`
+- **Params**: `format_` — path `format` · `competition` — path · `season` — path · `sportsbookgroup` — path
 - **Returns (parsed)**: `list[BettingEvent3]`
 - **Returns (raw)**: `ApiResult[list[BettingEvent3], SoccerV4OddsBettingFuturesBySeasonSportsbookGroupErrorBody]`
 - **Error**: `SoccerV4OddsBettingFuturesBySeasonSportsbookGroupErrorBody` — **Case A (typed)**
@@ -86,9 +86,9 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /v4/soccer/odds/{format}/BettingMarket/{competition}/{marketId}`
 - **Auth**: `api_key_header` OR `api_key_query`
-- **Signature**: `def soccer_v4_odds_betting_market(format: FormatOrStr, competition: str, market_id: str, *, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `format`, `competition`, `market_id`
-- **Params**: `format` — path · `competition` — path · `market_id` — path `marketId`
+- **Signature**: `def soccer_v4_odds_betting_market(competition: str, market_id: str, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None)`
+  - required, positional: `competition`, `market_id`
+- **Params**: `format_` — path `format` · `competition` — path · `market_id` — path `marketId`
 - **Returns (parsed)**: `BettingMarket1`
 - **Returns (raw)**: `ApiResult[BettingMarket1, SoccerV4OddsBettingMarketErrorBody]`
 - **Error**: `SoccerV4OddsBettingMarketErrorBody` — **Case A (typed)**
@@ -105,9 +105,9 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /v4/soccer/odds/{format}/BettingMarket/{competition}/{marketId}/{sportsbookgroup}`
 - **Auth**: `api_key_header` OR `api_key_query`
-- **Signature**: `def soccer_v4_odds_betting_market_sportsbook_group(format: FormatOrStr, competition: str, market_id: str, sportsbookgroup: str, *, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `format`, `competition`, `market_id`, `sportsbookgroup`
-- **Params**: `format` — path · `competition` — path · `market_id` — path `marketId` · `sportsbookgroup` — path
+- **Signature**: `def soccer_v4_odds_betting_market_sportsbook_group(competition: str, market_id: str, sportsbookgroup: str, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None)`
+  - required, positional: `competition`, `market_id`, `sportsbookgroup`
+- **Params**: `format_` — path `format` · `competition` — path · `market_id` — path `marketId` · `sportsbookgroup` — path
 - **Returns (parsed)**: `BettingMarket1`
 - **Returns (raw)**: `ApiResult[BettingMarket1, SoccerV4OddsBettingMarketSportsbookGroupErrorBody]`
 - **Error**: `SoccerV4OddsBettingMarketSportsbookGroupErrorBody` — **Case A (typed)**
@@ -124,9 +124,9 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /v4/soccer/odds/{format}/BettingMarkets/{competition}/{eventId}`
 - **Auth**: `api_key_header` OR `api_key_query`
-- **Signature**: `def soccer_v4_odds_betting_markets_by_event(format: FormatOrStr, competition: str, event_id: str, *, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `format`, `competition`, `event_id`
-- **Params**: `format` — path · `competition` — path · `event_id` — path `eventId`
+- **Signature**: `def soccer_v4_odds_betting_markets_by_event(competition: str, event_id: str, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None)`
+  - required, positional: `competition`, `event_id`
+- **Params**: `format_` — path `format` · `competition` — path · `event_id` — path `eventId`
 - **Returns (parsed)**: `list[BettingMarket1]`
 - **Returns (raw)**: `ApiResult[list[BettingMarket1], SoccerV4OddsBettingMarketsByEventErrorBody]`
 - **Error**: `SoccerV4OddsBettingMarketsByEventErrorBody` — **Case A (typed)**
@@ -143,9 +143,9 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /v4/soccer/odds/{format}/BettingMarketsByEvent/{competition}/{eventId}/{sportsbookgroup}`
 - **Auth**: `api_key_header` OR `api_key_query`
-- **Signature**: `def soccer_v4_odds_betting_markets_by_event_sportsbook_group(format: FormatOrStr, competition: str, event_id: str, sportsbookgroup: str, *, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `format`, `competition`, `event_id`, `sportsbookgroup`
-- **Params**: `format` — path · `competition` — path · `event_id` — path `eventId` · `sportsbookgroup` — path
+- **Signature**: `def soccer_v4_odds_betting_markets_by_event_sportsbook_group(competition: str, event_id: str, sportsbookgroup: str, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None)`
+  - required, positional: `competition`, `event_id`, `sportsbookgroup`
+- **Params**: `format_` — path `format` · `competition` — path · `event_id` — path `eventId` · `sportsbookgroup` — path
 - **Returns (parsed)**: `list[BettingMarket1]`
 - **Returns (raw)**: `ApiResult[list[BettingMarket1], SoccerV4OddsBettingMarketsByEventSportsbookGroupErrorBody]`
 - **Error**: `SoccerV4OddsBettingMarketsByEventSportsbookGroupErrorBody` — **Case A (typed)**
@@ -162,9 +162,9 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /v4/soccer/odds/{format}/BettingMarketsByGameID/{competition}/{gameid}`
 - **Auth**: `api_key_header` OR `api_key_query`
-- **Signature**: `def soccer_v4_odds_betting_markets_by_game(format: FormatOrStr, competition: str, gameid: str, *, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `format`, `competition`, `gameid`
-- **Params**: `format` — path · `competition` — path · `gameid` — path
+- **Signature**: `def soccer_v4_odds_betting_markets_by_game(competition: str, gameid: str, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None)`
+  - required, positional: `competition`, `gameid`
+- **Params**: `format_` — path `format` · `competition` — path · `gameid` — path
 - **Returns (parsed)**: `list[BettingMarket1]`
 - **Returns (raw)**: `ApiResult[list[BettingMarket1], SoccerV4OddsBettingMarketsByGameErrorBody]`
 - **Error**: `SoccerV4OddsBettingMarketsByGameErrorBody` — **Case A (typed)**
@@ -181,9 +181,9 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /v4/soccer/odds/{format}/BettingMarketsByGameID/{competition}/{gameid}/{sportsbookgroup}`
 - **Auth**: `api_key_header` OR `api_key_query`
-- **Signature**: `def soccer_v4_odds_betting_markets_by_game_sportsbook_group(format: FormatOrStr, competition: str, gameid: str, sportsbookgroup: str, *, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `format`, `competition`, `gameid`, `sportsbookgroup`
-- **Params**: `format` — path · `competition` — path · `gameid` — path · `sportsbookgroup` — path
+- **Signature**: `def soccer_v4_odds_betting_markets_by_game_sportsbook_group(competition: str, gameid: str, sportsbookgroup: str, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None)`
+  - required, positional: `competition`, `gameid`, `sportsbookgroup`
+- **Params**: `format_` — path `format` · `competition` — path · `gameid` — path · `sportsbookgroup` — path
 - **Returns (parsed)**: `list[BettingMarket1]`
 - **Returns (raw)**: `ApiResult[list[BettingMarket1], SoccerV4OddsBettingMarketsByGameSportsbookGroupErrorBody]`
 - **Error**: `SoccerV4OddsBettingMarketsByGameSportsbookGroupErrorBody` — **Case A (typed)**
@@ -200,9 +200,9 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /v4/soccer/odds/{format}/BettingMarketsByMarketType/{competition}/{eventId}/{marketTypeID}`
 - **Auth**: `api_key_header` OR `api_key_query`
-- **Signature**: `def soccer_v4_odds_betting_markets_by_market_type(format: FormatOrStr, competition: str, event_id: str, market_type_id: str, *, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `format`, `competition`, `event_id`, `market_type_id`
-- **Params**: `format` — path · `competition` — path · `event_id` — path `eventId` · `market_type_id` — path `marketTypeID`
+- **Signature**: `def soccer_v4_odds_betting_markets_by_market_type(competition: str, event_id: str, market_type_id: str, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None)`
+  - required, positional: `competition`, `event_id`, `market_type_id`
+- **Params**: `format_` — path `format` · `competition` — path · `event_id` — path `eventId` · `market_type_id` — path `marketTypeID`
 - **Returns (parsed)**: `list[BettingMarket1]`
 - **Returns (raw)**: `ApiResult[list[BettingMarket1], SoccerV4OddsBettingMarketsByMarketTypeErrorBody]`
 - **Error**: `SoccerV4OddsBettingMarketsByMarketTypeErrorBody` — **Case A (typed)**
@@ -219,9 +219,9 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /v4/soccer/odds/{format}/BettingMarketsByMarketType/{competition}/{eventId}/{marketTypeID}/{sportsbookgroup}`
 - **Auth**: `api_key_header` OR `api_key_query`
-- **Signature**: `def soccer_v4_odds_betting_markets_by_market_type_sportsbook_group(format: FormatOrStr, competition: str, event_id: str, market_type_id: str, sportsbookgroup: str, *, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `format`, `competition`, `event_id`, `market_type_id`, `sportsbookgroup`
-- **Params**: `format` — path · `competition` — path · `event_id` — path `eventId` · `market_type_id` — path `marketTypeID` · `sportsbookgroup` — path
+- **Signature**: `def soccer_v4_odds_betting_markets_by_market_type_sportsbook_group(competition: str, event_id: str, market_type_id: str, sportsbookgroup: str, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None)`
+  - required, positional: `competition`, `event_id`, `market_type_id`, `sportsbookgroup`
+- **Params**: `format_` — path `format` · `competition` — path · `event_id` — path `eventId` · `market_type_id` — path `marketTypeID` · `sportsbookgroup` — path
 - **Returns (parsed)**: `list[BettingMarket1]`
 - **Returns (raw)**: `ApiResult[list[BettingMarket1], SoccerV4OddsBettingMarketsByMarketTypeSportsbookGroupErrorBody]`
 - **Error**: `SoccerV4OddsBettingMarketsByMarketTypeSportsbookGroupErrorBody` — **Case A (typed)**
@@ -238,9 +238,8 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /v4/soccer/odds/{format}/BettingMetadata`
 - **Auth**: `api_key_header` OR `api_key_query`
-- **Signature**: `def soccer_v4_odds_betting_metadata(format: FormatOrStr, *, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `format`
-- **Params**: `format` — path
+- **Signature**: `def soccer_v4_odds_betting_metadata(*, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None)`
+- **Params**: `format_` — path `format`
 - **Returns (parsed)**: `BettingEntityMetadataCollection1`
 - **Returns (raw)**: `ApiResult[BettingEntityMetadataCollection1, SoccerV4OddsBettingMetadataErrorBody]`
 - **Error**: `SoccerV4OddsBettingMetadataErrorBody` — **Case A (typed)**
@@ -257,9 +256,9 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /v4/soccer/odds/{format}/BettingPlayerPropsByGameID/{competition}/{gameId}`
 - **Auth**: `api_key_header` OR `api_key_query`
-- **Signature**: `def soccer_v4_odds_betting_player_props_by_game(format: FormatOrStr, competition: str, game_id: str, *, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `format`, `competition`, `game_id`
-- **Params**: `format` — path · `competition` — path · `game_id` — path `gameId`
+- **Signature**: `def soccer_v4_odds_betting_player_props_by_game(competition: str, game_id: str, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None)`
+  - required, positional: `competition`, `game_id`
+- **Params**: `format_` — path `format` · `competition` — path · `game_id` — path `gameId`
 - **Returns (parsed)**: `list[BettingMarket1]`
 - **Returns (raw)**: `ApiResult[list[BettingMarket1], SoccerV4OddsBettingPlayerPropsByGameErrorBody]`
 - **Error**: `SoccerV4OddsBettingPlayerPropsByGameErrorBody` — **Case A (typed)**
@@ -276,9 +275,9 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /v4/soccer/odds/{format}/BettingPlayerPropsByGameID/{competition}/{gameId}/{sportsbookgroup}`
 - **Auth**: `api_key_header` OR `api_key_query`
-- **Signature**: `def soccer_v4_odds_betting_player_props_by_game_sportsbook_group(format: FormatOrStr, competition: str, game_id: str, sportsbookgroup: str, *, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `format`, `competition`, `game_id`, `sportsbookgroup`
-- **Params**: `format` — path · `competition` — path · `game_id` — path `gameId` · `sportsbookgroup` — path
+- **Signature**: `def soccer_v4_odds_betting_player_props_by_game_sportsbook_group(competition: str, game_id: str, sportsbookgroup: str, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None)`
+  - required, positional: `competition`, `game_id`, `sportsbookgroup`
+- **Params**: `format_` — path `format` · `competition` — path · `game_id` — path `gameId` · `sportsbookgroup` — path
 - **Returns (parsed)**: `list[BettingMarket1]`
 - **Returns (raw)**: `ApiResult[list[BettingMarket1], SoccerV4OddsBettingPlayerPropsByGameSportsbookGroupErrorBody]`
 - **Error**: `SoccerV4OddsBettingPlayerPropsByGameSportsbookGroupErrorBody` — **Case A (typed)**
@@ -295,9 +294,9 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /v4/soccer/odds/{format}/LiveGameOddsByDate/{competition}/{date}`
 - **Auth**: `api_key_header` OR `api_key_query`
-- **Signature**: `def soccer_v4_odds_in_game_odds_by_date(format: FormatOrStr, competition: str, date: str, *, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `format`, `competition`, `date`
-- **Params**: `format` — path · `competition` — path · `date` — path
+- **Signature**: `def soccer_v4_odds_in_game_odds_by_date(competition: str, date: str, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None)`
+  - required, positional: `competition`, `date`
+- **Params**: `format_` — path `format` · `competition` — path · `date` — path
 - **Returns (parsed)**: `list[GameInfo7]`
 - **Returns (raw)**: `ApiResult[list[GameInfo7], SoccerV4OddsInGameOddsByDateErrorBody]`
 - **Error**: `SoccerV4OddsInGameOddsByDateErrorBody` — **Case A (typed)**
@@ -314,9 +313,9 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /v4/soccer/odds/{format}/InGameOddsByDate/{competition}/{date}/{sportsbookgroup}`
 - **Auth**: `api_key_header` OR `api_key_query`
-- **Signature**: `def soccer_v4_odds_in_game_odds_by_date_sportsbook_group(format: FormatOrStr, competition: str, date: str, sportsbookgroup: str, *, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `format`, `competition`, `date`, `sportsbookgroup`
-- **Params**: `format` — path · `competition` — path · `date` — path · `sportsbookgroup` — path
+- **Signature**: `def soccer_v4_odds_in_game_odds_by_date_sportsbook_group(competition: str, date: str, sportsbookgroup: str, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None)`
+  - required, positional: `competition`, `date`, `sportsbookgroup`
+- **Params**: `format_` — path `format` · `competition` — path · `date` — path · `sportsbookgroup` — path
 - **Returns (parsed)**: `list[GameInfo7]`
 - **Returns (raw)**: `ApiResult[list[GameInfo7], SoccerV4OddsInGameOddsByDateSportsbookGroupErrorBody]`
 - **Error**: `SoccerV4OddsInGameOddsByDateSportsbookGroupErrorBody` — **Case A (typed)**
@@ -333,9 +332,9 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /v4/soccer/odds/{format}/LiveGameOddsLineMovement/{competition}/{gameid}`
 - **Auth**: `api_key_header` OR `api_key_query`
-- **Signature**: `def soccer_v4_odds_in_game_odds_line_movement(format: FormatOrStr, competition: str, gameid: str, *, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `format`, `competition`, `gameid`
-- **Params**: `format` — path · `competition` — path · `gameid` — path
+- **Signature**: `def soccer_v4_odds_in_game_odds_line_movement(competition: str, gameid: str, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None)`
+  - required, positional: `competition`, `gameid`
+- **Params**: `format_` — path `format` · `competition` — path · `gameid` — path
 - **Returns (parsed)**: `list[GameInfo7]`
 - **Returns (raw)**: `ApiResult[list[GameInfo7], SoccerV4OddsInGameOddsLineMovementErrorBody]`
 - **Error**: `SoccerV4OddsInGameOddsLineMovementErrorBody` — **Case A (typed)**
@@ -352,9 +351,9 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /v4/soccer/odds/{format}/InGameOddsLineMovement/{competition}/{gameid}/{sportsbookgroup}`
 - **Auth**: `api_key_header` OR `api_key_query`
-- **Signature**: `def soccer_v4_odds_in_game_odds_line_movement_sportsbook_group(format: FormatOrStr, competition: str, gameid: str, sportsbookgroup: str, *, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `format`, `competition`, `gameid`, `sportsbookgroup`
-- **Params**: `format` — path · `competition` — path · `gameid` — path · `sportsbookgroup` — path
+- **Signature**: `def soccer_v4_odds_in_game_odds_line_movement_sportsbook_group(competition: str, gameid: str, sportsbookgroup: str, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None)`
+  - required, positional: `competition`, `gameid`, `sportsbookgroup`
+- **Params**: `format_` — path `format` · `competition` — path · `gameid` — path · `sportsbookgroup` — path
 - **Returns (parsed)**: `list[GameInfo7]`
 - **Returns (raw)**: `ApiResult[list[GameInfo7], SoccerV4OddsInGameOddsLineMovementSportsbookGroupErrorBody]`
 - **Error**: `SoccerV4OddsInGameOddsLineMovementSportsbookGroupErrorBody` — **Case A (typed)**
@@ -371,9 +370,9 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /v4/soccer/odds/{format}/InGameOddsLineMovementWithResulting/{competition}/{gameid}/{sportsbookgroup}`
 - **Auth**: `api_key_header` OR `api_key_query`
-- **Signature**: `def soccer_v4_odds_in_game_odds_line_movement_with_resulting_sportsbook_group(format: FormatOrStr, competition: str, gameid: str, sportsbookgroup: str, *, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `format`, `competition`, `gameid`, `sportsbookgroup`
-- **Params**: `format` — path · `competition` — path · `gameid` — path · `sportsbookgroup` — path
+- **Signature**: `def soccer_v4_odds_in_game_odds_line_movement_with_resulting_sportsbook_group(competition: str, gameid: str, sportsbookgroup: str, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None)`
+  - required, positional: `competition`, `gameid`, `sportsbookgroup`
+- **Params**: `format_` — path `format` · `competition` — path · `gameid` — path · `sportsbookgroup` — path
 - **Returns (parsed)**: `list[GameInfoResult6]`
 - **Returns (raw)**: `ApiResult[list[GameInfoResult6], SoccerV4OddsInGameOddsLineMovementWithResultingSportsbookGroupErrorBody]`
 - **Error**: `SoccerV4OddsInGameOddsLineMovementWithResultingSportsbookGroupErrorBody` — **Case A (typed)**
@@ -390,9 +389,9 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /v4/soccer/odds/{format}/AlternateMarketGameOddsByDate/{competition}/{date}`
 - **Auth**: `api_key_header` OR `api_key_query`
-- **Signature**: `def soccer_v4_odds_period_game_odds_by_date(format: FormatOrStr, competition: str, date: str, *, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `format`, `competition`, `date`
-- **Params**: `format` — path · `competition` — path · `date` — path
+- **Signature**: `def soccer_v4_odds_period_game_odds_by_date(competition: str, date: str, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None)`
+  - required, positional: `competition`, `date`
+- **Params**: `format_` — path `format` · `competition` — path · `date` — path
 - **Returns (parsed)**: `list[GameInfo7]`
 - **Returns (raw)**: `ApiResult[list[GameInfo7], SoccerV4OddsPeriodGameOddsByDateErrorBody]`
 - **Error**: `SoccerV4OddsPeriodGameOddsByDateErrorBody` — **Case A (typed)**
@@ -409,9 +408,9 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /v4/soccer/odds/{format}/AlternateMarketGameOddsLineMovement/{competition}/{gameid}`
 - **Auth**: `api_key_header` OR `api_key_query`
-- **Signature**: `def soccer_v4_odds_period_game_odds_line_movement(format: FormatOrStr, competition: str, gameid: str, *, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `format`, `competition`, `gameid`
-- **Params**: `format` — path · `competition` — path · `gameid` — path
+- **Signature**: `def soccer_v4_odds_period_game_odds_line_movement(competition: str, gameid: str, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None)`
+  - required, positional: `competition`, `gameid`
+- **Params**: `format_` — path `format` · `competition` — path · `gameid` — path
 - **Returns (parsed)**: `list[GameInfo7]`
 - **Returns (raw)**: `ApiResult[list[GameInfo7], SoccerV4OddsPeriodGameOddsLineMovementErrorBody]`
 - **Error**: `SoccerV4OddsPeriodGameOddsLineMovementErrorBody` — **Case A (typed)**
@@ -428,9 +427,9 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /v4/soccer/odds/{format}/PreGameOddsByDate/{competition}/{date}/{sportsbookgroup}`
 - **Auth**: `api_key_header` OR `api_key_query`
-- **Signature**: `def soccer_v4_odds_pre_game_and_period_game_odds_by_date_sportsbook_group(format: FormatOrStr, competition: str, date: str, sportsbookgroup: str, *, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `format`, `competition`, `date`, `sportsbookgroup`
-- **Params**: `format` — path · `competition` — path · `date` — path · `sportsbookgroup` — path
+- **Signature**: `def soccer_v4_odds_pre_game_and_period_game_odds_by_date_sportsbook_group(competition: str, date: str, sportsbookgroup: str, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None)`
+  - required, positional: `competition`, `date`, `sportsbookgroup`
+- **Params**: `format_` — path `format` · `competition` — path · `date` — path · `sportsbookgroup` — path
 - **Returns (parsed)**: `list[GameInfo7]`
 - **Returns (raw)**: `ApiResult[list[GameInfo7], SoccerV4OddsPreGameAndPeriodGameOddsByDateSportsbookGroupErrorBody]`
 - **Error**: `SoccerV4OddsPreGameAndPeriodGameOddsByDateSportsbookGroupErrorBody` — **Case A (typed)**
@@ -447,9 +446,9 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /v4/soccer/odds/{format}/PreGameOddsLineMovement/{competition}/{gameid}/{sportsbookgroup}`
 - **Auth**: `api_key_header` OR `api_key_query`
-- **Signature**: `def soccer_v4_odds_pre_game_and_period_game_odds_line_movement_sportsbook_group(format: FormatOrStr, competition: str, gameid: str, sportsbookgroup: str, *, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `format`, `competition`, `gameid`, `sportsbookgroup`
-- **Params**: `format` — path · `competition` — path · `gameid` — path · `sportsbookgroup` — path
+- **Signature**: `def soccer_v4_odds_pre_game_and_period_game_odds_line_movement_sportsbook_group(competition: str, gameid: str, sportsbookgroup: str, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None)`
+  - required, positional: `competition`, `gameid`, `sportsbookgroup`
+- **Params**: `format_` — path `format` · `competition` — path · `gameid` — path · `sportsbookgroup` — path
 - **Returns (parsed)**: `list[GameInfo7]`
 - **Returns (raw)**: `ApiResult[list[GameInfo7], SoccerV4OddsPreGameAndPeriodGameOddsLineMovementSportsbookGroupErrorBody]`
 - **Error**: `SoccerV4OddsPreGameAndPeriodGameOddsLineMovementSportsbookGroupErrorBody` — **Case A (typed)**
@@ -466,9 +465,9 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /v4/soccer/odds/{format}/PreGameOddsLineMovementWithResulting/{competition}/{gameid}/{sportsbookgroup}`
 - **Auth**: `api_key_header` OR `api_key_query`
-- **Signature**: `def soccer_v4_odds_pre_game_and_period_game_odds_line_movement_with_resulting_sportsbook_group(format: FormatOrStr, competition: str, gameid: str, sportsbookgroup: str, *, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `format`, `competition`, `gameid`, `sportsbookgroup`
-- **Params**: `format` — path · `competition` — path · `gameid` — path · `sportsbookgroup` — path
+- **Signature**: `def soccer_v4_odds_pre_game_and_period_game_odds_line_movement_with_resulting_sportsbook_group(competition: str, gameid: str, sportsbookgroup: str, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None)`
+  - required, positional: `competition`, `gameid`, `sportsbookgroup`
+- **Params**: `format_` — path `format` · `competition` — path · `gameid` — path · `sportsbookgroup` — path
 - **Returns (parsed)**: `list[GameInfoResult6]`
 - **Returns (raw)**: `ApiResult[list[GameInfoResult6], SoccerV4OddsPreGameAndPeriodGameOddsLineMovementWithResultingSportsbookGroupErrorBody]`
 - **Error**: `SoccerV4OddsPreGameAndPeriodGameOddsLineMovementWithResultingSportsbookGroupErrorBody` — **Case A (typed)**
@@ -485,9 +484,9 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /v4/soccer/odds/{format}/GameOddsByDate/{competition}/{date}`
 - **Auth**: `api_key_header` OR `api_key_query`
-- **Signature**: `def soccer_v4_odds_pre_game_odds_by_date(format: FormatOrStr, competition: str, date: str, *, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `format`, `competition`, `date`
-- **Params**: `format` — path · `competition` — path · `date` — path
+- **Signature**: `def soccer_v4_odds_pre_game_odds_by_date(competition: str, date: str, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None)`
+  - required, positional: `competition`, `date`
+- **Params**: `format_` — path `format` · `competition` — path · `date` — path
 - **Returns (parsed)**: `list[GameInfo7]`
 - **Returns (raw)**: `ApiResult[list[GameInfo7], SoccerV4OddsPreGameOddsByDateErrorBody]`
 - **Error**: `SoccerV4OddsPreGameOddsByDateErrorBody` — **Case A (typed)**
@@ -504,9 +503,9 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /v4/soccer/odds/{format}/GameOddsLineMovement/{competition}/{gameid}`
 - **Auth**: `api_key_header` OR `api_key_query`
-- **Signature**: `def soccer_v4_odds_pre_game_odds_line_movement(format: FormatOrStr, competition: str, gameid: str, *, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `format`, `competition`, `gameid`
-- **Params**: `format` — path · `competition` — path · `gameid` — path
+- **Signature**: `def soccer_v4_odds_pre_game_odds_line_movement(competition: str, gameid: str, *, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None)`
+  - required, positional: `competition`, `gameid`
+- **Params**: `format_` — path `format` · `competition` — path · `gameid` — path
 - **Returns (parsed)**: `list[GameInfo7]`
 - **Returns (raw)**: `ApiResult[list[GameInfo7], SoccerV4OddsPreGameOddsLineMovementErrorBody]`
 - **Error**: `SoccerV4OddsPreGameOddsLineMovementErrorBody` — **Case A (typed)**
@@ -523,9 +522,8 @@ Each `###` block is one operation and assumes `sdk-map.md` is loaded: blocks omi
 
 - **Route**: `GET /v4/soccer/odds/{format}/ActiveSportsbooks`
 - **Auth**: `api_key_header` OR `api_key_query`
-- **Signature**: `def soccer_v4_odds_sportsbooks_by_active(format: FormatOrStr, *, request_options: RequestOptionsOrDict | None = None)`
-  - required, positional: `format`
-- **Params**: `format` — path
+- **Signature**: `def soccer_v4_odds_sportsbooks_by_active(*, format_: FormatOrStr = Format.JSON, request_options: RequestOptionsOrDict | None = None)`
+- **Params**: `format_` — path `format`
 - **Returns (parsed)**: `list[Sportsbook]`
 - **Returns (raw)**: `ApiResult[list[Sportsbook], SoccerV4OddsSportsbooksByActiveErrorBody]`
 - **Error**: `SoccerV4OddsSportsbooksByActiveErrorBody` — **Case A (typed)**
